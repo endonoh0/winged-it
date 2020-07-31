@@ -6,7 +6,7 @@ const useFirestore = (collection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    projectFirestore.collection(collection)
+    const unsub = projectFirestore.collection(collection)
     // fires callback everytime change occurs inside the collection
     // also fires once initially
     .orderBy('createdAt', 'desc')
@@ -22,8 +22,15 @@ const useFirestore = (collection) => {
         });
         setDocs(documents);
       })
+
+    // cleanup
+        // we can unsubcribe or stop retrieving from collection if we unmount image-grid page component
+    return () => unsub();
+
   }, [collection])
 
   return { docs };
 
 }
+
+export default useFirestore;
