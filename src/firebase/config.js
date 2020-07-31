@@ -21,7 +21,6 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
 
 // initialize storage service
 const projectStorage = firebase.storage();
@@ -29,4 +28,7 @@ const projectStorage = firebase.storage();
 // initialize firestore service
 const projectFirestore = firebase.firestore();
 
-export { projectStorage, projectFirestore };
+// firebase uses a special type of data (timestamp) in firestore
+const timeStamp = firebase.firestore.FieldValue.serverTimestamp;
+
+export { projectStorage, projectFirestore, timeStamp };
