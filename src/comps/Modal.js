@@ -8,6 +8,7 @@ const Modal = ({ selectedImg, setSelectedImg }) => {
 
   return (
     // the backdrop behind modal (semi transparent sheet that fades behind the modal)
+    // BUG: we only want to click on this div and not the image to close
     <div className="backdrop" onClick={handleClick}>
       <img src={selectedImg} alt="enlarged pic" />
     </div>
