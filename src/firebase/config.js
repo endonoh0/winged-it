@@ -21,7 +21,7 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.analytics();
 
 // initialize storage service
 const projectStorage = firebase.storage();
