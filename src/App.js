@@ -7,7 +7,6 @@ import SignIn from './comps/SignIn'
 import SignUp from './comps/SignUp'
 import { projectAuth } from './firebase/config';
 
-// root component
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
 
@@ -22,7 +21,7 @@ function App() {
       <Title/>
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />
-      { selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} /> }
+      { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> }
     </div>
   );
 }
