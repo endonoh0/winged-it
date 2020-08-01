@@ -3,8 +3,8 @@ import Title from './comps/Title';
 import UploadForm from './comps/UploadForm';
 import ImageGrid from './comps/ImageGrid';
 import Modal from './comps/Modal';
-import SignIn from './comps/SignIn'
-import SignUp from './comps/SignUp'
+import Login from './comps/Auth/SignIn'
+import SignUp from './comps/Auth/SignUp'
 import { projectAuth } from './firebase/config';
 
 function App() {
@@ -12,13 +12,16 @@ function App() {
 
   return (
     <div className="App">
-      {/* <SignIn/>
-      <SignUp/>
-      <button onClick={event => {
+
+      {/* {<Login /> } */}
+
+      {/* { <SignUp/> } */}
+
+      {/* { <button onClick={event => {
         event.preventDefault()
         projectAuth.signOut()
       }}>Signout</button> */}
-      
+
       <Title/>
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />

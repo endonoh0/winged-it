@@ -1,36 +1,43 @@
 // starts the React application
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.scss';
+
 import App from './App';
 import NavBar from './comps/NavBar/NavBar'
-import SignUp from './comps/SignUp'
-import SignIn from './comps/SignIn'
-import { 
+import SignUp from './comps/Auth/SignUp'
+import SignIn from './comps/Auth/SignIn'
+import {
   BrowserRouter as Router,
   Switch,
   Route
 } from 'react-router-dom'
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 ReactDOM.render(
+
   <React.StrictMode>
+
     <div className="container">
       <Router>
         <NavBar />
-        <Switch>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/signin">
-            <SignIn />
-          </Route>
-          <Route path="/">
-            <App />
-          </Route>
-        </Switch>
+
+
+        <div className="auth-wrapper">
+          <div className="auth-inner">
+            <Switch>
+              <Route exact path="/" component={App}></Route>
+              <Route path="/signup" component={SignUp}></Route>
+              <Route path="/signin" component={SignIn}></Route>
+            </Switch>
+          </div>
+        </div>
       </Router>
     </div>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
