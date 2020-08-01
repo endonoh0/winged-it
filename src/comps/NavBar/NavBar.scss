@@ -1,0 +1,66 @@
+@import '../../styles/variables.scss';
+
+.sidebar {
+  background-color: $dark-background;
+  box-shadow: 0px 4px 8px rgba($dark-background, 0.5);
+  display: flex;
+  flex-direction: column;
+  min-width: 18rem;
+  min-height: 100vh;
+	padding: $spacing 0;
+
+	a{
+		align-self: center;
+	}
+
+  h1{
+    color: $primary;
+  }
+
+  &--centered {
+    align-self: center;
+  }
+
+  &__separator {
+    width: 90%;
+    margin: $spacing 0;
+    border: solid 1px;
+    color: darken($white, 5%);
+  }
+
+  &__menu {
+    flex: 1;
+  }
+
+  &__lhl {
+    margin-top: 2rem;
+  }
+}
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.auth-inner {
+  width: 450px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all .3s;
+}
+
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}

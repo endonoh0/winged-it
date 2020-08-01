@@ -1,84 +1,31 @@
 /* base style */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
-
-
-$active-opacity: 1;
-$inactive-opacity: 0.15;
-
-$white: #fff;
-$black: #000;
-
-$dark-background: #222f3e;
-
-$weeks-colors: #54a0ff, #48dbfb, #1dd1a1, #5f27cd;
-$booked-color: #54a0ff;
-$danger-color: #ee5253;
-$error-color: #ff9f43;
-$confirm-color: #10ac84;
-
-$spacing: 2rem;
-
-
-:root{
-  --primary: #efb6b2;
-  --secondary: #4e4e4e;
-  --error: #ff4a4a;
-
-}
+@import './styles/variables.scss';
 
 /* base styles & title */
 body{
   font-family: "Noto Serif";
-  color: var(--secondary);
+  color: $secondary;
   margin: 0;
 }
 
 .container{
   display: flex;
-  width: 100vw
+  width: 100vw;
 }
 
 .App{
   width: 70vw;
   margin: 0 auto;
-
 }
 
-.sidebar {
-  background-color: $dark-background;
-  box-shadow: 0px 4px 8px rgba($dark-background, 0.5);
-  display: flex;
-  flex-direction: column;
-  min-width: 18rem;
-  padding: $spacing 0;
-
-  h1{
-    align-self: center;
-    color: var(--primary)
-  }
-
-  &--centered {
-    align-self: center;
-  }
-
-  &__separator {
-    width: 90%;
-    margin: $spacing 0;
-    border: solid 1px;
-    color: darken($white, 5%);
-  }
-
-  &__menu {
-    flex: 1;
-  }
-
-  &__lhl {
-    margin-top: 2rem;
-  }
+.link{
+  color: $white;
+  text-decoration: none;
 }
 
 .title h1{
-  color: var(--primary);
+  color: $primary;
   font-size: 1.2rem;
   letter-spacing: 2px;
   font-weight: normal;
@@ -97,7 +44,7 @@ body{
 /* progress bar styles */
 .progress-bar{
   height: 5px;
-  background: var(--primary);
+  background: $primary;
   margin-top: 20px;
 }
 
@@ -152,30 +99,4 @@ body{
   height: fill-available;
   -webkit-overflow-scrolling: touch;
   /* overflow-y: scroll; */
-}
-
-/* Auth */
-.sign-up p, .sign-in p {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1.2;
-}
-.custom-control-label {
-  font-weight: 400;
-}
-.forgot-password,
-.forgot-password a,
-.login-alt,
-.login-alt a {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7f7d7d;
-  margin: 0;
-}
-.login-alt a,
-.forgot-password a {
-  color: #167bff;
 }
