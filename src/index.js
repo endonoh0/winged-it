@@ -21,22 +21,22 @@ ReactDOM.render(
 
   <React.StrictMode>
 
-    <div className="container">
+    {/* <div className="container"> */}
       <Router>
         <NavBar />
-
+        {/* <div className="sidebar-container">
+          Hello
+        </div> */}
 
         <div className="auth-wrapper">
-          <div className="auth-inner">
             <Switch>
               <Route exact path="/" component={App}></Route>
               <Route path="/signup" component={SignUp}></Route>
               <Route path="/signin" component={SignIn}></Route>
             </Switch>
-          </div>
         </div>
       </Router>
-    </div>
+    {/* </div> */}
 
   </React.StrictMode>,
   document.getElementById('root')

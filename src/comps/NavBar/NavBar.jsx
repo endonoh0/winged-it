@@ -4,8 +4,8 @@ import './NavBar.scss'
 
 const NavBar = () => {
 	return(
-		<section className="sidebar">
-			<Link to='/' className="link"><h1>Winged It</h1></Link>
+    <section className="sidebar iWlhAO">
+			<Link to='/' className="link"><h3>Winged It</h3></Link>
 			<hr className="sidebar__separator sidebar--centered" />
 			<nav className="sidebar__menu">
 				<ul className="nabvar-nav">
