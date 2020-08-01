@@ -22,6 +22,7 @@ const ImageGrid = ({ setSelectedImg }) => {
             transition={{ delay: 1 }}
           />
         </motion.div>
+        
       ))}
     </div>
   )
