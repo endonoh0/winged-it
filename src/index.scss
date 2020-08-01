@@ -11,12 +11,17 @@ body{
 
 .container{
   display: flex;
-  width: 100vw
+  width: 100vw;
 }
 
 .App{
   width: 70vw;
   margin: 0 auto;
+}
+
+.link{
+  color: $white;
+  text-decoration: none;
 }
 
 .title h1{
