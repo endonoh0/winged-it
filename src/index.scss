@@ -28,18 +28,18 @@ $spacing: 2rem;
 
 /* base styles & title */
 body{
-  height: 100vh;
-  width: 100vh;
   font-family: "Noto Serif";
   color: var(--secondary);
+  margin: 0;
 }
 
 .container{
   display: flex;
+  width: 100vw
 }
 
 .App{
-  max-width: 960px;
+  width: 70vw;
   margin: 0 auto;
 }
 
