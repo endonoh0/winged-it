@@ -1,20 +1,74 @@
 /* base style */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 
+
+$active-opacity: 1;
+$inactive-opacity: 0.15;
+
+$white: #fff;
+$black: #000;
+
+$dark-background: #222f3e;
+
+$weeks-colors: #54a0ff, #48dbfb, #1dd1a1, #5f27cd;
+$booked-color: #54a0ff;
+$danger-color: #ee5253;
+$error-color: #ff9f43;
+$confirm-color: #10ac84;
+
+$spacing: 2rem;
+
+
 :root{
   --primary: #efb6b2;
   --secondary: #4e4e4e;
   --error: #ff4a4a;
+
 }
 
 /* base styles & title */
 body{
+  height: 100vh;
+  width: 100vh;
   font-family: "Noto Serif";
   color: var(--secondary);
 }
+
+.container{
+  display: flex;
+}
+
 .App{
   max-width: 960px;
   margin: 0 auto;
+}
+
+.sidebar {
+  background-color: $dark-background;
+  box-shadow: 0px 4px 8px rgba($dark-background, 0.5);
+  display: flex;
+  flex-direction: column;
+  min-width: 18rem;
+  padding: $spacing 0;
+
+  &--centered {
+    align-self: center;
+  }
+
+  &__separator {
+    width: 90%;
+    margin: $spacing 0;
+    border: solid 1px;
+    color: darken($white, 5%);
+  }
+
+  &__menu {
+    flex: 1;
+  }
+
+  &__lhl {
+    margin-top: 2rem;
+  }
 }
 
 .title h1{
@@ -29,21 +83,6 @@ body{
 .title h2{
   margin-top: 60px;
   font-size: 2.6rem;
-}
-nav {
-  background-color: gray;
-  width: 90%;
-  margin: auto;
-  padding: 20px;
-}
-
-nav .title{
-
-  text-decoration: none;
-  font-size: 30px;
-  color: var(--primary);
-  margin-left: 300px;
-  
 }
 
 /* upload form styles */

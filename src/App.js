@@ -19,11 +19,6 @@ function App() {
         event.preventDefault()
         projectAuth.signOut()
       }}>Signout</button> */}
-      <section className="sidebar">
-        <hr className="sidebar__separator sidebar--centered" />
-        <nav className="sidebar__menu">
-        </nav>
-      </section>
       <Title/>
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />
