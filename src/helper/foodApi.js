@@ -5,8 +5,8 @@ const recipeSearch = (ingredients) => {
 
   const apiInfo = {
     edamamRecipeDatabase: {
-      apiKey: "1b1088b3",
-      applicationID: "0981a1a2b74f3547b529351748da57c2"
+      apiKey: ,
+      applicationID: 
     }
   };
  
