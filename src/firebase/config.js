@@ -19,6 +19,7 @@ var firebaseConfig = {
   measurementId: "G-Z0N2DRELF5"
 };
 
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -31,4 +32,4 @@ const projectFirestore = firebase.firestore();
 // firebase uses a special type of data (timestamp) in firestore
 const timeStamp = firebase.firestore.FieldValue.serverTimestamp;
 
-export { projectStorage, projectFirestore, timeStamp };
+export { projectStorage, projectFirestore, timeStamp};
