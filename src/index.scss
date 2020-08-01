@@ -51,6 +51,11 @@ body{
   min-width: 18rem;
   padding: $spacing 0;
 
+  h1{
+    align-self: center;
+    color: var(--primary)
+  }
+
   &--centered {
     align-self: center;
   }
