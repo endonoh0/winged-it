@@ -4,7 +4,7 @@ import { projectAuth } from '../firebase/config';
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-	
+
 	// Button handler to sign in
   const signInWithEmailAndPasswordHandler = (event,email, password) => {
 		event.preventDefault();
@@ -24,7 +24,7 @@ const SignIn = () => {
 		setEmail("");
     setPassword("");
 	};
-	
+
 	// Controlled component setstates
   const onChangeHandler = (event) => {
       const {name, value} = event.currentTarget;
@@ -35,42 +35,43 @@ const SignIn = () => {
         setPassword(value);
       }
 	};
-		
+
   return (
-    <div>
-      <h1 >Sign In</h1>
-      <div>
-        <form>
-          <label htmlFor="email">
-            Email:
-          </label>
-          <input
-            type="email"
-            name="email"
-            value = {email}
-            placeholder="Email"
-            onChange = {(event) => onChangeHandler(event)}
-          />
-          <label htmlFor="password">
-            Password:
-          </label>
-          <input
-            type="password"
-            name="password"
-            value = {password}
-            placeholder="Your Password"
-            onChange = {(event) => onChangeHandler(event)}
-          />
-          <button onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
-            Sign in
-          </button>
-        </form>
-        <p>or</p>
-        <button>
-          Sign in with Google
-        </button>
+
+    <form className="sign-in">
+      <p>Sign In</p>
+
+      <div className="form-group">
+        <label htmlFor="email">Email:</label>
+        <input type="email" className="form-control" placeholder="Email" name="email"
+          value = {email}
+          onChange = {(event) => onChangeHandler(event)} />
       </div>
-    </div>
+
+      <div className="form-group">
+        <label htmlFor="password">Password:</label>
+        <input type="password" className="form-control" placeholder="Your Password" name="password"
+          value = {password}
+          onChange = {(event) => onChangeHandler(event)} />
+      </div>
+
+      <div className="form-group">
+        <div className="custom-control custom-checkbox">
+          <input type="checkbox" className="custom-control-input" id="customCheck1" />
+          <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+        </div>
+      </div>
+
+      <button type="submit" className="btn btn-primary btn-block"
+        onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
+        Sign In
+      </button>
+      <p className="login-alt text-right">
+        Sign in with <a href="#">Google?</a>
+      </p>
+    </form>
+
   );
 };
+
 export default SignIn;

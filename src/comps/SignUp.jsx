@@ -24,51 +24,48 @@ const SignUp = () => {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
-    } 
+    }
   };
+
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <div>
-        <form className="">
-          <label htmlFor="email">
-            Email:
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Email"
-            onChange={event => onChangeHandler(event)}
-          />
-          <label htmlFor="password">
-            Password:
-          </label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Your Password"
-            onChange={event => onChangeHandler(event)}
-          />
-          <button
-            onClick={event => {
-              createUserWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Sign up
-          </button>
-          <button
-            onClick={event => {
-              event.preventDefault();
-              console.log(projectAuth.currentUser);
-            }}
-          >
-            Sign up
-          </button>
-        </form>
-      </div>
-    </div>
+      <form className="sign-up">
+        <p>Sign Up</p>
+
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input type="email" className="form-control" placeholder="Email" name="email"
+              value={email}
+              onChange={event => onChangeHandler(event)} />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password">Enter:</label>
+          <input type="password" className="form-control" placeholder="Your Password" name="password"
+              value={password}
+              onChange={event => onChangeHandler(event)} />
+        </div>
+
+        <button type="submit" className="btn btn-primary btn-block"
+          onClick={event => { createUserWithEmailAndPasswordHandler(event, email, password);
+          }}
+        >
+          Sign Up
+        </button>
+
+        <p className="forgot-password text-right">
+          Already registered <a href="#">sign in?</a>
+        </p>
+
+        {/* <button
+          onClick={event => {
+            event.preventDefault();
+            console.log(projectAuth.currentUser);
+          }}
+        >
+          Sign up
+        </button> */}
+      </form>
+
   );
 };
 export default SignUp;
