@@ -5,7 +5,6 @@ import ImageGrid from './comps/ImageGrid';
 import Modal from './comps/Modal';
 import SignIn from './comps/SignIn'
 import SignUp from './comps/SignUp'
-import SavedRecipe from './comps/SavedRecipe'
 import { projectAuth } from './firebase/config';
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
         event.preventDefault()
         projectAuth.signOut()
       }}>Signout</button> */}
-      <SavedRecipe/>
       
       <Title/>
       <UploadForm />
