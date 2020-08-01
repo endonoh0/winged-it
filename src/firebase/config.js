@@ -19,6 +19,7 @@ var firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
+console.log("REACT_APP_EDAMAM_API_KEY_RECIPE ", process.env.REACT_APP_EDAMAM_API_KEY_RECIPE )
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
