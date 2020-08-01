@@ -3,17 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
-import NavBar from './comps/NavBar'
+import NavBar from './comps/NavBar/NavBar'
 
 ReactDOM.render(
   <React.StrictMode>
     <div className="container">
-      <section className="sidebar">
-        <h1>Winged It</h1>
-        <hr className="sidebar__separator sidebar--centered" />
-        <nav className="sidebar__menu">
-        </nav>
-      </section>
+      <NavBar />
       <App />
     </div>
   </React.StrictMode>,
