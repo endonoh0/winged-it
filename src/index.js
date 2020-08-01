@@ -6,6 +6,7 @@ import App from './App';
 import NavBar from './comps/NavBar/NavBar'
 import SignUp from './comps/SignUp'
 import SignIn from './comps/SignIn'
+import Favorite from './comps/Favorite/Favorite'
 import { 
   BrowserRouter as Router,
   Switch,
@@ -25,11 +26,16 @@ ReactDOM.render(
           <Route path="/signin">
             <SignIn />
           </Route>
+          <Route path="/favorites">
+            <Favorite />
+          </Route>
           <Route path="/">
             <App />
           </Route>
         </Switch>
       </Router>
+
+
     </div>
   </React.StrictMode>,
   document.getElementById('root')
