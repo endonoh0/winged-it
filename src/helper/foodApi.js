@@ -5,12 +5,11 @@ const recipeSearch = (ingredients) => {
 
   const apiInfo = {
     edamamRecipeDatabase: {
-      apiKey: "1b1088b3",
-      applicationID: "0981a1a2b74f3547b529351748da57c2"
+      apiKey: process.env.REACT_APP_EDAMAM_API_KEY_RECIPE,
+      applicationID: process.env.REACT_APP_EDAMAM_APPLICATION_ID_RECIPE
     }
   };
  
-
   const edamamRecipeUrl = 
   `https://api.edamam.com/search?q=${ingredients}&app_id=${apiInfo.edamamRecipeDatabase.apiKey}&app_key=${apiInfo.edamamRecipeDatabase.applicationID}`;
   
@@ -28,6 +27,5 @@ const recipeSearch = (ingredients) => {
   })
 
 };
-
 
 export default recipeSearch;
