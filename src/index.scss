@@ -89,3 +89,15 @@ body{
   box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
   border: 3px solid white;
 }
+
+.iframe {
+  display: block;
+  width: 960px;
+  height: 80%;
+  margin: 60px auto; /* position image in the middle */
+  box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
+  border: 3px solid white;
+  height: fill-available;
+  -webkit-overflow-scrolling: touch;
+  /* overflow-y: scroll; */
+}
