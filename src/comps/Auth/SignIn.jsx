@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { projectAuth } from '../firebase/config';
+import { projectAuth } from '../../firebase/config';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
