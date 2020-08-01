@@ -13,12 +13,17 @@ function App() {
 
   return (
     <div className="App">
-      <SignIn/>
+      {/* <SignIn/>
       <SignUp/>
       <button onClick={event => {
         event.preventDefault()
         projectAuth.signOut()
-      }}>Signout</button>
+      }}>Signout</button> */}
+      <section className="sidebar">
+        <hr className="sidebar__separator sidebar--centered" />
+        <nav className="sidebar__menu">
+        </nav>
+      </section>
       <Title/>
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />

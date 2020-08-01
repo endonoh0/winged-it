@@ -21,6 +21,8 @@ const SignIn = () => {
 			}
 		console.log(error);
 		});
+		setEmail("");
+    setPassword("");
 	};
 	
 	// Controlled component setstates
