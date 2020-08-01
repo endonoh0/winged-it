@@ -7,6 +7,9 @@ import 'firebase/storage';
 // store in database
 import 'firebase/firestore';
 
+// user login
+import 'firebase/auth'
+
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -28,7 +31,9 @@ const projectStorage = firebase.storage();
 // initialize firestore service
 const projectFirestore = firebase.firestore();
 
+const projectAuth = firebase.auth();
+
 // firebase uses a special type of data (timestamp) in firestore
 const timeStamp = firebase.firestore.FieldValue.serverTimestamp;
 
-export { projectStorage, projectFirestore, timeStamp };
+export { projectStorage, projectFirestore, projectAuth, timeStamp };

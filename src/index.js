@@ -1,12 +1,21 @@
 // starts the React application
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
+import NavBar from './comps/NavBar'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="container">
+      <section className="sidebar">
+        <h1>Winged It</h1>
+        <hr className="sidebar__separator sidebar--centered" />
+        <nav className="sidebar__menu">
+        </nav>
+      </section>
+      <App />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
