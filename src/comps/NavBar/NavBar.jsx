@@ -9,6 +9,11 @@ const NavBar = () => {
 			<hr className="sidebar__separator sidebar--centered" />
 			<nav className="sidebar__menu">
 				<ul className="nabvar-nav">
+          <li className="nav-item">
+            <Link to='/' className='link'>
+              Home
+						</Link>
+          </li>
 					<li className="nav-item">
 						<Link to='signup' className='link'>
 							Sign Up
@@ -26,6 +31,8 @@ const NavBar = () => {
 							Favorites
 						</Link>
 					</li>
+
+
 				</ul>
 			</nav>
 		</section>

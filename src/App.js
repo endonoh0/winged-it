@@ -13,17 +13,19 @@ function App() {
   return (
     <div className="App">
 
-      <Login />
+      {/* {<Login /> } */}
 
-      <SignUp/>
-      <button onClick={event => {
+      {/* { <SignUp/> } */}
+
+      {/* { <button onClick={event => {
         event.preventDefault()
         projectAuth.signOut()
-      }}>Signout</button>
-      {/* <Title/>
+      }}>Signout</button> } */}
+
+      <Title/>
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />
-      { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> } */}
+      { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> }
     </div>
   );
 }
