@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './searchBar.css'
 
 const SearchBar = (props) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchTags, setSearchTags] = useState([]);
+  const {searchTags, searchTerm, setSearchTerm, onKeyUp} = props;
 
-  const searchTag = searchTags.map((e, index) => {
+  const searchTag = searchTags && searchTags.map((e, index) => {
     return <span key={index}>{e}</span>
   })
 
@@ -19,9 +18,7 @@ const SearchBar = (props) => {
         onChange={e => setSearchTerm(e.target.value)}
         onKeyUp={e => {
           if(e.key === 'Enter'){
-            props.onKeyUp(searchTerm)
-            setSearchTags(prev => [...prev, searchTerm])
-            setSearchTerm("")
+            onKeyUp(searchTerm)
           }
         }}/>
       </div>

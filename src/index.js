@@ -6,6 +6,7 @@ import App from './App';
 import NavBar from './comps/NavBar/NavBar'
 import SignUp from './comps/SignUp'
 import SignIn from './comps/SignIn'
+import SearchByIngredient from './comps/SearchByIngredient'
 import { 
   BrowserRouter as Router,
   Switch,
@@ -24,6 +25,9 @@ ReactDOM.render(
           </Route>
           <Route path="/signin">
             <SignIn />
+          </Route>
+          <Route path="/search">
+            <SearchByIngredient />
           </Route>
           <Route path="/">
             <App />
