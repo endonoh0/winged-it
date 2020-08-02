@@ -1,35 +1,36 @@
 import { useState, useEffect } from 'react';
-import { projectFirestore } from '../firebase/config';
+import { projectFirestore, projectAuth } from '../firebase/config';
 
-// accepts image collection (string)
-const useFirestore = (collection) => {
-  const [docs, setDocs] = useState([]);
+
+const useFirestore = (type) => {
+
+  
+  const [error, setError] = useState(null);
+  const [favoriteRecipe, setFavoriteRecipe] = useState([]);
+
+  // const email = projectAuth.currentUser.Identifier;
+  const email = "ghanbari@ualberta.ca";
+
+  // useEffect(() => {
+
+  //   const collectionRef = projectFirestore.collection(type); // created automatically
+  //   // const email = projectAuth.currentUser.Identifier;
+  //   const email = "ghanbari@ualberta.ca";
+
+  //   collectionRef.add({
+  //     user_email: email, recipe: {
+  //       name: "Pizza",
+  //       img: "https://www.simplyrecipes.com/wp-content/uploads/2019/09/easy-pepperoni-pizza-lead-4.jpg"} });
+  // }, [])
 
   useEffect(() => {
-    const unsub = projectFirestore.collection(collection)
-    // fires callback everytime change occurs inside the collection
-    // also fires once initially
-    .orderBy('createdAt', 'desc')
-    // takes a snapshot object which is snapshot in that moment in time of db collection  (basically real time updates)
-      .onSnapshot((snap) => {
-        // create array of docs
-        let documents = [];
-        // cycle through doc collection
-        snap.forEach(doc => {
-          // push data into document array
-          // <doc.data()> access data inside that document
-          documents.push({...doc.data(), id: doc.id}) // created_at and url, we'll use that id to output the image
-        });
-        setDocs(documents);
-      })
+    const collectionRef = projectFirestore.collection(type);
+    const favorite = collectionRef.where('user_email', '==', email);
+    setFavoriteRecipe(favorite);
+  }, [])
+  
 
-    // cleanup
-        // we can unsubcribe or stop retrieving from collection if we unmount image-grid page component
-    return () => unsub();
-
-  }, [collection])
-
-  return { docs };
+  return { favoriteRecipe }
 
 }
 

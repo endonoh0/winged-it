@@ -1,12 +1,15 @@
 import React from "react";
 import "./Favorite.scss"
+import useFirestore from '../../hooks/useFirestore';
 // import { projectAuth } from '../firebase/config';
 
 
 
 const Favorite = (prop) => {
 
-  const userEmail = prop.email;
+  const favorite = useFirestore('favorites');
+  console.log(favorite)
+
 
   const favoriteItems = [
     {id: 1,
@@ -22,21 +25,18 @@ const Favorite = (prop) => {
     <div>
     { favoriteItems.map(item => {
       return (
-      <div class="favorite">
-        <a>
-          <img src={ item.img } alt="Cinque Terre" width="600" height="400"/>
-        </a>
-        <div class="desc">{ item.name }</div>
-        <button>
-          View Recipe
-        </button>
-      </div>)
-
-    })
-
+        <div key={ item.id } className="favorite">
+          <a>
+            <img src={ item.img } alt="Cinque Terre" width="600" height="400"/>
+          </a>
+          <div className="desc">{ item.name }</div>
+          <button>
+            View Recipe 
+          </button>
+        </div>)
+      })
     }
       
-
     </div>
    
   );
