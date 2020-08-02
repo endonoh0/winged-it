@@ -8,8 +8,8 @@ import App from './App';
 import NavBar from './comps/NavBar/NavBar'
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
-import SideBar from './comps/SideBar/SideBar';
 
+import SearchByIngredient from './comps/SearchByIngredient'
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,6 +31,7 @@ ReactDOM.render(
               <Route exact path="/" component={App}></Route>
               <Route path="/signup" component={SignUp}></Route>
               <Route path="/signin" component={SignIn}></Route>
+              <Route path="/search" component={SearchByIngredient}></Route>
             </Switch>
         </div>
       </Router>
