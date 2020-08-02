@@ -8,7 +8,8 @@ import App from './App';
 import NavBar from './comps/NavBar/NavBar'
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
-import {
+import SearchByIngredient from './comps/SearchByIngredient'
+import { 
   BrowserRouter as Router,
   Switch,
   Route
@@ -24,6 +25,7 @@ ReactDOM.render(
     <div className="container">
       <Router>
         <NavBar />
+<<<<<<< HEAD
 
 
         <div className="auth-wrapper">
@@ -35,6 +37,22 @@ ReactDOM.render(
             </Switch>
           </div>
         </div>
+=======
+        <Switch>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
+          <Route path="/search">
+            <SearchByIngredient />
+          </Route>
+          <Route path="/">
+            <App />
+          </Route>
+        </Switch>
+>>>>>>> feature/search-by-ingredient
       </Router>
     </div>
 
