@@ -30,7 +30,7 @@ const NavBar = () => {
         </div>
       </nav>
     </section>
-    <SideBar />
+    {/* <SideBar /> */}
 
     </>
 	);

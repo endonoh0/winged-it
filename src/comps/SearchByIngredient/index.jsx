@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar'
-import SearchTags from './SearchTag'
 import recipeFinder from '../../helper/foodApi'
 
-const SearchByIngredient = ({setResult}) => {
+const SearchByIngredient = ({searchTags, setSearchTags }) => {
 	const [searchTerm, setSearchTerm] = useState('');
-	const [searchTags, setSearchTags] = useState([]);
 
 	const pressEnter = (searchTerm) => {
 		setSearchTags(prev => [...prev, searchTerm])
@@ -19,11 +17,7 @@ const SearchByIngredient = ({setResult}) => {
 		})
 	}
 
-    const searchTag = searchTags.map((tag, index) => {
-      return(
-        <SearchTags key={index}>{tag}</SearchTags>
-      )
-    })
+
 
 	return(
 		<div>
@@ -34,7 +28,6 @@ const SearchByIngredient = ({setResult}) => {
 				setSearchTags={setSearchTags}
 				onKeyUp={pressEnter}/>
 
-				{searchTag}
 
 				<button onClick={onSubmit}>Submit</button>
 		</div>
