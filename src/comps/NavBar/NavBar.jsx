@@ -5,6 +5,7 @@ import SideBar from '../SideBar/SideBar';
 import { FaHome, FaFileSignature } from 'react-icons/fa';
 import { MdFavoriteBorder } from 'react-icons/md';
 import { RiLoginCircleLine } from 'react-icons/ri';
+
 const NavBar = () => {
 	return(
     <>
