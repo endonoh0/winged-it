@@ -6,13 +6,14 @@ import Modal from './comps/Modal';
 import Login from './comps/Auth/SignIn';
 import SignUp from './comps/Auth/SignUp';
 import { projectAuth } from './firebase/config';
+// import SideBar from './comps/SideBar/SideBar';
 
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
 
   return (
     <div className="App">
-
+      {/* <SideBar /> */}
       {/* { <button onClick={event => {
         event.preventDefault()
         projectAuth.signOut()

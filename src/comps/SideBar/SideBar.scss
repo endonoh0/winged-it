@@ -1,0 +1,21 @@
+.sidebar_container{
+  width: 34%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-left: 3.1rem;
+  padding-top: 2rem;
+  background: #CC2936;
+  height: 100vh;
+  grid-row: 1 / 1;
+
+  .link{
+    text-align: center;
+  }
+  .sidebar_header{
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+  }
+}

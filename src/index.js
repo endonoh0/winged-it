@@ -8,6 +8,8 @@ import App from './App';
 import NavBar from './comps/NavBar/NavBar'
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
+import SideBar from './comps/SideBar/SideBar';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,13 +22,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 ReactDOM.render(
 
   <React.StrictMode>
-
     {/* <div className="container"> */}
       <Router>
         <NavBar />
-        {/* <div className="sidebar-container">
-          Hello
-        </div> */}
 
         <div className="auth-wrapper">
             <Switch>
