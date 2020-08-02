@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import "./Favorite.scss";
 import useFirestoreFavorites from '../../hooks/useFirestoreFavorites'
 
