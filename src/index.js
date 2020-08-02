@@ -25,34 +25,16 @@ ReactDOM.render(
     <div className="container">
       <Router>
         <NavBar />
-<<<<<<< HEAD
-
-
         <div className="auth-wrapper">
           <div className="auth-inner">
             <Switch>
               <Route exact path="/" component={App}></Route>
               <Route path="/signup" component={SignUp}></Route>
               <Route path="/signin" component={SignIn}></Route>
+              <Route path="/search" component={SearchByIngredient}></Route>
             </Switch>
           </div>
         </div>
-=======
-        <Switch>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/signin">
-            <SignIn />
-          </Route>
-          <Route path="/search">
-            <SearchByIngredient />
-          </Route>
-          <Route path="/">
-            <App />
-          </Route>
-        </Switch>
->>>>>>> feature/search-by-ingredient
       </Router>
     </div>
 
