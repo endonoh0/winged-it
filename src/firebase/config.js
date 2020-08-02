@@ -36,4 +36,5 @@ const projectAuth = firebase.auth();
 // firebase uses a special type of data (timestamp) in firestore
 const timeStamp = firebase.firestore.FieldValue.serverTimestamp;
 
+
 export { projectStorage, projectFirestore, projectAuth, timeStamp };

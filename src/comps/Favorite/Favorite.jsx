@@ -1,37 +1,25 @@
-import React from "react";
-import "./Favorite.scss"
-import useFirestore from '../../hooks/useFirestore';
-// import { projectAuth } from '../firebase/config';
+import React, {useState, useEffect} from "react";
+import "./Favorite.scss";
+import useFirestoreFavorites from '../../hooks/useFirestoreFavorites'
 
 
+const Favorite = () => {
 
-const Favorite = (prop) => {
-
-  const favorite = useFirestore('favorites');
-  console.log(favorite)
-
-
-  const favoriteItems = [
-    {id: 1,
-      name: "Pizza",
-    img: "https://www.simplyrecipes.com/wp-content/uploads/2019/09/easy-pepperoni-pizza-lead-4.jpg"},
-    {id: 2,
-      name: "Pizza",
-    img: "https://www.simplyrecipes.com/wp-content/uploads/2019/09/easy-pepperoni-pizza-lead-4.jpg"}
-  ]
+  const { docs } = useFirestoreFavorites ('favorites');
 
   return (
 
     <div>
-    { favoriteItems.map(item => {
+    
+    { docs.map(doc => {
       return (
-        <div key={ item.id } className="favorite">
+        <div key = {doc.id} className="favorite">
           <a>
-            <img src={ item.img } alt="Cinque Terre" width="600" height="400"/>
+            <img src={ doc.recipe.img } alt="Cinque Terre" width="600" height="400"/>
           </a>
-          <div className="desc">{ item.name }</div>
+          <div className="desc">{ doc.recipe.name }</div>
           <button>
-            View Recipe 
+            View Recipe
           </button>
         </div>)
       })
