@@ -1,13 +1,14 @@
-// starts the React application
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.scss';
 
 import App from './App';
-import NavBar from './comps/NavBar/NavBar'
+import NavBar from './comps/NavBar/NavBar';
+import Header from './comps/Header/Header';
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
+import { projectAuth } from './firebase/config';
 
 import SearchByIngredient from './comps/SearchByIngredient'
 import Favorite from '../src/comps/Favorite/Favorite'
@@ -24,8 +25,9 @@ ReactDOM.render(
 
   <React.StrictMode>
       <Router>
-        <NavBar />
 
+     <Header />
+      {projectAuth.currentUser && <NavBar /> }
         <div className="auth-wrapper">
             <Switch>
               <Route exact path="/" component={App}></Route>

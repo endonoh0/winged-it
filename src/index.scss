@@ -24,11 +24,18 @@ body{
   color: $white;
   text-decoration: none;
 }
-
+.title{
+    display: flex;
+    // padding-top: 155px;
+    // padding-bottom: 60px;
+    // padding-left: 8px;
+    // padding-right: 8px;
+}
 .title h1{
   color: $primary;
   font-size: 1.2rem;
   letter-spacing: 2px;
+  margin-top: 32px;
   font-weight: normal;
 }
 .title h2, .title p{

@@ -57,14 +57,14 @@ const SignUp = () => {
           Already registered <a href="#">sign in?</a>
         </p>
 
-        {/* <button
+        <button
           onClick={event => {
             event.preventDefault();
             console.log(projectAuth.currentUser);
           }}
         >
           Sign up
-        </button> */}
+        </button>
       </form>
 
   );
