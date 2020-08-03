@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Iframe from 'react-iframe';
 import ScrollLock from 'react-scrolllock';
 
-const Modal = ({ setSelectedImg }) => {
+const Modal = ({ setSelectedImg, selectedImg }) => {
 
   const handleClick = (e) => {
 
@@ -24,7 +24,8 @@ const Modal = ({ setSelectedImg }) => {
           animate={{ y: -60 }}
         >
           <Iframe className="iframe"
-          url="http://wikipedia.com"
+          url={selectedImg}
+          loading="lazy"
           id="iframe"
         />
         </motion.div>

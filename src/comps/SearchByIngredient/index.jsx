@@ -3,7 +3,7 @@ import SearchBar from './SearchBar'
 import SearchTags from './SearchTag'
 import recipeFinder from '../../helper/foodApi'
 
-const SearchByIngredient = () => {
+const SearchByIngredient = ({setRecipes, setSelectedImg}) => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchTags, setSearchTags] = useState([]);
 	
@@ -13,9 +13,12 @@ const SearchByIngredient = () => {
 	}
 
 	const onSubmit = () => {
+		setRecipes((prev) => [])
 		recipeFinder(searchTags)
-		.then(e => {
-			console.log(e)
+		.then(result => {
+			result.forEach(data => {
+				setRecipes((prev) => [...prev, data.recipe])
+			});
 		})
 	}
 	
