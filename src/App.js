@@ -6,6 +6,7 @@ import Modal from './comps/Modal';
 import Login from './comps/Auth/SignIn'
 import SignUp from './comps/Auth/SignUp'
 import { projectAuth } from './firebase/config';
+import FavoriteAdd from './comps/Favorite/FavoriteAdd'
 
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -21,7 +22,7 @@ function App() {
         event.preventDefault()
         projectAuth.signOut()
       }}>Signout</button> */}
-
+      <FavoriteAdd/>
       <Title/>
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />
