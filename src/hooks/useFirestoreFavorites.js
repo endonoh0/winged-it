@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 
 
-const useFirestoreFavorites = (dynamicDeleting) => {
+const useFirestoreFavorites = (dynamic) => {
 
+  console.log(dynamic)
   const type = 'favorites';
   const [docs, setDocs] = useState([]);
 
@@ -26,7 +27,8 @@ const useFirestoreFavorites = (dynamicDeleting) => {
     })
     .then((data) => { setDocs(data) });
 
-  }, [dynamicDeleting]);
+
+  }, [dynamic]);
 
   return { docs };
 
