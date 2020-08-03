@@ -16,29 +16,20 @@ function App() {
   const [searchTags, setSearchTags] = useState([]);
   const [recipes, setRecipes] = useState([]);
 
-  console.log('recipes', recipes);
+  // console.log('recipes', recipes);
 
 
   return (
     <div className="App">
-      {/* <SideBar /> */}
-      {/* { <button onClick={event => {
-        event.preventDefault()
-        projectAuth.signOut()
-      }}>Signout</button> */}
-
       { <Title/> }
-      {/* <UploadForm /> */}
 
       <SearchByIngredient
-        searchTags={searchTags}
-        setSearchTags={setSearchTags}
+        // searchTags={searchTags}
+        // setSearchTags={setSearchTags}
         setRecipes={setRecipes}
         recipes={recipes}
       />
-      {/* { searchTags } */}
 
-      {/* <ImageGrid setSelectedImg={setSelectedImg} /> */}
       { recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} /> }
       { selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} /> }
 
