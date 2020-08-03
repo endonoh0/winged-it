@@ -65,8 +65,8 @@ const SignIn = ({ onClick }) => {
 
       <button type="submit" className="btn btn-primary btn-block"
         onClick = {(event) => {
-          signInWithEmailAndPasswordHandler(event, email, password)
-          onClick(email, password)
+          signInWithEmailAndPasswordHandler(event, email, password);
+          onClick(email, password);
         }}>
         Sign In
       </button>

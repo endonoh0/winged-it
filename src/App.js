@@ -24,9 +24,8 @@ import {
   Route
 } from 'react-router-dom'
 
-function login(username, password) {
-  projectAuth.signInWithEmailAndPassword(username, password);
-}
+
+
 
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -42,6 +41,10 @@ function App() {
     };
   }, []);
 
+  function login(email, pass) {
+    projectAuth.signInWithEmailAndPassword(email, pass);
+  }
+
   const requestLogin = useCallback((email, password) => {
     login(email, password);
   });
@@ -49,34 +52,45 @@ function App() {
   return (
     <div className="App">
 
+      { !user.loggedIn && <Header /> }
+
       <Router>
 
-        <Header />
-        {/* {projectAuth.currentUser && <NavBar />} */}
+        {projectAuth.currentUser && <NavBar />}
 
         <div className="auth-wrapper">
-          <Switch>
-            <Route exact path="/" component={App}></Route>
-            {/* <SignUp path="/signup" />
-            <SignIn path="/signin" setUser={setUser} /> */}
 
-            <Route path="/signup" component={SignUp}></Route>
-            <Route path="/signin" component={SignIn}></Route>
-            <Route path="/search" component={SearchByIngredient}></Route>
-            <Route path="/favorites" component={Favorite}></Route>
+          <Switch>
+
+            <Route path="/signin">
+              { !user.loggedIn && <SignIn onClick={requestLogin} /> }
+            </Route>
+
+            <Route path="/signup">
+              { !user.loggedIn && <SignUp onClick={requestLogin} /> }
+            </Route>
+
+
+            <Route path="/search">
+              <SearchByIngredient
+                // searchTags={searchTags}
+                // setSearchTags={setSearchTags}
+                setRecipes={setRecipes}
+                recipes={recipes}
+              />
+            </Route>
+
+            <Route path="/favorites">
+              <Favorite />
+            </Route>
+
           </Switch>
         </div>
       </Router>
-      {/* {!user.loggedIn && <SignUp onClick={requestLogin} />} */}
 
       {/* { <Title/> } */}
 
-      {/* <SearchByIngredient
-        searchTags={searchTags}
-        setSearchTags={setSearchTags}
-        setRecipes={setRecipes}
-        recipes={recipes}
-      /> */}
+
 
       {/* <FavoriteAdd/> */}
       {/* <UploadForm /> */}
