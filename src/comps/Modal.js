@@ -25,7 +25,6 @@ const Modal = ({ setSelectedImg, selectedImg }) => {
         >
           <Iframe className="iframe"
           url={selectedImg}
-          loading="lazy"
           id="iframe"
         />
         </motion.div>
