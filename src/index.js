@@ -21,23 +21,30 @@ import {
 import 'bootstrap/dist/css/bootstrap.css';
 
 
+// ReactDOM.render(
+
+//   <React.StrictMode>
+//       <Router>
+
+//      <Header />
+//       {projectAuth.currentUser && <NavBar /> }
+//         <div className="auth-wrapper">
+//             <Switch>
+//               <Route exact path="/" component={App}></Route>
+//               <Route path="/signup" component={SignUp}></Route>
+//               <Route path="/signin" component={SignIn}></Route>
+//               <Route path="/search" component={SearchByIngredient}></Route>
+//               <Route path="/favorites" component={Favorite}></Route>
+//             </Switch>
+//         </div>
+//       </Router>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 ReactDOM.render(
 
   <React.StrictMode>
-      <Router>
-
-     <Header />
-      {projectAuth.currentUser && <NavBar /> }
-        <div className="auth-wrapper">
-            <Switch>
-              <Route exact path="/" component={App}></Route>
-              <Route path="/signup" component={SignUp}></Route>
-              <Route path="/signin" component={SignIn}></Route>
-              <Route path="/search" component={SearchByIngredient}></Route>
-              <Route path="/favorites" component={Favorite}></Route>
-            </Switch>
-        </div>
-      </Router>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
