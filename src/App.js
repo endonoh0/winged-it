@@ -15,6 +15,8 @@ import NavBar from './comps/NavBar/NavBar';
 import Header from './comps/Header/Header';
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
+import Logout from './comps/Auth/Logout'
+
 import { projectAuth, onAuthStateChange } from './firebase/config';
 
 import Favorite from '../src/comps/Favorite/Favorite'
@@ -25,6 +27,9 @@ import {
 } from 'react-router-dom'
 
 
+const defaultUser = { loggedIn: false, email: "" };
+const UserContext = React.createContext(defaultUser);
+const UserProvider = UserContext.Provider;
 
 
 function App() {
@@ -41,6 +46,10 @@ function App() {
     };
   }, []);
 
+  function logout() {
+    projectAuth.signOut();
+  }
+
   function login(email, pass) {
     projectAuth.signInWithEmailAndPassword(email, pass);
   }
@@ -48,6 +57,10 @@ function App() {
   const requestLogin = useCallback((email, password) => {
     login(email, password);
   });
+
+  const requestLogout = useCallback(() => {
+    logout();
+  }, []);
 
   return (
     <div className="App">
@@ -59,17 +72,14 @@ function App() {
         {projectAuth.currentUser && <NavBar />}
 
         <div className="auth-wrapper">
-
           <Switch>
 
             <Route path="/signin">
               { !user.loggedIn && <SignIn onClick={requestLogin} /> }
             </Route>
-
             <Route path="/signup">
               { !user.loggedIn && <SignUp onClick={requestLogin} /> }
             </Route>
-
 
             <Route path="/search">
               <SearchByIngredient
@@ -78,6 +88,17 @@ function App() {
                 setRecipes={setRecipes}
                 recipes={recipes}
               />
+            </Route>
+
+            <Route path="/logout">
+             { user.loggedIn &&
+                <UserProvider value={user}>
+                  <Logout
+                    onClick={requestLogout}
+                    UserContext={UserContext}
+                  />
+                </UserProvider>
+              }
             </Route>
 
             <Route path="/favorites">

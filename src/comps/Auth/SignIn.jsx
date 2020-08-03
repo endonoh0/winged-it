@@ -3,6 +3,8 @@ import { projectAuth } from '../../firebase/config';
 import "./Auth.scss"
 
 const SignIn = ({ onClick }) => {
+
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -76,6 +78,9 @@ const SignIn = ({ onClick }) => {
     </form>
 
   );
+
 };
+
+
 
 export default SignIn;

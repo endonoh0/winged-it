@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { projectAuth } from '../../firebase/config';
 import "./Auth.scss"
 
-const SignUp = () => {
+const SignUp = ({onClick}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -48,6 +48,7 @@ const SignUp = () => {
 
         <button type="submit" className="btn btn-primary btn-block"
           onClick={event => { createUserWithEmailAndPasswordHandler(event, email, password);
+            onClick(email, password);
           }}
         >
           Sign Up
