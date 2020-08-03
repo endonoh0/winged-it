@@ -1,6 +1,6 @@
 import React from "react";
 import "./Favorite.scss";
-import useFirestoreFavorites from '../../hooks/useFirestoreFavorites'
+import { useFirestoreFavorites } from '../../hooks/useFirestoreFavorites'
 
 
 const Favorite = () => {
