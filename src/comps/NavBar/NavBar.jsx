@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './NavBar.scss'
 import SideBar from '../SideBar/SideBar';
-import { FaHome, FaFileSignature } from 'react-icons/fa';
+import { FaHome } from 'react-icons/fa';
 import { MdFavoriteBorder } from 'react-icons/md';
-import { RiLoginCircleLine } from 'react-icons/ri';
+import { FiLogOut } from 'react-icons/fi';
 
 const NavBar = () => {
 	return(
@@ -16,16 +16,11 @@ const NavBar = () => {
             <FaHome size={32} />
           </Link>
 
-          <Link to='signin' className='link'>
-            <RiLoginCircleLine size={32}/>
-          </Link>
-
-          <Link to='signup' className='link'>
-            <FaFileSignature size={32} />
-          </Link>
-
           <Link to='favorites' className='link'>
             <MdFavoriteBorder size={32} />
+          </Link>
+          <Link to='logout' className='link'>
+            <FiLogOut size={32} />
           </Link>
         </div>
       </nav>

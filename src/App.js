@@ -61,12 +61,21 @@ function App() {
 
         <div className="auth-wrapper">
           <Switch>
-
             <Route path="/signin">
               { !user.loggedIn && <SignIn onClick={requestLogin} /> }
             </Route>
+
             <Route path="/signup">
               { !user.loggedIn && <SignUp onClick={requestLogin} /> }
+            </Route>
+
+            <Route path="/logout">
+              { user.loggedIn && <UserProvider value={user}>
+                  <Logout
+                    onClick={requestLogout}
+                    UserContext={UserContext}
+                  />
+                </UserProvider> }
             </Route>
 
             <Route path="/search">
@@ -78,16 +87,7 @@ function App() {
               />
             </Route>
 
-            <Route path="/logout">
-             { user.loggedIn &&
-                <UserProvider value={user}>
-                  <Logout
-                    onClick={requestLogout}
-                    UserContext={UserContext}
-                  />
-                </UserProvider>
-              }
-            </Route>
+
 
             <Route path="/favorites">
               <Favorite />
