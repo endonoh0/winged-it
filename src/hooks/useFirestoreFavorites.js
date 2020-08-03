@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 
 
-const useFirestoreFavorites = (type) => {
+const useFirestoreFavorites = (dynamicDeleting) => {
 
+  const type = 'favorites';
   const [docs, setDocs] = useState([]);
 
   // this email needs to be changed with current user
@@ -25,7 +26,7 @@ const useFirestoreFavorites = (type) => {
     })
     .then((data) => { setDocs(data) });
 
-  }, []);
+  }, [dynamicDeleting]);
 
   return { docs };
 
