@@ -8,5 +8,4 @@ const login = (email, pass) => {
   projectAuth.signInWithEmailAndPassword(email, pass);
 }
 
-
 export { logout, login }

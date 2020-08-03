@@ -40,8 +40,10 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
 
+  // listen to auth state change
   useCurrentUser(setUser);
 
+  // listen to acition events from login and logout componenet
   const requestLogin = useCallback((email, password) => {
     login(email, password);
   });
