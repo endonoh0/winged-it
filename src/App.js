@@ -26,6 +26,8 @@ import {
   Route
 } from 'react-router-dom'
 
+import {logout, login}  from './helper/authApi'
+import { useCurrentUser } from './hooks/userAuth';
 
 const defaultUser = { loggedIn: false, email: "" };
 const UserContext = React.createContext(defaultUser);
@@ -38,21 +40,7 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
 
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChange(setUser);
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  function logout() {
-    projectAuth.signOut();
-  }
-
-  function login(email, pass) {
-    projectAuth.signInWithEmailAndPassword(email, pass);
-  }
+  useCurrentUser(setUser);
 
   const requestLogin = useCallback((email, password) => {
     login(email, password);
