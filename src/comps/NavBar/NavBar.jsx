@@ -1,44 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './NavBar.scss'
+import SideBar from '../SideBar/SideBar';
+import { FaHome, FaFileSignature } from 'react-icons/fa';
+import { MdFavoriteBorder } from 'react-icons/md';
+import { RiLoginCircleLine } from 'react-icons/ri';
 
 const NavBar = () => {
 	return(
-		<section className="sidebar">
-			<Link to='/' className="link"><h1>Winged It</h1></Link>
-			<hr className="sidebar__separator sidebar--centered" />
-			<nav className="sidebar__menu">
-				<ul className="nabvar-nav">
-          <li className="nav-item">
-            <Link to='/' className='link'>
-              Home
-						</Link>
-          </li>
-					<li className="nav-item">
-						<Link to='signup' className='link'>
-							Sign Up
-						</Link>
-					</li>
+    <>
+    <section className="sidebar iWlhAO">
+      <nav className="sidebar__menu">
+        <div className="sidebar__items">
+          <Link to='/' className='link'>
+            <FaHome size={32} />
+          </Link>
 
-					<li className="nav-item">
-						<Link to='signin' className='link'>
-							Sign In
-						</Link>
-					</li>
+          <Link to='signin' className='link'>
+            <RiLoginCircleLine size={32}/>
+          </Link>
 
-					<li className="nav-item">
-						<Link to='favorites' className='link'>
-							Favorites
-						</Link>
-					</li>
-					<li>
-						<Link to='search' className='link'>
-							Search
-						</Link>
-					</li>
-				</ul>
-			</nav>
-		</section>
+          <Link to='signup' className='link'>
+            <FaFileSignature size={32} />
+          </Link>
+
+          <Link to='favorites' className='link'>
+            <MdFavoriteBorder size={32} />
+          </Link>
+        </div>
+      </nav>
+    </section>
+    {/* <SideBar /> */}
+
+    </>
 	);
 }
 

@@ -8,9 +8,10 @@ import App from './App';
 import NavBar from './comps/NavBar/NavBar'
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
+
 import SearchByIngredient from './comps/SearchByIngredient'
 import Favorite from '../src/comps/Favorite/Favorite'
-import { 
+import {
   BrowserRouter as Router,
   Switch,
   Route
@@ -22,12 +23,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 ReactDOM.render(
 
   <React.StrictMode>
-
-    <div className="container">
       <Router>
         <NavBar />
+
         <div className="auth-wrapper">
-          <div className="auth-inner">
             <Switch>
               <Route exact path="/" component={App}></Route>
               <Route path="/signup" component={SignUp}></Route>
@@ -35,13 +34,8 @@ ReactDOM.render(
               <Route path="/search" component={SearchByIngredient}></Route>
               <Route path="/favorites" component={Favorite}></Route>
             </Switch>
-          </div>
         </div>
       </Router>
-
-
-    </div>
-
   </React.StrictMode>,
   document.getElementById('root')
 );

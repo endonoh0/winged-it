@@ -12,10 +12,11 @@ body{
 .container{
   display: flex;
   width: 100vw;
+  float: left;
 }
 
 .App{
-  width: 70vw;
+  width: 50vw;
   margin: 0 auto;
 }
 
@@ -66,7 +67,6 @@ body{
 .img-wrap img{
   min-width: 100%;
   min-height: 100%;
-  max-width: 150%;
   position: absolute;
   top: 0;
   left: 0;
@@ -99,4 +99,8 @@ body{
   height: fill-available;
   -webkit-overflow-scrolling: touch;
   /* overflow-y: scroll; */
+}
+
+.sidebar-container{
+  width: 363px;
 }
