@@ -11,6 +11,7 @@ import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
 import SearchByIngredient from './comps/SearchByIngredient'
 import Favorite from '../src/comps/Favorite/Favorite'
+import Map from '../src/comps/Map'
 import { 
   BrowserRouter as Router,
   Switch,
@@ -26,17 +27,14 @@ ReactDOM.render(
     <div className="container">
       <Router>
         <NavBar />
-        <div className="auth-wrapper">
-          <div className="auth-inner">
-            <Switch>
-              <Route exact path="/" component={App}></Route>
-              <Route path="/signup" component={SignUp}></Route>
-              <Route path="/signin" component={SignIn}></Route>
-              <Route path="/search" component={SearchByIngredient}></Route>
-              <Route path="/favorites" component={Favorite}></Route>
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          <Route exact path="/" component={App}></Route>
+          <Route path="/signup" component={SignUp}></Route>
+          <Route path="/signin" component={SignIn}></Route>
+          <Route path="/search" component={SearchByIngredient}></Route>
+          <Route path="/favorites" component={Favorite}></Route>
+          <Route path="/map" component={Map}></Route>
+        </Switch>
       </Router>
 
 
