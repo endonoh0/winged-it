@@ -9,7 +9,6 @@ const useFirestoreFavorites = (type) => {
   // this email needs to be changed with current user
   const email = 'ghanbari@ualberta.ca';
   
-
   useEffect(() => {
     projectFirestore.collection(type)
     .where('user_email', '==', email)
@@ -26,11 +25,11 @@ const useFirestoreFavorites = (type) => {
     })
     .then((data) => { setDocs(data) });
 
-   
   }, []);
 
   return { docs };
 
 }
 
-export default useFirestoreFavorites;
+export {useFirestoreFavorites} ;
+
