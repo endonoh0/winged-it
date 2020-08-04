@@ -7,7 +7,7 @@ const useFirestoreFavorites = (check) => {
 
   const type = 'favorites';
   const [docs, setDocs] = useState([]);
-
+  const [dataFetchStatus, setDataFetchStatus] = useState(false)
 
   // this email needs to be changed with current user
   const email = 'ghanbari@ualberta.ca';
@@ -29,13 +29,16 @@ const useFirestoreFavorites = (check) => {
     .then((data) => {
       setDocs(data);
       return docs;
-    });
+    })
+    .then(() => {
+      setDataFetchStatus(true);
+    })
  
     
   }, []);
 
 
-  return { docs };
+  return { docs, dataFetchStatus };
 
 }
 

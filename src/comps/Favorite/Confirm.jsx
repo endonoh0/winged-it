@@ -7,7 +7,7 @@ const Confirm = (props) => {
   return (
     <div>
       <h1> Are you sure?</h1>
-      <button onClick = { (e) => props.onConfirm()}>
+      <button onClick = { props.onConfirm }>
         Confirm
       </button>
       <button onClick = { (e) => props.onCancel()}>

@@ -16,12 +16,14 @@ const EMPTY = 'EMPTY';
 
 const Favorite = (props) => {
 
-
-  const { docs } = useFirestoreFavorites ([]);
+  
+  const { docs, dataFetchStatus } = useFirestoreFavorites ([]);
   const { mode, transition, back } = useVisualMode(LOADING);
-  const [favItems, setFavItems] = useState(docs);
+  const [favItems, setFavItems] = useState([]);
 
-    // Wait for the data to load and then show the recipe
+
+  
+  // Wait for the data to load and then show the recipe
   useEffect(() => {
     if(docs.length > 0) {
       setFavItems(docs);
@@ -30,22 +32,22 @@ const Favorite = (props) => {
     
   }, [docs.length]);
 
-  // setTimeout(() => {
-  //   if (docs.length === 0) {
-  //     transition(EMPTY)
-      
-  //   }  
-  // }, 1000 );
+
+  useEffect(() => {
+    if(favItems.length === 0 && dataFetchStatus) {
+      transition(EMPTY)
+    }
+  },[dataFetchStatus, favItems.length])
+
+console.log(docs.length)
 
   function deleteEvent (index, docId) {
-
     const docs = [...favItems]
     docs.splice(index, 1);
     setFavItems(docs);
     projectFirestore.collection('favorites').doc(docId).delete();
   }
 
-  
   return (
     <div>
       { mode === EMPTY && <Empty/> }
