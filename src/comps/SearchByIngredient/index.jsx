@@ -6,10 +6,10 @@ const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) 
   const [searchTerm, setSearchTerm] = useState('');
 
 	const pressEnter = (searchTerm) => {
-		if(searchTerm){
+		if(searchTerm && !searchTags.includes(searchTerm)){
 			setSearchTags(prev => [...prev, searchTerm])
-			setSearchTerm("")
 			writeTag(searchTerm)
+			setSearchTerm("")
 		}
 	}
 

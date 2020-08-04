@@ -33,6 +33,7 @@ import { useCurrentUser } from './hooks/userAuth';
 import { registerVersion } from 'firebase';
 import {logout, login, register}  from './helper/authApi'
 import  useWriteToFirestore  from './hooks/useWriteToFirestore'
+import SearchTag from './comps/SearchByIngredient/SearchTag';
 
 const defaultUser = { loggedIn: false, email: "" };
 const UserContext = React.createContext(defaultUser);
@@ -79,11 +80,20 @@ function App() {
   }, []);
 
   const writeTag = (searchTerm) => {
-    const info = { searchTags: [...searchTags, searchTerm], createdBy:user.email, editedAt: timeStamp() }
-    console.log(info);
-    write('searchTags', info)
+    // Makes sure the search term is unique
+    if(!searchTags.includes(searchTerm)){
+      const info = { searchTags: [...searchTags, searchTerm], createdBy:user.email, editedAt: timeStamp() }
+      write('searchTags', info)
+    }
   }
   
+  const removeTag = (searchTerm) => {
+    const newTags = searchTags.filter( tags => tags !== searchTerm )
+    console.log(newTags);
+    const info = { searchTags: [...newTags], createdBy:user.email, editedAt: timeStamp() }
+    setSearchTags([...newTags])
+    write('searchTags', info)
+  }
 
   return (
     <div className="App">
@@ -93,7 +103,7 @@ function App() {
       <Router>
 
         {projectAuth.currentUser && <NavBar /> }
-        <SideBar searchTags={searchTags} user={user}/>
+        <SideBar searchTags={searchTags} user={user} removeTag={removeTag}/>
 
       
           <Switch>
