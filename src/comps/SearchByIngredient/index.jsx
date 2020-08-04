@@ -14,7 +14,6 @@ const SearchByIngredient = ({setRecipes }) => {
 	}
 
 	const onSubmit = (e) => {
-		console.log(searchTags);
 		recipeFinder(searchTags)
 		.then(data => {
       console.log('data', data);
@@ -32,9 +31,10 @@ const SearchByIngredient = ({setRecipes }) => {
 				onKeyUp={pressEnter}/>
 
         {/* returns an array of ingredients */}
+
+				<button onClick={onSubmit}>Recipe Search</button>
         {searchTags && <SearchTag searchTags={searchTags} />}
 
-				<button onClick={onSubmit}>Submit</button>
 		</div>
 
 	);
