@@ -6,7 +6,7 @@ import Title from '../Title';
 
 import './SideBar.scss'
 
-const SideBar = ({searchTags}) => {
+const SideBar = ({searchTags, user}) => {
   // const [searchTags, setSearchTags] = useState([]);
 
   return (
@@ -17,7 +17,7 @@ const SideBar = ({searchTags}) => {
         </Link>
         <hr className="sidebar__separator sidebar--centered" />
       </div>
-      {searchTags && <SearchTag searchTags={searchTags} />}
+      {searchTags && <SearchTag searchTags={searchTags} user={user} />}
     </div>
   )
 }

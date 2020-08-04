@@ -45,6 +45,18 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
 
+  useEffect(() => {
+    if(user.loggedIn){
+      projectFirestore.collection('searchTags')
+      .doc(user.uid)
+      .get()
+      .then(doc => {
+        setSearchTags([...doc.data().searchTags]);
+        console.log([...doc.data().searchTags]);
+      })
+    }
+  }, [user])
+
   // listen to auth state change
   useCurrentUser(setUser);
 
@@ -60,9 +72,14 @@ function App() {
   const requestLogout = useCallback(() => {
     logout();
   }, []);
-
+  
+  // Check to make 
+  // let write;
+  // if(user.loggedIn) {
+  //   write = { searchTags: searchTags, createdBy:user.email, editedAt: timeStamp() }
+  // }
   // Writes tags to database whenever searchTags is set
-  useWriteToFirestore('searchTags', searchTags, { searchTags: searchTags, createdBy:user.email, editedAt: timeStamp() })
+  // useWriteToFirestore('searchTags', searchTags, write)
 
   return (
     <div className="App">
@@ -77,7 +94,7 @@ function App() {
       <Router>
 
         {projectAuth.currentUser && <NavBar /> }
-        <SideBar setRecipes={setRecipes} searchTags={searchTags} user={user}/>
+        <SideBar searchTags={searchTags} user={user}/>
 
         <div className="auth-wrapper">
           <Switch>
