@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-import { useVisualMode } from "../../hooks/useVisualMode";
-import { useFirestoreFavorites } from '../../hooks/useFirestoreFavorites'
-import { projectFirestore } from '../../firebase/config';
+import { useVisualMode } from "../hooks/useVisualMode";
+import { useFirestoreFavorites } from '../hooks/useFirestoreFavorites'
+import { projectFirestore } from '../firebase/config';
 
-import FavoritePage from './index';
-
-import Loading from "./Loading";
-import Empty from "./Empty";
-import Edit from "./Edit";
+import FavoritePage from './Favorite/index';
+import Loading from "./Favorite/Loading";
+import Empty from "./Favorite/Empty";
+import Edit from "./Favorite/Edit";
 
 const SHOW = 'SHOW';
 const LOADING = 'LOADING';
@@ -24,7 +23,6 @@ const Favorite = (props) => {
   const [editDoc, setEditDoc] = useState([]);
 
 
-  
   // Wait for the data to load and then show the recipe
   useEffect(() => {
     if(docs.length > 0) {
@@ -59,20 +57,21 @@ const Favorite = (props) => {
     const index = editDoc[0];
     const docId = editDoc[1];
 
-    projectFirestore.collection('favorites').doc(editDoc[1]).update(
-      {recipe: {...favItems[editDoc[0]].recipe,
+    //this part of code update the database
+    projectFirestore.collection('favorites').doc(docId).update(
+      {recipe: {...favItems[index].recipe,
         name: value
       }}
     );
     
-    const foo = {...favItems[editDoc[0]], recipe: {...favItems[editDoc[0]].recipe, name:value}};
+    //this part of code update the state when edited
+    const foo = {...favItems[index], recipe: {...favItems[index].recipe, name:value}};
     let bar = [...favItems];
-    bar[editDoc[0]] = foo;
+    bar[index] = foo;
     
     setFavItems(bar);
 
     transition(SHOW);
-
   }
 
   
