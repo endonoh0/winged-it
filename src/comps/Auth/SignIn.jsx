@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import "./Auth.scss"
 
-const SignIn = ({ onClick }) => {
+const SignIn = ({ onClick, loginWithGoogle }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -53,7 +53,7 @@ const SignIn = ({ onClick }) => {
       </button>
 
       <p className="login-alt text-right">
-        Sign in with <a href="#">Google?</a>
+        Sign in with <a onClick={loginWithGoogle}>Google?</a>
       </p>
     </form>
   );

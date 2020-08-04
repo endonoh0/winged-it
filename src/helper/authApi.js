@@ -1,4 +1,4 @@
-import { projectAuth } from '../firebase/config';
+import { projectAuth, provider } from '../firebase/config';
 
 const logout = () => {
   projectAuth.signOut();
@@ -29,4 +29,13 @@ const register = (event, email, password) => {
   });
 }
 
-export { logout, login, register }
+const loginWithGoogle = () => {
+  projectAuth.signInWithPopup(provider).then(result => {
+    const token = result.credential.accessToke;
+
+    const user = result.user
+    console.log(result.user);
+  }).catch(error => console.log(error))
+}
+
+export { logout, login, register, loginWithGoogle }

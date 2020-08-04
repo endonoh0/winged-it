@@ -31,7 +31,7 @@ import SideBar from './comps/SideBar/SideBar';
 import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
 import { useCurrentUser } from './hooks/userAuth';
 import { registerVersion } from 'firebase';
-import {logout, login, register}  from './helper/authApi'
+import {logout, login, register, loginWithGoogle}  from './helper/authApi'
 import  useWriteToFirestore  from './hooks/useWriteToFirestore'
 import SearchTag from './comps/SearchByIngredient/SearchTag';
 
@@ -49,13 +49,15 @@ function App() {
   const { write } = useWriteToFirestore();
 
   useEffect(() => {
+    console.log(user);
     if(user.loggedIn){
       projectFirestore.collection('searchTags')
       .doc(user.uid)
       .get()
       .then(doc => {
-        setSearchTags([...doc.data().searchTags]);
-        console.log([...doc.data().searchTags]);
+        if(doc.data()){
+          setSearchTags([...doc.data().searchTags]);
+        }
       })
     }
   }, [user])
@@ -110,7 +112,7 @@ function App() {
           <Switch>
             <Route path="/signin">
               <div className="auth-wrapper">
-                { !user.loggedIn ? <SignIn onClick={requestLogin}/> : <Redirect to='/'/> }
+                { !user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={loginWithGoogle}/> : <Redirect to='/'/> }
               </div>
               </Route>
             <Route path="/signup">
