@@ -17,7 +17,7 @@ const SideBar = ({setRecipes}) => {
         </Link>
         <hr className="sidebar__separator sidebar--centered" />
       </div>
-      <SearchByIngredient setRecipes={setRecipes} />
+      {/* <SearchByIngredient setRecipes={setRecipes} /> */}
     </div>
   )
 }

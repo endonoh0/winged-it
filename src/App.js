@@ -63,6 +63,7 @@ function App() {
     <div className="App">
 
       { !user.loggedIn && <Header /> }
+      <SearchByIngredient setRecipes={setRecipes} setSelectedImg={setSelectedImg}/>
 
       <Router>
 
