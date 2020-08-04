@@ -1,4 +1,3 @@
-// starts the React application
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -6,12 +5,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss';
 
 import App from './App';
-import NavBar from './comps/NavBar/NavBar'
+import NavBar from './comps/NavBar/NavBar';
+import Header from './comps/Header/Header';
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
+import { projectAuth } from './firebase/config';
+
 import SearchByIngredient from './comps/SearchByIngredient'
 import Favorite from '../src/comps/Favorite/Favorite'
-import { 
+import {
   BrowserRouter as Router,
   Switch,
   Route
@@ -19,29 +21,30 @@ import {
 
 
 
+// ReactDOM.render(
+
+//   <React.StrictMode>
+//       <Router>
+
+//      <Header />
+//       {projectAuth.currentUser && <NavBar /> }
+//         <div className="auth-wrapper">
+//             <Switch>
+//               <Route exact path="/" component={App}></Route>
+//               <Route path="/signup" component={SignUp}></Route>
+//               <Route path="/signin" component={SignIn}></Route>
+//               <Route path="/search" component={SearchByIngredient}></Route>
+//               <Route path="/favorites" component={Favorite}></Route>
+//             </Switch>
+//         </div>
+//       </Router>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 ReactDOM.render(
 
   <React.StrictMode>
-
-    <div className="container">
-      <Router>
-        <NavBar />
-        <div className="auth-wrapper">
-          <div className="auth-inner">
-            <Switch>
-              <Route exact path="/" component={App}></Route>
-              <Route path="/signup" component={SignUp}></Route>
-              <Route path="/signin" component={SignIn}></Route>
-              <Route path="/search" component={SearchByIngredient}></Route>
-              <Route path="/favorites" component={Favorite}></Route>
-            </Switch>
-          </div>
-        </div>
-      </Router>
-
-
-    </div>
-
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

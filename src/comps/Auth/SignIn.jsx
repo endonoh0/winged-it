@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import { projectAuth } from '../../firebase/config';
 import "./Auth.scss"
 
-const SignIn = () => {
+const SignIn = ({ onClick }) => {
+
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -64,7 +66,10 @@ const SignIn = () => {
       </div>
 
       <button type="submit" className="btn btn-primary btn-block"
-        onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
+        onClick = {(event) => {
+          signInWithEmailAndPasswordHandler(event, email, password);
+          onClick(email, password);
+        }}>
         Sign In
       </button>
       <p className="login-alt text-right">
@@ -73,6 +78,9 @@ const SignIn = () => {
     </form>
 
   );
+
 };
+
+
 
 export default SignIn;

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Iframe from 'react-iframe';
 import ScrollLock from 'react-scrolllock';
 
-const Modal = ({ setSelectedImg, selectedImg }) => {
+const Modal = ({selectedImg, setSelectedImg }) => {
+
 
   const handleClick = (e) => {
 
@@ -23,7 +24,7 @@ const Modal = ({ setSelectedImg, selectedImg }) => {
           initial={{ y: "-100vh" }}
           animate={{ y: -60 }}
         >
-          <Iframe className="iframe"
+        <Iframe className="iframe"
           url={selectedImg}
           id="iframe"
         />

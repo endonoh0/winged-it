@@ -1,45 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar'
-import SearchTags from './SearchTag'
 import recipeFinder from '../../helper/foodApi'
+import SearchTag from '../SearchByIngredient/SearchTag'
 
-const SearchByIngredient = ({setRecipes, setSelectedImg}) => {
-	const [searchTerm, setSearchTerm] = useState('');
-	const [searchTags, setSearchTags] = useState([]);
-	
+const SearchByIngredient = ({setRecipes }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTags, setSearchTags] = useState([]);
+
+
 	const pressEnter = (searchTerm) => {
 		setSearchTags(prev => [...prev, searchTerm])
 		setSearchTerm("")
 	}
 
-	const onSubmit = () => {
-		setRecipes((prev) => [])
-		recipeFinder(searchTags)
-		.then(result => {
-			result.forEach(data => {
-				setRecipes((prev) => [...prev, data.recipe])
-			});
+	const onSubmit = (e) => {
+
+		recipeFinder(searchTerm)
+		.then(data => {
+      setRecipes(data)
 		})
 	}
-	
-	const searchTag = searchTags.map((tag, index) => {
-		return(
-			<SearchTags key={index}>{tag}</SearchTags>
-		)
-	})
+
+
 
 	return(
 		<div>
-			<SearchBar 
-				searchTerm={searchTerm} 
+			<SearchBar
+				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
-				searchTags={searchTags} 
+				searchTags={searchTags}
 				setSearchTags={setSearchTags}
 				onKeyUp={pressEnter}/>
-				{searchTag}
+
+        {/* returns an array of ingredients */}
+        {searchTags && <SearchTag searchTags={searchTags} />}
+
 				<button onClick={onSubmit}>Submit</button>
 		</div>
-		
+
 	);
 }
 

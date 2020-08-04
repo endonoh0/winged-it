@@ -12,12 +12,13 @@ body{
 .container{
   display: flex;
   width: 100vw;
+  float: left;
   margin: 0;
   padding: 0;
 }
 
 .App{
-  width: 70vw;
+  width: 50vw;
   margin: 0 auto;
 }
 
@@ -25,11 +26,18 @@ body{
   color: $white;
   text-decoration: none;
 }
-
+.title{
+    display: flex;
+    // padding-top: 155px;
+    // padding-bottom: 60px;
+    // padding-left: 8px;
+    // padding-right: 8px;
+}
 .title h1{
   color: $primary;
   font-size: 1.2rem;
   letter-spacing: 2px;
+  margin-top: 32px;
   font-weight: normal;
 }
 .title h2, .title p{
@@ -68,7 +76,6 @@ body{
 .img-wrap img{
   min-width: 100%;
   min-height: 100%;
-  max-width: 150%;
   position: absolute;
   top: 0;
   left: 0;
@@ -101,4 +108,8 @@ body{
   height: fill-available;
   -webkit-overflow-scrolling: touch;
   /* overflow-y: scroll; */
+}
+
+.sidebar-container{
+  width: 363px;
 }

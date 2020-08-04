@@ -36,5 +36,14 @@ const projectAuth = firebase.auth();
 // firebase uses a special type of data (timestamp) in firestore
 const timeStamp = firebase.firestore.FieldValue.serverTimestamp;
 
+// Listen to Authenticaton provider to setUser
+function onAuthStateChange(callback) {
+  return firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      callback({ loggedIn: true, email: user.email });
+    } else {
+      callback({ loggedIn: false });
+    }
+  })};
 
-export { projectStorage, projectFirestore, projectAuth, timeStamp };
+export { projectStorage, projectFirestore, projectAuth, timeStamp, onAuthStateChange};
