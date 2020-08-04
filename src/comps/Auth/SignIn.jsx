@@ -45,7 +45,7 @@ const SignIn = () => {
       <div className="form-group">
         <label htmlFor="email">Email:</label>
         <input type="email" className="form-control" placeholder="Email" name="email"
-          value = {email}
+          
           onChange = {(event) => onChangeHandler(event)} />
       </div>
 

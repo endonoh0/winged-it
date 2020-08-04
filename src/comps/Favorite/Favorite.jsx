@@ -21,6 +21,7 @@ const Favorite = (props) => {
   const { docs, dataFetchStatus } = useFirestoreFavorites ([]);
   const { mode, transition, back } = useVisualMode(LOADING);
   const [favItems, setFavItems] = useState([]);
+  const [editDoc, setEditDoc] = useState([]);
 
 
   
@@ -49,13 +50,39 @@ const Favorite = (props) => {
   }
 
   //edit favorite
-  function editEvent() {
+  function editEvent(index, docId) {
+    setEditDoc([index, docId]);
     transition(EDIT);
   }
 
+  function save(value) {
+    const index = editDoc[0];
+    const docId = editDoc[1];
+
+    projectFirestore.collection('favorites').doc(editDoc[1]).update(
+      {recipe: {...favItems[editDoc[0]].recipe,
+        name: value
+      }}
+    );
+    
+    const foo = {...favItems[editDoc[0]], recipe: {...favItems[editDoc[0]].recipe, name:value}};
+    let bar = [...favItems];
+    bar[editDoc[0]] = foo;
+    
+    setFavItems(bar);
+
+    transition(SHOW);
+
+  }
+
+  
+
   return (
     <div>
-      {mode === EDIT && <Edit/>}
+      { mode === EDIT && <Edit
+        onSave={ save }
+        onCancel={ back }
+        editPlaceholder = { favItems[editDoc[0]].recipe.name } /> }
       { mode === EMPTY && <Empty/> }
       { mode === LOADING && <Loading/> }
       { mode === SHOW &&
@@ -66,7 +93,7 @@ const Favorite = (props) => {
             key = { favItem.id }
             doc = { favItem }
             deleteEvent = { e => deleteEvent(index, favItem.id)}
-            editEvent = { e => editEvent() }/> 
+            editEvent = { e => editEvent(index, favItem.id) }/> 
           })
         }
       </div>}
