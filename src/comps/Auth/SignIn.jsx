@@ -1,40 +1,18 @@
 import React, {useState} from "react";
-import { projectAuth } from '../../firebase/config';
+
 import "./Auth.scss"
 
 const SignIn = ({ onClick }) => {
 
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-	// Button handler to sign in
-  const signInWithEmailAndPasswordHandler = (event,email, password) => {
-		event.preventDefault();
-		projectAuth.signInWithEmailAndPassword(email, password).catch(function(error) {
-		// Handle Errors here.
-			var errorCode = error.code;
-			var errorMessage = error.message;
-			// Alert
-			if (errorCode === 'auth/wrong-password') {
-				// Do css html styling to add on screen error message
-				alert('Wrong password.');
-			} else {
-				alert(errorMessage);
-			}
-		console.log(error);
-		});
-		setEmail("");
-    setPassword("");
-	};
-
-	// Controlled component setstates
   const onChangeHandler = (event) => {
       const {name, value} = event.currentTarget;
-      if(name === 'email') {
-          setEmail(value);
-      }
-      else if(name === 'password'){
+
+      if (name === 'email') {
+        setEmail(value);
+      } else {
         setPassword(value);
       }
 	};
@@ -67,20 +45,18 @@ const SignIn = ({ onClick }) => {
 
       <button type="submit" className="btn btn-primary btn-block"
         onClick = {(event) => {
-          signInWithEmailAndPasswordHandler(event, email, password);
-          onClick(email, password);
+          onClick(event, email, password);
+          setEmail("");
+          setPassword("");
         }}>
         Sign In
       </button>
+
       <p className="login-alt text-right">
         Sign in with <a href="#">Google?</a>
       </p>
     </form>
-
   );
-
 };
-
-
 
 export default SignIn;

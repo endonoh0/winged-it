@@ -26,8 +26,9 @@ import {
   Route
 } from 'react-router-dom'
 
-import {logout, login}  from './helper/authApi'
+import {logout, login, register}  from './helper/authApi'
 import { useCurrentUser } from './hooks/userAuth';
+import { registerVersion } from 'firebase';
 
 const defaultUser = { loggedIn: false, email: "" };
 const UserContext = React.createContext(defaultUser);
@@ -44,8 +45,12 @@ function App() {
   useCurrentUser(setUser);
 
   // listen to acition events from login and logout componenet
-  const requestLogin = useCallback((email, password) => {
-    login(email, password);
+  const requestLogin = useCallback((event, email, password) => {
+    login(event, email, password);
+  });
+
+  const requestRegister = useCallback((event, email, password) => {
+    register(event, email, password);
   });
 
   const requestLogout = useCallback(() => {
@@ -64,7 +69,7 @@ function App() {
         <div className="auth-wrapper">
           <Switch>
             <Route path="/signin">{ !user.loggedIn && <SignIn onClick={requestLogin} /> }</Route>
-            <Route path="/signup">{ !user.loggedIn && <SignUp onClick={requestLogin} /> }</Route>
+            <Route path="/signup">{ !user.loggedIn && <SignUp onClick={requestRegister} /> }</Route>
             <Route path="/logout">
               { user.loggedIn && <UserProvider value={user}>
                   <Logout
