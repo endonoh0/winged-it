@@ -63,14 +63,8 @@ function App() {
 
         <div className="auth-wrapper">
           <Switch>
-            <Route path="/signin">
-              { !user.loggedIn && <SignIn onClick={requestLogin} /> }
-            </Route>
-
-            <Route path="/signup">
-              { !user.loggedIn && <SignUp onClick={requestLogin} /> }
-            </Route>
-
+            <Route path="/signin">{ !user.loggedIn && <SignIn onClick={requestLogin} /> }</Route>
+            <Route path="/signup">{ !user.loggedIn && <SignUp onClick={requestLogin} /> }</Route>
             <Route path="/logout">
               { user.loggedIn && <UserProvider value={user}>
                   <Logout
@@ -79,7 +73,6 @@ function App() {
                   />
                 </UserProvider> }
             </Route>
-
             <Route path="/search">
               <SearchByIngredient
                 // searchTags={searchTags}
@@ -88,28 +81,20 @@ function App() {
                 recipes={recipes}
               />
             </Route>
-
-
-
-            <Route path="/favorites">
-              <Favorite />
-            </Route>
+            <Route path="/favorites"><Favorite /></Route>
 
           </Switch>
         </div>
       </Router>
 
       {/* { <Title/> } */}
-
-
-
       {/* <FavoriteAdd/> */}
       {/* <UploadForm /> */}
       {/* <ImageGrid setSelectedImg={setSelectedImg} /> */}
       {/* { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> } */}
 
       { recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} /> }
-      {/* { selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} /> } */}
+      { selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} /> }
 
     </div>
   );

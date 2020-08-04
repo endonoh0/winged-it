@@ -9,12 +9,11 @@ const SearchTag = ({searchTags}) => {
 
   const onChange = (item) => {
     console.log("item", item); // [eggs, chocolate]
-
   }
 
 	return (
     <div>
-      {tags && <div onChange={onChange(tags)}></div>}
+      {tags && <div onChange={onChange(tags)}>{tags}</div>}
     </div>
   )
 }
