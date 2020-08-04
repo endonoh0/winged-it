@@ -1,0 +1,20 @@
+
+.tag-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+}
+
+.search-tag {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.search-tag .remove {
+	visibility: hidden;
+}
+
+.search-tag:hover .remove {
+	visibility: visible;
+}

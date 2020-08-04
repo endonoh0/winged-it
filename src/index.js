@@ -1,35 +1,50 @@
-// starts the React application
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss';
+
 import App from './App';
-import NavBar from './comps/NavBar/NavBar'
-import SignUp from './comps/SignUp'
-import SignIn from './comps/SignIn'
-import { 
+import NavBar from './comps/NavBar/NavBar';
+import Header from './comps/Header/Header';
+import SignUp from './comps/Auth/SignUp'
+import SignIn from './comps/Auth/SignIn'
+import { projectAuth } from './firebase/config';
+
+import SearchByIngredient from './comps/SearchByIngredient'
+import Favorite from '../src/comps/Favorite/Favorite'
+import {
   BrowserRouter as Router,
   Switch,
   Route
 } from 'react-router-dom'
 
+
+
+// ReactDOM.render(
+
+//   <React.StrictMode>
+//       <Router>
+
+//      <Header />
+//       {projectAuth.currentUser && <NavBar /> }
+//         <div className="auth-wrapper">
+//             <Switch>
+//               <Route exact path="/" component={App}></Route>
+//               <Route path="/signup" component={SignUp}></Route>
+//               <Route path="/signin" component={SignIn}></Route>
+//               <Route path="/search" component={SearchByIngredient}></Route>
+//               <Route path="/favorites" component={Favorite}></Route>
+//             </Switch>
+//         </div>
+//       </Router>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 ReactDOM.render(
+
   <React.StrictMode>
-    <div className="container">
-      <Router>
-        <NavBar />
-        <Switch>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/signin">
-            <SignIn />
-          </Route>
-          <Route path="/">
-            <App />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

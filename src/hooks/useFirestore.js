@@ -20,8 +20,11 @@ const useFirestore = (collection) => {
           // <doc.data()> access data inside that document
           documents.push({...doc.data(), id: doc.id}) // created_at and url, we'll use that id to output the image
         });
+
         setDocs(documents);
       })
+
+      
 
     // cleanup
         // we can unsubcribe or stop retrieving from collection if we unmount image-grid page component
