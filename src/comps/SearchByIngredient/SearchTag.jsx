@@ -7,10 +7,9 @@ const SearchTag = ({searchTags}) => {
     setTags(searchTags);
   },[searchTags]);
 
-
 	return (
     <div>
-      {tags.map(e => <div>{e}</div>)}
+      {tags.map((e, index) => <div key={index}>{e}</div>)}
     </div>
   )
 }

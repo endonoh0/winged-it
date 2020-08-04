@@ -59,6 +59,12 @@ function App() {
     logout();
   }, []);
 
+  useEffect(() => {
+    if(searchTags) {
+      console.log('hey');
+    }
+  },[searchTags])
+
   return (
     <div className="App">
 
@@ -72,7 +78,7 @@ function App() {
       <Router>
 
         {projectAuth.currentUser && <NavBar /> }
-        <SideBar setRecipes={setRecipes} searchTags={searchTags}/>
+        <SideBar setRecipes={setRecipes} searchTags={searchTags} user={user}/>
 
         <div className="auth-wrapper">
           <Switch>

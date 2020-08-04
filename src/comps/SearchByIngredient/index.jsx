@@ -14,7 +14,6 @@ const SearchByIngredient = ({setRecipes, searchTags, setSearchTags }) => {
 	const onSubmit = (e) => {
 		recipeFinder(searchTags)
 		.then(data => {
-      console.log('data', data);
       setRecipes(data)
 		})
 	}
