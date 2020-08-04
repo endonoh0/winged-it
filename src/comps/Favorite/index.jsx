@@ -10,7 +10,7 @@ import Loading from "./Loading";
 import Confirm from "./Confirm";
 
 
-const LOADING = "LOADING";
+
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const SAVING = "SAVING";
@@ -20,7 +20,7 @@ const EDIT = "EDIT";
 const ERROR_DELETE = "ERROR_DELETE";
 const ERROR_EDIT = "ERROR_EDIT";
 
-const FavoritePage = () => {
+const FavoritePage = (props) => {
 
   // check if there is anything in database 
   // if there is change to show
@@ -28,45 +28,37 @@ const FavoritePage = () => {
   // show the confirmation for deleting
   // show deleting message 
   // work on the editing form
-
   //refresh the page after deleteing
+
+
+  //FIrst Get the Cancel working
 
   //This part get data from database
   const deleteFav = (docId) => {
-    projectFirestore.collection('favorites').doc(docId).delete();
+    transition(CONFIRM);
+  }
+
+  const deleteFavConfirm = (docId) => {
+    projectFirestore.collection('favorites').doc(props.doc.id).delete();
+    transition(SHOW);
   }
 
 
-  const { mode, transition, back } = useVisualMode(LOADING);
-  const { docs } = useFirestoreFavorites (mode);
-
-  
-
-  console.log('hi')
-  
-
-  
-  useEffect(() => {
-    if(docs.length > 0) {
-      transition(SHOW)
-    }
-  }, [docs.length]);
-
-
-  
-
-
-
+  const { mode, transition, back } = useVisualMode(SHOW);
 
 
   return(
     <div>
-    { mode === SHOW && <FavoriteItems 
-      docs = { docs }
+    { mode === SHOW && <FavoriteItems
+      doc = { props.doc }
       deleteFav = { deleteFav }/>
     }
-    { mode === LOADING && <Loading/> }
-    { mode === CONFIRM && <Confirm/> }
+
+    { mode === CONFIRM && <Confirm
+      onCancel = { back }
+      onConfirm = { deleteFavConfirm }
+     
+      /> }
 
     </div>
   );

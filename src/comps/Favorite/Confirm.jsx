@@ -2,10 +2,21 @@ import React from "react";
 
 
 
-const Loading = () => {
+const Confirm = (props) => {
 
-
-  return <h1> Are you sure?</h1>
+  return (
+    <div>
+      <h1> Are you sure?</h1>
+      <button onClick = { (e) => props.onConfirm()}>
+        Confirm
+      </button>
+      <button onClick = { (e) => props.onCancel()}>
+        Cancel
+      </button>
+    </div>
+    
+  ) 
+  
 }
 
-export default Loading;
+export default Confirm;

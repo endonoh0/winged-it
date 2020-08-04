@@ -2,17 +2,20 @@ import { useState, useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 
 
-const useFirestoreFavorites = (dynamic) => {
+const useFirestoreFavorites = () => {
 
-  console.log(dynamic)
+  console.log('dynamic')
   const type = 'favorites';
   const [docs, setDocs] = useState([]);
+
+  const [databasePromise, setDatabasePromise] = useState({});
 
   // this email needs to be changed with current user
   const email = 'ghanbari@ualberta.ca';
   
+
   useEffect(() => {
-    projectFirestore.collection(type)
+    const unsub = projectFirestore.collection(type)
     .where('user_email', '==', email)
     .get().then((snapshot) => {
 
@@ -25,12 +28,18 @@ const useFirestoreFavorites = (dynamic) => {
       });
       return document;
     })
-    .then((data) => { setDocs(data) });
+    .then((data) => {
+      setDocs(data);
+      return docs;
+    });
+    
+    setDatabasePromise(unsub);
+    
+  }, []);
 
 
-  }, [dynamic]);
-
-  return { docs };
+  
+  return { docs, databasePromise };
 
 }
 

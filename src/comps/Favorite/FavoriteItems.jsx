@@ -1,5 +1,5 @@
 import React from "react";
-import "./Favorite.scss";
+import "./FavoriteItems.scss";
 
 // This component shows the  items in favorite table
 // The component is passed to index.jsx in the same folder
@@ -10,20 +10,19 @@ const FavoriteItems = (props) => {
   return (
 
     <div>
-      { props.docs.map(doc => {
-        return (
-          <div key = {doc.id} className="favorite">
+      
+          <div key = {props.doc.id} className="favorite">
             <a>
-              <img src={ doc.recipe.img } alt="Cinque Terre" width="600" height="400"/>
+              <img src={ props.doc.recipe.img } alt="Cinque Terre" width="600" height="400"/>
             </a>
-            <div className="desc">{ doc.recipe.name }</div>
+            <div className="desc">{ props.doc.recipe.name }</div>
             <button> View Recipe </button>
-            <button onClick = { e => props.deleteFav( doc.id )}>
+            <button onClick = { e => props.deleteFav( props.doc.id )}>
               Delete fav
             </button>
-          </div>)
-        })
-      }
+          </div>
+      
+      
     </div>
    
   );
