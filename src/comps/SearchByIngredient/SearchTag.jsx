@@ -7,13 +7,10 @@ const SearchTag = ({searchTags}) => {
     setTags(searchTags);
   },[searchTags]);
 
-  const onChange = (item) => {
-    console.log("item", item); // [eggs, chocolate]
-  }
 
 	return (
     <div>
-      {tags && <div onChange={onChange(tags)}>{tags}</div>}
+      {tags.map(e => <div>{e}</div>)}
     </div>
   )
 }
