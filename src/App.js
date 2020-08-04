@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom'
 
 // SCSS Style files
@@ -30,9 +31,8 @@ import SideBar from './comps/SideBar/SideBar';
 import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
 import { useCurrentUser } from './hooks/userAuth';
 import { registerVersion } from 'firebase';
-import useWriteToFirestore from './hooks/useWriteToFirestore';
-
 import {logout, login, register}  from './helper/authApi'
+import  useWriteToFirestore  from './hooks/useWriteToFirestore'
 
 const defaultUser = { loggedIn: false, email: "" };
 const UserContext = React.createContext(defaultUser);
@@ -44,6 +44,8 @@ function App() {
   const [searchTags, setSearchTags] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
+
+  const { write } = useWriteToFirestore();
 
   useEffect(() => {
     if(user.loggedIn){
@@ -70,49 +72,63 @@ function App() {
   });
 
   const requestLogout = useCallback(() => {
+    
+    setSearchTags([])
+    setRecipes([])
     logout();
   }, []);
+
+  const writeTag = (searchTerm) => {
+    const info = { searchTags: [...searchTags, searchTerm], createdBy:user.email, editedAt: timeStamp() }
+    console.log(info);
+    write('searchTags', info)
+  }
   
-  // Check to make 
-  // let write;
-  // if(user.loggedIn) {
-  //   write = { searchTags: searchTags, createdBy:user.email, editedAt: timeStamp() }
-  // }
-  // Writes tags to database whenever searchTags is set
-  // useWriteToFirestore('searchTags', searchTags, write)
 
   return (
     <div className="App">
 
       { !user.loggedIn && <Header /> }
-      <SearchByIngredient 
-      setRecipes={setRecipes} 
-      searchTags={searchTags}
-      setSearchTags={setSearchTags}
-      />
 
       <Router>
 
         {projectAuth.currentUser && <NavBar /> }
         <SideBar searchTags={searchTags} user={user}/>
 
-        <div className="auth-wrapper">
+      
           <Switch>
-            <Route path="/signin">{ !user.loggedIn && <SignIn onClick={requestLogin} /> }</Route>
-            <Route path="/signup">{ !user.loggedIn && <SignUp onClick={requestRegister} /> }</Route>
+            <Route path="/signin">
+              <div className="auth-wrapper">
+                { !user.loggedIn ? <SignIn onClick={requestLogin}/> : <Redirect to='/'/> }
+              </div>
+              </Route>
+            <Route path="/signup">
+              <div className="auth-wrapper">
+                { !user.loggedIn && <SignUp onClick={requestRegister} /> }
+              </div>
+              </Route>
             <Route path="/logout">
-              { user.loggedIn && <UserProvider value={user}>
-                  <Logout
-                    onClick={requestLogout}
-                    UserContext={UserContext}
-                  />
-                </UserProvider> }
+              <div className="auth-wrapper">
+                { user.loggedIn && <UserProvider value={user}>
+                    <Logout
+                      onClick={requestLogout}
+                      UserContext={UserContext}
+                    />
+                  </UserProvider> }
+              </div>
+            </Route>
+            <Route path="/favorites"><Favorite /></Route>
+            <Route path="/">
+              <SearchByIngredient 
+                setRecipes={setRecipes} 
+                searchTags={searchTags}
+                setSearchTags={setSearchTags}
+                writeTag={writeTag}
+                />
+                { recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} /> }
             </Route>
 
-            <Route path="/favorites"><Favorite /></Route>
-
           </Switch>
-        </div>
       </Router>
 
       {/* { <Title/> } */}
@@ -121,7 +137,7 @@ function App() {
       {/* <ImageGrid setSelectedImg={setSelectedImg} /> */}
       {/* { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> } */}
 
-      { recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} /> }
+      
       { selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} /> }
 
     </div>

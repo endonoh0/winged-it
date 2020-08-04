@@ -13,7 +13,7 @@ const useWriteToFirestore = () => {
   //   })
 	// },[dependancy, collection, data])
 	
-	const write = (collection, dependancy, data) => {
+	const write = (collection, data) => {
 		onAuthStateChange(user => {
 			// Makes sure that a user is logged in to perform this function
       if(user && data) {
