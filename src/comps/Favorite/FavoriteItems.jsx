@@ -20,6 +20,9 @@ const FavoriteItems = (props) => {
             <button onClick = { e => props.deleteEventReq() }>
               Delete fav
             </button>
+            <button onClick = { props.editEvent }>
+              Edit
+            </button>
           </div>
       
     </div>

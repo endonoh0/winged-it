@@ -18,11 +18,16 @@ const FavoritePage = (props) => {
     transition(CONFIRM);
   }
 
+
+
+
   return(
     <div>
     { mode === SHOW && <FavoriteItems
       doc = { props.doc }
-      deleteEventReq = { deleteEventReq }/>
+      deleteEventReq = { deleteEventReq }
+      editEvent = { props.editEvent }
+      />
     }
 
     { mode === CONFIRM && <Confirm

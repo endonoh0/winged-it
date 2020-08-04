@@ -8,10 +8,12 @@ import FavoritePage from './index';
 
 import Loading from "./Loading";
 import Empty from "./Empty";
+import Edit from "./Edit";
 
 const SHOW = 'SHOW';
 const LOADING = 'LOADING';
 const EMPTY = 'EMPTY';
+const EDIT = 'EDIT';
 
 const Favorite = (props) => {
 
@@ -46,8 +48,14 @@ const Favorite = (props) => {
     projectFirestore.collection('favorites').doc(docId).delete();
   }
 
+  //edit favorite
+  function editEvent() {
+    transition(EDIT);
+  }
+
   return (
     <div>
+      {mode === EDIT && <Edit/>}
       { mode === EMPTY && <Empty/> }
       { mode === LOADING && <Loading/> }
       { mode === SHOW &&
@@ -57,7 +65,8 @@ const Favorite = (props) => {
             return <FavoritePage 
             key = { favItem.id }
             doc = { favItem }
-            deleteEvent = { e => deleteEvent(index, favItem.id) }/> 
+            deleteEvent = { e => deleteEvent(index, favItem.id)}
+            editEvent = { e => editEvent() }/> 
           })
         }
       </div>}
