@@ -17,25 +17,33 @@ const EMPTY = 'EMPTY';
 const Favorite = (props) => {
 
 
-  const { docs, databasePromise } = useFirestoreFavorites ([]);
+  const { docs } = useFirestoreFavorites ([]);
   const { mode, transition, back } = useVisualMode(LOADING);
+  const [favItems, setFavItems] = useState(docs);
 
     // Wait for the data to load and then show the recipe
   useEffect(() => {
     if(docs.length > 0) {
+      setFavItems(docs);
       transition(SHOW)
     }
     
   }, [docs.length]);
 
+  // setTimeout(() => {
+  //   if (docs.length === 0) {
+  //     transition(EMPTY)
+      
+  //   }  
+  // }, 1000 );
 
-console.log(typeof databasePromise)
-// databasePromise
-// .then(() => {
+  function deleteEvent (index, docId) {
 
-// }) 
-
-  
+    const docs = [...favItems]
+    docs.splice(index, 1);
+    setFavItems(docs);
+    projectFirestore.collection('favorites').doc(docId).delete();
+  }
 
   
   return (
@@ -45,8 +53,11 @@ console.log(typeof databasePromise)
       { mode === SHOW &&
       <div>
         {
-          docs.map((doc) => {
-            return <FavoritePage key = {doc.id} doc = { doc }/> 
+          favItems.map((favItem, index) => {
+            return <FavoritePage 
+            key = { favItem.id }
+            doc = { favItem }
+            deleteEvent = { e => deleteEvent(index, favItem.id) }/> 
           })
         }
       </div>}

@@ -17,7 +17,7 @@ const FavoriteItems = (props) => {
             </a>
             <div className="desc">{ props.doc.recipe.name }</div>
             <button> View Recipe </button>
-            <button onClick = { e => props.deleteFav( props.doc.id )}>
+            <button onClick = { props.deleteEvent }>
               Delete fav
             </button>
           </div>

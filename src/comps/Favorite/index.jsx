@@ -43,6 +43,7 @@ const FavoritePage = (props) => {
     transition(SHOW);
   }
 
+  
 
   const { mode, transition, back } = useVisualMode(SHOW);
 
@@ -51,7 +52,7 @@ const FavoritePage = (props) => {
     <div>
     { mode === SHOW && <FavoriteItems
       doc = { props.doc }
-      deleteFav = { deleteFav }/>
+      deleteEvent = { props.deleteEvent }/>
     }
 
     { mode === CONFIRM && <Confirm
