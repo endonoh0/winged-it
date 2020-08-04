@@ -11,6 +11,7 @@ import SearchByIngredient from './comps/SearchByIngredient/index'
 import './index.scss';
 // import './comps/Auth/Auth.scss';
 
+
 import NavBar from './comps/NavBar/NavBar';
 import Header from './comps/Header/Header';
 import SignUp from './comps/Auth/SignUp'
@@ -63,8 +64,8 @@ function App() {
     <div className="App">
 
       { !user.loggedIn && <Header /> }
-      <SearchByIngredient 
-      setRecipes={setRecipes} 
+      <SearchByIngredient
+      setRecipes={setRecipes}
       searchTags={searchTags}
       setSearchTags={setSearchTags}
       />
