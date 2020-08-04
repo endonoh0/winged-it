@@ -9,7 +9,9 @@ import NavBar from './comps/NavBar/NavBar'
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
 import SearchByIngredient from './comps/SearchByIngredient'
-import FavoritePage from '../src/comps/Favorite/index'
+import Favorite from '../src/comps/Favorite/Favorite'
+
+
 import { 
   BrowserRouter as Router,
   Switch,
@@ -33,7 +35,7 @@ ReactDOM.render(
               <Route path="/signup" component={SignUp}></Route>
               <Route path="/signin" component={SignIn}></Route>
               <Route path="/search" component={SearchByIngredient}></Route>
-              <Route path="/favorites" component={FavoritePage}></Route>
+              <Route path="/favorites" component={Favorite}></Route>
             </Switch>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { projectFirestore } from '../firebase/config';
 
 const useFirestoreFavorites = () => {
 
-  console.log('dynamic')
+  // console.log('dynamic')
   const type = 'favorites';
   const [docs, setDocs] = useState([]);
 
