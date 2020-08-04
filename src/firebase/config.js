@@ -40,7 +40,7 @@ const timeStamp = firebase.firestore.FieldValue.serverTimestamp;
 function onAuthStateChange(callback) {
   return firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      callback({ loggedIn: true, email: user.email });
+      callback({ loggedIn: true, email: user.email, uid: user.uid });
     } else {
       callback({ loggedIn: false });
     }

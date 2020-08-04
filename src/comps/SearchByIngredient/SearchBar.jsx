@@ -21,7 +21,7 @@ const SearchBar = (props) => {
             }}/>
           </div>
           <div class="col-auto">
-            <button class="btn btn-lg btn-success" type="submit">Add</button>
+            <button class="btn btn-lg btn-success" onClick={e => onKeyUp(searchTerm)}>Add</button>
           </div>
         </div>
       </div>
