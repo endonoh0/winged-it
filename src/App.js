@@ -64,7 +64,6 @@ function App() {
 
       { !user.loggedIn && <Header /> }
 
-      {/* <SearchByIngredient setRecipes={setRecipes} setSelectedImg={setSelectedImg}/> */}
       <Router>
 
         {projectAuth.currentUser && <NavBar /> }
@@ -82,14 +81,7 @@ function App() {
                   />
                 </UserProvider> }
             </Route>
-            {/* <Route path="/search">
-              <SearchByIngredient
-                // searchTags={searchTags}
-                // setSearchTags={setSearchTags}
-                setRecipes={setRecipes}
-                recipes={recipes}
-              />
-            </Route> */}
+
             <Route path="/favorites"><Favorite /></Route>
 
           </Switch>

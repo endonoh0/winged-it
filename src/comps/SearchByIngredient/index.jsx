@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
 import SearchTag from '../SearchByIngredient/SearchTag'
@@ -21,8 +21,6 @@ const SearchByIngredient = ({setRecipes }) => {
       setRecipes(data)
 		})
 	}
-
-
 
 	return(
 		<div>
