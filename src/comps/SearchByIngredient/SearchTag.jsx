@@ -16,7 +16,7 @@ const SearchTag = ({searchTags, removeTag}) => {
           {tag}
           
         </div>
-        <span onClick={e => removeTag(tag)}>x</span>
+        <span className='remove' onClick={e => removeTag(tag)}>x</span>
       </div>
       )}
     </div>
