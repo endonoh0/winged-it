@@ -36,6 +36,7 @@ const projectAuth = firebase.auth();
 // firebase uses a special type of data (timestamp) in firestore
 const timeStamp = firebase.firestore.FieldValue.serverTimestamp;
 
+const provider = new firebase.auth.GoogleAuthProvider();
 // Listen to Authenticaton provider to setUser
 function onAuthStateChange(callback) {
   return firebase.auth().onAuthStateChanged(user => {
@@ -46,4 +47,4 @@ function onAuthStateChange(callback) {
     }
   })};
 
-export { projectStorage, projectFirestore, projectAuth, timeStamp, onAuthStateChange};
+export { projectStorage, projectFirestore, projectAuth, provider, timeStamp, onAuthStateChange};

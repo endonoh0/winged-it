@@ -21,7 +21,7 @@ const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) 
 	}
 
 	return(
-		<div class="search-container">
+		<div className="search-container">
 			<SearchBar
 				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
