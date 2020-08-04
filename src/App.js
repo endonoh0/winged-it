@@ -81,7 +81,7 @@ function App() {
 
   const writeTag = (searchTerm) => {
     // Makes sure the search term is unique
-    if(!searchTags.includes(searchTerm)){
+    if(!searchTags.includes(searchTerm) && user.loggedIn){
       const info = { searchTags: [...searchTags, searchTerm], createdBy:user.email, editedAt: timeStamp() }
       write('searchTags', info)
     }
@@ -89,10 +89,11 @@ function App() {
   
   const removeTag = (searchTerm) => {
     const newTags = searchTags.filter( tags => tags !== searchTerm )
-    console.log(newTags);
     const info = { searchTags: [...newTags], createdBy:user.email, editedAt: timeStamp() }
     setSearchTags([...newTags])
-    write('searchTags', info)
+    if ( user.loggedIn ){
+      write('searchTags', info)
+    }
   }
 
   return (
