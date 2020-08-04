@@ -1,4 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
+
+// SCSS Style files
+import './index.scss';
+// import './comps/Auth/Auth.scss';
+
+// REACT COMPONENTS
 import Title from './comps/Title';
 import UploadForm from './comps/UploadForm';
 import ImageGrid from './comps/ImageGrid';
@@ -6,31 +17,22 @@ import RecipeGrid from './comps/RecipeGrid'
 import Modal from './comps/Modal';
 import FavoriteAdd from './comps/Favorite/FavoriteAdd'
 import SearchByIngredient from './comps/SearchByIngredient/index'
-// import SearchTag from './comps/SearchByIngredient/SearchTag'
-
-import './index.scss';
-// import './comps/Auth/Auth.scss';
-
 import NavBar from './comps/NavBar/NavBar';
 import Header from './comps/Header/Header';
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
 import Logout from './comps/Auth/Logout'
-
-import { projectAuth, onAuthStateChange } from './firebase/config';
-
 import Favorite from '../src/comps/Favorite/Favorite'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
+import SideBar from './comps/SideBar/SideBar';
 
-import {logout, login, register}  from './helper/authApi'
+
+// FireBase Functions
+import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
 import { useCurrentUser } from './hooks/userAuth';
 import { registerVersion } from 'firebase';
+import useFirestore from './hooks/useFirestore';
 
-import SideBar from './comps/SideBar/SideBar';
+import {logout, login, register}  from './helper/authApi'
 
 const defaultUser = { loggedIn: false, email: "" };
 const UserContext = React.createContext(defaultUser);
@@ -59,10 +61,19 @@ function App() {
     logout();
   }, []);
 
+  // Writes tags to database whenever searchTags is set
   useEffect(() => {
-    if(searchTags) {
-      console.log('hey');
-    }
+    
+    onAuthStateChange(user => {
+      if(searchTags && user) {
+        projectFirestore.collection('searchTags')
+        .doc(user.uid)
+        .set({
+          searchTags: searchTags,
+          editAt: timeStamp()
+        })
+      }
+    })
   },[searchTags])
 
   return (
