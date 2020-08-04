@@ -30,7 +30,7 @@ import SideBar from './comps/SideBar/SideBar';
 import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
 import { useCurrentUser } from './hooks/userAuth';
 import { registerVersion } from 'firebase';
-import useFirestore from './hooks/useFirestore';
+import useWriteToFirestore from './hooks/useWriteToFirestore';
 
 import {logout, login, register}  from './helper/authApi'
 
@@ -62,19 +62,7 @@ function App() {
   }, []);
 
   // Writes tags to database whenever searchTags is set
-  useEffect(() => {
-    
-    onAuthStateChange(user => {
-      if(searchTags && user) {
-        projectFirestore.collection('searchTags')
-        .doc(user.uid)
-        .set({
-          searchTags: searchTags,
-          editAt: timeStamp()
-        })
-      }
-    })
-  },[searchTags])
+  useWriteToFirestore('searchTags', searchTags, { searchTags: searchTags, createdBy:user.email, editedAt: timeStamp() })
 
   return (
     <div className="App">

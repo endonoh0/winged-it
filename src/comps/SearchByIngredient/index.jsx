@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
-import SearchTag from '../SearchByIngredient/SearchTag'
 
 const SearchByIngredient = ({setRecipes, searchTags, setSearchTags }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
 	const pressEnter = (searchTerm) => {
-		setSearchTags(prev => [...prev, searchTerm])
-		setSearchTerm("")
+		if(searchTerm){
+			setSearchTags(prev => [...prev, searchTerm])
+			setSearchTerm("")
+		}
 	}
 
 	const onSubmit = (e) => {
