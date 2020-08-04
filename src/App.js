@@ -30,6 +30,8 @@ import {logout, login, register}  from './helper/authApi'
 import { useCurrentUser } from './hooks/userAuth';
 import { registerVersion } from 'firebase';
 
+import SideBar from './comps/SideBar/SideBar';
+
 const defaultUser = { loggedIn: false, email: "" };
 const UserContext = React.createContext(defaultUser);
 const UserProvider = UserContext.Provider;
@@ -61,10 +63,12 @@ function App() {
     <div className="App">
 
       { !user.loggedIn && <Header /> }
-      <SearchByIngredient setRecipes={setRecipes} setSelectedImg={setSelectedImg}/>
+
+      {/* <SearchByIngredient setRecipes={setRecipes} setSelectedImg={setSelectedImg}/> */}
       <Router>
 
-        {projectAuth.currentUser && <NavBar />}
+        {projectAuth.currentUser && <NavBar /> }
+        <SideBar setRecipes={setRecipes} />
 
         <div className="auth-wrapper">
           <Switch>
@@ -78,14 +82,14 @@ function App() {
                   />
                 </UserProvider> }
             </Route>
-            <Route path="/search">
+            {/* <Route path="/search">
               <SearchByIngredient
                 // searchTags={searchTags}
                 // setSearchTags={setSearchTags}
                 setRecipes={setRecipes}
                 recipes={recipes}
               />
-            </Route>
+            </Route> */}
             <Route path="/favorites"><Favorite /></Route>
 
           </Switch>

@@ -6,7 +6,7 @@ import { FaHome } from 'react-icons/fa';
 import { MdFavoriteBorder } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 
-const NavBar = () => {
+const NavBar = ({setRecipes, setSelectedImg}) => {
 	return(
     <>
     <section className="sidebar iWlhAO">
@@ -25,7 +25,7 @@ const NavBar = () => {
         </div>
       </nav>
     </section>
-    <SideBar />
+    {/* <SideBar setRecipes={setRecipes} /> */}
 
     </>
 	);

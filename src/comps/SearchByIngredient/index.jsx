@@ -17,6 +17,7 @@ const SearchByIngredient = ({setRecipes }) => {
 		console.log(searchTags);
 		recipeFinder(searchTags)
 		.then(data => {
+      console.log('data', data);
       setRecipes(data)
 		})
 	}
