@@ -11,7 +11,7 @@ import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
 import SearchByIngredient from './comps/SearchByIngredient'
 import Favorite from '../src/comps/Favorite/Favorite'
-import Map from '../src/comps/Map'
+import Map from '../src/comps/Map/Map'
 import { 
   BrowserRouter as Router,
   Switch,
