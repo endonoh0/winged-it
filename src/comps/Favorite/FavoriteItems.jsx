@@ -22,7 +22,6 @@ const FavoriteItems = (props) => {
             </button>
           </div>
       
-      
     </div>
    
   );

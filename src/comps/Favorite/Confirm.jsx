@@ -1,7 +1,7 @@
 import React from "react";
 
 
-
+//this component shows the confirm message when deleting
 const Confirm = (props) => {
 
   return (

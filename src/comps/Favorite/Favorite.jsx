@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-
 import { useVisualMode } from "../../hooks/useVisualMode";
 import { useFirestoreFavorites } from '../../hooks/useFirestoreFavorites'
 import { projectFirestore } from '../../firebase/config';
@@ -32,15 +31,14 @@ const Favorite = (props) => {
     
   }, [docs.length]);
 
-
+//transition to empty page in case there is no favorite
   useEffect(() => {
     if(favItems.length === 0 && dataFetchStatus) {
       transition(EMPTY)
     }
   },[dataFetchStatus, favItems.length])
 
-console.log(docs.length)
-
+  //delete favorite
   function deleteEvent (index, docId) {
     const docs = [...favItems]
     docs.splice(index, 1);
@@ -64,7 +62,6 @@ console.log(docs.length)
         }
       </div>}
     </div>
-    
     
   );
 }

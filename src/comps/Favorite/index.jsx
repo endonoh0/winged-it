@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 
 import { useVisualMode } from "../../hooks/useVisualMode";
-import { useFirestoreFavorites } from '../../hooks/useFirestoreFavorites'
-import { projectFirestore } from '../../firebase/config';
 
 import FavoriteItems from "./FavoriteItems";
-import Loading from "./Loading";
 import Confirm from "./Confirm";
 
-
-
-const EMPTY = "EMPTY";
 const SHOW = "SHOW";
-const SAVING = "SAVING";
 const CONFIRM = "CONFIRM";
-const EDIT = "EDIT";
 
 const FavoritePage = (props) => {
   
