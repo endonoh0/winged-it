@@ -23,7 +23,7 @@ import Header from './comps/Header/Header';
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
 import Logout from './comps/Auth/Logout'
-import Favorite from '../src/comps/Favorite/Favorite'
+import Favorite from '../src/comps/Favorite'
 import SideBar from './comps/SideBar/SideBar';
 
 
