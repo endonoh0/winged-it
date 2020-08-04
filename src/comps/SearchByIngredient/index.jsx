@@ -3,10 +3,8 @@ import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
 import SearchTag from '../SearchByIngredient/SearchTag'
 
-const SearchByIngredient = ({setRecipes }) => {
+const SearchByIngredient = ({setRecipes, searchTags, setSearchTags }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchTags, setSearchTags] = useState([]);
-
 
 	const pressEnter = (searchTerm) => {
 		setSearchTags(prev => [...prev, searchTerm])
@@ -22,7 +20,7 @@ const SearchByIngredient = ({setRecipes }) => {
 	}
 
 	return(
-		<div>
+		<div class="search-container">
 			<SearchBar
 				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
@@ -32,8 +30,8 @@ const SearchByIngredient = ({setRecipes }) => {
 
         {/* returns an array of ingredients */}
 
-				<button onClick={onSubmit}>Recipe Search</button>
-        {searchTags && <SearchTag searchTags={searchTags} />}
+				<button class="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
+        {/* {searchTags && <SearchTag searchTags={searchTags} />} */}
 
 		</div>
 

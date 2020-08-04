@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import SearchByIngredient from '../SearchByIngredient/index';
+import SearchTag from '../SearchByIngredient/SearchTag';
 // import SearchTag from './SearchByIngredient/SearchTag'
 import Title from '../Title';
 
 import './SideBar.scss'
 
-const SideBar = ({setRecipes}) => {
+const SideBar = ({searchTags}) => {
   // const [searchTags, setSearchTags] = useState([]);
 
   return (
@@ -17,7 +17,7 @@ const SideBar = ({setRecipes}) => {
         </Link>
         <hr className="sidebar__separator sidebar--centered" />
       </div>
-      {/* <SearchByIngredient setRecipes={setRecipes} /> */}
+      {searchTags && <SearchTag searchTags={searchTags} />}
     </div>
   )
 }

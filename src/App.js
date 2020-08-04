@@ -63,12 +63,16 @@ function App() {
     <div className="App">
 
       { !user.loggedIn && <Header /> }
-      <SearchByIngredient setRecipes={setRecipes} setSelectedImg={setSelectedImg}/>
+      <SearchByIngredient 
+      setRecipes={setRecipes} 
+      searchTags={searchTags}
+      setSearchTags={setSearchTags}
+      />
 
       <Router>
 
         {projectAuth.currentUser && <NavBar /> }
-        <SideBar setRecipes={setRecipes} />
+        <SideBar setRecipes={setRecipes} searchTags={searchTags}/>
 
         <div className="auth-wrapper">
           <Switch>

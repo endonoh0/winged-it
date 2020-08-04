@@ -9,3 +9,14 @@ input {
 	width: 50vw;
 	margin-top: 1rem;
 }
+
+.search-container{
+	display: flex;
+	flex-direction: column;
+}
+
+.btn-primary{
+	align-self: center;
+	font-size: 1.5rem;
+	margin-top: 1rem;
+}
