@@ -28,7 +28,7 @@ import Favorite from '../src/comps/Favorite'
 import SideBar from './comps/SideBar/SideBar';
 import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
 import Map from './comps/Map/Map'
-
+import NewRecipe from './comps/NewRecipe'
 
 // FireBase Functions
 import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
@@ -150,6 +150,10 @@ function App() {
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
             <Map />
+            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+          </Route>
+          <Route path="/newRecipe">
+            <NewRecipe />
             <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
           </Route>
           <Route path="/">
