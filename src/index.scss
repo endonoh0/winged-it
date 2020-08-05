@@ -28,10 +28,7 @@ body{
 }
 .title{
     display: flex;
-    // padding-top: 155px;
-    // padding-bottom: 60px;
-    // padding-left: 8px;
-    // padding-right: 8px;
+    justify-content: center;
 }
 .title h1{
   color: $primary;

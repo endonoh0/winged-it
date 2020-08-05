@@ -1,5 +1,4 @@
 .sidebar_container{
-  // width: 34%;
   width: 263px;
   height: 100%;
   display: flex;
@@ -7,7 +6,6 @@
   flex-direction: column;
   justify-content: flex-start;
   flex-direction: column;
-  padding-left: 3.1rem;
   padding-top: 2rem;
   background-color: rgb(250, 250, 250);
   border-right: 3px solid rgb(221, 227, 227);
@@ -17,14 +15,26 @@
   left: 57.6px;
   z-index: 4;
 
+  &.sidebar_container--new{
+    width: 19vw;
+  }
+
+  .sidebar__separator {
+    width: 80%;
+    border: solid 1px;
+    color: #f2f2f2;
+    align-self: center;
+}
+
+
   .link{
     text-align: center;
   }
   .sidebar_header{
     width: 100%;
     box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
   }
 
 }

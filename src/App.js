@@ -26,6 +26,7 @@ import Logout from './comps/Auth/Logout'
 import Favorite from '../src/comps/Favorite'
 import SideBar from './comps/SideBar/SideBar';
 import Map from './comps/Map/Map'
+import CreateRecipe from './comps/CreateRecipe'
 
 
 // FireBase Functions
@@ -131,6 +132,7 @@ function App() {
             </Route>
             <Route path="/favorites"><Favorite /></Route>
             <Route path="/map"><Map /></Route>
+            <Route path="/newRecipe"><CreateRecipe /></Route>
             <Route path="/">
               <SearchByIngredient 
                 setRecipes={setRecipes} 
