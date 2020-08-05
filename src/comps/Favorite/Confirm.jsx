@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./Confirm.scss";
 
 //this component shows the confirm message when deleting
 const Confirm = (props) => {
