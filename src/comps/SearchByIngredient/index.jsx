@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar'
-import recipeFinder from '../../helper/foodApi'
 
-const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) => {
+const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
 	const pressEnter = (searchTerm) => {
@@ -11,13 +10,6 @@ const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) 
 			writeTag(searchTerm)
 			setSearchTerm("")
 		}
-	}
-
-	const onSubmit = (e) => {
-		recipeFinder(searchTags)
-		.then(data => {
-      setRecipes(data)
-		})
 	}
 
 	return(
@@ -29,11 +21,7 @@ const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) 
 				setSearchTags={setSearchTags}
 				onKeyUp={pressEnter}/>
 
-        {/* returns an array of ingredients */}
-
 				<button class="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
-        {/* {searchTags && <SearchTag searchTags={searchTags} />} */}
-
 		</div>
 
 	);

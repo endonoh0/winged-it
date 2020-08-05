@@ -35,10 +35,12 @@ import { registerVersion } from 'firebase';
 import { logout, login, register, loginWithGoogle } from './helper/authApi'
 import useWriteToFirestore from './hooks/useWriteToFirestore'
 import SearchTag from './comps/SearchByIngredient/SearchTag';
+import recipeFinder from './helper/foodApi'
 
-
+// Default params for the current user
 const defaultUser = { loggedIn: false, email: "" };
 const UserContext = React.createContext(defaultUser);
+// Use a provider to pass current users to the logout component
 const UserProvider = UserContext.Provider;
 
 
@@ -47,8 +49,17 @@ function App() {
   const [searchTags, setSearchTags] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
+  const [selection, setSelection] = useState([]);
+  const [diet, setDiet] = useState(null);
 
   const { write } = useWriteToFirestore();
+
+  const onSubmit = (e) => {
+    recipeFinder(searchTags, selection, diet)
+      .then(data => {
+        setRecipes(data)
+      })
+  }
 
   useEffect(() => {
     console.log(user);
@@ -67,7 +78,7 @@ function App() {
   // listen to auth state change
   useCurrentUser(setUser);
 
-  // listen to acition events from login and logout componenet
+  // listen to acition events from auth comps
   const requestLogin = useCallback((event, email, password) => {
     login(event, email, password);
   });
@@ -77,7 +88,6 @@ function App() {
   });
 
   const requestLogout = useCallback(() => {
-
     setSearchTags([])
     setRecipes([])
     logout();
@@ -109,7 +119,7 @@ function App() {
 
         {projectAuth.currentUser && <NavBar />}
         <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
-        <RecipeFilter />
+        <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
 
         <Switch>
           <Route path="/signin">
@@ -135,10 +145,11 @@ function App() {
           <Route path="/favorites"><Favorite /></Route>
           <Route path="/">
             <SearchByIngredient
-              setRecipes={setRecipes}
+              // setRecipes={setRecipes}
               searchTags={searchTags}
               setSearchTags={setSearchTags}
               writeTag={writeTag}
+              onSubmit={onSubmit}
             />
             {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} />}
           </Route>
