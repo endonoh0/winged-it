@@ -4,6 +4,7 @@ import MapGL, {GeolocateControl, Marker, Popup } from 'react-map-gl'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './Map.scss'
+import results from './mapData'
 
 const TOKEN=process.env.REACT_APP_MAPBOX_API_KEY
 mapboxgl.accessToken = TOKEN
@@ -36,81 +37,6 @@ const MARKETS = [
 	}
 ]
 
-const results = [
-	{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-123.1080317, 49.2423705]
-		},
-		"properties": {
-			"title": "Riley Park",
-			"description" : "<strong>Riley Park</strong><br></br>This is a farmers market",
-			"icon" : "grocery"
-		}
-	},
-	{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-123.064286, 49.2586011]
-		},
-		"properties": {
-			"title": "Trout Lake Farmer's",
-			"description" : "This is a farmers market",
-			"icon" : "grocery"
-		}
-	},
-	{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-123.1325313, 49.2825989]
-		},
-		"properties": {
-			"title": "West End Farmers Market",
-			"description" : "This is a farmers market",
-			"icon" : "grocery"
-		}
-	},
-	{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-123.1641412, 49.2617695]
-		},
-		"properties": {
-			"title": "Kitsilano Community Centre",
-			"description" : "This is a farmers market",
-			"icon" : "grocery"
-		}
-	},
-	{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-123.0966036, 49.2639637]
-		},
-		"properties": {
-			"title": "Mount Pleasant Farmers Market",
-			"description" : "This is a farmers market",
-			"icon" : "grocery"
-		}
-	},
-	{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-123.0997232, 49.273389]
-		},
-		"properties": {
-			"title": "Main Street Station Farmers Market",
-			"description" : "This is a farmers market",
-			"icon" : "grocery"
-		}
-	},
-
-]
 
 const Map = () => {
 	const mapContainerRef = useRef(null);
