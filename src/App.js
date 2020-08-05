@@ -25,6 +25,7 @@ import SignIn from './comps/Auth/SignIn'
 import Logout from './comps/Auth/Logout'
 import Favorite from '../src/comps/Favorite'
 import SideBar from './comps/SideBar/SideBar';
+import Map from './comps/Map/Map'
 
 
 // FireBase Functions
@@ -106,8 +107,6 @@ function App() {
       <Router>
 
         {projectAuth.currentUser && <NavBar /> }
-        <SideBar searchTags={searchTags} user={user} removeTag={removeTag}/>
-
       
           <Switch>
             <Route path="/signin">
@@ -131,6 +130,7 @@ function App() {
               </div>
             </Route>
             <Route path="/favorites"><Favorite /></Route>
+            <Route path="/map"><Map /></Route>
             <Route path="/">
               <SearchByIngredient 
                 setRecipes={setRecipes} 
@@ -138,7 +138,8 @@ function App() {
                 setSearchTags={setSearchTags}
                 writeTag={writeTag}
                 />
-                { recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} /> }
+              <SideBar searchTags={searchTags} user={user} removeTag={removeTag}/>
+              { recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} /> }
             </Route>
 
           </Switch>
