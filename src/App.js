@@ -129,7 +129,7 @@ function App() {
                   </UserProvider> }
               </div>
             </Route>
-            <Route path="/favorites"><Favorite /></Route>
+            <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg}/></Route>
             <Route path="/map"><Map /></Route>
             <Route path="/">
               <SearchByIngredient 
