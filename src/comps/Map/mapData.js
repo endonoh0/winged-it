@@ -101,7 +101,7 @@ const results = [
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-123.158675, 49.2037227]
+			"coordinates": [-122.971400, 49.242860]
 		},
 		"properties": {
 			"title": "Burnaby Artisan Farmers' Market",
@@ -115,7 +115,7 @@ const results = [
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-123.0848606, 49.2189739]
+			"coordinates": [-122.909870, 49.209070]
 		},
 		"properties": {
 			"title": "New West Farmers Market",
@@ -129,7 +129,7 @@ const results = [
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-123.0477819, 49.2150768]
+			"coordinates": [-123.083760, 49.133070]
 		},
 		"properties": {
 			"title": "Richmond Country Farms",

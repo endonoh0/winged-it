@@ -50,28 +50,36 @@ const Map = () => {
 		});
 
 		map.on('load', () => {
-			// add the data source for new a feature collection with no features
-			map.addSource('farmers-markets', {
-				type: 'geojson',
-				data: {
-					type: 'FeatureCollection',
-					features: results,
-				},
-			});
-			map.addLayer({
-				id: 'markets',
-				source: 'farmers-markets',
-				type: 'symbol',
-				layout: {
-					'icon-image': '{icon}-15',
-					'icon-padding': 0,
-					'icon-allow-overlap': true,
-					'text-field':['get', 'title'],
-					'text-offset': [0, 1.25],
-					'text-anchor': 'top',
-				},
-			});
+			map.loadImage('../../../assets/Pin.png', (error, image) => {
+				if(error){
+					throw error
+				}
+				map.addImage('pin', image)
+				// add the data source for new a feature collection with no features
+				map.addSource('farmers-markets', {
+					type: 'geojson',
+					data: {
+						type: 'FeatureCollection',
+						features: results,
+					},
+				});
+				map.addLayer({
+					id: 'markets',
+					source: 'farmers-markets',
+					type: 'symbol',
+					layout: {
+						'icon-image': 'pin',
+						'icon-padding': 0,
+						'icon-allow-overlap': true,
+						'text-field':['get', 'title'],
+						'text-offset': [0, 1.25],
+						'text-anchor': 'top',
+					},
+				});
 		});
+
+			})
+			
 		
 		map.on('click', 'markets', function(e) {
 			const coordinates = e.features[0].geometry.coordinates.slice();
