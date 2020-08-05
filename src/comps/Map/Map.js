@@ -69,6 +69,7 @@ const Map = () => {
 					type: 'symbol',
 					layout: {
 						'icon-image': 'pin',
+						'icon-size': .7,
 						'icon-padding': 0,
 						'icon-allow-overlap': true,
 						'text-field':['get', 'title'],
