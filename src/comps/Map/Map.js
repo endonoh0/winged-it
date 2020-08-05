@@ -50,7 +50,7 @@ const Map = () => {
 		});
 
 		map.on('load', () => {
-			map.loadImage('../../../assets/Pin.png', (error, image) => {
+			map.loadImage('https://raw.githubusercontent.com/endonoh0/winged-it/feature/map/assets/Pin.png?token=AK2VPAOCG7UT5J2PHPTBNKS7GNJPS', (error, image) => {
 				if(error){
 					throw error
 				}
