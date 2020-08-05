@@ -2,17 +2,20 @@ import { useState, useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 
 
-const useFirestoreFavorites = (dynamicDeleting) => {
+const useFirestoreFavorites = (check) => {
+
 
   const type = 'favorites';
   const [docs, setDocs] = useState([]);
+  const [dataFetchStatus, setDataFetchStatus] = useState(false)
 
   // this email needs to be changed with current user
   const email = 'ghanbari@ualberta.ca';
-  
+
   useEffect(() => {
     projectFirestore.collection(type)
     .where('user_email', '==', email)
+    .orderBy('created_at', 'desc')
     .get().then((snapshot) => {
 
       const document = [];
@@ -24,11 +27,20 @@ const useFirestoreFavorites = (dynamicDeleting) => {
       });
       return document;
     })
-    .then((data) => { setDocs(data) });
+    .then((data) => {
+      console.log(docs)
+      setDocs(data);
+      return docs;
+    })
+    .then(() => {
+      setDataFetchStatus(true);
+    })
+ 
+    
+  }, []);
 
-  }, [dynamicDeleting]);
 
-  return { docs };
+  return { docs, dataFetchStatus };
 
 }
 

@@ -1,0 +1,11 @@
+.favorite_btn {
+  visibility: hidden;
+  position: absolute;
+  color:black;
+  bottom: .5em;
+  right: .5em;
+}
+
+.favorite_btn:hover {
+  color:red;
+}
