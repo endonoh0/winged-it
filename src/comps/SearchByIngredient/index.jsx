@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
+import axios from 'axios'
 
 const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,11 +14,17 @@ const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) 
 		}
 	}
 
-	const onSubmit = (e) => {
-		recipeFinder(searchTags)
-		.then(data => {
-      setRecipes(data)
-		})
+	const onSubmit = async (e) => {
+		//Faking API call
+		const result = await axios.get('./recipe.json')
+		setRecipes(result.data.hits)
+
+		//Actual Api call
+		// recipeFinder(searchTags)
+		// .then(data => {
+		// 	console.log(data);
+    //   setRecipes(data)
+		// })
 	}
 
 	return(
