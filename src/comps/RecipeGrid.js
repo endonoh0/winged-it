@@ -18,7 +18,7 @@ const RecipeGrid = ({ recipes, setSelectedImg }) => {
           <motion.img src={recipe.recipe.image} alt="recipe"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            // transition={{ delay: 1 }}
             onClick={() => setSelectedImg(recipe.recipe.url)}
           />
           <FavoriteAdd recipe={ recipe }/>
