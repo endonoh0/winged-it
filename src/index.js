@@ -5,20 +5,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss';
 
 import App from './App';
-import NavBar from './comps/NavBar/NavBar';
-import Header from './comps/Header/Header';
-import SignUp from './comps/Auth/SignUp'
-import SignIn from './comps/Auth/SignIn'
-import { projectAuth } from './firebase/config';
+// import NavBar from './comps/NavBar/NavBar';
+// import Header from './comps/Header/Header';
+// import SignUp from './comps/Auth/SignUp'
+// import SignIn from './comps/Auth/SignIn'
+// import { projectAuth } from './firebase/config';
 
-import SearchByIngredient from './comps/SearchByIngredient'
-import Favorite from '../src/comps/Favorite/Favorite'
-import Map from '../src/comps/Map/Map'
-import { 
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
+// import SearchByIngredient from './comps/SearchByIngredient'
+// import Favorite from '../src/comps/Favorite/Favorite'
+// import Map from '../src/comps/Map/Map'
+// import { 
+//   BrowserRouter as Router,
+//   Switch,
+//   Route
+// } from 'react-router-dom'
 
 
 
