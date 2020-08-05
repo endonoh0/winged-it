@@ -15,6 +15,7 @@ const FavoriteAdd = (props) => {
     console.log(recipe)
     //This will come from the prop - this is just an example
     const favoriteRecipe = {
+      created_at: new Date(),
       user_email: email,
       recipe: {
         name: recipe.label,

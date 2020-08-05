@@ -18,9 +18,6 @@ const FavoritePage = (props) => {
     transition(CONFIRM);
   }
 
-
-
-
   return(
     <div>
     { mode === SHOW && <FavoriteItems
