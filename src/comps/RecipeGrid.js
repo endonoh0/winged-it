@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import FavoriteAdd from './Favorite/FavoriteAdd';
 import "./Favorite/FavoriteAdd.scss"
 
-const RecipeGrid = ({ recipes, setSelectedImg }) => {
+const RecipeGrid = ({ recipes, setSelectedImg, user }) => {
 
   return (
     <div className="img-grid">
@@ -18,10 +18,10 @@ const RecipeGrid = ({ recipes, setSelectedImg }) => {
           <motion.img src={recipe.recipe.image} alt="recipe"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            // transition={{ delay: 1 }}
             onClick={() => setSelectedImg(recipe.recipe.url)}
           />
-          <FavoriteAdd recipe={ recipe }/>
+          <FavoriteAdd recipe={ recipe } user={user}/>
         </motion.div>
         ))}
     </div>

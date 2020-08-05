@@ -9,10 +9,8 @@ const FavoriteAdd = (props) => {
   const addFavoriteToDB = (type) => {
 
     const recipe = props.recipe.recipe;
+    const email = props.user.email;
 
-    // this email needs to be changed with current user
-    const email = 'ghanbari@ualberta.ca';
-    console.log(recipe)
     //This will come from the prop - this is just an example
     const favoriteRecipe = {
       created_at: new Date(),

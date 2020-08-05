@@ -69,7 +69,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(user);
     if (user.loggedIn) {
       projectFirestore.collection('searchTags')
         .doc(user.uid)
@@ -148,7 +147,7 @@ function App() {
               </UserProvider>}
             </div>
           </Route>
-          <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg}/></Route>
+          <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
             <Map />
             <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
@@ -164,7 +163,7 @@ function App() {
               onSubmit={onSubmit}
             />
             <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
-            {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} />}
+            {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
           </Route>
 
         </Switch>

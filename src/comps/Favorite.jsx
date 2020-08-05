@@ -16,10 +16,10 @@ const LOADING = 'LOADING';
 const EMPTY = 'EMPTY';
 const EDIT = 'EDIT';
 
-const Favorite = ({setSelectedImg}) => {
+const Favorite = ({setSelectedImg, user}) => {
 
   
-  const { docs, dataFetchStatus } = useFirestoreFavorites ([]);
+  const { docs, dataFetchStatus } = useFirestoreFavorites (user);
   const { mode, transition, back } = useVisualMode(LOADING);
   const [favItems, setFavItems] = useState([]);
   const [editDoc, setEditDoc] = useState([]);
@@ -108,9 +108,11 @@ const Favorite = ({setSelectedImg}) => {
                key = { favItem.id }
                 layout
                 whileHover={{ opacity: 1 }}
-                onClick={() => setSelectedImg(favItem.recipe.url)}>
+                // onClick={() => setSelectedImg(favItem.recipe.url)}
+                >
                 <FavoritePage 
                 doc = { favItem }
+                setSelectedImg = {setSelectedImg}
                 deleteEvent = { e => deleteEvent(index, favItem.id)}
                 editEvent = { e => editEvent(index, favItem.id) }/> 
               </motion.div>
