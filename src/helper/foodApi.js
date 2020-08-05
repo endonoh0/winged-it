@@ -9,14 +9,14 @@ const recipeSearch = (ingredients) => {
       applicationID: process.env.REACT_APP_EDAMAM_APPLICATION_ID_RECIPE
     }
   };
- 
-  const edamamRecipeUrl = 
+
+  const edamamRecipeUrl =
   `https://api.edamam.com/search?q=${ingredients}&app_id=${apiInfo.edamamRecipeDatabase.apiKey}&app_key=${apiInfo.edamamRecipeDatabase.applicationID}`;
-  
+
 
   return requestPromise(edamamRecipeUrl)
   .then (function (data) {
-    
+
     // this return 10 recipes in an array and if it can not find anything, return null
     const parsedData = JSON.parse(data);
     return parsedData.hits;

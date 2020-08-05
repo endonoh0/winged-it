@@ -25,7 +25,7 @@ import SignIn from './comps/Auth/SignIn'
 import Logout from './comps/Auth/Logout'
 import Favorite from '../src/comps/Favorite/Favorite'
 import SideBar from './comps/SideBar/SideBar';
-// import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
+import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
 
 
 // FireBase Functions
@@ -109,7 +109,7 @@ function App() {
 
         {projectAuth.currentUser && <NavBar />}
         <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
-        {/* <RecipeFilter /> */}
+        <RecipeFilter />
 
         <Switch>
           <Route path="/signin">
@@ -144,6 +144,7 @@ function App() {
           </Route>
 
         </Switch>
+
       </Router>
 
       {/* { <Title/> } */}
