@@ -17,7 +17,6 @@ const NavBar = ({setRecipes, setSelectedImg}) => {
             <Link to='/' className='link'>
               <FaHome size={32} />
             </Link>
-
             <Link to='favorites' className='link'>
               <MdFavoriteBorder size={32} />
             </Link>
