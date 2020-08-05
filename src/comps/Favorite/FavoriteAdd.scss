@@ -1,0 +1,29 @@
+.container_home .btn_heart {
+  // position: absolute;
+  top: -30%;
+  left: 10%;
+  transform: translate(+20%, +90%);
+  // -ms-transform: translate(-50%, -50%);
+  color: black;
+  font-size: 30px;
+  padding: 5px 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  background-color: Transparent;
+    // background-color: #555;
+    z-index: 1;
+    
+
+}
+
+#img_wrap {
+  z-index: -1;
+}
+.btn_heart:focus { outline: none; }
+
+
+.btn_heart:hover {
+  color: #cf3052;
+}

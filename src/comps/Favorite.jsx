@@ -94,12 +94,12 @@ const Favorite = (props) => {
         <div className="img-grid">
           {
             favItems.map((favItem, index) => {
-              return  <motion.div className="img-wrap"
+              return  <motion.div  className="img-wrap"
+               key = { favItem.id }
                 layout
                 whileHover={{ opacity: 1 }}
                 onClick={() => setSelectedImg()}>
                 <FavoritePage 
-                key = { favItem.id }
                 doc = { favItem }
                 deleteEvent = { e => deleteEvent(index, favItem.id)}
                 editEvent = { e => editEvent(index, favItem.id) }/> 
