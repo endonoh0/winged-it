@@ -107,8 +107,6 @@ function App() {
       <Router>
 
         {projectAuth.currentUser && <NavBar /> }
-        <SideBar searchTags={searchTags} user={user} removeTag={removeTag}/>
-
       
           <Switch>
             <Route path="/signin">
@@ -140,7 +138,8 @@ function App() {
                 setSearchTags={setSearchTags}
                 writeTag={writeTag}
                 />
-                { recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} /> }
+              <SideBar searchTags={searchTags} user={user} removeTag={removeTag}/>
+              { recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} /> }
             </Route>
 
           </Switch>
