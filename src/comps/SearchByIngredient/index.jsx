@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
-import axios from 'axios'
+// import axios from 'axios'
 
-const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) => {
+const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
 	const pressEnter = (searchTerm) => {
@@ -14,18 +14,18 @@ const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) 
 		}
 	}
 
-	const onSubmit = async (e) => {
-		//Faking API call
-		const result = await axios.get('./recipe.json')
-		setRecipes(result.data.hits)
+	// const onSubmit = async (e) => {
+	// 	//Faking API call
+	// 	const result = await axios.get('./recipe.json')
+	// 	setRecipes(result.data.hits)
 
-		//Actual Api call
-		// recipeFinder(searchTags)
-		// .then(data => {
-		// 	console.log(data);
-    //   setRecipes(data)
-		// })
-	}
+	// 	//Actual Api call
+	// 	// recipeFinder(searchTags)
+	// 	// .then(data => {
+	// 	// 	console.log(data);
+  //   //   setRecipes(data)
+	// 	// })
+	// }
 
 	return(
 		<div className="search-container">
@@ -36,11 +36,7 @@ const SearchByIngredient = ({setRecipes, searchTags, setSearchTags, writeTag }) 
 				setSearchTags={setSearchTags}
 				onKeyUp={pressEnter}/>
 
-        {/* returns an array of ingredients */}
-
 				<button class="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
-        {/* {searchTags && <SearchTag searchTags={searchTags} />} */}
-
 		</div>
 
 	);

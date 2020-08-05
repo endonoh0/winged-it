@@ -16,7 +16,7 @@ const LOADING = 'LOADING';
 const EMPTY = 'EMPTY';
 const EDIT = 'EDIT';
 
-const Favorite = (props) => {
+const Favorite = ({setSelectedImg}) => {
 
   
   const { docs, dataFetchStatus } = useFirestoreFavorites ([]);
@@ -76,10 +76,6 @@ const Favorite = (props) => {
     transition(SHOW);
   }
 
-  function setSelectedImg(params) {
-    
-  }
-
   return (
     <div>
       { mode === EDIT && 
@@ -112,7 +108,7 @@ const Favorite = (props) => {
                key = { favItem.id }
                 layout
                 whileHover={{ opacity: 1 }}
-                onClick={() => setSelectedImg()}>
+                onClick={() => setSelectedImg(favItem.recipe.url)}>
                 <FavoritePage 
                 doc = { favItem }
                 deleteEvent = { e => deleteEvent(index, favItem.id)}
