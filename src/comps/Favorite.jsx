@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from 'framer-motion';
 
 import { useVisualMode } from "../hooks/useVisualMode";
 import { useFirestoreFavorites } from '../hooks/useFirestoreFavorites'
@@ -74,8 +75,12 @@ const Favorite = (props) => {
     transition(SHOW);
   }
 
+  function setSelectedImg(params) {
+    
+  }
+
   return (
-    <div className="img-grid">
+    <div>
       { mode === EDIT && <Edit
         onSave={ save }
         onCancel={ back }
@@ -84,16 +89,28 @@ const Favorite = (props) => {
       { mode === LOADING && <Loading/> }
       { mode === SHOW &&
       <div>
-        {
-          favItems.map((favItem, index) => {
-            return <FavoritePage 
-            key = { favItem.id }
-            doc = { favItem }
-            deleteEvent = { e => deleteEvent(index, favItem.id)}
-            editEvent = { e => editEvent(index, favItem.id) }/> 
-          })
-        }
-      </div>}
+        <h1> Favorite List </h1> 
+        <br/>
+        <div className="img-grid">
+          {
+            favItems.map((favItem, index) => {
+              return  <motion.div className="img-wrap"
+                layout
+                whileHover={{ opacity: 1 }}
+                onClick={() => setSelectedImg()}>
+                <FavoritePage 
+                key = { favItem.id }
+                doc = { favItem }
+                deleteEvent = { e => deleteEvent(index, favItem.id)}
+                editEvent = { e => editEvent(index, favItem.id) }/> 
+              </motion.div>
+              
+            })
+          }
+        </div>
+      </div>
+    
+    }
     </div>
     
   );
@@ -103,7 +120,7 @@ export default Favorite;
 
 // const RecipeGrid = ({ recipes, setSelectedImg }) => {
 
-//   return (
+// //   return (
 //     <div className="img-grid">
 
 //       {recipes && recipes.map((recipe, index) => (
@@ -120,7 +137,7 @@ export default Favorite;
 //         </motion.div>
 //         ))}
 //     </div>
-//   )
-// }
+// // //   )
+// // // }
 
-// export default RecipeGrid;
+// // // // export default RecipeGrid;
