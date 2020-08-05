@@ -5,6 +5,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
+import axios from 'axios'
 
 // SCSS Style files
 import './index.scss';
@@ -55,11 +56,16 @@ function App() {
 
   const { write } = useWriteToFirestore();
 
-  const onSubmit = (e) => {
-    recipeFinder(searchTags, selection, diet)
-      .then(data => {
-        setRecipes(data)
-      })
+  const onSubmit = async (e) => {
+
+		const result = await axios.get('./recipe.json')
+		setRecipes(result.data.hits)
+
+    // Real API Call
+    // recipeFinder(searchTags, selection, diet)
+    //   .then(data => {
+    //     setRecipes(data)
+    //   })
   }
 
   useEffect(() => {
@@ -119,8 +125,7 @@ function App() {
       <Router>
 
         {projectAuth.currentUser && <NavBar />}
-        <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
-        <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
+        
 
         <Switch>
           <Route path="/signin">
@@ -144,8 +149,13 @@ function App() {
             </div>
           </Route>
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg}/></Route>
-          <Route path="/map"><Map /></Route>
+          <Route path="/map">
+            <Map />
+            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+          </Route>
           <Route path="/">
+          <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+            
             <SearchByIngredient
               // setRecipes={setRecipes}
               searchTags={searchTags}
@@ -153,6 +163,7 @@ function App() {
               writeTag={writeTag}
               onSubmit={onSubmit}
             />
+            <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
             {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} />}
           </Route>
 
