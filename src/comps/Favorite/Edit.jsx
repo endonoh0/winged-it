@@ -16,7 +16,7 @@ const Edit = (props) => {
 
  return (
   <div className="Edit" onSubmit={event => event.preventDefault()}>
-    <h2>Edit Your Recipe</h2>
+
 
     <div className="div-group">
       <label >Recipe Title:</label>

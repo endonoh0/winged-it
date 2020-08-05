@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-import { useVisualMode } from "../hooks/useVisualMode";
+import { useVisualMode } from '../hooks/useVisualMode';
 import { useFirestoreFavorites } from '../hooks/useFirestoreFavorites'
 import { projectFirestore } from '../firebase/config';
 
 import FavoritePage from './Favorite/index';
-import Loading from "./Favorite/Loading";
-import Empty from "./Favorite/Empty";
-import Edit from "./Favorite/Edit";
+import Loading from './Favorite/Loading';
+import Empty from './Favorite/Empty';
+import Edit from './Favorite/Edit';
+import TitleFav from './Favorite/TitleFav'
 
 const SHOW = 'SHOW';
 const LOADING = 'LOADING';
@@ -81,15 +82,28 @@ const Favorite = (props) => {
 
   return (
     <div>
-      { mode === EDIT && <Edit
-        onSave={ save }
-        onCancel={ back }
-        editPlaceholder = { favItems[editDoc[0]].recipe.name } /> }
-      { mode === EMPTY && <Empty/> }
-      { mode === LOADING && <Loading/> }
+      { mode === EDIT && 
+        <div>
+          <TitleFav message= "Edit Your Recipe" />
+          <Edit
+          onSave={ save }
+          onCancel={ back }
+          editPlaceholder = { favItems[editDoc[0]].recipe.name } /> 
+        </div>
+        }
+      { mode === EMPTY && <div>
+        <TitleFav message= "Favorite List" />
+        <Empty/>
+      </div> }
+      { mode === LOADING && 
+        <div>
+          <TitleFav message= "Favorite List" />
+          <Loading/>
+        </div>
+         }
       { mode === SHOW &&
       <div>
-        <h1> Favorite List </h1> 
+        <TitleFav message= "Favorite List" />
         <br/>
         <div className="img-grid">
           {
@@ -117,27 +131,3 @@ const Favorite = (props) => {
 }
 
 export default Favorite;
-
-// const RecipeGrid = ({ recipes, setSelectedImg }) => {
-
-// //   return (
-//     <div className="img-grid">
-
-//       {recipes && recipes.map((recipe, index) => (
-//         <motion.div className="img-wrap" key={index}
-//           layout
-//           whileHover={{ opacity: 1 }}
-//           onClick={() => setSelectedImg(recipe.recipe.url)}
-//         >
-//           <motion.img src={recipe.recipe.image} alt="recipe"
-//             initial={{ opacity: 0 }}
-//             animate={{ opacity: 1 }}
-//             transition={{ delay: 1 }}
-//           />
-//         </motion.div>
-//         ))}
-//     </div>
-// // //   )
-// // // }
-
-// // // // export default RecipeGrid;
