@@ -1,5 +1,5 @@
 import React from "react";
-import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 
 import { projectFirestore } from '../../firebase/config';
 
@@ -31,9 +31,7 @@ const FavoriteAdd = (props) => {
   }
   
   return (
-    <div>
-      <button className="btn_heart" onClick = { e => addFavoriteToDB('favorites') }> <FiHeart /> </button>
-    </div>
+    <FaHeart className="favorite_btn" onClick = { e => addFavoriteToDB('favorites') } size={50} />
   )
 }
 
