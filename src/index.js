@@ -12,9 +12,8 @@ import SignIn from './comps/Auth/SignIn'
 import { projectAuth } from './firebase/config';
 
 import SearchByIngredient from './comps/SearchByIngredient'
-import Favorite from '../src/comps/Favorite'
-
-
+import Favorite from '../src/comps/Favorite/Favorite'
+import Map from '../src/comps/Map/Map'
 import { 
   BrowserRouter as Router,
   Switch,
