@@ -11,7 +11,7 @@ const Empty = () => {
         </h4>
       </div>
       <div id='home_fav_page'>
-          <a  href="/"><FaHome /></a>
+          <a id='home_fav_page_href' href="/"><FaHome /></a>
       </div>
     </div>
     
