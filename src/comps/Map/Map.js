@@ -10,11 +10,6 @@ mapboxgl.accessToken = TOKEN
 
 const MARKETS = [
 	{
-		name:"Riley Park",
-		latitude:49.2423705,
-		longitude:-123.1080317
-	},
-	{
 		name:"Trout Lake Farmer's",
 		latitude:49.2586011,
 		longitude:-123.064286
@@ -41,22 +36,81 @@ const MARKETS = [
 	}
 ]
 
-const results = {
-	"type": "Feature",
-	"geometry": {
-		"type": "Point",
-		"coordinates": [-123.1207, 49.2510]
+const results = [
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-123.1080317, 49.2423705]
+		},
+		"properties": {
+			"title": "Riley Park",
+			"description" : "<strong>Riley Park</strong><br></br>This is a farmers market",
+			"icon" : "grocery"
+		}
 	},
-	"properties": {
-		"title": "Dinagat Islands"
-	}
-}
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-123.064286, 49.2586011]
+		},
+		"properties": {
+			"title": "Trout Lake Farmer's",
+			"description" : "This is a farmers market",
+			"icon" : "grocery"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-123.1325313, 49.2825989]
+		},
+		"properties": {
+			"title": "West End Farmers Market",
+			"description" : "This is a farmers market",
+			"icon" : "grocery"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-123.1641412, 49.2617695]
+		},
+		"properties": {
+			"title": "Kitsilano Community Centre",
+			"description" : "This is a farmers market",
+			"icon" : "grocery"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-123.0966036, 49.2639637]
+		},
+		"properties": {
+			"title": "Mount Pleasant Farmers Market",
+			"description" : "This is a farmers market",
+			"icon" : "grocery"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-123.0997232, 49.273389]
+		},
+		"properties": {
+			"title": "Main Street Station Farmers Market",
+			"description" : "This is a farmers market",
+			"icon" : "grocery"
+		}
+	},
 
-const geolocateStyle = {
-  float: 'left',
-  margin: '50px',
-  padding: '10px'
-};
+]
 
 const Map = () => {
 	const mapContainerRef = useRef(null);
@@ -75,7 +129,7 @@ const Map = () => {
 				type: 'geojson',
 				data: {
 					type: 'FeatureCollection',
-					features: [results],
+					features: results,
 				},
 			});
 			map.addLayer({
@@ -83,16 +137,39 @@ const Map = () => {
 				source: 'farmers-markets',
 				type: 'symbol',
 				layout: {
-					// full list of icons here: https://labs.mapbox.com/maki-icons
-					'icon-image': 'bakery-15', // this will put little croissants on our map
+					'icon-image': '{icon}-15',
 					'icon-padding': 0,
 					'icon-allow-overlap': true,
+					'text-field':['get', 'title'],
+					'text-offset': [0, 1.25],
+					'text-anchor': 'top',
 				},
 			});
-			map.getSource('farmers-markets').setData(results);
+		});
+		
+		map.on('click', 'markets', function(e) {
+			const coordinates = e.features[0].geometry.coordinates.slice();
+			const description = e.features[0].properties.description;
+
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+			coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+			 
+			new mapboxgl.Popup()
+			.setLngLat(coordinates)
+			.setHTML(description)
+			.addTo(map);
 		});
 
+		// Change the cursor to a pointer when the mouse is over the places layer.
+		map.on('mouseenter', 'places', function() {
+			map.getCanvas().style.cursor = 'pointer';
+		});
 
+		// Change it back to a pointer when it leaves.
+		map.on('mouseleave', 'places', function() {
+			map.getCanvas().style.cursor = '';
+		});
 
 
 		
