@@ -15,6 +15,7 @@ const useFirestoreFavorites = (check) => {
   useEffect(() => {
     projectFirestore.collection(type)
     .where('user_email', '==', email)
+    .orderBy('created_at', 'desc')
     .get().then((snapshot) => {
 
       const document = [];
@@ -27,6 +28,7 @@ const useFirestoreFavorites = (check) => {
       return document;
     })
     .then((data) => {
+      console.log(docs)
       setDocs(data);
       return docs;
     })
