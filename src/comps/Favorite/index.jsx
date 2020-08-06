@@ -22,6 +22,7 @@ const FavoritePage = (props) => {
     <div>
     { mode === SHOW && <FavoriteItems
       doc = { props.doc }
+      setSelectedImg = {props.setSelectedImg}
       deleteEventReq = { deleteEventReq }
       editEvent = { props.editEvent }
       />

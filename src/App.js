@@ -27,8 +27,9 @@ import Logout from './comps/Auth/Logout'
 import Favorite from '../src/comps/Favorite'
 import SideBar from './comps/SideBar/SideBar';
 import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
+import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
-
+import NewRecipe from './comps/NewRecipe'
 
 // FireBase Functions
 import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
@@ -55,22 +56,32 @@ function App() {
   const [diet, setDiet] = useState(null);
   const [directions, setDirections] = useState(null);
 
+  const [loadingStatus, setLoadingStatus] = useState(false);
+
   const { write } = useWriteToFirestore();
 
+
+  console.log("before setting", loadingStatus)
+
   const onSubmit = async (e) => {
+    const result = await axios.get('./recipe.json')
+    setRecipes(result.data.hits)
 
-		const result = await axios.get('./recipe.json')
-		setRecipes(result.data.hits)
 
-    // Real API Call
+    // // Real API Call
+    // setLoadingStatus(true);
     // recipeFinder(searchTags, selection, diet)
     //   .then(data => {
     //     setRecipes(data)
     //   })
+    //   .then(() => {
+    //     setLoadingStatus(false);
+    //   })
   }
 
+
+
   useEffect(() => {
-    console.log(user);
     if (user.loggedIn) {
       projectFirestore.collection('searchTags')
         .doc(user.uid)
@@ -149,11 +160,14 @@ function App() {
               </UserProvider>}
             </div>
           </Route>
-          <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg}/></Route>
+          <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
-            <Map setDirections={setDirections} />
+            <Map setDirections={setDirections} directions={directions}/>
             {directions && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} directions={directions} /> }
-            {/* {!directions && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} /> } */}
+          </Route>
+          <Route path="/newRecipe">
+            <NewRecipe />
+            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
           </Route>
           <Route path="/">
           <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
@@ -166,7 +180,7 @@ function App() {
               onSubmit={onSubmit}
             />
             <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
-            {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} />}
+            {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
           </Route>
 
         </Switch>
@@ -181,7 +195,7 @@ function App() {
 
 
       {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />}
-
+      {loadingStatus && <Loading/>}
     </div>
   );
 }

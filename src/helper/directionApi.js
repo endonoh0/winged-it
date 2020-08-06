@@ -8,6 +8,7 @@ const getRoute = async (map, start, end, setDirections) =>{
 	const res = await axios.get(url)
   const route = res.data.routes[0].geometry.coordinates
   const data = res.data.routes[0];
+
   setDirections(data);
 	const geojson = {
 		type: 'Feature',

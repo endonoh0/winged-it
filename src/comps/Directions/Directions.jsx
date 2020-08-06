@@ -1,44 +1,43 @@
-import React, { useState, useEffect } from 'react';
-
-import './Directions.scss'
+import React from 'react';
+import getDirections from '../../helper/getDirections';
+import './Directions.scss';
 
 const Directions = ({data}) => {
-  // const [step, setStep] = useState([]);
-
   let legs = data.legs
-  let steps = '';
+  let summary;
+  let steps;
   let duration;
+  let distance;
 
   if (legs) {
-    steps = legs[0].steps
-    duration = Math.floor(data.duration / 60) + ' min 🚲';
+    summary = legs[0].summary;
+    steps = legs[0].steps;
+    distance = (data.distance / 1000).toFixed(2) + ' km';
+    duration = Math.floor(data.duration / 60);
   }
-
-  console.log(steps);
-
 
   var tripInstructions = [];
 
   for (var i = 0; i < steps.length; i++) {
     tripInstructions.push(steps[i].maneuver.instruction);
   }
-  // console.log(tripInstructions);
-
 
   return (
     <div className="instructions">
-      <span className="duration">Trip duration: {duration}</span>
-      <br/>
+      <div className="duration">
+        <h1>{duration} mins <span className="distance">({distance})</span> 🚲</h1>
+        <span className="summary"><strong>To: </strong>{summary}</span>
+      </div><br/>
+
       {tripInstructions.map(step => {
         return (
           <>
-          <br/>
-          <li>{step}</li>
+            <li>{getDirections(step)} {step}</li><hr />
           </>
         )
       })}
     </div>
-  )
+  );
 }
 
 export default Directions;
