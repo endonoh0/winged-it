@@ -1,21 +1,36 @@
 
 .tag-container {
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	justify-content: end;
+	margin: 5px;
+
 }
+
+
+
 
 .search-tag {
+
+	background-image: linear-gradient(to bottom, #ff034a, #91012a);
+
+	border-radius: 28px;
+
+	color: #fafafa;  
+	font-size: 20px;  
+	padding: 10px 15px; 
+	text-align: center;
 	display: flex;
 	justify-content: space-between;
-	max-width: inherit;
-	margin: 0 1rem;
+	margin: 5px;
+
 }
 
-.search-tag .remove {
-	visibility: hidden;
+.search-tag:hover {
+	background-image: -webkit-linear-gradient(top, #91012a,  #ff034a);
+
+	text-decoration: none;	
 }
 
-.search-tag:hover .remove {
-	visibility: visible;
-}
+
+
