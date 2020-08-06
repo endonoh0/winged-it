@@ -3,7 +3,7 @@ import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
 // import axios from 'axios'
 
-const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit }) => {
+const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit, children }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
 	const pressEnter = (searchTerm) => {
@@ -37,6 +37,7 @@ const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit }) =
 				onKeyUp={pressEnter}/>
 
 				<button class="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
+				{children}
 		</div>
 
 	);
