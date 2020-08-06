@@ -53,6 +53,7 @@ function App() {
   const [user, setUser] = useState({ loggedIn: false });
   const [selection, setSelection] = useState([]);
   const [diet, setDiet] = useState(null);
+  const [title, setTitle] = useState('');
 
   const { write } = useWriteToFirestore();
 
@@ -153,21 +154,21 @@ function App() {
             <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
           </Route>
           <Route path="/newRecipe">
-            <NewRecipe />
-            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+            <NewRecipe>{title}</NewRecipe>
+            <SideBar form={true} title={title} setTitle={setTitle}/>
           </Route>
           <Route path="/">
-          <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
-            
+            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+            <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
             <SearchByIngredient
               // setRecipes={setRecipes}
               searchTags={searchTags}
               setSearchTags={setSearchTags}
               writeTag={writeTag}
               onSubmit={onSubmit}
-            />
-            <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
-            {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
+            >
+              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
+            </SearchByIngredient>
           </Route>
 
         </Switch>
