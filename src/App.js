@@ -55,16 +55,17 @@ function App() {
   const [selection, setSelection] = useState([]);
   const [diet, setDiet] = useState(null);
   const [title, setTitle] = useState('');
+  const [directions, setDirections] = useState(null);
 
   const [loadingStatus, setLoadingStatus] = useState(false);
 
   const { write } = useWriteToFirestore();
-  
+
   const onSubmit = async (e) => {
     const result = await axios.get('./recipe.json')
     setRecipes(result.data.hits)
-    
-    
+
+
     // // Real API Call
     // setLoadingStatus(true);
     // recipeFinder(searchTags, selection, diet)
@@ -76,7 +77,7 @@ function App() {
     //   })
   }
 
-  
+
 
   useEffect(() => {
     if (user.loggedIn) {
@@ -134,7 +135,7 @@ function App() {
       <Router>
 
         {projectAuth.currentUser && <NavBar />}
-        
+
 
         <Switch>
           <Route path="/signin">
@@ -159,8 +160,8 @@ function App() {
           </Route>
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
-            <Map />
-            <SideBar/>
+            <Map setDirections={setDirections} directions={directions}/>
+            {directions && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} directions={directions} /> }
           </Route>
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>

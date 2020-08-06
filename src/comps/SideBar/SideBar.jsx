@@ -4,10 +4,11 @@ import className from 'classnames'
 import SearchTag from '../SearchByIngredient/SearchTag';
 // import SearchTag from './SearchByIngredient/SearchTag'
 import Title from '../Title';
+import Directions from '../Directions/Directions';
 
 import './SideBar.scss'
 
-const SideBar = ({searchTags, removeTag, form, title, setTitle}) => {
+const SideBar = ({searchTags, removeTag, form, title, setTitle, directions}) => {
   // const [searchTags, setSearchTags] = useState([]);
 
   const sidebarContainer = className("sidebar__container", {
@@ -21,10 +22,12 @@ const SideBar = ({searchTags, removeTag, form, title, setTitle}) => {
           <Title />
         </Link>
         <hr className="sidebar__separator sidebar--centered" />
+        {directions && <Directions data={directions} />}
+
       </div>
       <div className="sidebar__content">
         {searchTags && <SearchTag searchTags={searchTags} removeTag={removeTag}/>}
-        {form && 
+        {form &&
         <div className="form">
           <label/>
           <input
