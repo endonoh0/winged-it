@@ -3,15 +3,20 @@ import { Link } from 'react-router-dom'
 import SearchTag from '../SearchByIngredient/SearchTag';
 // import SearchTag from './SearchByIngredient/SearchTag'
 import Title from '../Title';
+import Directions from '../Directions/Directions';
 
 import './SideBar.scss'
 
-const SideBar = ({searchTags, user, removeTag}) => {
+const SideBar = ({searchTags, user, removeTag, directions}) => {
   // const [searchTags, setSearchTags] = useState([]);
-
+  if (directions) {
+    console.log('directions work:', directions);
+  }
   return (
     <div className="sidebar_container">
       <div className="sidebar_header">
+        {directions && <Directions data={directions} />}
+
         <Link to='/' className="link">
           <Title />
         </Link>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import './Instructions.scss'
+import './Directions.scss'
 
-const Instructions = ({data}) => {
+const Directions = ({data}) => {
   // const [step, setStep] = useState([]);
 
   let legs = data.legs
@@ -14,7 +14,7 @@ const Instructions = ({data}) => {
     duration = Math.floor(data.duration / 60) + ' min 🚲';
   }
 
-  // console.log(steps);
+  console.log(steps);
 
 
   var tripInstructions = [];
@@ -22,7 +22,7 @@ const Instructions = ({data}) => {
   for (var i = 0; i < steps.length; i++) {
     tripInstructions.push(steps[i].maneuver.instruction);
   }
-  console.log(tripInstructions);
+  // console.log(tripInstructions);
 
 
   return (
@@ -41,4 +41,4 @@ const Instructions = ({data}) => {
   )
 }
 
-export default Instructions;
+export default Directions;

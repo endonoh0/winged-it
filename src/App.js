@@ -53,6 +53,7 @@ function App() {
   const [user, setUser] = useState({ loggedIn: false });
   const [selection, setSelection] = useState([]);
   const [diet, setDiet] = useState(null);
+  const [directions, setDirections] = useState(null);
 
   const { write } = useWriteToFirestore();
 
@@ -125,7 +126,7 @@ function App() {
       <Router>
 
         {projectAuth.currentUser && <NavBar />}
-        
+
 
         <Switch>
           <Route path="/signin">
@@ -150,12 +151,13 @@ function App() {
           </Route>
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg}/></Route>
           <Route path="/map">
-            <Map />
-            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+            <Map setDirections={setDirections} />
+            {directions && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} directions={directions} /> }
+            {/* {!directions && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} /> } */}
           </Route>
           <Route path="/">
           <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
-            
+
             <SearchByIngredient
               // setRecipes={setRecipes}
               searchTags={searchTags}
