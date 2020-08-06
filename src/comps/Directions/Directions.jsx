@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import getDirections from '../../helper/getDirections';
 import './Directions.scss';
 
@@ -8,6 +8,10 @@ const Directions = ({data}) => {
   let steps;
   let duration;
   let distance;
+
+  useEffect(() => {
+
+  }, [data]);
 
   if (legs) {
     summary = legs[0].summary;
