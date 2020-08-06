@@ -173,6 +173,51 @@ const Map = () => {
 
       });
     });
+    map.on('click', function(e) {
+      var coordsObj = e.lngLat;
+      var coords = Object.keys(coordsObj).map(function(key) {
+        return coordsObj[key];
+      });
+      var end = {
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Point',
+            coordinates: coords
+          }
+        }
+        ]
+      };
+      if (map.getLayer('end')) {
+        map.getSource('end').setData(end);
+      } else {
+        map.addLayer({
+          id: 'end',
+          type: 'circle',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'FeatureCollection',
+              features: [{
+                type: 'Feature',
+                properties: {},
+                geometry: {
+                  type: 'Point',
+                  coordinates: coords
+                }
+              }]
+            }
+          },
+          paint: {
+            'circle-radius': 10,
+            'circle-color': '#f30'
+          }
+        });
+      }
+      getRoute(coords);
+    });
 
 
 		map.on('click', 'markets', function(e) {
