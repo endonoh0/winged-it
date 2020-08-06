@@ -5,6 +5,7 @@ import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './Map.scss'
 import results from './mapData'
+import Instructions from '../Instructions/Instructions'
 
 const TOKEN=process.env.REACT_APP_MAPBOX_API_KEY
 mapboxgl.accessToken = TOKEN
@@ -38,6 +39,8 @@ const MARKETS = [
 ]
 
 const Map = () => {
+  const [data, setData] = useState({});
+
 	const mapContainerRef = useRef(null);
 
 	useEffect(() => {
@@ -71,6 +74,7 @@ const Map = () => {
       req.onload = function () {
         var json = JSON.parse(req.response);
         var data = json.routes[0];
+        setData(data);
         var route = data.geometry.coordinates;
         var geojson = {
           type: 'Feature',
@@ -111,11 +115,12 @@ const Map = () => {
         }
         // add turn instructions here at the end
       };
-      req.send('it works');
+      req.send();
     }
 
 
 		map.on('load', () => {
+      getRoute(end);
 
 			map.loadImage('https://raw.githubusercontent.com/endonoh0/winged-it/feature/map/assets/Pin.png?token=AK2VPAOCG7UT5J2PHPTBNKS7GNJPS', (error, image) => {
 				if(error){
@@ -144,7 +149,6 @@ const Map = () => {
 						'text-anchor': 'top',
           },
         })
-        getRoute(end);
 
         // Add starting point to the map
         map.addLayer({
@@ -252,7 +256,12 @@ const Map = () => {
 		return () => map.remove();
 	}, []);
 
-	return <div className='map-container' ref={mapContainerRef} />
+	return (
+    <>
+      <div className='map-container' ref={mapContainerRef}></div>
+      {data && <Instructions data={data}/> }
+    </>
+  )
 
 }
 
