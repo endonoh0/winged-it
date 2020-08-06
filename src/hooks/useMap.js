@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import mapboxgl from 'mapbox-gl'
-import results from '../comps/Map/mapData'
 import getRoute from '../helper/directionApi'
+import axios from 'axios'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY
 
@@ -13,12 +13,17 @@ const useMap = (mapContainerRef) => {
 			style: 'mapbox://styles/mapbox/streets-v11',
       center: [-123.1207, 49.2510], // Coordinates for vancouver
       zoom: 12.5,
-    });
+		});
+		
+		
 
     // variable for directions that will be defined when user clicks on geolocate button
     let start;
 
-		map.on('load', () => {
+		map.on('load', async () => {
+
+			// Local call to json file for the points on the map
+			const mapPoints = await axios.get('./mapPoints.json')
 
 			map.loadImage('https://raw.githubusercontent.com/endonoh0/winged-it/feature/map/assets/Pin.png?token=AK2VPAOCG7UT5J2PHPTBNKS7GNJPS', (error, image) => {
 				if(error){
@@ -28,10 +33,7 @@ const useMap = (mapContainerRef) => {
 				// add the data source for new a feature collection with no features
 				map.addSource('farmers-markets', {
 					type: 'geojson',
-					data: {
-						type: 'FeatureCollection',
-						features: results,
-					},
+					data: mapPoints.data,
 				});
 				map.addLayer({
 					id: 'markets',
