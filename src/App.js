@@ -27,6 +27,7 @@ import Logout from './comps/Auth/Logout'
 import Favorite from '../src/comps/Favorite'
 import SideBar from './comps/SideBar/SideBar';
 import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
+import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
 
@@ -54,19 +55,30 @@ function App() {
   const [selection, setSelection] = useState([]);
   const [diet, setDiet] = useState(null);
 
+  const [loadingStatus, setLoadingStatus] = useState(false);
+
   const { write } = useWriteToFirestore();
 
+
+  console.log("before setting", loadingStatus)
+  
   const onSubmit = async (e) => {
-
-		const result = await axios.get('./recipe.json')
-		setRecipes(result.data.hits)
-
-    // Real API Call
+    const result = await axios.get('./recipe.json')
+    setRecipes(result.data.hits)
+    
+    
+    // // Real API Call
+    // setLoadingStatus(true);
     // recipeFinder(searchTags, selection, diet)
     //   .then(data => {
     //     setRecipes(data)
     //   })
+    //   .then(() => {
+    //     setLoadingStatus(false);
+    //   })
   }
+
+  
 
   useEffect(() => {
     if (user.loggedIn) {
@@ -182,7 +194,7 @@ function App() {
 
 
       {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />}
-
+      {loadingStatus && <Loading/>}
     </div>
   );
 }
