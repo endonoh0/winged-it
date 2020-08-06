@@ -15,8 +15,6 @@ const useMap = (mapContainerRef) => {
       zoom: 12.5,
 		});
 		
-		
-
     // variable for directions that will be defined when user clicks on geolocate button
     let start;
 
@@ -50,8 +48,17 @@ const useMap = (mapContainerRef) => {
           },
         })
       });
-    });
+		});
+		
+		const geolocate = new mapboxgl.GeolocateControl({ potionOptions: {enableHighAccuracy: true}, trackUserLocation: true });
 
+		map.addControl(new mapboxgl.NavigationControl(), 'bottom-right')
+    map.addControl(geolocate, 'top-left')
+
+		geolocate.on('geolocate', e => {
+      start = [e.coords.longitude, e.coords.latitude]
+		})
+		
     // Change the cursor to a pointer when the mouse is over the places layer.
 		map.on('mouseenter', 'markets', function() {
 			map.getCanvas().style.cursor = 'pointer';
@@ -81,17 +88,7 @@ const useMap = (mapContainerRef) => {
 			.addTo(map);
 		});
 
-
-
-    const geolocate = new mapboxgl.GeolocateControl({ potionOptions: {enableHighAccuracy: true}, trackUserLocation: true });
-
-		map.addControl(new mapboxgl.NavigationControl(), 'bottom-right')
-    map.addControl(geolocate, 'top-left')
-    
-    geolocate.on('geolocate', e => {
-      start = [e.coords.longitude, e.coords.latitude]
-    })
-
+		// Cleanup of the useEffect
 		return () => map.remove();
 	},[])
 
