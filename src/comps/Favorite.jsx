@@ -17,8 +17,6 @@ const EMPTY = 'EMPTY';
 const EDIT = 'EDIT';
 
 const Favorite = ({setSelectedImg, user}) => {
-
-  
   const { docs, dataFetchStatus } = useFirestoreFavorites (user);
   const { mode, transition, back } = useVisualMode(LOADING);
   const [favItems, setFavItems] = useState([]);
@@ -77,7 +75,7 @@ const Favorite = ({setSelectedImg, user}) => {
   }
 
   return (
-    <div>
+    <div className="favorite__container">
       { mode === EDIT && 
         <div>
           <TitleFav message= "Edit Your Recipe" />
