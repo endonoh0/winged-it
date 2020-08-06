@@ -37,7 +37,6 @@ const MARKETS = [
 	}
 ]
 
-
 const Map = () => {
 	const mapContainerRef = useRef(null);
 
@@ -47,9 +46,77 @@ const Map = () => {
 			style: 'mapbox://styles/mapbox/streets-v11',
       center: [-123.1207, 49.2510],
       zoom: 12.5,
-		});
+    });
+    // set the bounds of the map
+    // var bounds = [[-123.069003, 45.395273], [-122.303707, 45.612333]];
+    // map.setMaxBounds(bounds);
+
+    // var start = [-122.662323, 45.523751];
+    // var end = [-122.677738, 45.522458];
+    // var start = [49.2639637, -123.0966036];
+    var start = [-123.0966036, 49.2639637];
+    var end = [-123.0997232, 49.273389];
+
+    // create a function to make a directions request
+    function getRoute(end) {
+      // make a directions request using cycling profile
+      // an arbitrary start will always be the same
+      // only the end or destination will change
+      // var start = [-122.662323, 45.523751];
+      var url = `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`;
+
+      // make an XHR request https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+      var req = new XMLHttpRequest();
+      req.open('GET', url, true);
+      req.onload = function () {
+        var json = JSON.parse(req.response);
+        var data = json.routes[0];
+        var route = data.geometry.coordinates;
+        var geojson = {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: route
+          }
+        };
+        // if the route already exists on the map, reset it using setData
+        if (map.getSource('route')) {
+          map.getSource('route').setData(geojson);
+        } else { // otherwise, make a new request
+          map.addLayer({
+            id: 'route',
+            type: 'line',
+            source: {
+              type: 'geojson',
+              data: {
+                type: 'Feature',
+                properties: {},
+                geometry: {
+                  type: 'LineString',
+                  coordinates: geojson
+                }
+              }
+            },
+            layout: {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            paint: {
+              'line-color': '#3887be',
+              'line-width': 5,
+              'line-opacity': 0.75
+            }
+          });
+        }
+        // add turn instructions here at the end
+      };
+      req.send('it works');
+    }
+
 
 		map.on('load', () => {
+
 			map.loadImage('https://raw.githubusercontent.com/endonoh0/winged-it/feature/map/assets/Pin.png?token=AK2VPAOCG7UT5J2PHPTBNKS7GNJPS', (error, image) => {
 				if(error){
 					throw error
@@ -75,13 +142,39 @@ const Map = () => {
 						'text-field':['get', 'title'],
 						'text-offset': [0, 1.25],
 						'text-anchor': 'top',
-					},
-				});
-		});
+          },
+        })
+        getRoute(end);
 
-			})
-			
-		
+        // Add starting point to the map
+        map.addLayer({
+          id: 'point',
+          type: 'circle',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'FeatureCollection',
+              features: [{
+                type: 'Feature',
+                properties: {},
+                geometry: {
+                  type: 'Point',
+                  coordinates: start
+                }
+              }
+              ]
+            }
+          },
+          paint: {
+            'circle-radius': 10,
+            'circle-color': '#3887be'
+          }
+        });
+
+      });
+    });
+
+
 		map.on('click', 'markets', function(e) {
 			const coordinates = e.features[0].geometry.coordinates.slice();
 			const description = e.features[0].properties.description;
@@ -89,7 +182,7 @@ const Map = () => {
 			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 			coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 			}
-			 
+
 			new mapboxgl.Popup()
 			.setLngLat(coordinates)
 			.setHTML(description)
@@ -107,7 +200,7 @@ const Map = () => {
 		});
 
 
-		
+
 		map.addControl(new mapboxgl.NavigationControl(), 'bottom-right')
 		map.addControl(new mapboxgl.GeolocateControl({ potionOptions: {enableHighAccuracy: true}, trackUserLocation: true }))
 
@@ -116,59 +209,6 @@ const Map = () => {
 
 	return <div className='map-container' ref={mapContainerRef} />
 
-  // const [viewport, setViewPort ] = useState({
-  //   width: 900,
-  //   height: 900,
-  //   latitude: 49.2510,
-  //   longitude: -123.1207,
-	// 	zoom: 11,
-	// 	popUp: true,
-	// })
-	// const [popUp, setPopUp] = useState(true);
-	
-	// const _onViewportChange = viewport => setViewPort({...viewport})
-	
-	// const markers = () => {
-	// 	return MARKETS.map((market) =>{
-	// 		return (
-	// 			<div>
-	// 				<Marker captureClick={true} latitude={market.latitude} longitude={market.longitude}>
-	// 					🍔
-	// 				</Marker>
-	// 				{popUp && <Popup
-	// 					latitude={market.latitude}
-	// 					longitude={market.longitude}
-	// 					closeButton={true}
-	// 					closeOnClick={false}
-	// 					onClose={() => setPopUp(false)}
-	// 					anchor="bottom" >
-	// 				<div>{market.name}</div>
-	// 				</Popup>}
-	// 			</div>
-				
-	// 		);
-	// 	})
-	// }
-	// console.log(markers());
-  
-  // return (
-  //   <div style={{ width: '100vw', height: '100vh'}}>
-  //     <MapGL
-  //       {...viewport}
-  //       mapboxApiAccessToken={TOKEN}
-  //       mapStyle="mapbox://styles/mapbox/streets-v8"
-  //       onViewportChange={_onViewportChange}
-  //     >
-				
-	// 			{markers()}
-  //       <GeolocateControl
-  //         style={geolocateStyle}
-  //         positionOptions={{enableHighAccuracy: true}}
-  //         trackUserLocation={false}
-  //       />
-  //     </MapGL>
-  //   </div>
-  // )
 }
 
 export default Map
