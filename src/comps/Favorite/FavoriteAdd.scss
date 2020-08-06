@@ -1,9 +1,13 @@
 .favorite_btn {
   visibility: hidden;
-  position: absolute;
-  color:black;
-  bottom: .5em;
-  right: .5em;
+  position: relative;
+  color: black;
+  margin-right: 0rem;
+  bottom: 4em;
+  /* top: -111px; */
+  /* right: 2.5em; */
+  left: 15em;
+  /* z-index: 5; */
 }
 
 .favorite_btn:hover {

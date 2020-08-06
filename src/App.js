@@ -55,13 +55,11 @@ function App() {
   const [selection, setSelection] = useState([]);
   const [diet, setDiet] = useState(null);
   const [directions, setDirections] = useState(null);
+  const [title, setTitle] = useState('');
 
   const [loadingStatus, setLoadingStatus] = useState(false);
 
   const { write } = useWriteToFirestore();
-
-
-  console.log("before setting", loadingStatus)
 
   const onSubmit = async (e) => {
     const result = await axios.get('./recipe.json')
@@ -166,21 +164,21 @@ function App() {
             {directions && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} directions={directions} /> }
           </Route>
           <Route path="/newRecipe">
-            <NewRecipe />
-            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+            <NewRecipe>{title}</NewRecipe>
+            <SideBar form={true} title={title} setTitle={setTitle}/>
           </Route>
           <Route path="/">
-          <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
-
+            {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
+            {user.loggedIn && <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />}
             <SearchByIngredient
               // setRecipes={setRecipes}
               searchTags={searchTags}
               setSearchTags={setSearchTags}
               writeTag={writeTag}
               onSubmit={onSubmit}
-            />
-            <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
-            {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
+            >
+              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
+            </SearchByIngredient>
           </Route>
 
         </Switch>

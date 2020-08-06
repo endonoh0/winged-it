@@ -5,18 +5,40 @@ input {
 	width: 95%;
 }
 
-.card.card-sm{
-	width: 50vw;
-	margin-top: 1rem;
-}
-
-.search-container{
+.search-container {
 	display: flex;
 	flex-direction: column;
+	margin: 0 10rem 0 27rem;
+	min-width: 83rem;
 }
 
-.btn-primary{
+.btn-primary {
+	/* margin: 0 auto; */
 	align-self: center;
 	font-size: 1.5rem;
-	margin-top: 1rem;
+	/* margin-top: 1rem; */
+	justify-content: center;
+	align-items: center;
+	justify-self: center;
+	justify-items: center;
+}
+
+.card {
+	width: 18vw;
+	margin-top: 2rem;
+	align-self: flex-end;
+	/* margin-left: 10rem; */
+	/* position: relative; */
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* min-width: 0; */
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+}
+
+.card-body{
+	padding: 0;
 }

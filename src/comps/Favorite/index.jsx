@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 
 import { useVisualMode } from "../../hooks/useVisualMode";
@@ -19,7 +19,7 @@ const FavoritePage = (props) => {
   }
 
   return(
-    <div>
+    <Fragment>
     { mode === SHOW && <FavoriteItems
       doc = { props.doc }
       setSelectedImg = {props.setSelectedImg}
@@ -34,7 +34,7 @@ const FavoritePage = (props) => {
      
       /> }
 
-    </div>
+    </Fragment>
   );
 }
 
