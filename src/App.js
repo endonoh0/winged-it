@@ -59,9 +59,6 @@ function App() {
   const [loadingStatus, setLoadingStatus] = useState(false);
 
   const { write } = useWriteToFirestore();
-
-
-  console.log("before setting", loadingStatus)
   
   const onSubmit = async (e) => {
     const result = await axios.get('./recipe.json')
@@ -163,7 +160,7 @@ function App() {
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
             <Map />
-            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+            <SideBar/>
           </Route>
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>

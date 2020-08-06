@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { motion } from 'framer-motion';
 
 import { useVisualMode } from '../hooks/useVisualMode';
@@ -11,14 +11,14 @@ import Empty from './Favorite/Empty';
 import Edit from './Favorite/Edit';
 import TitleFav from './Favorite/TitleFav'
 
+import './Favorite.scss'
+
 const SHOW = 'SHOW';
 const LOADING = 'LOADING';
 const EMPTY = 'EMPTY';
 const EDIT = 'EDIT';
 
 const Favorite = ({setSelectedImg, user}) => {
-
-  
   const { docs, dataFetchStatus } = useFirestoreFavorites (user);
   const { mode, transition, back } = useVisualMode(LOADING);
   const [favItems, setFavItems] = useState([]);
@@ -77,15 +77,15 @@ const Favorite = ({setSelectedImg, user}) => {
   }
 
   return (
-    <div>
+    <div className="favorite__container">
       { mode === EDIT && 
-        <div>
+        <Fragment>
           <TitleFav message= "Edit Your Recipe" />
           <Edit
           onSave={ save }
           onCancel={ back }
-          editPlaceholder = { favItems[editDoc[0]].recipe.name } /> 
-        </div>
+          editPlaceholder = { favItems[editDoc[0]].recipe.name } />
+        </Fragment>
         }
       { mode === EMPTY && <div>
         <TitleFav message= "Favorite List" />
@@ -98,9 +98,8 @@ const Favorite = ({setSelectedImg, user}) => {
         </div>
          }
       { mode === SHOW &&
-      <div>
+      <Fragment>
         <TitleFav message= "Favorite List" />
-        <br/>
         <div className="img-grid">
           {
             favItems.map((favItem, index) => {
@@ -120,7 +119,7 @@ const Favorite = ({setSelectedImg, user}) => {
             })
           }
         </div>
-      </div>
+      </Fragment>
     
     }
     </div>
