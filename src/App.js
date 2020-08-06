@@ -170,8 +170,8 @@ function App() {
             <SideBar form={true} title={title} setTitle={setTitle}/>
           </Route>
           <Route path="/">
-            <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
-            <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
+            {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
+            {user.loggedIn && <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />}
             <SearchByIngredient
               // setRecipes={setRecipes}
               searchTags={searchTags}

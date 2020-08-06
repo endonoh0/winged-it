@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import "../RecipeFilter/RecipeFilter.scss";
+import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io';
+
 
 function Dropdown (
   {
@@ -45,6 +47,7 @@ function Dropdown (
 
   return (
     <div className="dd-wrapper">
+    
       <div
         tabIndex={0}
         className="dd-header"
@@ -52,12 +55,12 @@ function Dropdown (
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}
       >
-        <div className="dd-header__title">
+        <div className="dd-header__title"> 
           <p className="dd-header__title--bold">{title}</p>
         </div>
 
         <div className="dd-header__action">
-          <p>{open ? 'Close' : 'Open'}</p>
+          <p>{open ? <IoIosArrowUp/> : <IoIosArrowDown/>}</p>
         </div>
       </div>
 
