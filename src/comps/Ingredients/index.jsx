@@ -1,45 +1,52 @@
-import React, { useEffect, useState, Fragment } from 'react';
-// import useFirestore from '../../hooks/useFirestore'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Pagination from '@material-ui/lab/Pagination'
+
 import { projectFirestore } from '../../firebase/config'
-import axios from 'axios'
-import { createClient } from 'pexels'
+import Card from  'react-bootstrap/Card'
+import './index.scss'
+import usePagination from '../../hooks/usePagination'
 
 const Ingredients = () => {
-	const [photos, setPhotos] = useState([])
-
-	const client = createClient('563492ad6f91700001000001fe3aeec344bd4449ac64360d87ecafed')
+	const [ingredients, setIngredients] = useState([])
 
 	useEffect(() => {
 		const getIngredients = async () => {
 			const month = new Date().getMonth().toString()
 			const snapshot = await projectFirestore.collection('ingredients')
 			.where(month, '==', true)
-			.limit(2)
 			.get()
 			snapshot.forEach( async doc => {
-				const query = doc.data().name
-				client.photos.search({ query, per_page: 1 }).then(photos => {
-					setPhotos(prev => [...prev, photos.photos[0].src.large])
-					// photoUrls.push(photos.photos[0].src.original)
-					// console.log("test");
-					
-				});
+				setIngredients(prev => [...prev, doc.data()])
 			})
 		}
 		
 		getIngredients()
-
+		
 	}, [])
+	
+	const { setCurrentPage, currentData, currentPage, maxPage } = usePagination(ingredients, 12)
 
 	return (
-		<section className="photo__container">
-			{photos.map(photo => (
-				<Fragment>
-					<img className="ingredient__photo"src={photo} alt="food"/>
-					<a href="https://www.pexels.com">Photos provided by Pexels</a>
-				</Fragment>
-			))}
-			
+		<section className="seasonal_container">
+			<h1 id="seasonal_title">Seasonal Ingredients</h1>
+			<h2 id="month">August</h2>
+			<article className="ingredients_container">
+				{currentData().map(ingredient => (
+					<Link to="/">
+						<Card style ={{width: '18rem'}}>
+							<Card.Img className="ingredient__img" variant="top" src={ingredient.url} />
+							<Card.Title className="ingredient__title" >{ingredient.name}</Card.Title>
+						</Card>
+					</Link>
+					
+				))}
+			</article>
+			<Pagination count={maxPage} shape="rounded" 
+			onChange={(e, page) => {
+				setCurrentPage(page)
+				console.log(`Real page ${page} pagination page ${currentPage}`)}}
+			/>
 		</section>)
 
 }
