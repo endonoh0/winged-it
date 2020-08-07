@@ -1,0 +1,90 @@
+$primary-color: #ebe5b3;
+
+.App{
+  // margin-left: 50px;
+  // margin-right: 50px;
+  // margin-top: 30px;
+  width: 80vw;
+}
+
+body {
+  background-color: $primary-color;
+}
+
+.home_div {
+
+  display: flex;
+  justify-content:space-around;
+  flex-direction: row;
+  padding-top: 40px;
+  font-size: 50px;
+
+  .img_container{
+    display: flex;
+    height: 100%;
+  }
+
+
+  .home_figure{
+    
+    padding: 10px;
+
+  }
+  
+  .gallery__img{
+    width: 20vw;
+
+    
+  }
+  .img_left{
+    height: 600px;
+    // background-image: url("./pizza.jpg");
+  }
+
+  .img_right{
+    height: 280px;
+  }
+ 
+  .home_desription{
+    width: 30vw;
+    margin-top: 250px;
+    height: 300px;
+  }
+
+  .home_desription_text{
+    font-size: 20px;
+  }
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.static {
+  position:absolute;
+  background: white;
+}
+
+.static:hover {
+  opacity:0;
+}
+
+
+
+
+
+}
+

@@ -31,6 +31,10 @@ import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
 
+import Home from './comps/Home/Home';
+
+
+
 // FireBase Functions
 import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
 import { useCurrentUser } from './hooks/userAuth';
@@ -163,6 +167,9 @@ function App() {
           <Route path="/map">
             <Map />
             <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
+          </Route>
+          <Route path="/home">
+            <Home />
           </Route>
           <Route path="/newRecipe">
             <NewRecipe />
