@@ -1,11 +1,7 @@
 import React from 'react';
-import useFirestore from '../hooks/useFirestore';
 import { motion } from 'framer-motion';
 
 const RecipeGrid = ({ setSelectedImg, recipes }) => {
-  const { docs } = useFirestore('images'); // listen to images collection
-  console.log(recipes);
-
   return (
     <div className="img-grid">
       { recipes && recipes.map(recipe => (

@@ -30,6 +30,7 @@ import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
 import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
+import Ingredients from './comps/Ingredients'
 
 // FireBase Functions
 import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
@@ -62,19 +63,19 @@ function App() {
   const { write } = useWriteToFirestore();
 
   const onSubmit = async (e) => {
-    const result = await axios.get('./recipe.json')
-    setRecipes(result.data.hits)
+    // const result = await axios.get('./recipe.json')
+    // setRecipes(result.data.hits)
 
 
-    // // Real API Call
-    // setLoadingStatus(true);
-    // recipeFinder(searchTags, selection, diet)
-    //   .then(data => {
-    //     setRecipes(data)
-    //   })
-    //   .then(() => {
-    //     setLoadingStatus(false);
-    //   })
+    // Real API Call
+    setLoadingStatus(true);
+    recipeFinder(searchTags, selection, diet)
+      .then(data => {
+        setRecipes(data)
+      })
+      .then(() => {
+        setLoadingStatus(false);
+      })
   }
 
 
@@ -166,6 +167,9 @@ function App() {
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>
             <SideBar form={true} title={title} setTitle={setTitle}/>
+          </Route>
+          <Route path="/seasonal-ingredients">
+            <Ingredients />
           </Route>
           <Route path="/">
             {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
