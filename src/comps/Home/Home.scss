@@ -3,9 +3,11 @@ $primary-color: rgb(238, 238, 238);
 .App{
   width: 100vw;
 }
-
-.header {
+.sidebar{
   display: none;
+}
+.header {
+  // display: none;
 }
 
 body {
