@@ -66,12 +66,12 @@ function App() {
 
 
   console.log("before setting", loadingStatus)
-  
+
   const onSubmit = async (e) => {
     const result = await axios.get('./recipe.json')
     setRecipes(result.data.hits)
-    
-    
+
+
     // // Real API Call
     // setLoadingStatus(true);
     // recipeFinder(searchTags, selection, diet)
@@ -83,7 +83,7 @@ function App() {
     //   })
   }
 
-  
+
 
   useEffect(() => {
     if (user.loggedIn) {
@@ -136,12 +136,12 @@ function App() {
   return (
     <div className="App">
 
-      {!user.loggedIn && <Header />}
+      {/* {!user.loggedIn && <Header />} */}
 
       <Router>
 
         {projectAuth.currentUser && <NavBar />}
-        
+
 
         <Switch>
           <Route path="/signin">
@@ -178,7 +178,7 @@ function App() {
           </Route>
           <Route path="/">
           <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />
-            
+
             <SearchByIngredient
               // setRecipes={setRecipes}
               searchTags={searchTags}

@@ -14,7 +14,7 @@ import App from './App';
 // import SearchByIngredient from './comps/SearchByIngredient'
 // import Favorite from '../src/comps/Favorite/Favorite'
 // import Map from '../src/comps/Map/Map'
-// import { 
+// import {
 //   BrowserRouter as Router,
 //   Switch,
 //   Route
