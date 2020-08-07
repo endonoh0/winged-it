@@ -1,0 +1,126 @@
+$primary-color: rgb(238, 238, 238);
+$navbar-color: black;
+
+.button {
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  letter-spacing: 0.026em;
+  cursor: pointer;
+  font-size: 0.975rem;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  text-decoration: none;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  button:hover, button:focus, button:active {
+    color: #fff;
+    border-color: #285e8e; /*set the color you want here*/
+  }
+}
+.sign-in {
+  text-decoration: none;
+}
+// Centers the navBar to display
+.row {
+    width: 94%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  body {
+    background-color: red;
+  }
+  #home {
+    margin-top: 6%;
+  }
+  #sign-up {
+    margin-bottom: 10%;
+  }
+
+  .top_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50vw;
+    margin: 20px;
+    padding: 15px;
+    padding-bottom: 10px;
+    padding-top: 30px;
+    position: absolute;
+    background-color: $navbar-color;
+    color: blanchedalmond;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .navbar {
+    border-radius: 4px;
+    height: auto;
+    width: 100%;
+    right: 0;
+    left: 0;
+    background-color: #111111;
+    padding: 25px 40px;
+  }
+  .navbar-nav .nav-link {
+    line-height: 3.2em;
+    border-bottom: 1px solid black;
+  }
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  body {
+    background-color: blue;
+  }
+  .btn-block {
+    width: 20%;
+  }
+}
+
+// // Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  body {
+    background-color: green;
+  }
+  #home {
+    margin-top: 0;
+  }
+  #sign-up {
+    margin-bottom: 0;
+  }
+  .navbar {
+    padding: 25px 40px;
+    height: 8%;
+  }
+  .navbar-nav {
+    padding: 0 2%;
+    margin-right: 0 !important;
+  }
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  .navbar-nav .nav-link {
+    line-height: none;
+    border: none;
+  }
+  .navbar-expand-lg .navbar-collapse {
+    justify-content: flex-end;
+  }
+  .btn-block {
+    max-width: 101px;
+  }
+}
+
+// // Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  body {
+    background-color: purple;
+  }
+}
