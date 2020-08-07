@@ -188,6 +188,7 @@ $navbar-color: black;
     transform: translate(-50%, -50%);
   }
   .navbar {
+    flex-grow: 1;
     border-radius: 4px;
     height: auto;
     width: 100%;
