@@ -1,22 +1,12 @@
-$primary-color: #ebe5b3;
 
-.App{
-  // margin-left: 50px;
-  // margin-right: 50px;
-  // margin-top: 30px;
-  width: 80vw;
-}
-
-body {
-  background-color: $primary-color;
-}
-
-.home_div {
+.home_div_botton {
 
   display: flex;
   justify-content:space-around;
   flex-direction: row;
-  padding-top: 40px;
+  padding-top: 120px;
+  padding-left: 75px;
+  padding-right: 75px;
   font-size: 50px;
 
   .img_container{
@@ -38,7 +28,6 @@ body {
   }
   .img_left{
     height: 600px;
-    // background-image: url("./pizza.jpg");
   }
 
   .img_right{
@@ -56,23 +45,6 @@ body {
   }
 
 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .static {
   position:absolute;
   background: white;
@@ -82,9 +54,17 @@ body {
   opacity:0;
 }
 
+}
 
-
-
+#bottom_bar_home{
+  
+  display: flex;
+  width: 100vw;
+  height: 150px;
+  color: red;
+  position: absolute;
+  background-color: black;
+  margin-top: 100px;
 
 }
 

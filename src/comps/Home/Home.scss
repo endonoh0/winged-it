@@ -20,15 +20,11 @@ body {
     height: 100%;
   }
 
-
-
-  
   .gallery__img{
     width: 100vw;
     height: 700px;
     padding: 0px;
   }
-
 
   .top_bar {
     display: flex;
@@ -58,7 +54,7 @@ body {
   .home_top_bar_left{
     display: flex;
     justify-content: space-between;
-    width: 20vw;
+    width: 22vw;
   }
 
   .centered {
@@ -123,29 +119,6 @@ body {
     color: black;
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-.static {
-  position:absolute;
-  background: white;
-}
-
-.static:hover {
-  opacity:0;
-}
-
-
-
 
 
 }
