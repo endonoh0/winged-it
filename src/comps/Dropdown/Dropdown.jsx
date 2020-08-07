@@ -45,9 +45,10 @@ function Dropdown (
     return false;
   }
 
+
   return (
     <div className="dd-wrapper">
-    
+
       <div
         tabIndex={0}
         className="dd-header"
@@ -55,7 +56,7 @@ function Dropdown (
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}
       >
-        <div className="dd-header__title"> 
+        <div className="dd-header__title">
           <p className="dd-header__title--bold">{title}</p>
         </div>
 
@@ -75,7 +76,7 @@ function Dropdown (
                 id={item.id}
                 value={item.value}
                 onClick={(e) => handleOnClick(e, item, item.id)}
-                defaultChecked={isItemInSelection(item)}
+                defaultChecked={item.id === 25 || isItemInSelection(item)}
                 checked={diet && diet === item.value}
               />
 
