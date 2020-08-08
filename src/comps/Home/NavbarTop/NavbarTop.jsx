@@ -18,20 +18,20 @@ const NavbarTop = ({ user }) => {
           <Nav.Link href="#">Seasonal Foods</Nav.Link>
           <Nav.Link href="/map">Farmers's Market</Nav.Link>
 
-          { !user.loggedIn && <Nav.Link id="sign-in" href="/signin">Sign in</Nav.Link> }
+          {/* { !user.loggedIn && <Nav.Link id="sign-in" href="/signin">Sign in</Nav.Link> } */}
         </Nav>
-
+{/*
         { !user.loggedIn && !(
           <Button className="button sign-in" variant="secondary" size="lg" block>
             <a href="/signup">Sign up</a>
           </Button>
-        )}
+        )} */}
 
-        { user.loggedIn && (
+        {/* { user.loggedIn && (
           <Button className="button sign-in display-none" variant="secondary" size="lg" block>
             <a href="/logout">Logout</a>
           </Button>
-        )}
+        )} */}
       </Navbar.Collapse>
 
     </Navbar>
