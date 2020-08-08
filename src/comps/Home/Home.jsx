@@ -1,10 +1,10 @@
 import React from 'react';
 
-// import "./Home.scss";
 
-import HomeButtomSection from "./HomeBottomSection";
+import BottomSection from "./BottomSection/BottomSection";
 import NavbarTop from "./NavbarTop/NavbarTop";
 import MainSection from './MainSection/MainSection';
+import Footer from './Footer/Footer';
 
 const Home = () => {
 
@@ -12,6 +12,8 @@ const Home = () => {
     <div>
       <NavbarTop />
       <MainSection />
+      <BottomSection />
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,115 @@
+
+.home_div_bottom {
+  // max-width: 800px;
+  text-align: center;
+  // display: flex;
+  // justify-content:space-around;
+  // flex-direction: row;
+  // padding-top: 120px;
+  // padding-left: 75px;
+  // padding-right: 75px;
+  // font-size: 50px;
+
+  .img_container{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+  }
+
+
+  .home_figure{
+
+    padding: 10px;
+
+  }
+
+  .gallery__img{
+    // width: 20vw;
+
+
+  }
+  .img_left{
+    height: 600px;
+  }
+
+  .img_right{
+    height: 280px;
+  }
+
+  .home_title{
+    text-align: center;
+  }
+
+  .home_text{
+    font-size: 20px;
+    margin: 2.5rem;
+    line-height: 2;
+  }
+
+
+.static {
+  position:absolute;
+  background: white;
+}
+
+.static:hover {
+  opacity:0;
+}
+
+}
+#about {
+    min-height: 786px;
+    background: #ffffff;
+    padding-top: 3rem;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 7rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  body {
+    background-color: red;
+  }
+  .vertical {
+    display: none;
+  }
+  .home_div_bottom .img_container {
+    flex-wrap: wrap-reverse;
+  }
+  .horizontal_line {
+      border-bottom: 2px solid black;
+      display: block;
+      width: 125px;
+      margin: 0 auto;
+  }
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  body {
+    background-color: blue;
+  }
+}
+
+// // Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  body {
+    background-color: green;
+  }
+  .vertical {
+    display: unset;
+  }
+  .home_div_bottom .img_container {
+    flex-wrap: unset;
+  }
+}
+
+// // Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  body {
+    background-color: purple;
+  }
+}

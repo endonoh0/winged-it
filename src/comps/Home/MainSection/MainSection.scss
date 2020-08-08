@@ -1,36 +1,16 @@
 $primary-color: rgb(238, 238, 238);
 $navbar-color: black;
 
-// .App{
-//   width: 100vw;
-// }
-// .sidebar{
-//   display: none;
-// }
-// .header {
-//   display: none;
-// }
-
-// body {
-//   background-color: $primary-color;
-// }
-.figure {
-  z-index: -1;
-}
-
 .home_div {
-
   .img_container{
     display: flex;
     height: 100%;
   }
-
   .gallery__img{
     width: 100vw;
     height: 700px;
     padding: 0px;
   }
-
   .top_bar {
     display: flex;
     justify-content: space-between;
@@ -47,29 +27,18 @@ $navbar-color: black;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
-  .home_top_bar_left_link{
-    color: rgb(195, 193, 182);
-  }
-
   #search_recipe{
     color: white;
   }
-
   .home_top_bar_left{
     display: flex;
     justify-content: space-between;
     width: 22vw;
   }
-
   .centered {
     position: absolute;
-    // top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // display: flex;
-    // flex-direction: column;
-    // align-content:center;
   }
 
   .horizontal_line{
@@ -79,34 +48,23 @@ $navbar-color: black;
     white;
     display: block;
     width: 200px;
-
-
   }
   .title_home_page{
     display: flex;
-
   }
-
   .title_text_home_page{
     color: white;
     font-size: 45px;
   }
-
   .text_description{
     padding-top: 30px;
-    // padding-bottom: 30px;
     color: white;
-    // font-size: 45px;
     display: flex;
     justify-content: center;
   }
-
   .home_buttons{
     display: flex;
-    // flex-direction: column;
-    // justify-content: center;
   }
-
   .home_button{
     background: transparent;
     color: white;
@@ -116,14 +74,12 @@ $navbar-color: black;
     display: flex;
     justify-content: center;
   }
-
   .home_button_left{
     margin-right: 30px;
   }
   .home_button:hover{
     background: white;
     color: black;
-
   }
 }
 
@@ -133,7 +89,7 @@ $navbar-color: black;
     background-color: red;
   }
   .home_div .gallery__img {
-    margin-left: -25%;
+    // margin-left: -25%;
     object-fit: cover;
   }
   .home_div .horizontal_line {
@@ -141,12 +97,14 @@ $navbar-color: black;
   }
   .centered {
     top: 28%;
-    // top: 28%;
   }
   .text_description {
     padding-bottom: 125px;
     font-size: 28px;
   }
+}
+.figure {
+  z-index: -1;
 }
 
 // // Medium devices (tablets, 768px and up)
