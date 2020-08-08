@@ -36,7 +36,7 @@ const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit, chi
 				setSearchTags={setSearchTags}
 				onKeyUp={pressEnter}/>
 
-				<button class="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
+				<button className="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
 				{children}
 		</div>
 

@@ -5,9 +5,9 @@ const SearchBar = (props) => {
   const {searchTerm, setSearchTerm, onKeyUp} = props;
 
 	return(
-    <div class="card card-sm">
-      <div class="row no-gutters align-items-center">
-        <div class="col">
+    <div className="card card-sm">
+      <div className="row no-gutters align-items-center">
+        <div className="col">
           <input
           type="search"
           placeholder="Add to list"
@@ -19,8 +19,8 @@ const SearchBar = (props) => {
             }
           }}/>
         </div>
-        <div class="col-auto">
-          <button class="btn btn-lg btn-success" onClick={e => onKeyUp(searchTerm)}>Add</button>
+        <div className="col-auto">
+          <button className="btn btn-lg btn-success" onClick={e => onKeyUp(searchTerm)}>Add</button>
         </div>
       </div>
     </div>

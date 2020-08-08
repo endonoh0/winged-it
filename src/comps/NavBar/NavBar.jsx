@@ -6,6 +6,7 @@ import './NavBar.scss'
 import { FaHome } from 'react-icons/fa';
 import { MdFavoriteBorder, MdCreate } from 'react-icons/md';
 import { FiLogOut, FiMap } from 'react-icons/fi';
+import { GiWheat } from 'react-icons/gi'
 
 
 const NavBar = ({setRecipes, setSelectedImg}) => {
@@ -23,8 +24,8 @@ const NavBar = ({setRecipes, setSelectedImg}) => {
             <Link to='map' className='link'>
               <FiMap size={32}/>
             </Link>
-            <Link to='newRecipe' className='link'>
-              <MdCreate size={32}/>
+            <Link to='seasonal-ingredients' className='link'>
+              <GiWheat size={32}/>
             </Link>
             <Link to='logout' className='link'>
               <FiLogOut size={32} />
