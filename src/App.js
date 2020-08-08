@@ -140,7 +140,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavbarTop />
+      <NavbarTop user={user}/>
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
@@ -159,6 +159,7 @@ function App() {
               {!user.loggedIn && <SignUp onClick={requestRegister} />}
             </div>
           </Route>
+
           <Route path="/logout">
             <div className="auth-wrapper">
               {user.loggedIn && <UserProvider value={user}>
@@ -169,6 +170,7 @@ function App() {
               </UserProvider>}
             </div>
           </Route>
+
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
             <Map setDirections={setDirections} directions={directions}/>

@@ -1,14 +1,15 @@
-/* Auth */
 .sign-up p, .sign-in p {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.2;
 }
+
 .custom-control-label {
   font-weight: 400;
 }
+
 .forgot-password,
 .forgot-password a,
 .login-alt,
@@ -19,7 +20,51 @@
   color: #7f7d7d;
   margin: 0;
 }
+
 .login-alt a,
 .forgot-password a {
   color: #167bff;
+}
+
+// Margin
+.mr-alt {
+  margin-right: 28%;
+}
+.mt-label {
+  margin-top: 10%;
+}
+
+  /* Sign up and Sign in */
+.form-check-label {
+  padding-right: 71%;
+}
+
+// User input
+input {
+  width: 74%;
+}
+
+// Password input
+.form-text {
+  text-align: center;
+}
+
+@media (min-width: 576px) {
+  // body {
+  //   background-color: red;
+  // }
+  form.sign-up {
+    transform: scale(1.5);
+    margin-top: 15%;
+  }
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  // body {
+  //   background-color: blue;
+  // }
+  form.sign-up {
+    margin-top: 7%;
+  }
 }

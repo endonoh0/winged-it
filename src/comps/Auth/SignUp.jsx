@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 import "./Auth.scss"
 
 const SignUp = ({ onClick }) => {
@@ -17,39 +20,60 @@ const SignUp = ({ onClick }) => {
   };
 
   return (
-      <form className="sign-up">
-        <p>Sign Up</p>
+    <Form className="sign-up">
+      <p>Sign up</p>
 
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input type="email" className="form-control" placeholder="Email" name="email"
-            value={email}
-            onChange={event => onChangeHandler(event)} />
-        </div>
+      <Form.Group controlId="ControlInput1">
+        <Form.Label htmlFor="email">Email address</Form.Label>
+        <Form.Control
+          size="lg"
+          type="email"
+          placeholder="name@example.com"
+          name="email"
+          value={email}
+          onChange={event => onChangeHandler(event)}
+        />
+      </Form.Group>
 
-        <div className="form-group">
-          <label htmlFor="password">Enter:</label>
-          <input type="password" className="form-control" placeholder="Your Password" name="password"
-            value={password}
-            onChange={event => onChangeHandler(event)} />
-        </div>
+      <Form.Group>
+        <Form.Label htmlFor="password">Password</Form.Label>
+        <Form.Control
+          size="lg"
+          type="password"
+          id="inputPassword6"
+          aria-describedby="passwordHelpInline"
+          name="password"
+          value={password}
+          onChange={e => onChangeHandler(e)}
+        />
 
-        <button type="submit" className="btn btn-primary btn-block"
+        <Form.Text id="passwordHelpBlock" muted>
+          Must be 8-20 characters long.
+        </Form.Text>
+      </Form.Group>
+
+      <div className="mt-15">
+        <Button
+          type="submit"
+          className="mb-2"
           onClick={event => {
             onClick(event, email, password);
             setEmail("");
             setPassword("");
           }
         }>
-          Sign Up
-        </button>
+          Sign up
+        </Button>
 
         <p className="forgot-password text-right">
           Already registered <a href="#">sign in?</a>
         </p>
-      </form>
-  );
+
+      </div>
+    </Form>
+  )
 };
+
 
 
 export default SignUp;
