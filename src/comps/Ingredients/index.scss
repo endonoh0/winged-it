@@ -11,6 +11,34 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	position: relative;
+	overflow: hidden;
+
+	.ingredient{
+		animation: fadeIn 0s 0.6s;
+	}
+
+	&::after{
+		position: absolute;
+		content: '';
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		animation: secondaryImageOverlayOut 0.6s 0.2s;
+		animation-fill-mode: both;
+	}
+
+	&-active{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		position: relative;
+		overflow: hidden;
+	}
+	
+
 }
 
 .ingredient__img{
@@ -42,4 +70,31 @@
 	padding: .5rem;
 	text-align: center;
 	border-radius: 5px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes secondaryImageOverlayIn {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes secondaryImageOverlayOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
