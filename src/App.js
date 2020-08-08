@@ -154,6 +154,7 @@ function App() {
 
 
         <Switch>
+          <Route path="/search"> <Search/> </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
               {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
@@ -204,7 +205,6 @@ function App() {
               {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
             </SearchByIngredient>
           </Route>
-          <Route path="/search"> <Search/> </Route>
 
         </Switch>
 

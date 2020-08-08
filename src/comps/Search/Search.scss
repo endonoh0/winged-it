@@ -1,0 +1,51 @@
+
+
+
+
+$search-bar-color: 	#AEEAD9;
+
+.search_page{
+
+padding-top: 100px;
+
+  .title_bar{
+    display: flex;
+
+    .img{
+      height: 400px;
+      width: 50vw;
+
+    }
+
+    .block{
+      color:red;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50vw;
+      height: 400px;
+      background: $search-bar-color;
+      background-color: $search-bar-color;
+
+      .img{
+        display: none;
+        height: 170px;
+        width: 30vw;
+        margin-left: 5%;
+      }
+
+      .text{
+        text-align: center;
+        color: black;
+        font-size: 33px;
+        font-weight: bold;
+        padding:80px;
+
+      }
+
+     
+    }
+    
+  }
+
+}
