@@ -72,7 +72,7 @@ function Dropdown (
 
             <input
                 type="checkbox"
-                class="custom-control-input"
+                className="custom-control-input"
                 id={item.id}
                 value={item.value}
                 onClick={(e) => handleOnClick(e, item, item.id)}
@@ -80,7 +80,7 @@ function Dropdown (
                 checked={diet && diet === item.value}
               />
 
-              <label class="custom-control-label" htmlFor={item.id}>{item.value}</label>
+              <label className="custom-control-label" htmlFor={item.id}>{item.value}</label>
             </li>
           ))}
         </ul>
