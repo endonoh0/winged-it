@@ -86,10 +86,9 @@ $navbar-color: black;
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   body {
-    background-color: red;
+    // background-color: red;
   }
   .home_div .gallery__img {
-    // margin-left: -25%;
     object-fit: cover;
   }
   .home_div .horizontal_line {
@@ -110,20 +109,20 @@ $navbar-color: black;
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   body {
-    background-color: blue;
+    // background-color: blue;
   }
 }
 
 // // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   body {
-    background-color: green;
+    // background-color: green;
   }
 }
 
 // // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   body {
-    background-color: purple;
+    // background-color: purple;
   }
 }
