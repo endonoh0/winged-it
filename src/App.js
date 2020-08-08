@@ -145,7 +145,7 @@ function App() {
 
       <Router>
 
-        {/*projectAuth.currentUser && <NavBar />*/}
+  { <NavBar /> }
 
 
         <Switch>

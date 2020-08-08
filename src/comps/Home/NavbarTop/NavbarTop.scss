@@ -98,6 +98,7 @@ $navbar-color: black;
   .navbar {
     padding: 25px 40px;
     height: 8%;
+    z-index: -1;
   }
   .navbar-nav {
     padding: 0 2%;

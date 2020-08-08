@@ -8,7 +8,7 @@ const Directions = ({data}) => {
   let steps;
   let duration;
   let distance;
-
+  console.log('log', data);
   useEffect(() => {
 
   }, [data]);

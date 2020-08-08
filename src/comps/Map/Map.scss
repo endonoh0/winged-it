@@ -12,3 +12,40 @@
 .partial {
   left: 20vw;
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  body {
+    background-color: red;
+  }
+  .sidebar {
+    visibility: hidden;
+  }
+  .mapboxgl-ctrl-bottom-right {
+    transform: scale(1.5);
+}
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  body {
+    // background-color: blue;
+  }
+  .sidebar {
+    visibility: unset;
+  }
+}
+
+// // Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  body {
+    // background-color: green;
+  }
+}
+
+// // Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  body {
+    // background-color: purple;
+  }
+}
