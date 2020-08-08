@@ -2,9 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 80%;
+	width: 70%;
 	margin: 0 auto;
-
+	margin-top: 5%;
 }
 
 .ingredients_container{
@@ -54,7 +54,7 @@
 
 .card{
 	opacity: .8;
-	margin: 20px;
+	// margin: 20px;
 	transition: .5s;
 }
 
