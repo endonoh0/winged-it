@@ -1,0 +1,129 @@
+$primary-color: rgb(238, 238, 238);
+$navbar-color: black;
+
+.home_div {
+  .img_container{
+    display: flex;
+    height: 100%;
+  }
+  .gallery__img{
+    width: 100vw;
+    height: 700px;
+    padding: 0px;
+  }
+  .top_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50vw;
+    margin: 20px;
+    padding: 15px;
+    padding-bottom: 10px;
+    padding-top: 30px;
+    position: absolute;
+    background-color: black;
+    color: blanchedalmond;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #search_recipe{
+    color: white;
+  }
+  .home_top_bar_left{
+    display: flex;
+    justify-content: space-between;
+    width: 22vw;
+  }
+  .centered {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .horizontal_line{
+    border-bottom: 2px solid
+    white;
+    border-top: 2px solid
+    white;
+    display: block;
+    width: 200px;
+  }
+  .title_home_page{
+    display: flex;
+  }
+  .title_text_home_page{
+    color: white;
+    font-size: 45px;
+  }
+  .text_description{
+    padding-top: 30px;
+    color: white;
+    display: flex;
+    justify-content: center;
+  }
+  .home_buttons{
+    display: flex;
+  }
+  .home_button{
+    background: transparent;
+    color: white;
+    border: solid white;
+    width: 220px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+  }
+  .home_button_left{
+    margin-right: 30px;
+  }
+  .home_button:hover{
+    background: white;
+    color: black;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  body {
+    background-color: red;
+  }
+  .home_div .gallery__img {
+    // margin-left: -25%;
+    object-fit: cover;
+  }
+  .home_div .horizontal_line {
+    width: 129px;
+  }
+  .centered {
+    top: 28%;
+  }
+  .text_description {
+    padding-bottom: 125px;
+    font-size: 28px;
+  }
+}
+.figure {
+  z-index: -1;
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  body {
+    background-color: blue;
+  }
+}
+
+// // Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  body {
+    background-color: green;
+  }
+}
+
+// // Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  body {
+    background-color: purple;
+  }
+}

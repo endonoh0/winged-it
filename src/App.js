@@ -31,6 +31,11 @@ import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
 
+import Home from './comps/Home/Home';
+
+
+
+
 // FireBase Functions
 import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
 import { useCurrentUser } from './hooks/userAuth';
@@ -60,6 +65,9 @@ function App() {
   const [loadingStatus, setLoadingStatus] = useState(false);
 
   const { write } = useWriteToFirestore();
+
+
+  console.log("before setting", loadingStatus)
 
   const onSubmit = async (e) => {
     const result = await axios.get('./recipe.json')
@@ -130,11 +138,11 @@ function App() {
   return (
     <div className="App">
 
-      {!user.loggedIn && <Header />}
+      {/* {!user.loggedIn && <Header />} */}
 
       <Router>
 
-        {projectAuth.currentUser && <NavBar />}
+        {/*projectAuth.currentUser && <NavBar />*/}
 
 
         <Switch>
@@ -162,6 +170,9 @@ function App() {
           <Route path="/map">
             <Map setDirections={setDirections} directions={directions}/>
             {directions && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} directions={directions} /> }
+          </Route>
+          <Route path="/home">
+            <Home />
           </Route>
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>
