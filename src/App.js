@@ -9,6 +9,7 @@ import axios from 'axios'
 
 // SCSS Style files
 import './index.scss';
+import './comps/Home/NavbarTop/NavbarTop.scss';
 // import './comps/Auth/Auth.scss';
 
 // REACT COMPONENTS
@@ -31,6 +32,7 @@ import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
 
+import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
 
 
@@ -137,7 +139,7 @@ function App() {
 
   return (
     <div className="App">
-
+      <NavbarTop />
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
