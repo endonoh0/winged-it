@@ -11,14 +11,11 @@ const Search = () => {
       <div className="title_bar">
           <figure >
             <img className="img" src="./rosemary.png"/>
-            
           </figure>
-          <div className="block">
-            <img className="img" src="./flower_resize.png"/>
-            <div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
-            <SearchBar className="bar"/>
-          </div>
-          
+            <div className="block">
+              <div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
+              <SearchBar className="bar"/>
+            </div>
       </div> 
     </div>
   );
