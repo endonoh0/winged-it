@@ -5,7 +5,8 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-import axios from 'axios'
+import { useCookies } from 'react-cookie';
+// import axios from 'axios'
 
 // SCSS Style files
 import './index.scss';
@@ -64,6 +65,8 @@ function App() {
   const [diet, setDiet] = useState(null);
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  console.log(cookies.user);
 
   const [loadingStatus, setLoadingStatus] = useState(false);
 
@@ -108,17 +111,18 @@ function App() {
 
   // listen to acition events from auth comps
   const requestLogin = useCallback((event, email, password) => {
-    login(event, email, password);
+    login(event, email, password, setCookie);
   });
 
   const requestRegister = useCallback((event, email, password) => {
-    register(event, email, password);
+    register(event, email, password, setCookie);
   });
 
   const requestLogout = useCallback(() => {
     setSearchTags([])
     setRecipes([])
     logout();
+    removeCookie('user');
   }, []);
 
   const writeTag = (searchTerm) => {
@@ -140,7 +144,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavbarTop user={user} />
+      <NavbarTop user={cookies.user} />
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
@@ -151,7 +155,7 @@ function App() {
         <Switch>
           <Route path="/signin">
             <div className="auth-wrapper">
-              {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={loginWithGoogle} /> : <Redirect to='/' />}
+              {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
             </div>
           </Route>
           <Route path="/signup">
