@@ -162,7 +162,7 @@
   100% {
 		visibility: visible;
 		width:50%;
-		translate:100%;
+		transform: translate(100%);
   }
 }
 
@@ -173,7 +173,7 @@
 	}
   100% {
 		visibility: visible;
-		translate:100%;
+		transform: translate(100%);
   }
 }
 
