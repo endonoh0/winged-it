@@ -145,7 +145,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavbarTop user={cookies.user} />
+      {/*<NavbarTop user={cookies.user} />*/}
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
@@ -154,7 +154,14 @@ function App() {
 
 
         <Switch>
-          <Route path="/search"> <Search/> </Route>
+          <Route path="/search"> 
+          <Search
+            searchTags={searchTags}
+            setSearchTags={setSearchTags}
+            writeTag={writeTag}
+            onSubmit={onSubmit}
+          /> 
+          </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
               {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}

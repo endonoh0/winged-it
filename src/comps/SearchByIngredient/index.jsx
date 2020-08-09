@@ -3,8 +3,23 @@ import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
 // import axios from 'axios'
 
-const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit, children }) => {
+import "./index.scss";
+
+const SearchByIngredient = (props) => {
+
+	const { 
+		searchTags,
+		setSearchTags,
+		writeTag,
+		onSubmit,
+		children,
+		searchButtonVisual = true
+	} = props;
+
   const [searchTerm, setSearchTerm] = useState('');
+
+	let searchButtonClass = searchButtonVisual? "" : "display_non";
+	searchButtonClass += " btn btn-primary waves-effect waves-light";
 
 	const pressEnter = (searchTerm) => {
 		if(searchTerm && !searchTags.includes(searchTerm)){
@@ -27,16 +42,18 @@ const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit, chi
 	// 	// })
 	// }
 
+
 	return(
-		<div className="search-container">
+		<div>
 			<SearchBar
+				
 				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
 				searchTags={searchTags}
 				setSearchTags={setSearchTags}
 				onKeyUp={pressEnter}/>
 
-				<button className="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
+				<button className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
 				{children}
 		</div>
 

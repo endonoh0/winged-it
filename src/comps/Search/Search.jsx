@@ -10,6 +10,7 @@ import Loading from '../Favorite/Loading'
 
 
 import SearchBar from "../SearchByIngredient/SearchBar";
+import SearchByIngredient from "../SearchByIngredient/index";
 import "./Search.scss";
 
 
@@ -22,14 +23,14 @@ const LOADING = 'LOADING';
 
 
 
-const Search = () => {
+const Search = (props) => {
 
 
 	const [suggestions, setSuggestions] = useState([])
-
   const { mode, transition } = useVisualMode(LOADING);
 
-	const month = new Date().getMonth().toString()
+	//this is to make sure when add button pressed in the search page it re-redirect to home pahe
+	const addRedirect = true;
 
 	useEffect(() => {
 		const getSuggestions = () => {
@@ -58,8 +59,16 @@ const Search = () => {
             <img className="img" src="./rosemary.png"/>
           </figure>
           <div className="block">
-            <div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
-            <SearchBar className="bar"/>
+						<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
+						
+							<SearchByIngredient
+							searchButtonVisual={false}
+							searchTags={props.searchTags}
+							setSearchTags={props.setSearchTags}
+							writeTag={props.writeTag}
+							onSubmit={props.onSubmit}
+						
+						/>
           </div>
         </div> 
       </div>
