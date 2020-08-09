@@ -33,9 +33,6 @@ $navbar-color: black;
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-  body {
-    // background-color: red;
-  }
   #home {
     margin-top: 6%;
   }
@@ -72,13 +69,13 @@ $navbar-color: black;
     line-height: 3.2em;
     border-bottom: 1px solid black;
   }
+  .sidebar-menu {
+    // visibility: hidden;
+  }
 }
 
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  body {
-    // background-color: blue;
-  }
   .btn-block {
     width: 20%;
   }
@@ -86,9 +83,6 @@ $navbar-color: black;
 
 // // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  body {
-    // background-color: green;
-  }
   #home {
     margin-top: 0;
   }
@@ -98,14 +92,13 @@ $navbar-color: black;
   .navbar {
     padding: 25px 40px;
     height: 8%;
-    z-index: -1;
+    // z-index: -1;
   }
   .navbar-nav {
     padding: 0 2%;
     margin-right: 0 !important;
   }
   .navbar-expand-lg .navbar-nav .nav-link {
-    // padding-right: 1.5rem;
     padding-left: 1.5rem;
   }
   .navbar-nav .nav-link {
@@ -117,12 +110,5 @@ $navbar-color: black;
   }
   .btn-block {
     max-width: 101px;
-  }
-}
-
-// // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  body {
-    // background-color: purple;
   }
 }
