@@ -23,21 +23,18 @@ const NavbarTop = ({ user }) => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
 
-            <NavDropdown title="Search" className="links" id="collasible-nav-dropdown">
-              <Link className="dropdown-item" to="/seasonal-ingredients">Ingredients</Link>
-              <Link className="dropdown-item" id="search" to="/search">Recipes</Link>
-            </NavDropdown>
-
             <Link className="links line-height" to="/home">Home</Link>
             <NavDropdown.Divider />
+
+            <NavDropdown title="Search" className="links" id="collasible-nav-dropdown">
+              <Link className="dropdown-item" id="search" to="/search">Recipes</Link>
+              <Link className="dropdown-item" to="/seasonal-ingredients">Ingredients</Link>
+              <Link className="dropdown-item" id="map" to="/map">Market</Link>
+            </NavDropdown>
 
             {user && <Link className="links line-height" to="/favorites">Favorites</Link>}
             <NavDropdown.Divider />
 
-
-
-
-            {/* <Link className="links line-height" id="map" to="/map">Map</Link>  */}
 
             {!user && <Link className="links line-height" id="sign-in" to="/signin">Sign in</Link> }
             { !user && !(
