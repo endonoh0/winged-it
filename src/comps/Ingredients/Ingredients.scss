@@ -7,6 +7,16 @@
 	margin-top: 5%;
 	overflow: hidden;
 
+	.fader{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background-color: white;
+		animation: fadeOut 1s 3s forwards;
+		z-index: 10;
+	}
 }
 
 .seasonal_banner{
@@ -46,7 +56,7 @@
 .grids_container{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	// justify-content: space-between;
 	position: relative;
 	overflow: hidden;
 
@@ -59,14 +69,13 @@
 		width: 100%;
 		height: 100%;
 		background-color: white;
-		animation: swipe 0.6s 0.6s;
-		animation-fill-mode: both;
+		animation: swipe 0.6s 0.6s both;
 	}
 
 	&-active{
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		// justify-content: space-between;
 		position: relative;
 		// overflow-x: hidden;
 	}
@@ -86,15 +95,21 @@
 }
 
 .grid__card{
-	opacity: .8;
+	opacity: 0;
 	transition: .1s;
 	border: white solid .1px;
+	margin: 24px;
 
 	&:hover{
 		border: grey solid .1px;
 	}
 }
 
+
+.ingredient{
+	// opacity: 0;
+	// animation: fadeIn 1s 2s forwards;
+}
 
 .banner_description{
 	display: flex;
@@ -149,14 +164,11 @@
   }
 }
 
-@keyframes secondaryImageOverlayIn {
-  0% {
-    width: 0;
+@keyframes fadeOut {
+	100% {
+	  opacity: 0;
+	}
   }
-  100% {
-    width: 100%;
-  }
-}
 
 @keyframes slideOut {
   0% {

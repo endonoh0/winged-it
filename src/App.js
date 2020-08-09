@@ -32,7 +32,7 @@ import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
 import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
-import Ingredients from './comps/Ingredients'
+import Ingredients from './comps/Ingredients/Ingredients'
 import Search from "./comps/Search/Search";
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
