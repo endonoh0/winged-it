@@ -10,8 +10,8 @@ const Dropdown = (props) => {
     title,
     items = [],
     multiSelect = false,
-    setSelection,
-    selection = [],
+    setHealth,
+    health = [],
     diet,
     setDiet
   } = props;
@@ -23,6 +23,7 @@ const Dropdown = (props) => {
 
   //temporary state to get values from checkboxes
   const [filterSelection, setFilterSelection] = useState([]);
+  //use this to clear checkbox
   const [checkboxClear, setCheckboxClear] = useState(true);
 
 
@@ -31,7 +32,7 @@ const Dropdown = (props) => {
 
     setCheckboxClear(true);
 
-    if (!selection.some(current => current.id === item.id)) {
+    if (!health.some(current => current.id === item.id)) {
       if (!multiSelect) {
         
         setFilterSelection([e.target.value]);
@@ -44,7 +45,7 @@ const Dropdown = (props) => {
     } else {
 
       //this section handle the unchecking
-      let selectionAfterRemoval = selection;
+      let selectionAfterRemoval = health;
 
       selectionAfterRemoval = selectionAfterRemoval.filter(
         current => current.id !== item.id
@@ -54,8 +55,9 @@ const Dropdown = (props) => {
     }
   }
 
+
   function isItemInSelection(item) {
-    if (selection.find(current => current.id === item.id)) {
+    if (health.find(current => current.id === item.id)) {
       return true;
     }
     return false;
@@ -64,13 +66,10 @@ const Dropdown = (props) => {
   
   const applyButton = (e) => {
     if(multiSelect) {
-      
-      console.log(filterSelection)
-      setSelection(filterSelection);
+      setHealth(filterSelection);
     } else {
       setDiet(filterSelection[0]);
     }
-    
     
     setOpen(false);
   }
@@ -82,11 +81,10 @@ const Dropdown = (props) => {
     
     if(multiSelect) {
       
-      setSelection([]);
+      setHealth([]);
     } else {
       setDiet("");
     }
-
   }
 
   console.log(diet);
@@ -113,8 +111,6 @@ const Dropdown = (props) => {
         <ul className="dd-list">
           {items.map(item => (
             <li className="dd-list-item" key={item.id}>
-       
-
             <input
                 type="checkbox"
                 className="custom-control-input"

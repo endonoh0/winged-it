@@ -9,8 +9,8 @@ import "./RecipeFilter.scss";
 const RecipeFilter = (props) => {
 
   const {
-    selection,
-    setSelection,
+    health,
+    setHealth,
     diet,
     setDiet
   } = props;
@@ -19,7 +19,7 @@ const RecipeFilter = (props) => {
 
   return (
     <div className="filter_container">
-      <Dropdown title="Health filter" items={healthItems} setSelection={setSelection} selection={selection} multiSelect />
+      <Dropdown title="Health filter" items={healthItems} setHealth={setHealth} health={health} multiSelect />
       <Dropdown title="Diet filter" items={dietItems} diet={diet} setDiet={setDiet} />
     </div>
   );

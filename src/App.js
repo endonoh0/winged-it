@@ -64,7 +64,7 @@ function App() {
 
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
-  const [selection, setSelection] = useState([]);
+  const [health, setHealth] = useState([]);
   const [diet, setDiet] = useState(null);
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
@@ -85,7 +85,7 @@ function App() {
 
     // Real API Call
     setLoadingStatus(true);
-    recipeFinder(searchTags, selection, diet)
+    recipeFinder(searchTags, health, diet)
       .then(data => {
         setRecipes(data)
       })
@@ -216,8 +216,8 @@ function App() {
               setSearchTags={setSearchTags}
               writeTag={writeTag}
 
-              setSelection={setSelection}
-              selection={selection}
+              setHealth={setHealth}
+              health={health}
               diet={diet}
               setDiet={setDiet} />}
             <SearchByIngredient
