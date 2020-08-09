@@ -60,6 +60,8 @@ const UserProvider = UserContext.Provider;
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [searchTags, setSearchTags] = useState([]);
+  const [searchTagsFetchStatus, setSearchTagsFetchStatus] = useState(false)
+
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
   const [selection, setSelection] = useState([]);
@@ -104,6 +106,9 @@ function App() {
             setSearchTags([...doc.data().searchTags]);
           }
         })
+        .then(() => {
+          setSearchTagsFetchStatus(true)
+        }) 
     }
   }, [user])
 
@@ -208,6 +213,7 @@ function App() {
               setSearchTags={setSearchTags}
               writeTag={writeTag}
               onSubmit={onSubmit}
+              searchTagsFetchStatus={searchTagsFetchStatus}
             >
               {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
             </SearchByIngredient>

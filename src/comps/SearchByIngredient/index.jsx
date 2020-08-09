@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
 // import axios from 'axios'
@@ -13,11 +13,20 @@ const SearchByIngredient = (props) => {
 		writeTag,
 		onSubmit,
 		children,
-		searchButtonVisual = true
+		searchButtonVisual = true,
+		searchTagsFetchStatus
 	} = props;
 
-  const [searchTerm, setSearchTerm] = useState('');
+	const [searchTerm, setSearchTerm] = useState('');
 
+	useEffect(() => {
+		if(searchTagsFetchStatus){
+			document.getElementById("search_recipe_btn").click();
+		}
+
+	}, [searchTagsFetchStatus])
+
+	// this class hide the search button on the search page
 	let searchButtonClass = searchButtonVisual? "" : "display_non";
 	searchButtonClass += " btn btn-primary waves-effect waves-light";
 
@@ -53,7 +62,7 @@ const SearchByIngredient = (props) => {
 				setSearchTags={setSearchTags}
 				onKeyUp={pressEnter}/>
 
-				<button className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
+				<button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
 				{children}
 		</div>
 

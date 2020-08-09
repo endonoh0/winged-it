@@ -6,20 +6,6 @@ import { Redirect, Link } from "react-router-dom";
 
 const SearchBar = (props) => {
 
-
-  const onKeyUpFunc = () => {
-    
-  }
-
- 
-  // onKeyUp={e => {
-  //   if(e.key === 'Enter'){
-    
-  //     onKeyUp(searchTerm)
-     
-  //   }
-  // }}
-
   const {searchTerm, setSearchTerm, onKeyUp} = props;
 	return(
     
@@ -32,12 +18,13 @@ const SearchBar = (props) => {
     value={searchTerm}
     onChange={e => setSearchTerm(e.target.value)}
     onKeyUp={e => {
-      
+
       
       if(e.key === 'Enter'){
       
         // onKeyUps(searchTerm)
         document.getElementById("add_btn").click();
+        
        
       }
     }}/>
