@@ -37,6 +37,7 @@ import Search from "./comps/Search/Search";
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
+import ScrollToTop from './comps/ScrollToTop/ScrollToTop';
 
 
 
@@ -108,7 +109,7 @@ function App() {
         })
         .then(() => {
           setSearchTagsFetchStatus(true)
-        }) 
+        })
     }
   }, [user])
 
@@ -150,6 +151,7 @@ function App() {
 
   return (
     <div className="App">
+      <ScrollToTop />
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
@@ -159,13 +161,13 @@ function App() {
 
 
         <Switch>
-          <Route path="/search"> 
+          <Route path="/search">
           <Search
             searchTags={searchTags}
             setSearchTags={setSearchTags}
             writeTag={writeTag}
             onSubmit={onSubmit}
-          /> 
+          />
           </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
