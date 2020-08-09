@@ -77,3 +77,14 @@
   line-height: 1;
   padding-bottom: 20px;
 }
+
+.tooltip-top > .tooltip-inner {
+  margin-left: 10px ;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #062e56;
+}
+
+.tooltip-top > .tooltip-arrow {
+  border-top: 5px solid #062e56;
+}
