@@ -4,7 +4,6 @@ import './FavoriteAlert.scss';
 
 import Alert from 'react-bootstrap/Alert';
 
-
 const FavoriteAlert = ({ setFavoriteAlert }) => {
 
   setTimeout(() => {
