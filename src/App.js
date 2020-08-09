@@ -150,7 +150,7 @@ function App() {
 
   return (
     <div className="App">
-      {/*<NavbarTop user={cookies.user} />*/}
+      <NavbarTop user={cookies.user} />
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
