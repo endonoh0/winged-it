@@ -5,7 +5,8 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-import axios from 'axios'
+import { useCookies } from 'react-cookie';
+// import axios from 'axios'
 
 // SCSS Style files
 import './index.scss';
@@ -32,6 +33,7 @@ import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
 import Ingredients from './comps/Ingredients'
+import Search from "./comps/Search/Search";
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
@@ -64,6 +66,8 @@ function App() {
   const [diet, setDiet] = useState(null);
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  console.log(cookies.user);
 
   const [loadingStatus, setLoadingStatus] = useState(false);
 
@@ -108,17 +112,18 @@ function App() {
 
   // listen to acition events from auth comps
   const requestLogin = useCallback((event, email, password) => {
-    login(event, email, password);
+    login(event, email, password, setCookie);
   });
 
   const requestRegister = useCallback((event, email, password) => {
-    register(event, email, password);
+    register(event, email, password, setCookie);
   });
 
   const requestLogout = useCallback(() => {
     setSearchTags([])
     setRecipes([])
     logout();
+    removeCookie('user');
   }, []);
 
   const writeTag = (searchTerm) => {
@@ -149,9 +154,10 @@ function App() {
 
 
         <Switch>
+          <Route path="/search"> <Search/> </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
-              {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={loginWithGoogle} /> : <Redirect to='/' />}
+              {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
             </div>
           </Route>
           <Route path="/signup">

@@ -95,7 +95,7 @@ $navbar-color: black;
     width: 129px;
   }
   .centered {
-    top: 28%;
+    top: 350px;
   }
   .text_description {
     padding-bottom: 125px;
@@ -122,6 +122,9 @@ $navbar-color: black;
 
 // // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+  .centered {
+    top: 400px;
+  }
   body {
     // background-color: purple;
   }

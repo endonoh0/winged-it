@@ -4,14 +4,16 @@ const logout = () => {
   projectAuth.signOut();
 }
 
-const login = (event, email, pass) => {
+const login = (event, email, pass, setCookie) => {
   event.preventDefault();
 
   projectAuth.signInWithEmailAndPassword(email, pass)
-    .catch (function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-
+  .then(() =>{
+    setCookie("user", email)
+  })
+  .catch (function(error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
     if (errorCode === 'auth/wrong-password') {
       alert('Wrong password.');
     } else {
@@ -20,21 +22,24 @@ const login = (event, email, pass) => {
   });
 }
 
-const register = (event, email, password) => {
+const register = (event, email, password, setCookie) => {
   event.preventDefault();
-  projectAuth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+  projectAuth.createUserWithEmailAndPassword(email, password)
+  .then(() =>{
+    setCookie("user", email)
+  })
+  .catch(function (error) {
     // Handle Errors here.
     let errorMessage = error.message;
     console.log(errorMessage);
   });
 }
 
-const loginWithGoogle = () => {
+const loginWithGoogle = (setCookie) => {
   projectAuth.signInWithPopup(provider).then(result => {
-    const token = result.credential.accessToke;
-
+    const token = result.credential.accessToken;
     const user = result.user
-    console.log(result.user);
+    setCookie("user", token);
   }).catch(error => console.log(error))
 }
 
