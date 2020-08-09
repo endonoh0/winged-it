@@ -153,7 +153,7 @@ function App() {
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
-        <NavbarTop user={user} />
+  {/*<NavbarTop user={user} />*/}
 
   {/* { <NavBar /> } */}
 

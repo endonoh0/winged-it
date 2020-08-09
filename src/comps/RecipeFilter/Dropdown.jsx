@@ -4,8 +4,9 @@ import "./RecipeFilter.scss";
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io';
 
 
-function Dropdown (
-  {
+const Dropdown = (props) => {
+  
+  const {
     title,
     items = [],
     multiSelect = false,
@@ -13,7 +14,7 @@ function Dropdown (
     selection = [],
     diet,
     setDiet
-  }) {
+  } = props;
 
   // toggle dropdown
   const [open, setOpen] = useState(false);

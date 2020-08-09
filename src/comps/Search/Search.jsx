@@ -15,7 +15,6 @@ const Search = (props) => {
 
 
 
-  
 
 	//this is to make sure when add button pressed in the search page it re-redirect to home page
 	const addRedirect = true;
@@ -24,6 +23,7 @@ const Search = (props) => {
 	const [suggestions, setSuggestions] = useState([])
 	const [hideBlock, setHideBlock] = useState(false);
 
+	
 	const revealBlock = className("reveal__block", {
 		"hide" : hideBlock
 	})
