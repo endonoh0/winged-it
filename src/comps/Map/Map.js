@@ -1,10 +1,14 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames';
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './Map.scss';
+
+import SideBar from '../SideBar/SideBar';
+import NavBar from '../NavBar/NavBar';
 import useMap from '../../hooks/useMap';
 
-const Map = ({ setDirections, directions }) => {
+const Map = ({ setDirections, user, directions }) => {
   const mapContainerRef = useRef(null);
 
   useMap(mapContainerRef, setDirections);
@@ -14,7 +18,13 @@ const Map = ({ setDirections, directions }) => {
     'partial': directions
   });
 
-	return <div className={mapClass} ref={mapContainerRef} />
+	return (
+    <>
+    <NavBar />
+    <div className={mapClass} ref={mapContainerRef} />
+    { directions && <SideBar user={user} directions={directions} /> }
+    </>
+  )
 }
 
 export default Map;

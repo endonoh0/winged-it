@@ -12,8 +12,8 @@ import { GiWheat } from 'react-icons/gi'
 const NavBar = ({setRecipes, setSelectedImg}) => {
 	return(
     <>
-      <section className="sidebar iWlhAO">
-        <nav className="sidebar__menu">
+      <div className="sidebar iWlhAO">
+        <div className="sidebar__menu">
           <div className="sidebar__items">
             <Link to='/' className='link'>
               <FaHome size={32} />
@@ -32,8 +32,8 @@ const NavBar = ({setRecipes, setSelectedImg}) => {
             </Link>
 
           </div>
-        </nav>
-      </section>
+        </div>
+      </div>
     </>
 	);
 }

@@ -7,8 +7,60 @@
   right: 0;
 }
 .full {
-  left: 4vw;
+  // left: 4vw;
 }
 .partial {
-  left: 20vw;
+  // left: 20vw;
+}
+
+
+@media (min-width: 576px) {
+  .sidebar {
+    visibility: hidden;
+  }
+
+  .mapboxgl-ctrl {
+    z-index: 1;
+    transform: scale(1.5);
+  }
+  .mapboxgl-ctrl-bottom-left {
+    left: 3%;
+  }
+}
+
+@media (max-width: 614px) {
+   .mapboxgl-ctrl-bottom-left {
+    left: 1%;
+  }
+}
+
+@media (max-width: 760px) {
+  .mapboxgl-ctrl-top-left {
+    top: 16%;
+    left: 1%;
+  }
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .sidebar {
+    visibility: unset;
+    z-index: 2;
+  }
+  .navbar {
+    // visibility: hidden;
+  }
+  .mapboxgl-ctrl-top-left {
+    top: 14%;
+    left: 0.23% !important;
+    position: fixed !important;
+  }
+  .mapboxgl-ctrl-bottom-left {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 794px)  {
+  .mapboxgl-ctrl-top-left {
+  }
 }
