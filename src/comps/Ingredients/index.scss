@@ -6,7 +6,7 @@
 	margin: 0 auto;
 	margin-top: 5%;
 	overflow: hidden;
-	
+
 }
 
 .seasonal_banner{
@@ -70,7 +70,7 @@
 		position: relative;
 		// overflow-x: hidden;
 	}
-	
+
 
 }
 
@@ -156,13 +156,15 @@
 
 @keyframes slideOut {
   0% {
-		visibility: visible;
+    visibility: visible;
+    right: 0%;
     // transform: translateX(0);
 	}
   100% {
 		visibility: visible;
 		width:50%;
-		translate:100%;
+    translate:100%;
+    right: 0%;
   }
 }
 
