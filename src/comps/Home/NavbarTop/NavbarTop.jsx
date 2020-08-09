@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Button, Navbar, Nav } from 'react-bootstrap';
-import className from 'classnames'
+import className from 'classnames';
 
 import "./NavbarTop.scss";
 

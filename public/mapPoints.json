@@ -9,8 +9,8 @@
 			},
 			"properties": {
 				"title": "Riley Park",
-				"description" : 
-				"<strong>Riley Park</strong><br></br>This is a farmers market",
+        "description" :
+        "<strong><p class='text-center'>Riley Park Farmer's Market</p></strong><p>Shop fresh with your local farmer each Saturday for the finest quality seasonal fruits & vegetables, ethically-raised meat, eggs & dairy, sustainable seafood, craft beer, wine & spirits, artisanal prepared food and handmade craft.</p> <ul class='pl-20'><li>50 E. 30th Avenue at Ontario Street</li> <li>May 2, 2020 – October 24, 2020</li> <li>SAT 10: 00 am – 2: 00 pm</li> <li><a href='https://www.localline.ca/riley-park-summer-market'>Order Online</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		},
@@ -21,9 +21,9 @@
 				"coordinates": [-123.064286, 49.2586011]
 			},
 			"properties": {
-				"title": "Trout Lake Farmer's",
-				"description" :  
-				"<strong>Trout Lake Farmer's</strong><br></br>This is a farmers market",
+				"title": "Trout Lake Farmer's Market",
+				"description" :
+				"<strong> <p class='text-center'>Trout Lake Farmer's Market</p> </strong> <p>This is Vancouver’s longest running farmers’ market! Shop fresh weekly for seasonal fruits & vegetables, ethically-raised meat, eggs, & dairy, fresh fish, craft beer, wine & spirits, artisanal prepared food and handmade craft.</p> <ul class='pl-20'> <li>13th Avenue and Lakewood Drive</li> <li>May 2, 2020 – October 24, 2020</li> <li>SAT 10: 00 am – 2: 00 pm</li> <li><a href='https: //www.localline.ca/trout-lake-farmers-market'>Order Online</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		},
@@ -35,8 +35,8 @@
 			},
 			"properties": {
 				"title": "West End Farmers Market",
-				"description" :  
-				"<strong>West End Farmers Market</strong><br></br>This is a farmers market",
+				"description" :
+				"<strong> <p class='text-center'>West End Farmers Market</p> </strong> <p> Shop fresh and local this summer in the West End! Each Saturday, expect to find the finest quality fresh fruits and vegetables, meat and poultry, baked goods, artisan food and craft, fresh fish, and local craft beer, wine and spirits.</p> <ul class='pl-20'> <li>1100 Comox St. Vancouver, BC</li> <li>May 23, 2020 – October 24, 2020</li> <li>SAT 9: 00 am – 2: 00 pm</li> <li><a href='https: //www.localline.ca/west-end-farmers-market'>Order Online</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		},
@@ -48,8 +48,8 @@
 			},
 			"properties": {
 				"title": "Kitsilano Community Centre",
-				"description" :  
-				"<strong>Kitsilano Community Centre</strong><br></br>This is a farmers market",
+				"description" :
+				"<strong> <p class='text-center'>Kitsilano Farmer's Market</p> </strong> <p> Shop fresh each Sunday at Kitsilano Farmers Market for the finest quality seasonal fruits & vegetables, ethically-raised meat, eggs & dairy, fresh fish, craft beer, wine & spirits, artisanal prepared food and handmade craft.</p> <ul class='pl-20'> <li>Kitsilano Community Centre 2690 Larch St. Vancouver, BC</li> <li>May 3, 2020 – October 25, 2020</li> <li>SUN 10: 00 am – 2: 00 pm</li> <li><a href='https: //www.localline.ca/kitsilano-farmers-market'>Order Online</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		},
@@ -60,9 +60,9 @@
 				"coordinates": [-123.0966036, 49.2639637]
 			},
 			"properties": {
-				"title": "Mount Pleasant Farmers Market",
-				"description" :  
-				"<strong>Mount Pleasant Farmers Market</strong><br></br>This is a farmers market",
+				"title": "Mount Pleasant Farmer's Market",
+				"description" :
+				"<strong> <p class='text-center'>Mount Pleasant Farmer's Market</p> </strong> <p>All summer long shoppers will find a great selection of local farm product, artisanal food, craft, beer, wine, and spirits, handmade craft and food truck fare at this relaxed Sunday location.</p> <ul class='pl-20'> <li>2390 Brunswick St. Vancouver, BC</li> <li>May 24 2020 – October 25, 2020</li> <li>SUN 10: 00 am – 2: 00 pm</li> <li><a href='https: //www.localline.ca/mount-pleasant-farmers-market'>Order Online</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		},
@@ -73,9 +73,9 @@
 				"coordinates": [-123.0997232, 49.273389]
 			},
 			"properties": {
-				"title": "Main Street Station Farmers Market",
-				"description" :  
-				"<strong>Main Street Station Farmers Market</strong><br></br>This is a farmers market",
+				"title": "Main Street Station Farmer's Market",
+				"description" :
+				"<strong> <p class='text-center'>Main Street Station Farmer's Market</p> </strong> <p>The market features 30+ farms and producers weekly bringing you the best of local, farm-fresh fruits and veggies, meat, seafood, and poultry, artisanal food and craft, and hot food – all from the folks who make it!</p> <ul class='pl-20'> <li>1100 Station St. Vancouver, BC</li> <li>June 3, 2020 – October 7, 2020</li> <li>WED 2: 00 pm – 6: 00 pm</li> <li><a href='https: //www.localline.ca/main-street-station-farmers-market'>Order Online</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		},
@@ -87,8 +87,8 @@
 			},
 			"properties": {
 				"title": "UBC Farm Farmers' Market",
-				"description" :  
-				"<strong>UBC Farm Farmers' Market</strong><br></br>This is a farmers market",
+				"description" :
+				"<strong> <p class='text-center'>UBC Farmer's Market</p> </strong> <p> Discover the UBC Farm through your tastebuds! Get your local, certified organic, farm-fresh seasonal veggies, fruits, herbs, flowers, seeds and free-range eggs straight from the UBC Farm. Throughout the growing season, we offer farm goods through our markets, weekly CSA box, wholesale distribution, and online seed sales.</p> <ul class='pl-20'> <li>Kitsilano Community Centre 2690 Larch St. Vancouver, BC</li> <li>JUN 6 - NOV 28, 2020</li> <li>SAT 10: 00am-2: 00pm</li> <li><a href='https: //ubcfarm.ubc.ca/farm-markets/'>Website</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		},
@@ -99,12 +99,12 @@
 				"coordinates": [-122.971400, 49.242860]
 			},
 			"properties": {
-				"title": "Burnaby Artisan Farmers' Market",
-				"description" :  
-				"<strong>Burnaby Artisan Farmers' Market</strong><br></br>This is a farmers market",
+				"title": "Burnaby Artisan Farmer's Market",
+				"description" :
+				"<strong> <p class='text-center'>Burnaby Artisan Farmer's Market</p> </strong> <p> We have great farmers, both conventional and Organic with a great selection of prepared food vendors and local crafters. There is a sitting area with and a live musical entertainer at every market.</p> <ul class='pl-20'> <li>4949 Canada Way, Burnaby</li> <li>May - October 2020</li> <li>SAT 10: 00am-2: 00pm</li> <li><a href='https: //www.artisanmarkets.ca/our-markets/burnaby-artisan-farmers-market/'>Website</a></li> </ul>",
 				"icon" : "grocery"
 			}
-		},	
+		},
 		{
 			"type": "Feature",
 			"geometry": {
@@ -112,9 +112,9 @@
 				"coordinates": [-122.909870, 49.209070]
 			},
 			"properties": {
-				"title": "New West Farmers Market",
-				"description" :  
-				"<strong>New West Farmers Market</strong><br></br>This is a farmers market",
+				"title": "New West Farmer's Market",
+				"description" :
+				"<strong> <p class='text-center'>New West Farmers's Market</p> </strong> <p> As a friendly reminder, in light of COVID-19 our market is much smaller, with limited numbers, mandatory hand sanitizing for entry, a carefully managed entrance and exit to our enclosed market, we don’t allow dogs, encourage only one member of each household coming to shop, we would prefer you wore a mask, and that you did not use cash if possible. Shop, don’t stop!</p> <ul class='pl-20'> <li>315 Queens Ave, New Westminster</li> <li>April - October 2020</li> <li>THURS 3: 30pm-7: 00pm</li> <li><a href='https: //newwestfarmers.ca/'>Website</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		},
@@ -126,8 +126,8 @@
 			},
 			"properties": {
 				"title": "Richmond Country Farms",
-				"description" :  
-				"<strong>Richmond Country Farms</strong><br></br>This is a farmers market",
+				"description" :
+				"<strong> <p class='text-center'>Richmond Country Farms</p> </strong> <p>During the growing season, we provide our customers with our own grown corn, strawberries, brussel sprouts, potatoes, broccoli, kale, watermelon, blueberries, pumpkins, and multiple varieties of squash- we can assure our shoppers of the very best local produce at the very best prices.</p> <ul class='pl-20'> <li>12900 Steveston Hwy, Richmond</li> <li>OPEN DAILY</li> <li>MON-FRI 9: 00am-8: 30pm</li> <li><a href='https: //www.countryfarms.ca/'>Website</a></li> </ul>",
 				"icon" : "grocery"
 			}
 		}

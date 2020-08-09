@@ -140,10 +140,10 @@ function App() {
 
   return (
     <div className="App">
-      <NavbarTop user={user}/>
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
+        <NavbarTop user={user} />
 
   {/* { <NavBar /> } */}
 
