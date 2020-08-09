@@ -4,6 +4,7 @@ import './FavoriteAlert.scss';
 
 import Alert from 'react-bootstrap/Alert';
 
+import { FaHeart } from 'react-icons/fa';
 const FavoriteAlert = ({ setFavoriteAlert }) => {
 
   setTimeout(() => {
@@ -15,10 +16,10 @@ const FavoriteAlert = ({ setFavoriteAlert }) => {
       className="myAlert-bottom"
       variant="success"
       onClose={() => setFavoriteAlert(false)}
-      dismissible
     >
-      Recipe Added to
-      <Alert.Link href="/favorites"> Favorites</Alert.Link>
+    <FaHeart /> Recipe Added to
+      <Alert.Link href="/favorites"> Favorites
+      </Alert.Link>
     </Alert>
   )
 }

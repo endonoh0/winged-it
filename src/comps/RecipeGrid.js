@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import FavoriteAdd from './Favorite/FavoriteAdd';
-import "./Favorite/FavoriteAdd.scss"
+import "./Favorite/FavoriteAdd.scss";
 
 const RecipeGrid = ({ recipes, setSelectedImg, user, setFavoriteAlert }) => {
 
