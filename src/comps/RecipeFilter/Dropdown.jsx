@@ -20,14 +20,22 @@ const Dropdown = (props) => {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
 
+  const [filterSelection, setFilterSelection] = useState([]);
+
+
+
   function handleOnClick(e, item) {
 
     if (!selection.some(current => current.id === item.id)) {
       if (!multiSelect) {
-        setDiet(e.target.value)
+        
+        setFilterSelection(e.target.value);
 
+ 
       } else if (multiSelect) {
+     
         setSelection((prev) => [...prev, item]);
+        
       }
     } else {
       let selectionAfterRemoval = selection;
@@ -47,6 +55,23 @@ const Dropdown = (props) => {
   }
 
 
+  ////
+  const applyButton = (e) => {
+    if(multiSelect) {
+      // setFilterSelection(filterSelection);
+    } else {
+      setDiet(filterSelection[0]);
+    }
+    
+    
+    setOpen(false);
+  }
+
+  const clearButton = (e) => {
+
+  }
+
+  console.log(diet);
   return (
     <div className="dd-wrapper">
 
@@ -70,6 +95,7 @@ const Dropdown = (props) => {
         <ul className="dd-list">
           {items.map(item => (
             <li className="dd-list-item" key={item.id}>
+          {console.log(diet)}
 
             <input
                 type="checkbox"
@@ -78,12 +104,15 @@ const Dropdown = (props) => {
                 value={item.value}
                 onClick={(e) => handleOnClick(e, item, item.id)}
                 defaultChecked={item.id === 25 || isItemInSelection(item)}
-                checked={diet && diet === item.value}
+                // checked={diet && diet === item.value} 
+                // checked={ filterSelection && filterSelection === item.value }
               />
 
               <label className="custom-control-label" htmlFor={item.id}>{item.value}</label>
             </li>
           ))}
+          <button onClick={e => applyButton(e)}>Apply</button>
+          <button>Clear</button>
         </ul>
       )}
     </div>

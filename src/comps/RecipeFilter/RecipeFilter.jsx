@@ -6,7 +6,15 @@ import { healthItems, dietItems } from "../../db/foodfilter";
 
 import "./RecipeFilter.scss";
 
-const RecipeFilter = ({selection, setSelection, diet, setDiet}) => {
+const RecipeFilter = (props) => {
+
+  const {
+    selection,
+    setSelection,
+    diet,
+    setDiet
+  } = props;
+
 
   return (
     <div className="filter_container">

@@ -69,14 +69,14 @@ function App() {
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
-  console.log(cookies.user);
+
 
   const [loadingStatus, setLoadingStatus] = useState(false);
 
   const { write } = useWriteToFirestore();
 
 
-  console.log("before setting", loadingStatus)
+ 
 
   const onSubmit = async (e) => {
     // const result = await axios.get('./recipe.json')
@@ -92,10 +92,29 @@ function App() {
       .then(() => {
         setLoadingStatus(false);
       })
+  };
+
+
+  //Write tags
+  const writeTag = (searchTerm) => {
+    // Makes sure the search term is unique
+    if (!searchTags.includes(searchTerm) && user.loggedIn) {
+      const info = { searchTags: [...searchTags, searchTerm], createdBy: user.email, editedAt: timeStamp() }
+      write('searchTags', info)
+    }
   }
 
+  //Remove tags
+  const removeTag = (searchTerm) => {
+    const newTags = searchTags.filter(tags => tags !== searchTerm)
+    const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
+    setSearchTags([...newTags])
+    if (user.loggedIn) {
+      write('searchTags', info)
+    }
+  }
 
-
+//Read tags
   useEffect(() => {
     if (user.loggedIn) {
       projectFirestore.collection('searchTags')
@@ -110,7 +129,7 @@ function App() {
           setSearchTagsFetchStatus(true)
         }) 
     }
-  }, [user])
+  }, [user]);
 
   // listen to auth state change
   useCurrentUser(setUser);
@@ -131,22 +150,8 @@ function App() {
     removeCookie('user');
   }, []);
 
-  const writeTag = (searchTerm) => {
-    // Makes sure the search term is unique
-    if (!searchTags.includes(searchTerm) && user.loggedIn) {
-      const info = { searchTags: [...searchTags, searchTerm], createdBy: user.email, editedAt: timeStamp() }
-      write('searchTags', info)
-    }
-  }
 
-  const removeTag = (searchTerm) => {
-    const newTags = searchTags.filter(tags => tags !== searchTerm)
-    const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
-    setSearchTags([...newTags])
-    if (user.loggedIn) {
-      write('searchTags', info)
-    }
-  }
+
 
   return (
     <div className="App">
@@ -205,7 +210,16 @@ function App() {
           </Route>
           <Route path="/">
             {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
-            {user.loggedIn && <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />}
+            {user.loggedIn && <RecipeFilter
+
+              searchTags={searchTags}
+              setSearchTags={setSearchTags}
+              writeTag={writeTag}
+
+              setSelection={setSelection}
+              selection={selection}
+              diet={diet}
+              setDiet={setDiet} />}
             <SearchByIngredient
               // setRecipes={setRecipes}
               searchTags={searchTags}
