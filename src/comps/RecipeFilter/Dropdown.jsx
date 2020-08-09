@@ -16,34 +16,41 @@ const Dropdown = (props) => {
     setDiet
   } = props;
 
+
   // toggle dropdown
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
 
+  //temporary state to get values from checkboxes
   const [filterSelection, setFilterSelection] = useState([]);
+  const [checkboxClear, setCheckboxClear] = useState(true);
 
 
 
   function handleOnClick(e, item) {
 
+    setCheckboxClear(true);
+
     if (!selection.some(current => current.id === item.id)) {
       if (!multiSelect) {
         
-        setFilterSelection(e.target.value);
+        setFilterSelection([e.target.value]);
 
- 
       } else if (multiSelect) {
      
-        setSelection((prev) => [...prev, item]);
+        setFilterSelection(prev => [...prev, item]);
         
       }
     } else {
+
+      //this section handle the unchecking
       let selectionAfterRemoval = selection;
 
       selectionAfterRemoval = selectionAfterRemoval.filter(
         current => current.id !== item.id
       );
-      setSelection([...selectionAfterRemoval]);
+      setFilterSelection([...selectionAfterRemoval]);
+
     }
   }
 
@@ -54,11 +61,12 @@ const Dropdown = (props) => {
     return false;
   }
 
-
-  ////
+  
   const applyButton = (e) => {
     if(multiSelect) {
-      // setFilterSelection(filterSelection);
+      
+      console.log(filterSelection)
+      setSelection(filterSelection);
     } else {
       setDiet(filterSelection[0]);
     }
@@ -68,6 +76,16 @@ const Dropdown = (props) => {
   }
 
   const clearButton = (e) => {
+
+    setCheckboxClear(false);
+    setFilterSelection([]);
+    
+    if(multiSelect) {
+      
+      setSelection([]);
+    } else {
+      setDiet("");
+    }
 
   }
 
@@ -95,7 +113,7 @@ const Dropdown = (props) => {
         <ul className="dd-list">
           {items.map(item => (
             <li className="dd-list-item" key={item.id}>
-          {console.log(diet)}
+       
 
             <input
                 type="checkbox"
@@ -105,14 +123,14 @@ const Dropdown = (props) => {
                 onClick={(e) => handleOnClick(e, item, item.id)}
                 defaultChecked={item.id === 25 || isItemInSelection(item)}
                 // checked={diet && diet === item.value} 
-                // checked={ filterSelection && filterSelection === item.value }
+                checked={checkboxClear && (!multiSelect? filterSelection[0] && filterSelection[0] === item.value : null)}
               />
 
               <label className="custom-control-label" htmlFor={item.id}>{item.value}</label>
             </li>
           ))}
           <button onClick={e => applyButton(e)}>Apply</button>
-          <button>Clear</button>
+          <button onClick={e => clearButton(e)}>Clear</button>
         </ul>
       )}
     </div>

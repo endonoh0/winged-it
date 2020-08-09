@@ -15,6 +15,7 @@ const RecipeFilter = (props) => {
     setDiet
   } = props;
 
+  console.log(diet);
 
   return (
     <div className="filter_container">
