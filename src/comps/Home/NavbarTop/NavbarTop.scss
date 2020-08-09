@@ -29,18 +29,22 @@ $navbar-color: black;
     width: 94%;
     max-width: 1170px;
     margin: 0 auto;
+
+  &.hide{
+    display: none;
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-  body {
-    // background-color: red;
-  }
   #home {
     margin-top: 6%;
   }
   #sign-up {
     margin-bottom: 10%;
+  }
+  #map {
+    margin-bottom: 3%;
   }
 
   .top_bar {
@@ -72,13 +76,25 @@ $navbar-color: black;
     line-height: 3.2em;
     border-bottom: 1px solid black;
   }
+  .sidebar-menu {
+    // visibility: hidden;
+  }
+  .links {
+    margin-right: 55px;
+    margin-top: 9px;
+    width: 100%;
+    font-size: 16px;
+    text-decoration: none;
+    line-height: 3;
+  }
+  .line-height-none a {
+    line-height: unset;
+
+  }
 }
 
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  body {
-    // background-color: blue;
-  }
   .btn-block {
     width: 20%;
   }
@@ -86,9 +102,6 @@ $navbar-color: black;
 
 // // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  body {
-    // background-color: green;
-  }
   #home {
     margin-top: 0;
   }
@@ -97,14 +110,14 @@ $navbar-color: black;
   }
   .navbar {
     padding: 25px 40px;
-    height: 8%;
+    height: 75px;
+    // z-index: -1;
   }
   .navbar-nav {
     padding: 0 2%;
     margin-right: 0 !important;
   }
   .navbar-expand-lg .navbar-nav .nav-link {
-    // padding-right: 1.5rem;
     padding-left: 1.5rem;
   }
   .navbar-nav .nav-link {
@@ -116,12 +129,5 @@ $navbar-color: black;
   }
   .btn-block {
     max-width: 101px;
-  }
-}
-
-// // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  body {
-    // background-color: purple;
   }
 }

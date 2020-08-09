@@ -20,7 +20,7 @@ const Ingredients = () => {
 	const { setCurrentPage, currentData, maxPage } = usePagination(ingredients, 12) // Pagination config
 
 	// Toggle for the animation class
-	const ingredientsContainer = active ? "ingredients_container-active" : "ingredients_container"
+	const ingredientsContainer = active ? "grids_container-active" : "grids_container"
 
 	// To get the current month for the season food
 	const month = new Date().getMonth().toString()
@@ -78,9 +78,9 @@ const Ingredients = () => {
 					{mode === SHOW &&
 						currentData().map(ingredient => (
 							<Link className="ingredient" to="/">
-								<Card className="ingredient__card"style ={{width: '18rem'}}>
-									<Card.Img className="ingredient__img" variant="top" src={ingredient.url} />
-									<Card.Title className="ingredient__title" >{ingredient.name}</Card.Title>
+								<Card className="grid__card" style ={{width: '18rem'}}>
+									<Card.Img className="grid__img" variant="top" src={ingredient.url} />
+									<Card.Title className="grid__title" >{ingredient.name}</Card.Title>
 								</Card>
 							</Link>
 					))}

@@ -1,90 +1,82 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import className from 'classnames'
 
 import { projectFirestore } from '../../firebase/config'
 import Card from  'react-bootstrap/Card'
-
-import usePagination from '../../hooks/usePagination'
-import { useVisualMode } from '../../hooks/useVisualMode'
-import Loading from '../Favorite/Loading'
-
 
 import SearchBar from "../SearchByIngredient/SearchBar";
 import SearchByIngredient from "../SearchByIngredient/index";
 import "./Search.scss";
 
 
-const SHOW = 'SHOW';
-const LOADING = 'LOADING';
-
-
-
-
-
-
 
 const Search = (props) => {
 
 
-	const [suggestions, setSuggestions] = useState([])
-  const { mode, transition } = useVisualMode(LOADING);
 
-	//this is to make sure when add button pressed in the search page it re-redirect to home pahe
+  
+
+	//this is to make sure when add button pressed in the search page it re-redirect to home page
 	const addRedirect = true;
+
+	// const { mode, transition } = useVisualMode(LOADING);
+	const [suggestions, setSuggestions] = useState([])
+	const [hideBlock, setHideBlock] = useState(false);
+
+	const revealBlock = className("reveal__block", {
+		"hide" : hideBlock
+	})
+
+	setTimeout(() => setHideBlock(true), 2000)
 
 	useEffect(() => {
 		const getSuggestions = () => {
 			projectFirestore.collection('suggestions')
-			
-			// .limit(5)
 			.get().then(snapshot =>{
 				snapshot.forEach( async doc => {
 					setSuggestions(prev => [...prev, doc.data()])
 				})
-				transition(SHOW)
 			})
 		}
 		getSuggestions()
 		
 	}, [])
-	
-	const { currentData } = usePagination(suggestions,4);
 
   return (
     <div>
     
       <div className="search_page">
         <div className="title_bar">
+					<div className={revealBlock}></div>
           <figure >
-            <img className="img" src="./rosemary.png"/>
+            <img className="img" src="./rosemary.png" alt="rosemary on wooden block"/>
           </figure>
-          <div className="block">
-						<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
-						
-							<SearchByIngredient
-							searchButtonVisual={false}
-							searchTags={props.searchTags}
-							setSearchTags={props.setSearchTags}
-							writeTag={props.writeTag}
-							onSubmit={props.onSubmit}
-						
-						/>
-          </div>
+					<div className="block">
+						<div className="block__content">
+							<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
+							
+								<SearchByIngredient
+								searchButtonVisual={false}
+								searchTags={props.searchTags}
+								setSearchTags={props.setSearchTags}
+								writeTag={props.writeTag}
+								onSubmit={props.onSubmit}
+							
+							/>
+						</div>
+					</div>
         </div> 
       </div>
 
       <section className="suggestion_container">
 			<h1 id="suggestion_title">Healthy Meals</h1>
-			<article className="suggestions_container">
-				{mode === LOADING &&
-					<Loading />
-				}
-				{mode === SHOW &&
-          currentData().map(suggestion => (
-						<Link className="suggestion" to="/">
-							<Card style ={{width: '18rem'}}>
-								<Card.Img className="suggestion__img" variant="top" src={suggestion.url} />
-								<Card.Title className="suggestion__title" >{suggestion.name}</Card.Title>
+			<article className="grids_container">
+				{suggestions.map(suggestion => (
+						<Link className="grid" to="/">
+							<Card className="grid__card" style={{width: '18rem'}}>
+								<Card.Img className="grid__img" variant="top" src={suggestion.url} />
+								<Card.Title className="grid__title" >{suggestion.name}</Card.Title>
 							</Card>
 						</Link>
 				))}
@@ -97,5 +89,3 @@ const Search = (props) => {
 }
 
 export default Search; 
-
-

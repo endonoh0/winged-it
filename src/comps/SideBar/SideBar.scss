@@ -1,6 +1,11 @@
+.sidebar__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.5);
+}
 .sidebar__container {
   width: 17rem;
-  /* height: 100%; */
   display: flex;
   position: fixed;
   left: 0;
@@ -11,8 +16,6 @@
   background-color: #fafafa;
   border-right: 3px solid #dde3e3;
   grid-row: 1 / 1;
-  /* left: 0rem; */
-  /* z-index: 4; */
   margin-left: 4rem;
   overflow: scroll;
 
@@ -28,7 +31,20 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    // box-sizing: border-box;
-    // justify-content: center;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .sidebar__container {
+    margin: 0;
+    padding-top: 0;
+    margin-left: 0%;
+  }
+}
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .sidebar__container {
+    margin-left: 3%;
   }
 }

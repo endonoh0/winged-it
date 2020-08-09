@@ -1,20 +1,6 @@
 $primary-color: rgb(238, 238, 238);
 $navbar-color: black;
 
-// .App{
-//   width: 100vw;
-// }
-// .sidebar{
-//   display: none;
-// }
-// .header {
-//   display: none;
-// }
-
-// body {
-//   background-color: $primary-color;
-// }
-
 .home_div {
 
   .img_container{
@@ -120,33 +106,5 @@ $navbar-color: black;
     background: white;
     color: black;
 
-  }
-}
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  body {
-    // background-color: red;
-  }
-}
-
-// // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  body {
-    // background-color: blue;
-  }
-}
-
-// // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  body {
-    // background-color: green;
-  }
-}
-
-// // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  body {
-    // background-color: purple;
   }
 }

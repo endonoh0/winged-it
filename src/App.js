@@ -150,12 +150,12 @@ function App() {
 
   return (
     <div className="App">
-      <NavbarTop user={cookies.user} />
       {/* {!user.loggedIn && <Header />} */}
 
       <Router>
+        <NavbarTop user={user} />
 
-        {/*projectAuth.currentUser && <NavBar />*/}
+  {/* { <NavBar /> } */}
 
 
         <Switch>
@@ -191,8 +191,7 @@ function App() {
 
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
-            <Map setDirections={setDirections} directions={directions}/>
-            {directions && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} directions={directions} /> }
+            <Map setDirections={setDirections} directions={directions} user={user} directions={directions} />
           </Route>
           <Route path="/home">
             <Home />
