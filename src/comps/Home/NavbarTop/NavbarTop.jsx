@@ -14,7 +14,7 @@ const NavbarTop = ({ user }) => {
   })
 
   return (
-    <Navbar className={row} fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar className={row} collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Route>
         <Navbar.Brand id="logo" href="/">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
