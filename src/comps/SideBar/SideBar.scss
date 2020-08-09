@@ -1,3 +1,9 @@
+.sidebar__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.5);
+}
 .sidebar__container {
   width: 17rem;
   /* height: 100%; */
@@ -40,13 +46,24 @@
   }
   .sidebar__container {
     // visibility: hidden;
+    margin: 0;
+    padding-top: 0;
+    margin-left: 0%;
   }
 }
+// @media (min-width: 578px) {
+//   .sidebar__container {
+//     margin-left: 8%;
+//   }
+// }
 
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   body {
     // background-color: blue;
+  }
+    .sidebar__container {
+    margin-left: 3%;
   }
 }
 

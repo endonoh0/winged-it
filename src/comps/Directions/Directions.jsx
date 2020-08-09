@@ -32,14 +32,13 @@ const Directions = ({data}) => {
         <h1>{duration} mins <span className="distance">({distance})</span> 🚲</h1>
         <span className="summary"><strong>To: </strong>{summary}</span>
       </div><br/>
-
-      {tripInstructions.map(step => {
-        return (
-          <>
-            <li>{getDirections(step)} {step}</li><hr />
-          </>
-        )
-      })}
+      <ol className="flex">
+        {tripInstructions.map(step => {
+          return (
+            <li>{getDirections(step)} {step}</li>
+          )
+        })}
+      </ol>
     </div>
   );
 }

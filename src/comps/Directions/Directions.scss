@@ -34,3 +34,9 @@
 .summary{
   color: rgba(0, 0, 0, 0.54);
 }
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  line-height: 3;
+}
