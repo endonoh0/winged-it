@@ -38,7 +38,7 @@ import Search from "./comps/Search/Search";
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
 import ScrollToTop from './comps/ScrollToTop/ScrollToTop';
-
+import FavoriteAlert from './comps/FavoriteAlert/FavoriteAlert';
 
 
 
@@ -70,6 +70,8 @@ function App() {
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [favoriteAlert, setFavoriteAlert] = useState(false);
+
   console.log(cookies.user);
 
   const [loadingStatus, setLoadingStatus] = useState(false);
@@ -154,6 +156,11 @@ function App() {
       <ScrollToTop />
       {/* {!user.loggedIn && <Header />} */}
 
+
+      {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
+
+
+
       <Router>
         <NavbarTop user={user} />
 
@@ -216,7 +223,7 @@ function App() {
               onSubmit={onSubmit}
               searchTagsFetchStatus={searchTagsFetchStatus}
             >
-              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
+              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>}
             </SearchByIngredient>
           </Route>
 
