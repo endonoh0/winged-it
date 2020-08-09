@@ -38,6 +38,7 @@ const NavbarTop = ({ user }) => {
             <Link className="links line-height" id="search" to="/search">Search</Link>
             <Link className="links line-height" to="/seasonal-ingredients">Ingredients</Link>
             <Link className="links line-height" id="map" to="/map">Map</Link>
+            <Link className="links line-height" id="map" to="/experimental">E</Link>
 
             {!user && <Link className="links line-height" id="sign-in" to="/signin">Sign in</Link> }
             { !user && !(

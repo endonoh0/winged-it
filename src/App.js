@@ -34,6 +34,7 @@ import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
 import Ingredients from './comps/Ingredients'
 import Search from "./comps/Search/Search";
+import AnimatedGrid from './comps/AnimatedGrid/AnimatedGrid'
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
@@ -203,6 +204,9 @@ function App() {
           <Route path="/seasonal-ingredients">
             <Ingredients />
           </Route>
+          <Route path="/experimental">
+            <AnimatedGrid recipes={recipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg}/>
+          </Route>
           <Route path="/">
             {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
             {user.loggedIn && <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />}
@@ -229,7 +233,7 @@ function App() {
       {/* { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> } */}
 
 
-      {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />}
+      {/* {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />} */}
       {loadingStatus && <Loading/>}
     </div>
   );
