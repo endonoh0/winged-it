@@ -14,6 +14,12 @@ const Search = () => {
 	const [suggestions, setSuggestions] = useState([])
 	const [hideBlock, setHideBlock] = useState(false);
 
+	const revealBlock = className("reveal__block", {
+		"hide" : hideBlock
+	})
+
+	setTimeout(() => setHideBlock(true), 2000)
+
 	useEffect(() => {
 		const getSuggestions = () => {
 			projectFirestore.collection('suggestions')
@@ -32,13 +38,15 @@ const Search = () => {
     
       <div className="search_page">
         <div className="title_bar">
-					<div className="reveal__block"></div>
+					<div className={revealBlock}></div>
           <figure >
             <img className="img" src="./rosemary.png" alt="rosemary on wooden block"/>
           </figure>
           <div className="block">
-            <div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
-            <SearchBar className="bar"/>
+						<div className="block__content">
+            	<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
+            	<SearchBar className="bar"/>
+						</div>
           </div>
         </div> 
       </div>

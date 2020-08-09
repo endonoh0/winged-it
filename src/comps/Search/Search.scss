@@ -19,6 +19,10 @@ overflow-x: hidden;
       reveal 1s 1.5s forwards;
     }
 
+    .hide{
+      display: none;
+    }
+
     .img{
       visibility: hidden;
       height: 400px;
@@ -28,15 +32,19 @@ overflow-x: hidden;
 
     .block{
       visibility: hidden;
-      color:red;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 50vw;
       height: 400px;
-      background: $search-bar-color;
       background-color: $search-bar-color;
       animation: unHide 1s 1.5s forwards;
+
+      .block__content{
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50vw;
+        
+        animation: fadeIn 1s 2s forwards;
+      }
 
       .img{
         display: none;
@@ -53,7 +61,6 @@ overflow-x: hidden;
         padding:80px;
 
       }
-
      
     }
     
@@ -99,9 +106,11 @@ overflow-x: hidden;
     translate: 0%;
     // width: 100%;
   }
-  100% {
+  99% {
     translate: 100%;
-    display: none;
     // width: 0%;
+  }
+  100%{
+    display: none;
   }
 }
