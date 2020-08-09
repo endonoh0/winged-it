@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import className from 'classnames'
 
 import { projectFirestore } from '../../firebase/config'
 import Card from  'react-bootstrap/Card'
@@ -11,6 +12,7 @@ import "./Search.scss";
 
 const Search = () => {
 	const [suggestions, setSuggestions] = useState([])
+	const [hideBlock, setHideBlock] = useState(false);
 
 	useEffect(() => {
 		const getSuggestions = () => {
