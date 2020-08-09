@@ -103,6 +103,10 @@
 	margin: 1rem 0 0 14rem;
 }
 
+@media (min-width: 1200px) {
+
+}
+
 #seasonal_title{
 	align-self: center;
 	font-size: 50px;
@@ -157,14 +161,14 @@
 @keyframes slideOut {
   0% {
     visibility: visible;
-    right: 0%;
+    // right: 0%;
     // transform: translateX(0);
 	}
   100% {
 		visibility: visible;
 		width:50%;
     translate:100%;
-    right: 0%;
+    // right: 0%;
   }
 }
 

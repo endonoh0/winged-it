@@ -43,6 +43,9 @@ $navbar-color: black;
   #sign-up {
     margin-bottom: 10%;
   }
+  #map {
+    margin-bottom: 3%;
+  }
 
   .top_bar {
     display: flex;
@@ -75,6 +78,18 @@ $navbar-color: black;
   }
   .sidebar-menu {
     // visibility: hidden;
+  }
+  .links {
+    margin-right: 55px;
+    margin-top: 9px;
+    width: 100%;
+    font-size: 16px;
+    text-decoration: none;
+    line-height: 3;
+  }
+  .line-height-none a {
+    line-height: unset;
+
   }
 }
 
