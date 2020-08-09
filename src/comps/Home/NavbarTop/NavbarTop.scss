@@ -5,6 +5,7 @@ $navbar-color: black;
   text-decoration: none;
   text-align: center;
   display: inline-block;
+  margin-top: 6px;
   letter-spacing: 0.026em;
   cursor: pointer;
   font-size: 0.975rem;
@@ -73,7 +74,7 @@ $navbar-color: black;
     padding: 25px 40px;
   }
   .navbar-nav .nav-link {
-    line-height: 3.2em;
+    // line-height: 3.2em;
     border-bottom: 1px solid black;
   }
   .sidebar-menu {
@@ -81,16 +82,20 @@ $navbar-color: black;
   }
   .links {
     margin-right: 55px;
-    margin-top: 9px;
+    margin-top: 13px;
     width: 100%;
     font-size: 16px;
     text-decoration: none;
-    line-height: 3;
   }
-  .line-height-none a {
-    line-height: unset;
+}
 
-  }
+.dropdown-item {
+  color: rgb(203, 201, 198);
+      background-color: transparent;
+      border-top-color: initial;
+      border-right-color: initial;
+      border-bottom-color: initial;
+      border-left-color: initial;
 }
 
 // // Medium devices (tablets, 768px and up)
@@ -117,12 +122,15 @@ $navbar-color: black;
     padding: 0 2%;
     margin-right: 0 !important;
   }
-  .navbar-expand-lg .navbar-nav .nav-link {
+  .navbar-expand-lg .navbar-nav {
     padding-left: 1.5rem;
   }
   .navbar-nav .nav-link {
     line-height: none;
     border: none;
+  }
+  .nav-link {
+    padding: 0;
   }
   .navbar-expand-lg .navbar-collapse {
     justify-content: flex-end;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Route, Link } from 'react-router-dom';
 
-import { Button, Navbar, Nav } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import className from 'classnames';
 
 import "./NavbarTop.scss";
@@ -13,16 +13,6 @@ const NavbarTop = ({ user }) => {
     "hide" : location.pathname === '/map'
   })
 
-  // const ColoredLine = ({ color }) => (
-  //   <hr
-  //     style={{
-  //       color: color,
-  //       backgroundColor: color,
-  //       height: 5
-  //     }}
-  //   />
-  // );
-
   return (
     <Navbar className={row} fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Route>
@@ -32,12 +22,22 @@ const NavbarTop = ({ user }) => {
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Link className="links line-height" to="/home">Home</Link>
-            {/* <ColoredLine color="white" /> */}
 
-            <Link className="links line-height" id="search" to="/search">Search</Link>
-            <Link className="links line-height" to="/seasonal-ingredients">Ingredients</Link>
-            <Link className="links line-height" id="map" to="/map">Map</Link>
+            <NavDropdown title="Search" className="links" id="collasible-nav-dropdown">
+              <Link className="dropdown-item" to="/seasonal-ingredients">Ingredients</Link>
+              <Link className="dropdown-item" id="search" to="/search">Recipes</Link>
+            </NavDropdown>
+
+            <Link className="links line-height" to="/home">Home</Link>
+            <NavDropdown.Divider />
+
+            {user && <Link className="links line-height" to="/favorites">Favorites</Link>}
+            <NavDropdown.Divider />
+
+
+
+
+            {/* <Link className="links line-height" id="map" to="/map">Map</Link>  */}
 
             {!user && <Link className="links line-height" id="sign-in" to="/signin">Sign in</Link> }
             { !user && !(
@@ -47,7 +47,7 @@ const NavbarTop = ({ user }) => {
             )}
 
             { user && (
-              <Button className="button sign-in display-none line-height-none" variant="secondary" size="lg" block>
+              <Button className="button sign-in display-none" variant="secondary" size="lg" block>
                 <a href="/logout">Logout</a>
               </Button>
             )}
