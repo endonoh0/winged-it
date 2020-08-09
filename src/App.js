@@ -33,6 +33,7 @@ import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
 import Ingredients from './comps/Ingredients'
+import Search from "./comps/Search/Search";
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
@@ -153,6 +154,7 @@ function App() {
 
 
         <Switch>
+          <Route path="/search"> <Search/> </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
               {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
