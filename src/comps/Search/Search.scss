@@ -83,12 +83,14 @@ overflow-x: hidden;
 }
 
 #suggestion_title{
+  opacity: 0;
 	background-color: gray;
 	color: white;
 	width: 45rem;
 	padding: .5rem;
 	text-align: center;
-	border-radius: 5px;
+  border-radius: 5px;
+  animation: fadeIn 1s 1.5s forwards;
 }
 
 @keyframes cover {
