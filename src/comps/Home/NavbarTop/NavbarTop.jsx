@@ -1,13 +1,20 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { Button, Navbar, Nav } from 'react-bootstrap';
+import className from 'classnames'
 
 import "./NavbarTop.scss";
 
 const NavbarTop = ({ user }) => {
+  let location = useLocation();
+  let row = className("row", {
+    "hide" : location.pathname === '/map'
+  })
+
 
   return (
-    <Navbar className="row" fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar className={row} fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand id="logo" href="/">React-Bootstrap</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
@@ -29,5 +36,6 @@ const NavbarTop = ({ user }) => {
     </Navbar>
   );
 }
+
 
 export default NavbarTop;

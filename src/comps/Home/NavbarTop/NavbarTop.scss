@@ -29,6 +29,10 @@ $navbar-color: black;
     width: 94%;
     max-width: 1170px;
     margin: 0 auto;
+
+  &.hide{
+    visibility: hidden;
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
