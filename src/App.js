@@ -71,15 +71,10 @@ function App() {
   const [directions, setDirections] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [favoriteAlert, setFavoriteAlert] = useState(false);
-
-  console.log(cookies.user);
-
   const [loadingStatus, setLoadingStatus] = useState(false);
 
   const { write } = useWriteToFirestore();
 
-
-  console.log("before setting", loadingStatus)
 
   const onSubmit = async (e) => {
     const result = await axios.get('./recipe.json')
@@ -162,7 +157,7 @@ function App() {
 
 
       <Router>
-        <NavbarTop user={user} />
+        <NavbarTop user={cookies.user} />
 
   {/* { <NavBar /> } */}
 

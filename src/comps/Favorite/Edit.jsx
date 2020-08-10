@@ -28,11 +28,11 @@ const Edit = (props) => {
         />
     </div>
 
-    <button type="submit" className="btn btn-primary btn-block"
+    <button type="submit" className="btn btn-primary"
     onClick = {event => {props.onSave(recipeTitle)}}>
       Save
     </button>
-    <button type="submit" className="btn btn-primary btn-block"
+    <button type="submit" className="btn btn-primary"
     onClick = { event => props.onCancel () }>
       Cancel
     </button>
