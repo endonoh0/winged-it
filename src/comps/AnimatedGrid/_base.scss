@@ -504,6 +504,10 @@ button:focus {
 	border-top: 1px solid $color_primary;
 }
 
+.iframe_container{
+	width: 100%;
+}
+
 .article-nav {
 	display: -webkit-flex;
 	display: flex;

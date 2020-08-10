@@ -1,11 +1,35 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Iframe from 'react-iframe'
 import { motion } from 'framer-motion';
 
 import './AnimatedGrid.scss'
 
-const AnimatedGrid = ({recipes, selectedImg, setSelectedImg, searchTags}) => {
+const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags}) => {
+	const [isOpen, setIsOpen] = useState(false)
 
+	const variants = {
+		enter: {
+			transitionEnd: {
+				display: "flex",},
+			opacity: 1,
+			transition: { duration: .5 },
+
+		},
+		exit: { opacity: 0,
+			transitionEnd: {
+			display: "none",}
+		}
+	}
+
+	const clickHandler = (recipe) => {
+		if(recipe){
+			setSelectedImg(recipe.recipe.url)
+			// setRecipes(null)
+		} else {
+			setSelectedImg(null)
+		}
+		setIsOpen(!isOpen)
+	}
 	return(
 		<Fragment>
 		<div className="grid__container">
@@ -22,15 +46,27 @@ const AnimatedGrid = ({recipes, selectedImg, setSelectedImg, searchTags}) => {
 			</div>
 			<div id="theGrid" className="main">
 				<section className="grid">
-					{selectedImg &&
+					{/* {selectedImg &&
 					<Fragment>
+						<div className="iframe_container">
 						<Iframe className="recipe_content" url={selectedImg}/>
-						<button className="recipe_btn" onClick={e => {setSelectedImg(null)}}>Hello</button>
+						<button className="recipe_btn" onClick={e => {clickHandler()}}>Hello</button>
+						</div>
+
 					</Fragment>
-					}
+					} */}
 					{recipes && recipes.map((recipe, index) => {
 						return(
-							<motion.a className="grid__item" key={index} onClick={e => {setSelectedImg(recipe.recipe.url)}}>
+							<motion.a 
+								className="grid__item" 
+								key={index} 
+								// initial={{opacity: 0}}
+								animate={isOpen ? "exit": "enter"}
+								variants={variants}
+								onClick={e => {clickHandler(recipe)}}
+								
+
+								>
 								<h2 className="title title--preview">{recipe.recipe.label}</h2>
 								<div className="loader"></div>
 								{/* <span className="category">Stories for humans</span> */}
@@ -40,6 +76,20 @@ const AnimatedGrid = ({recipes, selectedImg, setSelectedImg, searchTags}) => {
 							</motion.a>
 						)
 					})}
+					{selectedImg &&
+					<Fragment>
+						<motion.div 
+							className="iframe_container"
+							initial={{opacity:0}}
+							animate={{opacity:1}}
+							transition={{ delay: 1, duration: .5 }}
+						>
+						<Iframe className="recipe_content" url={selectedImg}/>
+						<button className="recipe_btn" onClick={e => {clickHandler()}}>Hello</button>
+						</motion.div>
+
+					</Fragment>
+					}
 				</section>
 			</div>
 		</div>
