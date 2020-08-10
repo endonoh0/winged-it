@@ -149,23 +149,24 @@ button:focus {
 	color: #aaa;
 }
 
-.related {
+.sidebar_content {
 	font-size: 0.85em;
 	padding-bottom: 1em;
 }
 
-.related h3 {
+.sidebar_content h3 {
 	margin: 3em 0 0.5em 0;
 	font-size: 0.95em;
+	font-weight: bold;
 }
 
-.related a {
+.sidebar_content a {
 	display: block;
 	color: inherit;
 }
 
-.related a:hover,
-.related a:focus {
+.sidebar_content a:hover,
+.sidebar_content a:focus {
 	color: #414741;
 }
 

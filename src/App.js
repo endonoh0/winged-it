@@ -214,7 +214,7 @@ function App() {
             <Ingredients />
           </Route>
           <Route path="/experimental">
-            <AnimatedGrid recipes={recipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg}/>
+            <AnimatedGrid recipes={recipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags}/>
           </Route>
           <Route path="/">
             {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
