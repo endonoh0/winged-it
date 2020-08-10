@@ -1,21 +1,21 @@
 
 .custom-search {
   position: relative;
-	width: 300px;
-	// visibility: hidden;
+  width: 300px;
+  margin: 0 auto;
 }
 .custom-search-input {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 100px;
-  padding: 10px 100px 10px 20px; 
+  padding: 10px 100px 10px 20px;
   line-height: 1;
   box-sizing: border-box;
   outline: none;
 }
 .custom-search-botton {
   position: absolute;
-  right: 3px; 
+  right: 3px;
   top: 3px;
   bottom: 3px;
   border: 0;
@@ -58,17 +58,13 @@ input {
 }
 
 .search-container {
-	display: flex;
-	flex-direction: column;
 	margin: 0 10rem 0 27rem;
 	min-width: 83rem;
 }
 
 .btn-primary {
-	/* margin: 0 auto; */
 	align-self: center;
 	font-size: 1.5rem;
-	/* margin-top: 1rem; */
 	justify-content: center;
 	align-items: center;
 	justify-self: center;
@@ -79,11 +75,6 @@ input {
 	width: 18vw;
 	margin-top: 2rem;
 	align-self: flex-end;
-	/* margin-left: 10rem; */
-	/* position: relative; */
-	/* display: flex; */
-	/* flex-direction: column; */
-	/* min-width: 0; */
 	word-wrap: break-word;
 	background-color: #fff;
 	background-clip: border-box;
@@ -93,4 +84,19 @@ input {
 
 .card-body{
 	padding: 0;
+}
+
+// // Small devices (landscape phones, 500 and up)
+@media (min-width: 500px) {
+   .custom-search {
+    margin-top: 5%;
+    margin-left: 23%;
+  }
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .custom-search {
+    margin-left: 69%;
+  }
 }
