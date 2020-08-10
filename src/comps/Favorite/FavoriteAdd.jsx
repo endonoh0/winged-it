@@ -1,13 +1,13 @@
-import React from "react";
-import { FaHeart } from "react-icons/fa";
-
+import React, { useState } from "react";
 import { projectFirestore } from '../../firebase/config';
 
+import { FaHeart } from "react-icons/fa";
 
 const FavoriteAdd = (props) => {
+  const {setFavoriteAlert} = props;
 
   const addFavoriteToDB = (type) => {
-
+    setFavoriteAlert(true);
     const recipe = props.recipe.recipe;
     const email = props.user.email;
 
@@ -20,17 +20,18 @@ const FavoriteAdd = (props) => {
         img: recipe.image,
         ...recipe
       }
-      
     };
 
     projectFirestore.collection(type)
     .add(favoriteRecipe);
-    
   }
-  
+
   return (
-    <FaHeart className="favorite_btn" onClick = { e => addFavoriteToDB('favorites') } size={50} />
-  )
+    <FaHeart
+      className="favorite_btn"
+      onClick={e => addFavoriteToDB('favorites')}
+      size={50} />
+  );
 }
 
-export default  FavoriteAdd;
+export default FavoriteAdd;

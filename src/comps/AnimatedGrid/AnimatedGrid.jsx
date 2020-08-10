@@ -15,9 +15,12 @@ const AnimatedGrid = ({recipes, selectedImg, setSelectedImg}) => {
 			</div>
 			<div id="theGrid" className="main">
 				<section className="grid">
-				{selectedImg && <Iframe className="recipe_content"
-         			 	url={selectedImg}
-        			/>}
+					{selectedImg &&
+					<Fragment>
+						<Iframe className="recipe_content" url={selectedImg}/>
+						<button className="recipe_btn">Hello</button>
+					</Fragment>
+					}
 					{recipes && recipes.map((recipe, index) => {
 						return(
 							<a className="grid__item" href="#" key={index} onClick={e => {setSelectedImg(recipe.recipe.url)}}>

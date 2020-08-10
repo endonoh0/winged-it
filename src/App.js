@@ -38,7 +38,8 @@ import AnimatedGrid from './comps/AnimatedGrid/AnimatedGrid'
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
-
+import ScrollToTop from './comps/ScrollToTop/ScrollToTop';
+import FavoriteAlert from './comps/FavoriteAlert/FavoriteAlert';
 
 
 
@@ -70,6 +71,8 @@ function App() {
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [favoriteAlert, setFavoriteAlert] = useState(false);
+
   console.log(cookies.user);
 
   const [loadingStatus, setLoadingStatus] = useState(false);
@@ -109,7 +112,7 @@ function App() {
         })
         .then(() => {
           setSearchTagsFetchStatus(true)
-        }) 
+        })
     }
   }, [user])
 
@@ -151,7 +154,13 @@ function App() {
 
   return (
     <div className="App">
+      <ScrollToTop />
       {/* {!user.loggedIn && <Header />} */}
+
+
+      {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
+
+
 
       <Router>
         <NavbarTop user={user} />
@@ -160,13 +169,13 @@ function App() {
 
 
         <Switch>
-          <Route path="/search"> 
+          <Route path="/search">
           <Search
             searchTags={searchTags}
             setSearchTags={setSearchTags}
             writeTag={writeTag}
             onSubmit={onSubmit}
-          /> 
+          />
           </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
@@ -218,7 +227,7 @@ function App() {
               onSubmit={onSubmit}
               searchTagsFetchStatus={searchTagsFetchStatus}
             >
-              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
+              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>}
             </SearchByIngredient>
           </Route>
 
