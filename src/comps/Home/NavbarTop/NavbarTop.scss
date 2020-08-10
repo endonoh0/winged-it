@@ -82,8 +82,8 @@ $navbar-color: black;
   }
   .links {
     margin-right: 55px;
-    margin-top: 13px;
-    width: 100%;
+    margin-top: 14px;
+    min-width: 54px;
     font-size: 16px;
     text-decoration: none;
   }
@@ -101,7 +101,7 @@ $navbar-color: black;
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .btn-block {
-    width: 20%;
+    width: 22%;
   }
 }
 

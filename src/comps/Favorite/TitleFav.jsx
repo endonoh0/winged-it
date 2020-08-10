@@ -7,7 +7,7 @@ const TitleFav = (props) => {
 
   return (
     <div className="Title_Favorite_page">
-      <h1> { props.message } </h1>
+      <h1> { props.children } </h1>
     </div>
   );
 

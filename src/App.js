@@ -32,7 +32,7 @@ import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
 import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
-import Ingredients from './comps/Ingredients'
+import Ingredients from './comps/Ingredients/Ingredients'
 import Search from "./comps/Search/Search";
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
@@ -71,15 +71,10 @@ function App() {
   const [directions, setDirections] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [favoriteAlert, setFavoriteAlert] = useState(false);
-
-  console.log(cookies.user);
-
   const [loadingStatus, setLoadingStatus] = useState(false);
 
   const { write } = useWriteToFirestore();
 
-
-  console.log("before setting", loadingStatus)
 
   const onSubmit = async (e) => {
     const result = await axios.get('./recipe.json')
@@ -162,7 +157,7 @@ function App() {
 
 
       <Router>
-        <NavbarTop user={user} />
+        <NavbarTop user={cookies.user} />
 
   {/* { <NavBar /> } */}
 
@@ -178,18 +173,18 @@ function App() {
           </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
-              {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
+              {!cookies.user ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
             </div>
           </Route>
           <Route path="/signup">
             <div className="auth-wrapper">
-              {!user.loggedIn && <SignUp onClick={requestRegister} />}
+              {!cookies.user && <SignUp onClick={requestRegister} />}
             </div>
           </Route>
 
           <Route path="/logout">
             <div className="auth-wrapper">
-              {user.loggedIn && <UserProvider value={user}>
+              {cookies.user && <UserProvider value={user}>
                 <Logout
                   onClick={requestLogout}
                   UserContext={UserContext}
