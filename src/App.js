@@ -173,18 +173,18 @@ function App() {
           </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
-              {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
+              {!cookies.user ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
             </div>
           </Route>
           <Route path="/signup">
             <div className="auth-wrapper">
-              {!user.loggedIn && <SignUp onClick={requestRegister} />}
+              {!cookies.user && <SignUp onClick={requestRegister} />}
             </div>
           </Route>
 
           <Route path="/logout">
             <div className="auth-wrapper">
-              {user.loggedIn && <UserProvider value={user}>
+              {cookies.user && <UserProvider value={user}>
                 <Logout
                   onClick={requestLogout}
                   UserContext={UserContext}
