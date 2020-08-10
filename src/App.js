@@ -6,7 +6,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
-// import axios from 'axios'
+import axios from 'axios'
 
 // SCSS Style files
 import './index.scss';
@@ -82,19 +82,19 @@ function App() {
   console.log("before setting", loadingStatus)
 
   const onSubmit = async (e) => {
-    // const result = await axios.get('./recipe.json')
-    // setRecipes(result.data.hits)
+    const result = await axios.get('./recipe.json')
+    setRecipes(result.data.hits)
 
 
     // Real API Call
-    setLoadingStatus(true);
-    recipeFinder(searchTags, selection, diet)
-      .then(data => {
-        setRecipes(data)
-      })
-      .then(() => {
-        setLoadingStatus(false);
-      })
+    // setLoadingStatus(true);
+    // recipeFinder(searchTags, selection, diet)
+    //   .then(data => {
+    //     setRecipes(data)
+    //   })
+    //   .then(() => {
+    //     setLoadingStatus(false);
+    //   })
   }
 
 
@@ -222,7 +222,7 @@ function App() {
               onSubmit={onSubmit}
               searchTagsFetchStatus={searchTagsFetchStatus}
             >
-              {/* {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>} */}
+              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>}
               {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
 
             </SearchByIngredient>

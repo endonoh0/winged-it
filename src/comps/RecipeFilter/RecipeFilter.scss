@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
 
+.sidebar__container {
+  position: absolute;
+  height: fit-content;
+}
 .filter_container{
   // max-width: 1140px;
   // width: 100%;
@@ -11,7 +15,7 @@
 
   // height: 100%;
   // width: 150px;
-  position: fixed;
+  position: absolute;
   /* top: 0; */
   /* left: 267px; */
   // margin-left: 21rem;
@@ -123,7 +127,7 @@
     padding-left: 29px;
   }
   .sidebar__container {
-    margin-top: 5%;
+    margin-top: 46%;
   }
 }
 
@@ -137,7 +141,8 @@
     margin-top: 5%;
   }
   .sidebar__container {
-    margin-top: 1%;
+    margin-top: 20%;
+    margin-left: 7%;
   }
   .dd-wrapper {
     min-width: 130px;
