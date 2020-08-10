@@ -213,7 +213,6 @@ function App() {
             <Ingredients />
           </Route>
           <Route path="/">
-            {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
             {user.loggedIn && <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />}
             <SearchByIngredient
               // setRecipes={setRecipes}
@@ -223,7 +222,9 @@ function App() {
               onSubmit={onSubmit}
               searchTagsFetchStatus={searchTagsFetchStatus}
             >
-              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>}
+              {/* {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>} */}
+              {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
+
             </SearchByIngredient>
           </Route>
 

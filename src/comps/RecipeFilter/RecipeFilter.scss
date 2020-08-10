@@ -3,17 +3,19 @@
 .filter_container{
   // max-width: 1140px;
   // width: 100%;
+  display: flex;
+
   // height: 100%;
   margin: auto;
   // padding: 0 20px;
 
-  height: 100%;
-  width: 150px;
+  // height: 100%;
+  // width: 150px;
   position: fixed;
   /* top: 0; */
   /* left: 267px; */
-  margin-left: 21rem;
-  background: white;
+  // margin-left: 21rem;
+  // background: white;
 }
 
 @mixin styling() {
@@ -26,10 +28,10 @@
 }
 
 .dd-wrapper {
-
-  display: flex;
+  // background-color: white;
+  // display: flex;
   // min-height: 30px;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
 
 
 
@@ -37,13 +39,16 @@
     @include styling();
     display: flex;
     // flex-direction: column-reverse;
-    
+
     justify-content: space-between;
     cursor: pointer;
     width: 100%;
     height: 50px;
     padding: 0 7px;
     padding-top: 10px;
+    &__title {
+      margin-left: 32%;
+    }
 
     &__title--bold {
       font-weight: bold;
@@ -94,6 +99,63 @@
     }
   }
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 767px) and (min-width: 500px) {
+  body {
+    background-color: red;
+  }
+  .row {
+    width: 100%;
+  }
+  .filter_container {
+    margin-left: 33%;
+    margin-top: 20%;
+  }
+  .dd-wrapper {
+    margin-left: -20%;
+    margin-right: 31%;
+    min-width: 140px;
+  }
+  .dd-list {
+    background-color: white;
+    // margin-right: -8%;
+    padding-left: 29px;
+  }
+  .sidebar__container {
+    margin-top: 5%;
+  }
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  body {
+    background-color: blue;
+  }
+  .filter_container {
+    margin-left: 35%;
+    margin-top: 5%;
+  }
+  .sidebar__container {
+    margin-top: 1%;
+  }
+  .dd-wrapper {
+    min-width: 130px;
+    margin-left: 1%;
+    margin-right: 7%;
+    min-width: 130px;
+  }
+  .dd-list {
+    background-color: white;
+  }
+}
+@media (min-width: 1200px) {
+  body {
+    background-color: green;
+  }
+
+}
+// custom search input margin left 104 ad_btn left 188
 
 // .sidemenu {
 //   height: 100%;

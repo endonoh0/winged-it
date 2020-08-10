@@ -1,21 +1,22 @@
 
 .custom-search {
   position: relative;
-	width: 300px;
+  width: 300px;
+  margin: 0 auto;
 	// visibility: hidden;
 }
 .custom-search-input {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 100px;
-  padding: 10px 100px 10px 20px; 
+  padding: 10px 100px 10px 20px;
   line-height: 1;
   box-sizing: border-box;
   outline: none;
 }
 .custom-search-botton {
   position: absolute;
-  right: 3px; 
+  right: 3px;
   top: 3px;
   bottom: 3px;
   border: 0;
@@ -58,8 +59,6 @@ input {
 }
 
 .search-container {
-	display: flex;
-	flex-direction: column;
 	margin: 0 10rem 0 27rem;
 	min-width: 83rem;
 }
@@ -93,4 +92,24 @@ input {
 
 .card-body{
 	padding: 0;
+}
+
+@media (min-width: 500px) {
+  // body {
+  //   background-color: red;
+  // }
+   .custom-search {
+    margin-top: 5%;
+    margin-left: 23%;
+  }
+}
+
+// // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  body {
+    background-color: blue;
+  }
+  .custom-search {
+    margin-left: 69%;
+  }
 }
