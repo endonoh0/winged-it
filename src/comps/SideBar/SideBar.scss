@@ -33,6 +33,10 @@
   }
 }
 
+.ml-none {
+  margin-left: 0;
+}
+
 // Small devices (landscape phones, 500px and up)
 @media (min-width: 500px) {
   .sidebar__container {
@@ -47,12 +51,12 @@
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .sidebar__container {
-    margin-left: 3%;
+    margin-left: 4%;
     width: 12rem;
   }
   #search_recipe_btn {
     margin-top: -6%;
-    margin-left: 7.5%;
+    margin-left: 74%;
   }
 }
 
