@@ -1,8 +1,7 @@
 import React from 'react';
 
 import Dropdown from './Dropdown.jsx';
-import useWriteToFirestore from '../../hooks/useWriteToFirestore';
-import { timeStamp } from '../../firebase/config';
+
 import { healthItems, dietItems } from "../../db/foodfilter";
 
 import "./RecipeFilter.scss";
@@ -43,6 +42,7 @@ const RecipeFilter = (props) => {
       health={health}
       searchTagsFetchStatus={searchTagsFetchStatus}
       multiSelect />
+      
       <Dropdown title="Diet filter"
       setDietTags={setDietTags}
       setHealthTags={setHealthTags}

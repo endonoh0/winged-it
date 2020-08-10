@@ -51,16 +51,12 @@ const Dropdown = (props) => {
     setHealthTags,
     user,
     writeTag,
-    // searchTagsFetchStatus,
     title,
     items = [],
     multiSelect = false,
     setHealth,
     health = [],
-    // diet,
     setDiet,
-    // healthTags = [],
-    // dietTags = [],
   } = props;
 
 
