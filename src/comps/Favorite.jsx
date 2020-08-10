@@ -51,10 +51,11 @@ const Favorite = ({setSelectedImg, user}) => {
   }
 
   //edit favorite
-  function editEvent(index, docId) {
-    setEditDoc([index, docId]);
-    transition(EDIT);
-  }
+  // function editEvent(index, docId) {
+  //   console.log(index, docId);
+  //   setEditDoc([index, docId]);
+  //   transition(EDIT);
+  // }
 
   function save(value) {
     const index = editDoc[0];
@@ -95,7 +96,7 @@ const Favorite = ({setSelectedImg, user}) => {
 					{mode === LOADING &&
 						<Loading />
 					}
-          {mode === EDIT && 
+          {/* {mode === EDIT && 
             <Fragment>
               <TitleFav message= "Edit Your Recipe" />
               <Edit
@@ -103,17 +104,19 @@ const Favorite = ({setSelectedImg, user}) => {
               onCancel={ back }
               editPlaceholder = { favItems[editDoc[0]].recipe.name } />
             </Fragment>
-          }
+          } */}
 					{mode === SHOW &&
 						favItems.map((favItem, index) => {
               // <Link className="ingredient" to="/">
               return(
 								<Card className="grid__card" style ={{width: '18rem'}}>
-                                  <FavoritePage 
+                <FavoritePage
+                save = { save }
                 doc = { favItem }
                 setSelectedImg = {setSelectedImg}
                 deleteEvent = { e => deleteEvent(index, favItem.id)}
-                editEvent = { e => editEvent(index, favItem.id) }/> 
+                setEditDoc = {setEditDoc}
+                /> 
 									{/* <Card.Img className="grid__img" variant="top" src={favItem.recipe.img} />
 									<Card.Title className="grid__title" >{favItem.recipe.label}</Card.Title> */}
 								</Card>

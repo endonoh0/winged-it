@@ -10,7 +10,7 @@ const Confirm = (props) => {
 
   return (
     <div className="confirmation_container">
-      <h4> Are you sure you want to delete this recipe?</h4>
+      <h4> Are you sure you want to remove from this recipe from your favorites?</h4>
       <button className="btn"  onClick = { props.onConfirm }>
         <AiOutlineCheckCircle />
       </button>
