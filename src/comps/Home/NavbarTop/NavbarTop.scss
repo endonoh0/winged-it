@@ -24,6 +24,9 @@ $navbar-color: black;
 .sign-in {
   text-decoration: none;
 }
+.sign-up {
+  color: rgba(255, 255, 255, 0.5);
+}
 
 // Centers the navBar to display
 .row {
@@ -35,7 +38,11 @@ $navbar-color: black;
     display: none;
   }
 }
-
+#logo {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   #home {
@@ -74,17 +81,18 @@ $navbar-color: black;
     padding: 25px 40px;
   }
   .navbar-nav .nav-link {
-    // line-height: 3.2em;
     border-bottom: 1px solid black;
   }
-  .sidebar-menu {
-    // visibility: hidden;
-  }
   .links {
+    color: rgba(255, 255, 255, 0.5);
     margin-right: 55px;
     margin-top: 14px;
     min-width: 54px;
     font-size: 16px;
+    text-decoration: none;
+  }
+  .links:hover,
+  .sign-up:hover {
     text-decoration: none;
   }
 }

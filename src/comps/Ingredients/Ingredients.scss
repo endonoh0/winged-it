@@ -8,7 +8,7 @@
 	overflow: hidden;
 
 	.fader{
-		position: absolute;
+		// position: absolute;
 		top: 0;
 		left: 0;
 		height: 100%;
@@ -76,7 +76,8 @@
 		display: flex;
 		flex-wrap: wrap;
 		// justify-content: space-between;
-		position: relative;
+    position: relative;
+    justify-content: center;
 		// overflow-x: hidden;
 	}
 
