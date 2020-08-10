@@ -26,6 +26,15 @@ const FavoritePage = (props) => {
     transition(EDIT);
   }
 
+  const deleteEvent = () => {
+    props.deleteEvent()
+    transition(SHOW);
+  }
+
+  const saveEvent = (value) => {
+    props.save(value)
+    transition(SHOW)
+  }
 
   return(
     <Fragment>
@@ -33,13 +42,13 @@ const FavoritePage = (props) => {
       doc = { props.doc }
       setSelectedImg = {props.setSelectedImg}
       deleteEventReq = { deleteEventReq }
-      editEvent = { editEvent }
+      editEvent = { e => editEvent(props.index, props.doc.id) }
       />
     }
 
     { mode === CONFIRM && <Confirm
       onCancel = { back }
-      onConfirm = { props.deleteEvent }
+      onConfirm = { deleteEvent }
      
       /> }
 
@@ -47,7 +56,7 @@ const FavoritePage = (props) => {
             <Fragment>
               <TitleFav>Edit Your Recipe</TitleFav>
               <Edit
-              onSave={ props.save }
+              onSave={saveEvent}
               onCancel={ back }
               editPlaceholder = { props.doc.recipe.name }
                />

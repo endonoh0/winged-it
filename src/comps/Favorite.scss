@@ -10,6 +10,11 @@
 	justify-content: space-evenly;
 }
 
-button.btn.btn-primary {
-	min-width: 150px;
+article.banner_description.favorite {
+	margin: 0;
+	align-self: center;
+
+	#description{
+		margin: 0;
+	}
 }

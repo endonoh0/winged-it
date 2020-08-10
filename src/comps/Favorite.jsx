@@ -60,6 +60,8 @@ const Favorite = ({setSelectedImg, user}) => {
   function save(value) {
     const index = editDoc[0];
     const docId = editDoc[1];
+    
+    console.log(index , docId, value);
 
     //this part of code update the database
     projectFirestore.collection('favorites').doc(docId).update(
@@ -82,14 +84,14 @@ const Favorite = ({setSelectedImg, user}) => {
 			<div className="seasonal_banner">
 				<div className="seasonal_revealer">
 					<h1 className="banner_content" id="seasonal_title">Favorites</h1>
-					<article className="banner_description">
+					<article className="banner_description favorite">
 						{/* <h2 className="banner_content" id="month">{MONTHS[month]}</h2> */}
 						<p className="banner_content" id="description">
 							Re-explore your favorite meals and remember why you fell in love with these recipes in the first place!
 						</p> 
 					</article>
 				</div>
-				<img className="banner_left" src="./ingredient-banner.jpg" alt="Ingredient banner"/>
+				<img className="banner_left" src="./fav.jpg" alt="Ingredient banner"/>
 			</div>
 			<section className="seasonal_container">
 				<article className="grids_container">
@@ -113,6 +115,7 @@ const Favorite = ({setSelectedImg, user}) => {
                 <FavoritePage
                 save = { save }
                 doc = { favItem }
+                index = { index }
                 setSelectedImg = {setSelectedImg}
                 deleteEvent = { e => deleteEvent(index, favItem.id)}
                 setEditDoc = {setEditDoc}
