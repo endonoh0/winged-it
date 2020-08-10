@@ -2,12 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(1.5);
+    transform: scale(1.5); // Scale map icons on for screens 500px wide and up
 }
 .sidebar__container {
   width: 17rem;
   display: flex;
-  position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
@@ -34,17 +33,36 @@
   }
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
+.ml-none {
+  margin-left: 0;
+}
+
+// Small devices (landscape phones, 500px and up)
+@media (min-width: 500px) {
   .sidebar__container {
-    margin: 0;
-    padding-top: 0;
-    margin-left: 0%;
+    margin-left: 25%;
+  }
+  #search_recipe_btn {
+    margin-top: 69%;
+    margin-left: 33%;
   }
 }
+
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .sidebar__container {
-    margin-left: 3%;
+    margin-left: 4%;
+    width: 12rem;
+  }
+  #search_recipe_btn {
+    margin-top: -6%;
+    margin-left: 74%;
+  }
+}
+
+// Large devices (laptops, 1200px and up)
+@media (min-width: 1200px) {
+  #search_recipe_btn {
+    margin-top: -4%;
   }
 }

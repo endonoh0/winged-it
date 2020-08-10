@@ -7,7 +7,7 @@ import "./index.scss";
 
 const SearchByIngredient = (props) => {
 
-	const { 
+	const {
 		searchTags,
 		setSearchTags,
 		writeTag,
@@ -19,12 +19,12 @@ const SearchByIngredient = (props) => {
 
 	const [searchTerm, setSearchTerm] = useState('');
 
-	useEffect(() => {
-		if(searchTagsFetchStatus){
-			document.getElementById("search_recipe_btn").click();
-		}
+	// useEffect(() => {
+	// 	if(searchTagsFetchStatus){
+	// 		document.getElementById("search_recipe_btn").click();
+	// 	}
 
-	}, [searchTagsFetchStatus])
+	// }, [searchTagsFetchStatus])
 
 	// this class hide the search button on the search page
 	let searchButtonClass = searchButtonVisual? "" : "display_non";
@@ -55,14 +55,17 @@ const SearchByIngredient = (props) => {
 	return(
 		<div>
 			<SearchBar
-				
 				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
 				searchTags={searchTags}
 				setSearchTags={setSearchTags}
-				onKeyUp={pressEnter}/>
+        onKeyUp={pressEnter}
+        searchButtonClass={searchButtonClass}
+        onSubmit={onSubmit}
+        searchTagsFetchStatus={searchTagsFetchStatus}
+      />
 
-				<button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
+				{/* <button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button> */}
 				{children}
 		</div>
 
