@@ -27,15 +27,17 @@
   }
   .sidebar__header{
     display: flex;
+    padding-left: 15px;
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
 }
 
-.ml-none {
-  margin-left: 0;
+.ml-18 {
+  margin-left: 18%;
 }
+
 
 // Small devices (landscape phones, 500px and up)
 @media (min-width: 500px) {
@@ -51,8 +53,8 @@
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .sidebar__container {
-    margin-left: 4%;
-    width: 12rem;
+    margin-left: 3.5%;
+    width: 13rem;
   }
   #search_recipe_btn {
     margin-top: -6%;

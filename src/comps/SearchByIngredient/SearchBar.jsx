@@ -14,7 +14,7 @@ const SearchBar = (props) => {
   }, [searchTagsFetchStatus])
 	return (
     <>
-    <div class="custom-search ml-none">
+    <div class="custom-search ml-18">
       <input
         className="custom-search-input"
         type="search"

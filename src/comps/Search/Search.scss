@@ -44,7 +44,7 @@ overflow-x: hidden;
         flex-direction: column;
         align-items: center;
         width: 50vw;
-        
+        padding-right: 9%;
         animation: fadeIn 1s 2s forwards;
       }
 
@@ -58,14 +58,15 @@ overflow-x: hidden;
       .text{
         text-align: center;
         color: black;
-        font-size: 33px;
-        font-weight: bold;
-        padding:80px;
-
+        font-size: 30px;
+        font-weight: 700;
+        padding-top: 11%;
+        padding-left: 14%;
+        padding-bottom: 6%;
       }
-     
+
     }
-    
+
   }
 
 }
@@ -75,7 +76,7 @@ overflow-x: hidden;
 	flex-direction: column;
 	align-items: center;
 	width: 80%;
-	margin: 0 auto;
+	margin: 5% auto;
 }
 
 .card{
@@ -86,6 +87,7 @@ overflow-x: hidden;
 
 #suggestion_title{
   opacity: 0;
+  margin-bottom: 2.5rem;
 	background-color: gray;
 	color: white;
 	width: 45rem;

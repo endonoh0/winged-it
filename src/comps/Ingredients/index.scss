@@ -99,8 +99,7 @@
 .banner_description{
 	display: flex;
 	height: 100%;
-	// align-items: center;
-	margin: 1rem 0 0 14rem;
+	margin: 1rem 0 0 5rem;
 }
 
 @media (min-width: 1200px) {
@@ -108,20 +107,21 @@
 }
 
 #seasonal_title{
-	align-self: center;
-	font-size: 50px;
-	// font-weight: ;
+  margin-top: 2%;
+  align-self: center;
+  font-size: 40px;
+  font-weight: 700;
 }
 
 #month{
-	font-weight: bold;
+  font-weight: 500;
+  font-size: 28px;
 }
 
 #description{
-	width: 370px;
-	margin: 0rem 0 0 5rem;
-	font-size: 18px;
-	// line-height: 3rem;
+  width: 385px;
+  margin: 0rem 0 0 5rem;
+  font-size: 18px;
 }
 
 .card:hover{
