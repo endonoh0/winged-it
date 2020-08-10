@@ -28,6 +28,21 @@ const databaseTagExtract = (tags, items) => {
 
 }
 
+const duplicateRemover = (arr) => {
+
+  const filteredArr = arr.reduce((acc, current) => {
+    const x = acc.find(item => item.id === current.id);
+    if (!x) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+
+  return filteredArr;
+
+}
+
 
 const Dropdown = (props) => {
   
@@ -62,62 +77,45 @@ const Dropdown = (props) => {
   const { write } = useWriteToFirestore();
 
     //Read tags
-    useEffect(() => {
-      if (user.loggedIn && !multiSelect) {
-        projectFirestore.collection('dietTags')
-          .doc(user.uid)
-          .get()
-          .then(doc => {
-            if (doc.data()) {
-              return doc.data().dietTags;
-              // setHealthTags([...doc.data().healthTags]);
-            }
-          })
-          .then((data) => {
-            setDietTags([data]);
-            setDiet(data);
-            setFilterSelection([data]);
-          }) 
-      }
-    }, [user]);
-
-       //Read tags
-       useEffect(() => {
-        if (user.loggedIn && multiSelect) {
-          projectFirestore.collection('healthTags')
-            .doc(user.uid)
-            .get()
-            .then(doc => {
-              if (doc.data()) {
-                return doc.data().healthTags;
-              }
-            })
-            .then((data) => {
-              setHealthTags(data);
-              const foo = databaseTagExtract(data, items);
-              setHealth(foo);
-              setFilterSelection(foo);
-
-
-            }) 
-        }
-      }, [user]);
-
-  
-
-
-  function isItemInSelection(item) {
-    if (health.find(current => current.id === item.id)) {
-      return true;
+  useEffect(() => {
+    if (user.loggedIn && !multiSelect) {
+      projectFirestore.collection('dietTags')
+        .doc(user.uid)
+        .get()
+        .then(doc => {
+          if (doc.data()) {
+            return doc.data().dietTags;
+          }
+        })
+        .then((data) => {
+          setDietTags([data]);
+          setDiet(data);
+          setFilterSelection([data]);
+        }) 
     }
-    return false;
-  }
+  }, [user]);
 
-  
+  //Read tags
+  useEffect(() => {
+   if (user.loggedIn && multiSelect) {
+     projectFirestore.collection('healthTags')
+       .doc(user.uid)
+       .get()
+       .then(doc => {
+         if (doc.data()) {
+           return doc.data().healthTags;
+         }
+       })
+       .then((data) => {
+         setHealthTags(data);
+         const foo = databaseTagExtract(data, items);
+         setHealth(foo);
+         setFilterSelection(foo)
+       }) 
+   }
+  }, [user]);
 
-
-
-  // //Write tags
+    // //Write tags
   const writeFilterTag = (filterSelection, category) => {
 
     if(user.loggedIn && category === "dietTags") {
@@ -139,9 +137,22 @@ const Dropdown = (props) => {
     }
   }
   
-  
+
+
+  function isItemInSelection(item) {
+    if (health.find(current => current.id === item.id)) {
+      return true;
+    }
+    return false;
+  }
 
   
+
+
+
+
+  
+
   const applyButton = (e) => {
     if(multiSelect) {
       
@@ -159,8 +170,6 @@ const Dropdown = (props) => {
     }
     setOpen(false);
   }
-
-
 
 
   const clearButton = (e) => {
@@ -191,17 +200,12 @@ const Dropdown = (props) => {
         setFilterSelection([e.target.value]);
         
       } else if (multiSelect) {
-        console.log(health);
-        const filteredArr = [...health,...filterSelection, item].reduce((acc, current) => {
-          const x = acc.find(item => item.id === current.id);
-          if (!x) {
-            return acc.concat([current]);
-          } else {
-            return acc;
-          }
-        }, []);
         
+        const healthNullCheck = health ? health : null;
+        const filterSelectionNullCheck = filterSelection ? filterSelection : [];
+        const filteredArr = duplicateRemover([...healthNullCheck, ...filterSelectionNullCheck, item]);
         setFilterSelection(filteredArr);
+      
         
       }
     } else {
