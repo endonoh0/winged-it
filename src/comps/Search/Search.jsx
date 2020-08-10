@@ -6,11 +6,21 @@ import { projectFirestore } from '../../firebase/config'
 import Card from  'react-bootstrap/Card'
 
 import SearchBar from "../SearchByIngredient/SearchBar";
+import SearchByIngredient from "../SearchByIngredient/index";
 import "./Search.scss";
 
 
 
-const Search = () => {
+const Search = (props) => {
+
+
+
+  
+
+	//this is to make sure when add button pressed in the search page it re-redirect to home page
+	const addRedirect = true;
+
+	// const { mode, transition } = useVisualMode(LOADING);
 	const [suggestions, setSuggestions] = useState([])
 	const [hideBlock, setHideBlock] = useState(false);
 
@@ -42,12 +52,20 @@ const Search = () => {
           <figure >
             <img className="img" src="./rosemary.png" alt="rosemary on wooden block"/>
           </figure>
-          <div className="block">
+					<div className="block">
 						<div className="block__content">
-            	<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
-            	<SearchBar className="bar"/>
+							<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
+							
+								<SearchByIngredient
+								searchButtonVisual={false}
+								searchTags={props.searchTags}
+								setSearchTags={props.setSearchTags}
+								writeTag={props.writeTag}
+								onSubmit={props.onSubmit}
+							
+							/>
 						</div>
-          </div>
+					</div>
         </div> 
       </div>
 
@@ -71,5 +89,3 @@ const Search = () => {
 }
 
 export default Search; 
-
-

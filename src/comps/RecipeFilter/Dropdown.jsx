@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import "../RecipeFilter/RecipeFilter.scss";
+import "./RecipeFilter.scss";
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io';
 
 

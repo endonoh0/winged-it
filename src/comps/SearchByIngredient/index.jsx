@@ -1,10 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar'
 import recipeFinder from '../../helper/foodApi'
 // import axios from 'axios'
 
-const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit, children }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+import "./index.scss";
+
+const SearchByIngredient = (props) => {
+
+	const { 
+		searchTags,
+		setSearchTags,
+		writeTag,
+		onSubmit,
+		children,
+		searchButtonVisual = true,
+		searchTagsFetchStatus
+	} = props;
+
+	const [searchTerm, setSearchTerm] = useState('');
+
+	useEffect(() => {
+		if(searchTagsFetchStatus){
+			document.getElementById("search_recipe_btn").click();
+		}
+
+	}, [searchTagsFetchStatus])
+
+	// this class hide the search button on the search page
+	let searchButtonClass = searchButtonVisual? "" : "display_non";
+	searchButtonClass += " btn btn-primary waves-effect waves-light";
 
 	const pressEnter = (searchTerm) => {
 		if(searchTerm && !searchTags.includes(searchTerm)){
@@ -27,16 +51,18 @@ const SearchByIngredient = ({ searchTags, setSearchTags, writeTag, onSubmit, chi
 	// 	// })
 	// }
 
+
 	return(
-		<div className="search-container">
+		<div>
 			<SearchBar
+				
 				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
 				searchTags={searchTags}
 				setSearchTags={setSearchTags}
 				onKeyUp={pressEnter}/>
 
-				<button className="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
+				<button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
 				{children}
 		</div>
 

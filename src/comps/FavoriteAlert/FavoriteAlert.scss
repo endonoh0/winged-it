@@ -1,0 +1,28 @@
+.myAlert-bottom{
+  position: fixed;
+  text-align: center;
+  bottom: 5px;
+  left: 76%;
+  width: 21%;
+  z-index: 1;
+  letter-spacing: 3px;
+}
+
+@media (min-width: 500px) {
+  .myAlert-bottom {
+    left: 26%;
+    width: 47%;
+  }
+}
+@media (min-width: 768px) {
+  .myAlert-bottom {
+    width: 31%;
+    left: 43%;
+  }
+}
+@media (min-width: 1200px) {
+  .myAlert-bottom {
+    width: 19%;
+    // left: 46%;
+  }
+}

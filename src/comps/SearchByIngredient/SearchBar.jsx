@@ -1,14 +1,15 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import './SearchBar.scss'
+import { Redirect, Link } from "react-router-dom";
 
-import { IoMdAddCircle } from 'react-icons/io'
 
 const SearchBar = (props) => {
-  const {searchTerm, setSearchTerm, onKeyUp} = props;
 
+  const {searchTerm, setSearchTerm, onKeyUp} = props;
 	return(
-  
+    
+    
     <div class="custom-search">
     <input
     className="custom-search-input"
@@ -17,13 +18,22 @@ const SearchBar = (props) => {
     value={searchTerm}
     onChange={e => setSearchTerm(e.target.value)}
     onKeyUp={e => {
+
+      
       if(e.key === 'Enter'){
-        onKeyUp(searchTerm)
+      
+        // onKeyUps(searchTerm)
+        document.getElementById("add_btn").click();
+        
+       
       }
     }}/>
-    <button class="custom-search-botton" type="submit" onClick={e => onKeyUp(searchTerm)}>Add</button>
 
-  </div>
+    <Link to="/">
+      <button id="add_btn" class="custom-search-botton" type="submit" onClick={e => {onKeyUp(searchTerm)}}>Add</button>
+    </Link>
+
+  </div> 
     
   );
 }
@@ -39,7 +49,7 @@ export default SearchBar;
 
 
 
-
+  
 
 
 

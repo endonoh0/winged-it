@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import FavoriteAdd from './Favorite/FavoriteAdd';
-import "./Favorite/FavoriteAdd.scss"
+import "./Favorite/FavoriteAdd.scss";
 
-const RecipeGrid = ({ recipes, setSelectedImg, user }) => {
+const RecipeGrid = ({ recipes, setSelectedImg, user, setFavoriteAlert }) => {
 
   return (
     <div className="img-grid">
@@ -14,14 +14,14 @@ const RecipeGrid = ({ recipes, setSelectedImg, user }) => {
           layout
           whileHover={{ opacity: 1 }}
         >
-          
+
           <motion.img src={recipe.recipe.image} alt="recipe"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             // transition={{ delay: 1 }}
             onClick={() => setSelectedImg(recipe.recipe.url)}
           />
-          <FavoriteAdd recipe={ recipe } user={user}/>
+          <FavoriteAdd recipe={ recipe } user={user} setFavoriteAlert={setFavoriteAlert} />
         </motion.div>
         ))}
     </div>

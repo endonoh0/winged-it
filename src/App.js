@@ -37,7 +37,8 @@ import Search from "./comps/Search/Search";
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
-
+import ScrollToTop from './comps/ScrollToTop/ScrollToTop';
+import FavoriteAlert from './comps/FavoriteAlert/FavoriteAlert';
 
 
 
@@ -60,6 +61,8 @@ const UserProvider = UserContext.Provider;
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [searchTags, setSearchTags] = useState([]);
+  const [searchTagsFetchStatus, setSearchTagsFetchStatus] = useState(false)
+
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
   const [selection, setSelection] = useState([]);
@@ -67,6 +70,8 @@ function App() {
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [favoriteAlert, setFavoriteAlert] = useState(false);
+
   console.log(cookies.user);
 
   const [loadingStatus, setLoadingStatus] = useState(false);
@@ -103,6 +108,9 @@ function App() {
           if (doc.data()) {
             setSearchTags([...doc.data().searchTags]);
           }
+        })
+        .then(() => {
+          setSearchTagsFetchStatus(true)
         })
     }
   }, [user])
@@ -145,7 +153,13 @@ function App() {
 
   return (
     <div className="App">
+      <ScrollToTop />
       {/* {!user.loggedIn && <Header />} */}
+
+
+      {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
+
+
 
       <Router>
         <NavbarTop user={user} />
@@ -154,7 +168,14 @@ function App() {
 
 
         <Switch>
-          <Route path="/search"> <Search/> </Route>
+          <Route path="/search">
+          <Search
+            searchTags={searchTags}
+            setSearchTags={setSearchTags}
+            writeTag={writeTag}
+            onSubmit={onSubmit}
+          />
+          </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
               {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
@@ -200,8 +221,9 @@ function App() {
               setSearchTags={setSearchTags}
               writeTag={writeTag}
               onSubmit={onSubmit}
+              searchTagsFetchStatus={searchTagsFetchStatus}
             >
-              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user}/>}
+              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>}
             </SearchByIngredient>
           </Route>
 

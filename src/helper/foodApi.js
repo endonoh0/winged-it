@@ -16,7 +16,8 @@ const recipeSearch = (ingredients, healthFilter, dietFilter) => {
 
   const edamamRecipeUrl =
   `https://api.edamam.com/search?q=${ingredients}&app_id=${apiInfo.edamamRecipeDatabase.apiKey}&app_key=${apiInfo.edamamRecipeDatabase.applicationID}${healthSelection}&Diet=${dietFilter}&to=21`;
-
+ 
+  console.log( edamamRecipeUrl)
 
   return requestPromise(edamamRecipeUrl)
   .then (function (data) {
