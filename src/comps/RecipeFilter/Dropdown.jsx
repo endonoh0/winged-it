@@ -27,10 +27,10 @@ const databaseTagExtract = (tags, items) => {
 }
 
 
-
 const Dropdown = (props) => {
   
   const {
+    writeTag,
     searchTagsFetchStatus,
     title,
     items = [],
@@ -39,7 +39,8 @@ const Dropdown = (props) => {
     health = [],
     diet,
     setDiet,
-    healthTags = []
+    healthTags = [],
+    dietTags = [],
   } = props;
 
 
@@ -52,21 +53,24 @@ const Dropdown = (props) => {
   //use this to clear checkbox
   const [checkboxClear, setCheckboxClear] = useState(true);
 
-
-
-  // console.log("Dropdown -> databaseTagExtract(healthTags,items)", databaseTagExtract(healthTags,items))
   // //read the tags from database and put it in the state when the page load
   useEffect(() => {
-    
-    if(searchTagsFetchStatus) {
-      const foo = databaseTagExtract(healthTags,items);
+    if(searchTagsFetchStatus && multiSelect) {
+      // inject health tags from firbase to states
+      const foo = databaseTagExtract(healthTags, items);
       setHealth(foo);
       setFilterSelection(foo);
-    }
-    
-    
-  }, [searchTagsFetchStatus])
 
+    }
+
+    if(searchTagsFetchStatus) {
+      setFilterSelection(dietTags)
+      setDiet(dietTags[0]);
+    }
+
+  }, [searchTagsFetchStatus]);
+
+  console.log(filterSelection);
   function handleOnClick(e, item) {
 
     setCheckboxClear(true);
@@ -75,10 +79,19 @@ const Dropdown = (props) => {
       if (!multiSelect) {
         
         setFilterSelection([e.target.value]);
-
+        
       } else if (multiSelect) {
-     
-        setFilterSelection(prev => [...prev, item]);
+
+        const filteredArr = [...health,...filterSelection,item].reduce((acc, current) => {
+          const x = acc.find(item => item.id === current.id);
+          if (!x) {
+            return acc.concat([current]);
+          } else {
+            return acc;
+          }
+        }, []);
+        
+        setFilterSelection(filteredArr);
         
       }
     } else {
@@ -102,19 +115,28 @@ const Dropdown = (props) => {
     return false;
   }
 
+
   
   const applyButton = (e) => {
     if(multiSelect) {
       
-      console.log("applyButton -> filterSelection", health)
       setHealth(filterSelection);
+      writeTag(null, "filterTags");
 
     } else {
-      setDiet(filterSelection[0]);
+
+      setDiet(pre => filterSelection[0]);
+      writeTag(null, "filterTags");
+      
+      
+      
     }
     
     setOpen(false);
   }
+
+
+
 
   const clearButton = (e) => {
 
@@ -124,8 +146,10 @@ const Dropdown = (props) => {
     if(multiSelect) {
       
       setHealth([]);
+      writeTag(null, "filterTags");
     } else {
       setDiet("");
+      writeTag(null, "filterTags");
     }
   }
 

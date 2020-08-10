@@ -6,7 +6,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
-// import axios from 'axios'
+import axios from 'axios'
 
 // SCSS Style files
 import './index.scss';
@@ -96,16 +96,39 @@ function App() {
   };
 
 
+
+
   //Write tags
-  const writeTag = (searchTerm) => {
-    // Makes sure the search term is unique
-    if (!searchTags.includes(searchTerm) && user.loggedIn) {
-      const info = { searchTags: [...searchTags, searchTerm], createdBy: user.email, editedAt: timeStamp() }
-      write('searchTags', info)
+  const writeTag = (searchTerm, dbField) => {
+    
+    const arr = [];
+    if (health){
+      for (const item of health) {
+        if (item.value) arr.push(item.value);
+      }
     }
+    
+   
+    const info = {dietTags: diet? [diet]:[], healthTags: arr?arr:[], searchTags: searchTerm? [...searchTags, searchTerm]: [...searchTags], createdBy: user.email, editedAt: timeStamp() };
+
+    if (dbField === "searchTags" && !searchTags.includes(searchTerm) && user.loggedIn) {
+      write("searchTags", info)
+    } else if (dbField === "filterTags") {
+    
+      write("searchTags", info)
+    }
+
   }
 
-
+  // //Remove tags
+  // const removeFilterTag = (searchTerm) => {
+  //   const newTags = searchTags.filter(tags => tags !== searchTerm)
+  //   const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
+  //   setSearchTags([...newTags])
+  //   if (user.loggedIn) {
+  //     write('searchTags', info)
+  //   }
+  // }
 
 
   //Remove tags
@@ -126,7 +149,7 @@ function App() {
         .get()
         .then(doc => {
           if (doc.data()) {
-            // setDietTags([...doc.data().dietTags]);
+            setDietTags([...doc.data().dietTags]);
             setHealthTags([...doc.data().healthTags]);
             setSearchTags([...doc.data().searchTags]);
           }
@@ -220,11 +243,12 @@ function App() {
             {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
             {user.loggedIn && <RecipeFilter
 
+              dietTags={dietTags}
               healthTags={healthTags}
               setHealthTags={setHealthTags}
               writeTag={writeTag}
-              searchTagsFetchStatus={searchTagsFetchStatus}
 
+              searchTagsFetchStatus={searchTagsFetchStatus}
               user={user}
               setHealth={setHealth}
               health={health}

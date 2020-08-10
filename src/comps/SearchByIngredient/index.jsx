@@ -22,7 +22,11 @@ const SearchByIngredient = (props) => {
 	//This make sure that click the search button once you load the search page
 	useEffect(() => {
 		if(searchTagsFetchStatus){
-			document.getElementById("search_recipe_btn").click();
+
+			setTimeout(() => {
+				document.getElementById("search_recipe_btn").click();
+			}, );
+			
 		}
 	}, [searchTagsFetchStatus]);
 
@@ -34,7 +38,7 @@ const SearchByIngredient = (props) => {
 	const pressEnter = (searchTerm) => {
 		if(searchTerm && !searchTags.includes(searchTerm)){
 			setSearchTags(prev => [...prev, searchTerm])
-			writeTag(searchTerm)
+			writeTag(searchTerm, 'searchTags')
 			setSearchTerm("")
 		}
 	};

@@ -12,7 +12,9 @@ import "./RecipeFilter.scss";
 const RecipeFilter = (props) => {
 
   const {
+    writeTag,
     searchTagsFetchStatus,
+    dietTags,
     healthTags,
     setHealthTags,
     health,
@@ -26,14 +28,28 @@ const RecipeFilter = (props) => {
 
   return (
     <div className="filter_container">
-      <Dropdown title="Health filter" 
+      <Dropdown title="Health filter"
+      writeTag={writeTag}
+      diet={diet}
+      setDiet={setDiet}
       healthTags={healthTags}
+      dietTags={dietTags}
       items={healthItems}
       setHealth={setHealth}
       health={health}
       searchTagsFetchStatus={searchTagsFetchStatus}
       multiSelect />
-      <Dropdown title="Diet filter" items={dietItems} diet={diet} setDiet={setDiet} />
+      <Dropdown title="Diet filter"
+      writeTag={writeTag}
+      diet={diet}
+      setDiet={setDiet}
+      healthTags={healthTags}
+      dietTags={dietTags}
+      items={dietItems}
+      setHealth={setHealth}
+      health={health}
+      searchTagsFetchStatus={searchTagsFetchStatus} 
+       />
     </div>
   );
 }

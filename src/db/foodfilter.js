@@ -26,7 +26,6 @@ export const dietItems = [
   { id: 22, value: 'Low-Carb' },
   { id: 23, value: 'Low-Fat' },
   { id: 24, value: 'Low-Sodium' },
-  { id: 25, value: 'None' },
 ]
 
 export const nutrientItems = [
