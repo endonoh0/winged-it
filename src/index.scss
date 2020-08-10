@@ -13,6 +13,10 @@ svg {
   display: block;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 #root{
   height: 100vh;
   width: 100vw;

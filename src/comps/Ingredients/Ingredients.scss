@@ -8,7 +8,6 @@
 	overflow: hidden;
 
 	.fader{
-		// position: absolute;
 		top: 0;
 		left: 0;
 		height: 100%;
@@ -33,18 +32,11 @@
 		visibility: hidden;
 		animation: unHide 0s 1.5s forwards;
 	}
-	// .banner_right{
-	// 	display: inline-block;
-	// 	height: 0;
-	// 	width: 50%;
-	// 	background-color: grey;
-	// 	animation: fadeIn 0s 1.5s forwards;
-	// }
+
 	.seasonal_revealer{
 		display: flex;
 		flex-direction: column;
 		position: absolute;
-		// z-index: 2;
 		background-color: grey;
 		visibility: hidden;
 		width: inherit;
@@ -56,7 +48,6 @@
 .grids_container{
 	display: flex;
 	flex-wrap: wrap;
-	// justify-content: space-between;
 	position: relative;
 	overflow: hidden;
 
@@ -75,24 +66,26 @@
 	&-active{
 		display: flex;
 		flex-wrap: wrap;
-		// justify-content: space-between;
     position: relative;
     justify-content: center;
-		// overflow-x: hidden;
 	}
-
-
 }
 
 .grid__img{
+  margin: 1rem 0.5rem;
+  -webkit-box-shadow: 0px 3px 6px 3px rgba(0,0,0,0.48);
+  -moz-box-shadow: 0px 3px 6px 3px rgba(0,0,0,0.48);
+  box-shadow: 0px 3px 6px 3px rgba(0,0,0,0.48);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  margin-top: 8%;
 	width: 100%;
 	height: 200px;
 	object-fit: cover;
-
 }
 
 .grid__title{
-	text-align: center;
+  text-align: center;
 }
 
 .grid__card{
@@ -102,14 +95,8 @@
 	margin: 24px;
 
 	&:hover{
-		border: grey solid .1px;
+    // border: grey solid .1px;
 	}
-}
-
-
-.ingredient{
-	// opacity: 0;
-	// animation: fadeIn 1s 2s forwards;
 }
 
 .banner_description{
@@ -118,8 +105,22 @@
 	margin: 1rem 0 0 5rem;
 }
 
-@media (min-width: 1200px) {
+.card:hover{
+	opacity: 1;
+	cursor: pointer;
+}
 
+.card-title {
+  margin-top: 0.75rem;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.banner_content{
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	color: white;
+	opacity: 0;
+	animation: fadeIn 1s 2.3s forwards;
 }
 
 #seasonal_title{
@@ -140,17 +141,7 @@
   font-size: 18px;
 }
 
-.card:hover{
-	opacity: 1;
-	cursor: pointer;
-}
 
-.banner_content{
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-	color: white;
-	opacity: 0;
-	animation: fadeIn 1s 2.3s forwards;
-}
 
 
 @keyframes unHide {

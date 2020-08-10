@@ -32,7 +32,7 @@ const Ingredients = () => {
 			})
 		}
 		getIngredients()
-		
+
 	}, [])
 
 	// Class toggle for swipe animation on ingredients
@@ -51,21 +51,24 @@ const Ingredients = () => {
 
 	return (
 		<Fragment>
+
 			<div className="seasonal_banner">
 				<div className="seasonal_revealer">
 					<h1 className="banner_content" id="seasonal_title">Seasonal Ingredients</h1>
 					<article className="banner_description">
 						<h2 className="banner_content" id="month">{MONTHS[month]}</h2>
 						<p className="banner_content" id="description">
-							These are all the local ingredients that are currently in season. 
+							These are all the local ingredients that are currently in season.
 							Discover some new and delicious recipes and try out some great inseason foods!"
-						</p> 
+						</p>
 					</article>
 				</div>
 				<img className="banner_left" src="./ingredient-banner.jpg" alt="Ingredient banner"/>
 			</div>
 			<section className="seasonal_container">
-				
+        <Pagination count={maxPage} shape="rounded"
+          onChange={(e, page) => onPageSwitch(page)}
+        />
 					<article className={gridsContainer}>
 						<div className="fader"></div>
 						{currentData().map(ingredient => (
@@ -77,9 +80,7 @@ const Ingredients = () => {
 							</Link>
 						))}
 					</article>
-				<Pagination count={maxPage} shape="rounded" 
-				onChange={(e, page) => onPageSwitch(page)}
-				/>
+
 			</section>
 		</Fragment>)
 
