@@ -7,6 +7,7 @@
 }
 
 .custom-control-label {
+  left: 9%;
   font-weight: 400;
 }
 
@@ -26,16 +27,21 @@
   color: #167bff;
 }
 
-// .display-none {
-//   display: none;
-// }
-
 // Margin
 .mr-alt {
   margin-right: 28%;
 }
 .mt-label {
   margin-top: 10%;
+}
+.my-2 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+// padding
+.custom-checkbox {
+  padding: 5% 0;
 }
 
   /* Sign up and Sign in */
@@ -50,6 +56,7 @@ input {
 
 // Password input
 .form-text {
+  padding: 5% 0;
   text-align: center;
 }
 
@@ -58,7 +65,7 @@ input {
   //   background-color: red;
   // }
   form.sign-up {
-    transform: scale(1.5);
+    // transform: scale(1.5);
     margin-top: 15%;
   }
 }
@@ -69,6 +76,6 @@ input {
   //   background-color: blue;
   // }
   form.sign-up {
-    margin-top: 7%;
+    margin-top: -5%;
   }
 }

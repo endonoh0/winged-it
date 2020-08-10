@@ -52,7 +52,7 @@ const SignUp = ({ onClick }) => {
         </Form.Text>
       </Form.Group>
 
-      <div className="mt-15">
+      <div className="my-2">
         <Button
           type="submit"
           className="mb-2"
@@ -64,11 +64,6 @@ const SignUp = ({ onClick }) => {
         }>
           Sign up
         </Button>
-
-        <p className="forgot-password text-right">
-          Already registered <a href="#">sign in?</a>
-        </p>
-
       </div>
     </Form>
   )

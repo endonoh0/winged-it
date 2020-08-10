@@ -28,7 +28,7 @@ const SearchBar = (props) => {
       }}
       />
       <Link to="/">
-        <button id="add_btn" class="custom-search-botton" type="submit" onClick={e => {onKeyUp(searchTerm)}}>Add</button>
+        <button id="add_btn" className="custom-search-botton" type="submit" onClick={e => {onKeyUp(searchTerm)}}>Add</button>
       </Link>
     </div>
     <button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
