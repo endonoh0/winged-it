@@ -65,9 +65,9 @@ body{
 .img-grid {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 80%;
   height: 100%;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   flex-flow: wrap;
 }
 
@@ -111,4 +111,11 @@ body{
 
 .sidebar-container{
   width: 363px;
+}
+
+
+@media (max-width: 1500px) {
+  .img-wrap {
+    margin: 0 0 85px 0;
+  }
 }
