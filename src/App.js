@@ -100,35 +100,19 @@ function App() {
 
   //Write tags
   const writeTag = (searchTerm, dbField) => {
-    
-    const arr = [];
-    if (health){
-      for (const item of health) {
-        if (item.value) arr.push(item.value);
-      }
-    }
-    
+      
    
-    const info = {dietTags: diet? [diet]:[], healthTags: arr?arr:[], searchTags: searchTerm? [...searchTags, searchTerm]: [...searchTags], createdBy: user.email, editedAt: timeStamp() };
+    
 
     if (dbField === "searchTags" && !searchTags.includes(searchTerm) && user.loggedIn) {
+      const info = { searchTags: searchTerm? [...searchTags, searchTerm]: [...searchTags], createdBy: user.email, editedAt: timeStamp() };
+      
       write("searchTags", info)
-    } else if (dbField === "filterTags") {
     
-      write("searchTags", info)
     }
 
   }
 
-  // //Remove tags
-  // const removeFilterTag = (searchTerm) => {
-  //   const newTags = searchTags.filter(tags => tags !== searchTerm)
-  //   const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
-  //   setSearchTags([...newTags])
-  //   if (user.loggedIn) {
-  //     write('searchTags', info)
-  //   }
-  // }
 
 
   //Remove tags
@@ -149,8 +133,7 @@ function App() {
         .get()
         .then(doc => {
           if (doc.data()) {
-            setDietTags([...doc.data().dietTags]);
-            setHealthTags([...doc.data().healthTags]);
+
             setSearchTags([...doc.data().searchTags]);
           }
         })
@@ -197,6 +180,8 @@ function App() {
         <Switch>
           <Route path="/search"> 
           <Search
+            setDiet={setDiet}
+            setHealth={setHealth}
             searchTags={searchTags}
             setSearchTags={setSearchTags}
             writeTag={writeTag}
@@ -242,7 +227,8 @@ function App() {
           <Route path="/">
             {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
             {user.loggedIn && <RecipeFilter
-
+              user={user}
+              setDietTags={setDietTags}
               dietTags={dietTags}
               healthTags={healthTags}
               setHealthTags={setHealthTags}

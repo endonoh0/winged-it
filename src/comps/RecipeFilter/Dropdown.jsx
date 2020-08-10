@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import "./RecipeFilter.scss";
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io';
+import useWriteToFirestore from '../../hooks/useWriteToFirestore'
+import { timeStamp, projectFirestore } from '../../firebase/config';
 
 const databaseTagExtract = (tags, items) => {
   const databaseTags = [];
@@ -30,18 +32,22 @@ const databaseTagExtract = (tags, items) => {
 const Dropdown = (props) => {
   
   const {
+    setDietTags,
+    setHealthTags,
+    user,
     writeTag,
-    searchTagsFetchStatus,
+    // searchTagsFetchStatus,
     title,
     items = [],
     multiSelect = false,
     setHealth,
     health = [],
-    diet,
+    // diet,
     setDiet,
-    healthTags = [],
-    dietTags = [],
+    // healthTags = [],
+    // dietTags = [],
   } = props;
+
 
 
   // toggle dropdown
@@ -53,24 +59,128 @@ const Dropdown = (props) => {
   //use this to clear checkbox
   const [checkboxClear, setCheckboxClear] = useState(true);
 
-  // //read the tags from database and put it in the state when the page load
-  useEffect(() => {
-    if(searchTagsFetchStatus && multiSelect) {
-      // inject health tags from firbase to states
-      const foo = databaseTagExtract(healthTags, items);
-      setHealth(foo);
-      setFilterSelection(foo);
+  const { write } = useWriteToFirestore();
 
+    //Read tags
+    useEffect(() => {
+      if (user.loggedIn && !multiSelect) {
+        projectFirestore.collection('dietTags')
+          .doc(user.uid)
+          .get()
+          .then(doc => {
+            if (doc.data()) {
+              return doc.data().dietTags;
+              // setHealthTags([...doc.data().healthTags]);
+            }
+          })
+          .then((data) => {
+            setDietTags([data]);
+            setDiet(data);
+            setFilterSelection([data]);
+          }) 
+      }
+    }, [user]);
+
+       //Read tags
+       useEffect(() => {
+        if (user.loggedIn && multiSelect) {
+          projectFirestore.collection('healthTags')
+            .doc(user.uid)
+            .get()
+            .then(doc => {
+              if (doc.data()) {
+                return doc.data().healthTags;
+              }
+            })
+            .then((data) => {
+              setHealthTags(data);
+              const foo = databaseTagExtract(data, items);
+              setHealth(foo);
+              setFilterSelection(foo);
+
+
+            }) 
+        }
+      }, [user]);
+
+  
+
+
+  function isItemInSelection(item) {
+    if (health.find(current => current.id === item.id)) {
+      return true;
+    }
+    return false;
+  }
+
+  
+
+
+
+  // //Write tags
+  const writeFilterTag = (filterSelection, category) => {
+
+    if(user.loggedIn && category === "dietTags") {
+      const info = { dietTags: filterSelection,  createdBy: user.email, editedAt: timeStamp() };
+      write("dietTags", info)
+      return;
+    }
+  
+    const arr = [];
+    if (filterSelection){
+      for (const item of filterSelection) {
+        if (item.value) arr.push(item.value);
+      }
     }
 
-    if(searchTagsFetchStatus) {
-      setFilterSelection(dietTags)
-      setDiet(dietTags[0]);
+    if(user.loggedIn && category === "healthTags") {
+      const info = { healthTags: arr,  createdBy: user.email, editedAt: timeStamp() };
+      write("healthTags", info)
     }
+  }
+  
+  
 
-  }, [searchTagsFetchStatus]);
+  
+  const applyButton = (e) => {
+    if(multiSelect) {
+      
+      setHealth(filterSelection);
+      writeTag(null, "filterTags");
+      writeFilterTag(filterSelection, "healthTags")
+      
 
-  console.log(filterSelection);
+    } else {
+
+      setDiet(pre => filterSelection[0]);
+      writeFilterTag(filterSelection[0], "dietTags")
+      writeTag(null, "filterTags");
+      
+    }
+    setOpen(false);
+  }
+
+
+
+
+  const clearButton = (e) => {
+
+    setCheckboxClear(false);
+    setFilterSelection([]);
+    
+    if(multiSelect) {
+      
+      setHealth([]);
+      writeTag(null, "filterTags");
+      writeFilterTag([], "healthTags")
+    } else {
+      setDiet("");
+      writeTag(null, "filterTags");
+      writeFilterTag("", "dietTags")
+    }
+  }
+
+
   function handleOnClick(e, item) {
 
     setCheckboxClear(true);
@@ -81,8 +191,8 @@ const Dropdown = (props) => {
         setFilterSelection([e.target.value]);
         
       } else if (multiSelect) {
-
-        const filteredArr = [...health,...filterSelection,item].reduce((acc, current) => {
+        console.log(health);
+        const filteredArr = [...health,...filterSelection, item].reduce((acc, current) => {
           const x = acc.find(item => item.id === current.id);
           if (!x) {
             return acc.concat([current]);
@@ -106,53 +216,6 @@ const Dropdown = (props) => {
 
     }
   }
-
-
-  function isItemInSelection(item) {
-    if (health.find(current => current.id === item.id)) {
-      return true;
-    }
-    return false;
-  }
-
-
-  
-  const applyButton = (e) => {
-    if(multiSelect) {
-      
-      setHealth(filterSelection);
-      writeTag(null, "filterTags");
-
-    } else {
-
-      setDiet(pre => filterSelection[0]);
-      writeTag(null, "filterTags");
-      
-      
-      
-    }
-    
-    setOpen(false);
-  }
-
-
-
-
-  const clearButton = (e) => {
-
-    setCheckboxClear(false);
-    setFilterSelection([]);
-    
-    if(multiSelect) {
-      
-      setHealth([]);
-      writeTag(null, "filterTags");
-    } else {
-      setDiet("");
-      writeTag(null, "filterTags");
-    }
-  }
-
 
   return (
     <div className="dd-wrapper">

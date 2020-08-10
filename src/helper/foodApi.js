@@ -14,17 +14,14 @@ const recipeSearch = (ingredients, healthFilter = [], dietFilter) => {
     }
   };
 
-  // const edamamRecipeUrl =
-  // `https://api.edamam.com/search?q=${ingredients}&app_id=${apiInfo.edamamRecipeDatabase.apiKey}&app_key=${apiInfo.edamamRecipeDatabase.applicationID}${healthSelection}&Diet=${dietFilter}&to=21`;
+  const edamamRecipeUrl =
+  `https://api.edamam.com/search?q=${ingredients}&app_id=${apiInfo.edamamRecipeDatabase.apiKey}&app_key=${apiInfo.edamamRecipeDatabase.applicationID}${healthSelection}&Diet=${dietFilter}&to=21`;
 
-  const edamamRecipeUrl=""
+
  
   
-  console.log("recipeSearch -> healthSelection", healthSelection)
-  
-  console.log("recipeSearch -> dietFilter", dietFilter)
-  
-  console.log("recipeSearch -> ingredients", ingredients)
+  console.log(edamamRecipeUrl)
+
 
   return requestPromise(edamamRecipeUrl)
   .then (function (data) {
@@ -35,7 +32,7 @@ const recipeSearch = (ingredients, healthFilter = [], dietFilter) => {
 
   })
   .catch(err => {
-    // console.log(err);
+    console.log(err);
   })
 
 };

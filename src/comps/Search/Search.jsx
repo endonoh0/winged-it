@@ -9,15 +9,16 @@ import SearchBar from "../SearchByIngredient/SearchBar";
 import SearchByIngredient from "../SearchByIngredient/index";
 import "./Search.scss";
 
+import { healthItems, dietItems } from "../../db/foodfilter";
+
 
 
 const Search = (props) => {
 
 
 
-
-	//this is to make sure when add button pressed in the search page it re-redirect to home page
-	const addRedirect = true;
+	// //this is to make sure when add button pressed in the search page it re-redirect to home page
+	// const addRedirect = true;
 
 	// const { mode, transition } = useVisualMode(LOADING);
 	const [suggestions, setSuggestions] = useState([])
@@ -41,7 +42,15 @@ const Search = (props) => {
 		}
 		getSuggestions()
 		
-	}, [])
+	}, []);
+
+	const imgGridClickHandler = (filterTitle) => {
+		for (const healthItem of healthItems) {
+			if (healthItem.value === filterTitle) props.setHealth([healthItem]);
+		}
+
+		props.writeTag(null, "filterTags");
+	};
 
   return (
     <div>
@@ -74,7 +83,7 @@ const Search = (props) => {
 			<article className="grids_container">
 				{suggestions.map(suggestion => (
 						<Link className="grid" to="/">
-							<Card className="grid__card" style={{width: '18rem'}}>
+							<Card onClick={e => imgGridClickHandler(suggestion.name)} className="grid__card" style={{width: '18rem'}}>
 								<Card.Img className="grid__img" variant="top" src={suggestion.url} />
 								<Card.Title className="grid__title" >{suggestion.name}</Card.Title>
 							</Card>
