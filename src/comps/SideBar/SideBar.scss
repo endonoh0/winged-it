@@ -2,12 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(1.5);
+    transform: scale(1.5); // Scale map icons on for screens 500px wide and up
 }
 .sidebar__container {
   width: 17rem;
   display: flex;
-  // position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
@@ -34,6 +33,7 @@
   }
 }
 
+// Small devices (landscape phones, 500px and up)
 @media (min-width: 500px) {
   .sidebar__container {
     margin-left: 25%;
@@ -56,10 +56,8 @@
   }
 }
 
+// Large devices (laptops, 1200px and up)
 @media (min-width: 1200px) {
-  // .sidebar__container {
-  //   margin-top: 15%;
-  // }
   #search_recipe_btn {
     margin-top: -4%;
   }

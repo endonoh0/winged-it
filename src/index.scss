@@ -77,7 +77,6 @@ svg {
 
 .img-wrap {
   height: 300px;
-  // width: 300px;
   margin: 2rem 0rem 2rem 7rem;
 }
 
@@ -119,6 +118,7 @@ svg {
   width: 363px;
 }
 
+// Media Queries
 @media (min-width: 500px) {
   .img-grid {
     display: unset;
@@ -131,15 +131,10 @@ svg {
   .img-grid {
     display: flex;
     margin-left: 18%;
-    width: unset; //18 // width 0 % // justify content unset
+    width: unset;
     justify-content: unset;
   }
   .img-wrap {
-    // display: flex;
-    // margin-left: 3em; // out
-    // margin-right: 3em; // out
     padding-top: 0%;
-    // margin-right: -4%;
-    // margin-left: 1em;
   }
 }
