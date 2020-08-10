@@ -19,9 +19,11 @@ const FavoriteItems = (props) => {
         // transition={{ delay: 1 }}
         onClick={e => props.setSelectedImg(props.doc.recipe.url)}
       />
-      <FiEdit3 className="btn" onClick = { props.editEvent } size={40}/>
-      <AiOutlineDelete className="btn" id="delete_icon" onClick = { e => props.deleteEventReq()} size={40}/>
-      <div className="desc">{ props.doc.recipe.name }</div>
+      <div className="favorite_btn_container">
+        <FiEdit3 className="btn" onClick = { props.editEvent } size={40}/>
+        <AiOutlineDelete className="btn" id="delete_icon" onClick = { e => props.deleteEventReq()} size={40}/>
+        <div className="desc">{ props.doc.recipe.name }</div>
+      </div>
     </Fragment>
   );
 };
