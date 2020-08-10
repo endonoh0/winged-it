@@ -18,11 +18,11 @@ const SideBar = ({searchTags, removeTag, form, title, setTitle, directions}) => 
   return (
     <div className={sidebarContainer}>
       <div className="sidebar__header">
-        <Link to='/' className="link">
+        {/* <Link to='/' className="link">
           <Title />
-        </Link>
-        <hr className="sidebar__separator sidebar--centered" />
-        {directions && <Directions data={directions} />}
+        </Link> */}
+        { directions && <hr className="sidebar__separator sidebar--centered" /> }
+        { directions && <Directions data={directions} />}
 
       </div>
       <div className="sidebar__content">

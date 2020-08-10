@@ -9,6 +9,10 @@ body{
   margin: 0;
 }
 
+svg {
+  display: block;
+}
+
 #root{
   height: 100vh;
   width: 100vw;
@@ -73,7 +77,6 @@ body{
 
 .img-wrap {
   height: 300px;
-  width: 300px;
   margin: 2rem 0rem 2rem 7rem;
 }
 
@@ -110,6 +113,8 @@ body{
 }
 
 .sidebar-container{
+  display: flex;
+  margin-left: 19%;
   width: 363px;
 }
 
@@ -117,5 +122,26 @@ body{
 @media (max-width: 1500px) {
   .img-wrap {
     margin: 0 0 85px 0;
+  }
+}
+
+// Media Queries
+@media (min-width: 500px) {
+  .img-grid {
+    display: unset;
+  }
+  .img-wrap {
+    padding-top: 0rem;
+  }
+}
+@media (min-width: 768px) {
+  .img-grid {
+    display: flex;
+    margin-left: 11.5%;
+    width: unset;
+    justify-content: unset;
+  }
+  .img-wrap {
+    padding-top: 0%;
   }
 }
