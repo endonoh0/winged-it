@@ -1,19 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import "./RecipeFilter.scss";
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io';
+
+const databaseTagExtract = (tags, items) => {
+  const databaseTags = [];
+
+  if (tags.length === 0) {
+    return;
+  }
+
+  for(const tag of tags) {
+    for (const item of items) {
+      
+      
+      if (item.value === tag){
+        databaseTags.push(item);
+        break;
+      }
+
+    }
+  }
+
+  return databaseTags;
+
+}
+
 
 
 const Dropdown = (props) => {
   
   const {
+    searchTagsFetchStatus,
     title,
     items = [],
     multiSelect = false,
     setHealth,
     health = [],
     diet,
-    setDiet
+    setDiet,
+    healthTags = []
   } = props;
 
 
@@ -27,6 +53,19 @@ const Dropdown = (props) => {
   const [checkboxClear, setCheckboxClear] = useState(true);
 
 
+
+  // console.log("Dropdown -> databaseTagExtract(healthTags,items)", databaseTagExtract(healthTags,items))
+  // //read the tags from database and put it in the state when the page load
+  useEffect(() => {
+    
+    if(searchTagsFetchStatus) {
+      const foo = databaseTagExtract(healthTags,items);
+      setHealth(foo);
+      setFilterSelection(foo);
+    }
+    
+    
+  }, [searchTagsFetchStatus])
 
   function handleOnClick(e, item) {
 
@@ -66,7 +105,10 @@ const Dropdown = (props) => {
   
   const applyButton = (e) => {
     if(multiSelect) {
+      
+      console.log("applyButton -> filterSelection", health)
       setHealth(filterSelection);
+
     } else {
       setDiet(filterSelection[0]);
     }
@@ -87,7 +129,7 @@ const Dropdown = (props) => {
     }
   }
 
-  console.log(diet);
+
   return (
     <div className="dd-wrapper">
 
@@ -119,7 +161,11 @@ const Dropdown = (props) => {
                 onClick={(e) => handleOnClick(e, item, item.id)}
                 defaultChecked={item.id === 25 || isItemInSelection(item)}
                 // checked={diet && diet === item.value} 
-                checked={checkboxClear && (!multiSelect? filterSelection[0] && filterSelection[0] === item.value : null)}
+                checked={
+                  checkboxClear && 
+                  (!multiSelect? filterSelection[0]
+                  && filterSelection[0] === item.value : null)
+                }
               />
 
               <label className="custom-control-label" htmlFor={item.id}>{item.value}</label>

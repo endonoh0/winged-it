@@ -60,6 +60,8 @@ const UserProvider = UserContext.Provider;
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [searchTags, setSearchTags] = useState([]);
+  const [healthTags, setHealthTags] = useState([]);
+  const [dietTags, setDietTags] = useState([]);
   const [searchTagsFetchStatus, setSearchTagsFetchStatus] = useState(false)
 
   const [recipes, setRecipes] = useState([]);
@@ -76,7 +78,6 @@ function App() {
   const { write } = useWriteToFirestore();
 
 
- 
 
   const onSubmit = async (e) => {
     // const result = await axios.get('./recipe.json')
@@ -104,6 +105,9 @@ function App() {
     }
   }
 
+
+
+
   //Remove tags
   const removeTag = (searchTerm) => {
     const newTags = searchTags.filter(tags => tags !== searchTerm)
@@ -122,14 +126,18 @@ function App() {
         .get()
         .then(doc => {
           if (doc.data()) {
+            // setDietTags([...doc.data().dietTags]);
+            setHealthTags([...doc.data().healthTags]);
             setSearchTags([...doc.data().searchTags]);
           }
         })
         .then(() => {
+          
           setSearchTagsFetchStatus(true)
         }) 
     }
   }, [user]);
+
 
   // listen to auth state change
   useCurrentUser(setUser);
@@ -212,10 +220,12 @@ function App() {
             {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
             {user.loggedIn && <RecipeFilter
 
-              searchTags={searchTags}
-              setSearchTags={setSearchTags}
+              healthTags={healthTags}
+              setHealthTags={setHealthTags}
               writeTag={writeTag}
+              searchTagsFetchStatus={searchTagsFetchStatus}
 
+              user={user}
               setHealth={setHealth}
               health={health}
               diet={diet}
