@@ -7,9 +7,9 @@ $viewport_xl: 	$item_width * 5 + $sidebar_width; /* 5 columns */
 $viewport_xxl: 	$item_width * 6 + $sidebar_width; /* 6 columns */
 
 @media screen and (min-width: $viewport_xs) {
-	html, 
-	body, 
-	.grid__container, 
+	html,
+	body,
+	.grid__container,
 	.main {
 		height: 100vh;
 	}
@@ -47,9 +47,9 @@ $viewport_xxl: 	$item_width * 6 + $sidebar_width; /* 6 columns */
 		color: #7883C4;
 	}
 
-	body #cdawrap a:hover.carbon-poweredby {
-		color: #333;
-	}
+	// body #cdawrap a:hover.carbon-poweredby {
+	// 	color: #333;
+	// }
 
 	body #cdawrap #cda-remove {
 		display: none;
