@@ -32,7 +32,6 @@ const SearchByIngredient = (props) => {
 					setSearchTags={setSearchTags}
 					onKeyUp={pressEnter}/>
 			</div>
-			{/* {children} */}
 		</>
 
 	);
