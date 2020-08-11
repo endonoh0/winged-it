@@ -109,23 +109,21 @@ const Search = (props) => {
       <div className="search_page">
         <div className="title_bar">
 					<div className={revealBlock}></div>
-          <figure >
-            <img className="img" src="./rosemary.png" alt="rosemary on wooden block"/>
-          </figure>
 					<div className="block">
 						<div className="block__content">
 							<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
-							
 								<SearchByIngredient
 								searchButtonVisual={false}
 								searchTags={searchTags}
 								setSearchTags={setSearchTags}
 								writeTag={writeTag}
 								onSubmit={onSubmit}
-							
 							/>
 						</div>
 					</div>
+          <figure >
+            <img className="img" src="./rosemary.png" alt="rosemary on wooden block"/>
+          </figure>
         </div> 
       </div>
 
