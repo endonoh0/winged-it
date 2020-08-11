@@ -34,37 +34,37 @@
   }
 }
 
-.ml-18 {
-  margin-left: 18%;
-}
+// .ml-18 {
+//   margin-left: 18%;
+// }
 
 
-// Small devices (landscape phones, 500px and up)
-@media (min-width: 500px) {
-  .sidebar__container {
-    margin-left: 25%;
-  }
-  #search_recipe_btn {
-    margin-top: 69%;
-    margin-left: 33%;
-  }
-}
+// // Small devices (landscape phones, 500px and up)
+// @media (min-width: 500px) {
+//   .sidebar__container {
+//     margin-left: 25%;
+//   }
+//   #search_recipe_btn {
+//     margin-top: 69%;
+//     margin-left: 33%;
+//   }
+// }
+ 
+// // // Medium devices (tablets, 768px and up)
+// @media (min-width: 768px) {
+//   .sidebar__container {
+//     margin-left: 3.5%;
+//     width: 13rem;
+//   }
+//   #search_recipe_btn {
+//     margin-top: -6%;
+//     margin-left: 74%;
+//   }
+// }
 
-// // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  .sidebar__container {
-    margin-left: 3.5%;
-    width: 13rem;
-  }
-  #search_recipe_btn {
-    margin-top: -6%;
-    margin-left: 74%;
-  }
-}
-
-// Large devices (laptops, 1200px and up)
-@media (min-width: 1200px) {
-  #search_recipe_btn {
-    margin-top: -4%;
-  }
-}
+// // Large devices (laptops, 1200px and up)
+// @media (min-width: 1200px) {
+//   #search_recipe_btn {
+//     margin-top: -4%;
+//   }
+// }

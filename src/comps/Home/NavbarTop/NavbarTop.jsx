@@ -1614,6 +1614,8 @@ const NavbarTop = ({ user }) => {
               <Link className="dropdown-item" id="search" to="/search">Recipes</Link>
               <Link className="dropdown-item" to="/seasonal-ingredients">Ingredients</Link>
               <Link className="dropdown-item" id="map" to="/map">Market</Link>
+              <Link className="links line-height" id="map" to="/experimental">E</Link>
+
             </NavDropdown>
 
             { user && <Link className="links line-height" to="/favorites">Favorites</Link> }

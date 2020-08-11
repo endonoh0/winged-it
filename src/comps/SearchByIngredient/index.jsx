@@ -14,7 +14,8 @@ const SearchByIngredient = (props) => {
 		onSubmit,
 		children,
 		searchButtonVisual = true,
-		searchTagsFetchStatus
+		searchTagsFetchStatus,
+		filter
 	} = props;
 
 	const [searchTerm, setSearchTerm] = useState('');
@@ -38,36 +39,20 @@ const SearchByIngredient = (props) => {
 		}
 	}
 
-	// const onSubmit = async (e) => {
-	// 	//Faking API call
-	// 	const result = await axios.get('./recipe.json')
-	// 	setRecipes(result.data.hits)
-
-	// 	//Actual Api call
-	// 	// recipeFinder(searchTags)
-	// 	// .then(data => {
-	// 	// 	console.log(data);
-  //   //   setRecipes(data)
-	// 	// })
-	// }
-
-
 	return(
-		<div>
-			<SearchBar
-				searchTerm={searchTerm}
-				setSearchTerm={setSearchTerm}
-				searchTags={searchTags}
-				setSearchTags={setSearchTags}
-        onKeyUp={pressEnter}
-        searchButtonClass={searchButtonClass}
-        onSubmit={onSubmit}
-        searchTagsFetchStatus={searchTagsFetchStatus}
-      />
-
-				{/* <button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button> */}
-				{children}
-		</div>
+		<>
+			<button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
+			{filter}
+			<div>
+				<SearchBar
+					searchTerm={searchTerm}
+					setSearchTerm={setSearchTerm}
+					searchTags={searchTags}
+					setSearchTags={setSearchTags}
+					onKeyUp={pressEnter}/>
+			</div>
+			{children}
+		</>
 
 	);
 }

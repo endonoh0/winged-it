@@ -34,6 +34,7 @@ import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
 import Ingredients from './comps/Ingredients/Ingredients'
 import Search from "./comps/Search/Search";
+import AnimatedGrid from './comps/AnimatedGrid/AnimatedGrid'
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
@@ -146,6 +147,22 @@ function App() {
     }
   }
 
+  const filter = <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
+
+  const componentProps = {
+    searchbar: <SearchByIngredient
+    // setRecipes={setRecipes}
+    searchTags={searchTags}
+    setSearchTags={setSearchTags}
+    writeTag={writeTag}
+    onSubmit={onSubmit}
+    searchTagsFetchStatus={searchTagsFetchStatus}
+    filter={filter}
+  >
+    {/* {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>} */}
+  </SearchByIngredient>
+  }
+
   return (
     <div className="App">
       <ScrollToTop />
@@ -207,6 +224,9 @@ function App() {
           <Route path="/seasonal-ingredients">
             <Ingredients />
           </Route>
+          <Route path="/experimental">
+            <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
+          </Route>
           <Route path="/">
             {user.loggedIn && <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />}
             <SearchByIngredient
@@ -234,7 +254,7 @@ function App() {
       {/* { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> } */}
 
 
-      {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />}
+      {/* {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />} */}
       {loadingStatus && <Loading/>}
     </div>
   );
