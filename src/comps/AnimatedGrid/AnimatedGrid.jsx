@@ -50,9 +50,13 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 				</div>
 			</div>
 			<div id="theGrid" className="main">
-				<div className="search_wrapper">
+				<motion.div 
+					className="search_wrapper"
+					animate={isOpen ? "exit" : "enter"}
+					variants={variants}
+				>
 					{searchbar}
-				</div>
+				</motion.div>
 				<section className="grid">
 					{recipes && recipes.map((recipe, index) => {
 						return(
