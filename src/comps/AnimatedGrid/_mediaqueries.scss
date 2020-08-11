@@ -123,17 +123,17 @@ $viewport_xxl: 	$item_width * 6 + $sidebar_width; /* 6 columns */
 
 /* small screen changes for sidebar (it becomes an off-canvas menu) */
 @media screen and (max-width: $viewport_xs - 1px) {
-	.sidebar {
+	.menubar {
 		-webkit-transform: translate3d(-100%,0,0);
 		transform: translate3d(-100%,0,0);
 		-webkit-transition: -webkit-transform 0.3s;
 		transition: -webkit-transform 0.3s;
 	}
-	.sidebar.sidebar--open {
+	.menubar.menubar--open {
 		-webkit-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
 	}
-	.sidebar.sidebar--open ~ .main {
+	.menubar.menubar--open ~ .main {
 		pointer-events: none;
 	}
 	.top-bar {
@@ -142,7 +142,7 @@ $viewport_xxl: 	$item_width * 6 + $sidebar_width; /* 6 columns */
 	.menu-toggle {
 		display: inline-block;
 	}
-	.sidebar .close-button {
+	.menubar .close-button {
 		opacity: 1;
 		pointer-events: auto;
 	}
