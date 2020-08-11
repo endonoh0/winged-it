@@ -5,10 +5,9 @@ import className from 'classnames'
 import { projectFirestore, timeStamp } from '../../firebase/config'
 import Card from  'react-bootstrap/Card'
 
-
+import Suggestions from "./Suggestions";
 import SearchByIngredient from "../SearchByIngredient/index";
 import "./Search.scss";
-
 import { healthItems, dietItems } from "../../db/foodfilter";
 import useWriteToFirestore from '../../hooks/useWriteToFirestore';
 
@@ -44,26 +43,34 @@ const Search = (props) => {
 
 	setTimeout(() => setHideBlock(true), 2000);
 
-
-
+	let output = [];
 
 	useEffect(() => {
 		const getSuggestions = () => {
 			projectFirestore.collection('suggestions')
-			.where('category', '==', 'Healthy Meals')
-			.get().then(snapshot =>{
+			.get()
+			.then(snapshot =>{
 				snapshot.forEach( async doc => {
-					setSuggestions(prev => [...prev, doc.data()])
+
+					//this part of the code put all the data in suggestion field of database into an array of objects
+					//object keys are the name of the category
+					const data = doc.data();
+					if (output[data.category] !== undefined) {
+						output[data.category].push(data)
+					} else {
+						output[data.category] = [data]
+
+					}
+
+					setSuggestions(output);
+
 				})
+
 			})
 		}
 		getSuggestions()
 		
 	}, []);
-
-
-
-	
 
 	
 	// //Write tags
@@ -87,19 +94,48 @@ const Search = (props) => {
 		 const info = { healthTags: [item],  createdBy: user.email, editedAt: timeStamp() };
 		 write("healthTags", info)
 	 }
+
+	 if(user.loggedIn && category === "dietTags") {
+		const info = { healthTags: item,  createdBy: user.email, editedAt: timeStamp() };
+		write("dietTags", info)
+	}
  }
 
 
 
-	const imgGridClickHandler = (filterTitle) => {
-		for (const healthItem of healthItems) {
-			if (healthItem.value === filterTitle) {
-				setHealth([healthItem]);
-				writeFilterTag(filterTitle, "healthTags");
+	const imgGridClickHandler = (filterTitle, category) => {
 
+		const databaseSave = (filterTitle, category, dbcollection, items, setState) => {
+			for (const item of items) {
+				if (item.value === filterTitle) {
+
+					if (category === "Healthy Meals") setState([item]);
+					if (category === "Diet Meals") setState(item);
+					writeFilterTag(filterTitle, dbcollection);
+
+				}
 			}
-			
+
 		}
+
+		if (category === "Healthy Meals") {
+			databaseSave(filterTitle, "Healthy Meals", "healthTags", healthItems, setHealth);
+		}
+		if (category === "Diet Meals") {
+			databaseSave(filterTitle, "Diet Meals", "dietTags", healthItems, setHealth);
+		}
+
+		
+
+	
+
+		// for (const dietItem of healthItems) {
+		// 	if (healthItem.value === filterTitle) {
+		// 		setHealth([healthItem]);
+		// 		writeFilterTag(filterTitle, "healthTags");
+
+		// 	}
+		// }
 
 	};
 
@@ -129,7 +165,21 @@ const Search = (props) => {
         </div> 
       </div>
 
-      <section className="suggestion_container">
+			<Suggestions 
+			suggestions={suggestions["Healthy Meals"] ? suggestions["Healthy Meals"] : []}
+			imgGridClickHandler={imgGridClickHandler}
+			title={"Healthy Meals"}
+			/>
+
+			<Suggestions 
+			suggestions={suggestions["Diet Meals"] ? suggestions["Diet Meals"] : []}
+			imgGridClickHandler={imgGridClickHandler}
+			title={"Diet Meals"}
+			/>
+
+			
+
+      {/*<section className="suggestion_container">
 			<h1 id="suggestion_title">Healthy Meals</h1>
 			<article className="grids_container">
 				{suggestions.map(suggestion => (
@@ -141,7 +191,7 @@ const Search = (props) => {
 						</Link>
 				))}
 			</article>
-    </section>
+				</section>*/}
     
     
     </div>
