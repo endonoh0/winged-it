@@ -17,7 +17,6 @@ const SearchBar = (props) => {
     <div class="custom-search ml-18">
       <input
         className="custom-search-input"
-        type="search"
         placeholder="Add Ingredients"
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}

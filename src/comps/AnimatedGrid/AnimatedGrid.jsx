@@ -92,7 +92,7 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
                   className="health-labels"
                   onClick={e => removeTag(tag)}
                 >
-                  <Badge pill variant="primary">
+                  <Badge pill variant="danger">
                     {tag}
                   </Badge>
               </ListGroup.Item>

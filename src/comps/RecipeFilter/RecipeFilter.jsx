@@ -28,7 +28,7 @@ const RecipeFilter = (props) => {
 
   return (
     <div className="filter_container">
-      <Dropdown title="Health filter"
+      <Dropdown title="Health"
       name="health"
       setDietTags={setDietTags}
       setHealthTags={setHealthTags}
@@ -44,7 +44,7 @@ const RecipeFilter = (props) => {
       searchTagsFetchStatus={searchTagsFetchStatus}
       multiSelect />
 
-      <Dropdown title="Diet filter"
+      <Dropdown title="Diet"
       name="diet"
       setDietTags={setDietTags}
       setHealthTags={setHealthTags}
