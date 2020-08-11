@@ -38,7 +38,7 @@ const SearchByIngredient = (props) => {
   
 	const pressEnter = (searchTerm) => {
 		if(searchTerm && !searchTags.includes(searchTerm)){
-			setSearchTags(prev => [...prev, searchTerm])
+			setSearchTags([...searchTags, searchTerm])
 			writeTag(searchTerm, 'searchTags')
 			setSearchTerm("")
 		}

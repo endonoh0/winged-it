@@ -1,4 +1,7 @@
-import {useReducer} from 'react';
+import {useReducer, useEffect} from 'react';
+import { projectFirestore, timeStamp} from '../firebase/config';
+import useWriteToFirestore from '../hooks/useWriteToFirestore'
+import recipeFinder from '../helper/foodApi'
 
 // Action types
 const SET_SELECTED_IMG  = "SET_SELECTED_IMG"
@@ -64,15 +67,87 @@ const useApplicationData = () => {
     directions: null,
     favoriteAlert: false,
     loadingStatus: false,
-	})
-	
+  })
+  
+  const { write } = useWriteToFirestore();
+  
+  // Set methods for each state
 	const setRecipes = (recipes) => dispatch({ type: SET_RECIPES, value: recipes })
-
 	const setSearchTags = (searchTags) => dispatch({type:SET_SEARCH_TAGS, value: searchTags})
+  const setSelectedImg = (selectedImg) => dispatch({type:SET_SELECTED_IMG, value: selectedImg})
+	const setHealthTags = (healthTags) => dispatch({type:SET_HEALTH_TAGS, value: healthTags})
+	const setDietTags = (dietTags) => dispatch({type:SET_DIET_TAGS, value: dietTags})
+	const setSearchTagsFetchStatus = (searchTagsFetchStatus) => dispatch({type:SET_SEARCH_TAGS_FETCH_STATUS, value: searchTagsFetchStatus})
+	const setUser = (user) => dispatch({type:SET_USER, value: user})
+	const setHealth = (health) => dispatch({type:SET_HEALTH, value: health})
+	const setDiet = (diet) => dispatch({type:SET_DIET, value: diet})
+	const setTitle = (title) => dispatch({type:SET_TITLE, value: title})
+	const setDirections = (directions) => dispatch({type:SET_DIRECTION, value: directions})
+	const setFavoriteAlert = (favoriteAlert) => dispatch({type:SET_FAVORITE_ALERT, value: favoriteAlert})
+  const setLoadingStatus = (loadingStatus) => dispatch({type:SET_LOADING_STATUS, value: loadingStatus})
 
-	const setSelectedImg = (selectedImg) => dispatch({type:SET_SELECTED_IMG, value: selectedImg})
+  const writeTag = (searchTerm, dbField) => {
+    if (dbField === "searchTags" && !state.searchTags.includes(searchTerm) && state.user.loggedIn) {
+      const info = { searchTags: searchTerm? [...state.searchTags, searchTerm]: [...state.searchTags], createdBy: state.user.email, editedAt: timeStamp() };
+      write("searchTags", info)
+    }
+  }
 
-	return {state, setRecipes, setSearchTags, setSelectedImg}
+  const removeTag = (searchTerm) => {
+    const newTags = state.searchTags.filter(tags => tags !== searchTerm)
+    const info = { searchTags: [...newTags], createdBy: state.user.email, editedAt: timeStamp() }
+    setSearchTags([...newTags])
+    if (state.user.loggedIn) {
+      write('searchTags', info)
+    }
+  }
+
+  const onSubmit = async (e) => {
+    setLoadingStatus(true);
+    recipeFinder(state.searchTags, state.health, state.diet)
+      .then(data => {
+        setRecipes(data)
+      })
+      .then(() => {
+        setLoadingStatus(false);
+      })
+  };
+  
+  // Reads and sets searchTags
+  useEffect(() => {
+    if (state.user.loggedIn) {
+      projectFirestore.collection('searchTags')
+        .doc(state.user.uid)
+        .get()
+        .then(doc => {
+          if (doc.data()) {
+            setSearchTags([...doc.data().searchTags]);
+          }
+        })
+        .then(() => {
+          setSearchTagsFetchStatus(true)
+        })
+    }
+  }, [state.user]);
+  
+
+  return {
+    state, 
+    setRecipes, 
+    setSearchTags, 
+    setSelectedImg, 
+    setHealthTags, 
+    setDietTags, 
+    setUser,
+    setHealth,
+    setDiet,
+    setTitle,
+    setDirections,
+    setFavoriteAlert,
+    writeTag,
+    removeTag,
+    onSubmit
+  }
 
 }
 
