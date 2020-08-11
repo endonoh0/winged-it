@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import "./ScrollToTop.scss";
-
 import { FaArrowCircleUp } from 'react-icons/fa';
 
 const ScrollToTop = () => {
@@ -23,9 +21,9 @@ const ScrollToTop = () => {
 
   return (
     <FaArrowCircleUp
-      className="scrollTop"
       onClick={scrollTop}
-      style={{ height: 75, display: showScroll ? 'flex' : 'none' }}
+      className="scrollTop"
+      style={{ height: 75, width: 75, display: showScroll ? 'block' : 'none' }}
     />
   );
 }
