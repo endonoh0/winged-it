@@ -202,15 +202,8 @@ function App() {
 
 
       {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
-
-
-
       <Router>
         <NavbarTop user={cookies.user} />
-
-        {/* { <NavBar /> } */}
-
-
         <Switch>
           <Route path="/search">
           <Search
@@ -233,7 +226,6 @@ function App() {
               {!cookies.user && <SignUp onClick={requestRegister} />}
             </div>
           </Route>
-
           <Route path="/logout">
             <div className="auth-wrapper">
               {cookies.user && <UserProvider value={user}>
@@ -244,14 +236,12 @@ function App() {
               </UserProvider>}
             </div>
           </Route>
-
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
-            <Map setDirections={setDirections} directions={directions} user={user} directions={directions} />
+            <Map setDirections={setDirections} directions={directions} user={user}/>
           </Route>
           <Route path="/results">
             <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
-
           </Route>
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>
@@ -263,19 +253,8 @@ function App() {
           <Route path="/">
             <Home />
           </Route>
-
         </Switch>
-
       </Router>
-
-      {/* { <Title/> } */}
-      {/* <FavoriteAdd/> */}
-      {/* <UploadForm /> */}
-      {/* <ImageGrid setSelectedImg={setSelectedImg} /> */}
-      {/* { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> } */}
-
-
-      {/* {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />} */}
       {loadingStatus && <Loading/>}
     </div>
   );
