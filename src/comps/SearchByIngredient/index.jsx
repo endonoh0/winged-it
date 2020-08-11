@@ -33,6 +33,7 @@ const SearchByIngredient = (props) => {
 
 	// this class hide the search button on the search page
 	let searchButtonClass = searchButtonVisual? "" : "display_non";
+	console.log(searchButtonClass);
 	searchButtonClass += " btn btn-primary waves-effect waves-light";
 	
   

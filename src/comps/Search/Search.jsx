@@ -50,6 +50,7 @@ const Search = (props) => {
 	useEffect(() => {
 		const getSuggestions = () => {
 			projectFirestore.collection('suggestions')
+			.where('category', '==', 'Healthy Meals')
 			.get().then(snapshot =>{
 				snapshot.forEach( async doc => {
 					setSuggestions(prev => [...prev, doc.data()])
