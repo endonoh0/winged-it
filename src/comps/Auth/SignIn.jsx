@@ -22,7 +22,7 @@ const SignIn = ({ onClick, loginWithGoogle }) => {
 
   return (
     <Form className="sign-up">
-      <p className="text-lg">Sign In</p>
+      <p>Sign In</p>
 
       <Form.Group controlId="ControlInput1">
         <Form.Label htmlFor="email">Email address</Form.Label>

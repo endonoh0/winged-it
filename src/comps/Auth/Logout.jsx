@@ -1,16 +1,20 @@
 import React, { useContext } from 'react';
 
-// const defaultUser = { loggedIn: false, email: "" };
-// const UserContext = React.createContext(defaultUser);
-// const UserProvider = UserContext.Provider;
-// const UserConsumer = UserContext.Consumer;
+import Button from 'react-bootstrap/Button';
 
 const Logout = ({ onClick, UserContext}) => {
+
   const user = useContext(UserContext);
+
   return (
-    <div>
-      <span>You are logged in as {user.email}</span>
-      <button onClick={onClick}>Logout</button>
+    <div className="flex align-none">
+      <p className="text-lg">You are logged in as {user.email}</p>
+      <Button
+        variant="outline-dark"
+        onClick={onClick}
+      >
+        Logout
+      </Button>
     </div>
   );
 }
