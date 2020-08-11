@@ -74,29 +74,15 @@ const Search = (props) => {
 
 	
 	// //Write tags
-	const writeFilterTag = (item, category) => {
+	const writeFilterTag = (item, dbcollection) => {
 
-
-	//  if(user.loggedIn && category === "dietTags") {
-	// 	 const info = { dietTags: filterSelection,  createdBy: user.email, editedAt: timeStamp() };
-	// 	 write("dietTags", info)
-	// 	 return;
-	//  }
- 
-	//  const arr = [];
-	//  if (filterSelection){
-	// 	 for (const item of filterSelection) {
-	// 		 if (item.value) arr.push(item.value);
-	// 	 }
-	//  }
-
-	 if(user.loggedIn && category === "healthTags") {
+	 if(user.loggedIn && dbcollection === "healthTags") {
 		 const info = { healthTags: [item],  createdBy: user.email, editedAt: timeStamp() };
 		 write("healthTags", info)
 	 }
 
-	 if(user.loggedIn && category === "dietTags") {
-		const info = { healthTags: item,  createdBy: user.email, editedAt: timeStamp() };
+	 if(user.loggedIn && dbcollection === "dietTags") {
+		const info = { dietTags: item,  createdBy: user.email, editedAt: timeStamp() };
 		write("dietTags", info)
 	}
  }
@@ -109,8 +95,12 @@ const Search = (props) => {
 			for (const item of items) {
 				if (item.value === filterTitle) {
 
-					if (category === "Healthy Meals") setState([item]);
-					if (category === "Diet Meals") setState(item);
+					if (category === "Healthy Meals") {
+						setState([item])
+					};
+					if (category === "Diet Meals") {
+						setState(item.value)
+					};
 					writeFilterTag(filterTitle, dbcollection);
 
 				}
@@ -122,20 +112,8 @@ const Search = (props) => {
 			databaseSave(filterTitle, "Healthy Meals", "healthTags", healthItems, setHealth);
 		}
 		if (category === "Diet Meals") {
-			databaseSave(filterTitle, "Diet Meals", "dietTags", healthItems, setHealth);
+			databaseSave(filterTitle, "Diet Meals", "dietTags", dietItems, setDiet);
 		}
-
-		
-
-	
-
-		// for (const dietItem of healthItems) {
-		// 	if (healthItem.value === filterTitle) {
-		// 		setHealth([healthItem]);
-		// 		writeFilterTag(filterTitle, "healthTags");
-
-		// 	}
-		// }
 
 	};
 
@@ -176,23 +154,6 @@ const Search = (props) => {
 			imgGridClickHandler={imgGridClickHandler}
 			title={"Diet Meals"}
 			/>
-
-			
-
-      {/*<section className="suggestion_container">
-			<h1 id="suggestion_title">Healthy Meals</h1>
-			<article className="grids_container">
-				{suggestions.map(suggestion => (
-						<Link className="grid" to="/results">
-							<Card onClick={e => imgGridClickHandler(suggestion.name)} className="grid__card" style={{width: '18rem'}}>
-								<Card.Img className="grid__img" variant="top" src={suggestion.url} />
-								<Card.Title className="grid__title" >{suggestion.name}</Card.Title>
-							</Card>
-						</Link>
-				))}
-			</article>
-				</section>*/}
-    
     
     </div>
     );
