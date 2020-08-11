@@ -42,7 +42,7 @@ const reducer = (state, action) => {
     case SET_TITLE:
       return { ...state, title: action.value }
     case SET_DIRECTION:
-      return { ...state, direction: action.value }
+      return { ...state, directions: action.value }
     case SET_FAVORITE_ALERT:
       return { ...state, favoriteAlert: action.value }
     case SET_LOADING_STATUS:

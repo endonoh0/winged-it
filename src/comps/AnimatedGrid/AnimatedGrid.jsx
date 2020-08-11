@@ -1,10 +1,12 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState,    } from 'react';
 import Iframe from 'react-iframe'
 import { motion } from 'framer-motion';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
 import './AnimatedGrid.scss';
+import Button from 'react-bootstrap/Button';
+
 
 
 
@@ -110,7 +112,15 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 					animate={isOpen ? "exit" : "enter"}
 					variants={variants}
 				>
-					{/* <button id="search_recipe_btn" className="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button> */}
+					      <Button
+        id="btn"
+        variant="primary"
+        size="lg"
+        className="btn btn-primary waves-effect waves-light"
+        onClick={onSubmit}
+      >
+        Recipe Search
+      </Button>
 					{searchbar}
 				</motion.div>
 				<section className="grid">
