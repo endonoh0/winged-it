@@ -20,24 +20,29 @@ const SearchByIngredient = (props) => {
 
 	const [searchTerm, setSearchTerm] = useState('');
 
-	// useEffect(() => {
-	// 	if(searchTagsFetchStatus){
-	// 		document.getElementById("search_recipe_btn").click();
-	// 	}
+	//This make sure that click the search button once you load the search page
+	useEffect(() => {
+		if(searchTagsFetchStatus){
 
-	// }, [searchTagsFetchStatus])
+			setTimeout(() => {
+				document.getElementById("search_recipe_btn").click();
+			}, );
+			
+		}
+	}, [searchTagsFetchStatus]);
 
 	// this class hide the search button on the search page
 	let searchButtonClass = searchButtonVisual? "" : "display_non";
 	searchButtonClass += " btn btn-primary waves-effect waves-light";
-
+	
+  
 	const pressEnter = (searchTerm) => {
 		if(searchTerm && !searchTags.includes(searchTerm)){
 			setSearchTags(prev => [...prev, searchTerm])
-			writeTag(searchTerm)
+			writeTag(searchTerm, 'searchTags')
 			setSearchTerm("")
 		}
-	}
+	};
 
 	return(
 		<>

@@ -62,11 +62,13 @@ const UserProvider = UserContext.Provider;
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [searchTags, setSearchTags] = useState([]);
+  const [healthTags, setHealthTags] = useState([]);
+  const [dietTags, setDietTags] = useState([]);
   const [searchTagsFetchStatus, setSearchTagsFetchStatus] = useState(false)
 
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
-  const [selection, setSelection] = useState([]);
+  const [health, setHealth] = useState([]);
   const [diet, setDiet] = useState(null);
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
@@ -84,17 +86,46 @@ function App() {
 
     // Real API Call
     // setLoadingStatus(true);
-    // recipeFinder(searchTags, selection, diet)
+    // recipeFinder(searchTags, health, diet)
     //   .then(data => {
     //     setRecipes(data)
     //   })
     //   .then(() => {
     //     setLoadingStatus(false);
     //   })
+  };
+
+
+
+
+  //Write tags
+  const writeTag = (searchTerm, dbField) => {
+      
+   
+    
+
+    if (dbField === "searchTags" && !searchTags.includes(searchTerm) && user.loggedIn) {
+      const info = { searchTags: searchTerm? [...searchTags, searchTerm]: [...searchTags], createdBy: user.email, editedAt: timeStamp() };
+      
+      write("searchTags", info)
+    
+    }
+
   }
 
 
 
+  //Remove tags
+  const removeTag = (searchTerm) => {
+    const newTags = searchTags.filter(tags => tags !== searchTerm)
+    const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
+    setSearchTags([...newTags])
+    if (user.loggedIn) {
+      write('searchTags', info)
+    }
+  }
+
+//Read tags
   useEffect(() => {
     if (user.loggedIn) {
       projectFirestore.collection('searchTags')
@@ -102,14 +133,17 @@ function App() {
         .get()
         .then(doc => {
           if (doc.data()) {
+
             setSearchTags([...doc.data().searchTags]);
           }
         })
         .then(() => {
+          
           setSearchTagsFetchStatus(true)
         })
     }
-  }, [user])
+  }, [user]);
+
 
   // listen to auth state change
   useCurrentUser(setUser);
@@ -130,22 +164,8 @@ function App() {
     removeCookie('user');
   }, []);
 
-  const writeTag = (searchTerm) => {
-    // Makes sure the search term is unique
-    if (!searchTags.includes(searchTerm) && user.loggedIn) {
-      const info = { searchTags: [...searchTags, searchTerm], createdBy: user.email, editedAt: timeStamp() }
-      write('searchTags', info)
-    }
-  }
 
-  const removeTag = (searchTerm) => {
-    const newTags = searchTags.filter(tags => tags !== searchTerm)
-    const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
-    setSearchTags([...newTags])
-    if (user.loggedIn) {
-      write('searchTags', info)
-    }
-  }
+
 
   const filter = <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
 
@@ -176,12 +196,15 @@ function App() {
       <Router>
         <NavbarTop user={cookies.user} />
 
-  {/* { <NavBar /> } */}
+        {/* { <NavBar /> } */}
 
 
         <Switch>
           <Route path="/search">
           <Search
+            user={user}
+            setDiet={setDiet}
+            setHealth={setHealth}
             searchTags={searchTags}
             setSearchTags={setSearchTags}
             writeTag={writeTag}
@@ -228,7 +251,21 @@ function App() {
             <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
           </Route>
           <Route path="/">
-            {user.loggedIn && <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />}
+            {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
+            {user.loggedIn && <RecipeFilter
+              user={user}
+              setDietTags={setDietTags}
+              dietTags={dietTags}
+              healthTags={healthTags}
+              setHealthTags={setHealthTags}
+              writeTag={writeTag}
+
+              searchTagsFetchStatus={searchTagsFetchStatus}
+              user={user}
+              setHealth={setHealth}
+              health={health}
+              diet={diet}
+              setDiet={setDiet} />}
             <SearchByIngredient
               // setRecipes={setRecipes}
               searchTags={searchTags}

@@ -2,33 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import className from 'classnames'
 
-import { projectFirestore } from '../../firebase/config'
+import { projectFirestore, timeStamp } from '../../firebase/config'
 import Card from  'react-bootstrap/Card'
 
-import SearchBar from "../SearchByIngredient/SearchBar";
+
 import SearchByIngredient from "../SearchByIngredient/index";
 import "./Search.scss";
+
+import { healthItems, dietItems } from "../../db/foodfilter";
+import useWriteToFirestore from '../../hooks/useWriteToFirestore';
+
+
 
 
 
 const Search = (props) => {
 
+	const {
+		user,
+		setDiet,
+		setHealth,
+		searchTags,
+		setSearchTags,
+		writeTag,
+		onSubmit,
+	} = props;
 
 
-  
-
-	//this is to make sure when add button pressed in the search page it re-redirect to home page
-	const addRedirect = true;
 
 	// const { mode, transition } = useVisualMode(LOADING);
 	const [suggestions, setSuggestions] = useState([])
 	const [hideBlock, setHideBlock] = useState(false);
 
+	// writing to db
+	const { write } = useWriteToFirestore();
+
+	// Styling the animation
 	const revealBlock = className("reveal__block", {
 		"hide" : hideBlock
-	})
+	});
 
-	setTimeout(() => setHideBlock(true), 2000)
+	setTimeout(() => setHideBlock(true), 2000);
+
+
+
 
 	useEffect(() => {
 		const getSuggestions = () => {
@@ -41,7 +58,49 @@ const Search = (props) => {
 		}
 		getSuggestions()
 		
-	}, [])
+	}, []);
+
+
+
+	
+
+	
+	// //Write tags
+	const writeFilterTag = (item, category) => {
+
+
+	//  if(user.loggedIn && category === "dietTags") {
+	// 	 const info = { dietTags: filterSelection,  createdBy: user.email, editedAt: timeStamp() };
+	// 	 write("dietTags", info)
+	// 	 return;
+	//  }
+ 
+	//  const arr = [];
+	//  if (filterSelection){
+	// 	 for (const item of filterSelection) {
+	// 		 if (item.value) arr.push(item.value);
+	// 	 }
+	//  }
+
+	 if(user.loggedIn && category === "healthTags") {
+		 const info = { healthTags: [item],  createdBy: user.email, editedAt: timeStamp() };
+		 write("healthTags", info)
+	 }
+ }
+
+
+
+	const imgGridClickHandler = (filterTitle) => {
+		for (const healthItem of healthItems) {
+			if (healthItem.value === filterTitle) {
+				setHealth([healthItem]);
+				writeFilterTag(filterTitle, "healthTags");
+
+			}
+			
+		}
+
+	};
 
   return (
     <div>
@@ -58,10 +117,10 @@ const Search = (props) => {
 							
 								<SearchByIngredient
 								searchButtonVisual={false}
-								searchTags={props.searchTags}
-								setSearchTags={props.setSearchTags}
-								writeTag={props.writeTag}
-								onSubmit={props.onSubmit}
+								searchTags={searchTags}
+								setSearchTags={setSearchTags}
+								writeTag={writeTag}
+								onSubmit={onSubmit}
 							
 							/>
 						</div>
@@ -74,7 +133,7 @@ const Search = (props) => {
 			<article className="grids_container">
 				{suggestions.map(suggestion => (
 						<Link className="grid" to="/">
-							<Card className="grid__card" style={{width: '18rem'}}>
+							<Card onClick={e => imgGridClickHandler(suggestion.name)} className="grid__card" style={{width: '18rem'}}>
 								<Card.Img className="grid__img" variant="top" src={suggestion.url} />
 								<Card.Title className="grid__title" >{suggestion.name}</Card.Title>
 							</Card>
