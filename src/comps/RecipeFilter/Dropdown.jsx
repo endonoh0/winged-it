@@ -141,6 +141,7 @@ const Dropdown = (props) => {
 
 
   function isItemInSelection(item) {
+
     if (health.find(current => current.id === item.id)) {
       return true;
     }
@@ -179,15 +180,19 @@ const Dropdown = (props) => {
     setFilterSelection([]);
 
     if(multiSelect) {
+      
+      setHealthTags([])
 
       setHealth([]);
       writeTag(null, "filterTags");
       writeFilterTag([], "healthTags")
     } else {
+      setDietTags([])
       setDiet("");
       writeTag(null, "filterTags");
       writeFilterTag("", "dietTags")
     }
+    setOpen(false);
   }
 
 
@@ -251,7 +256,7 @@ const Dropdown = (props) => {
                 id={item.id}
                 value={item.value}
                 onClick={(e) => handleOnClick(e, item, item.id)}
-                defaultChecked={item.id === 25 || isItemInSelection(item)}
+                defaultChecked={isItemInSelection(item)}
                 // checked={diet && diet === item.value}
                 checked={
                   checkboxClear &&
