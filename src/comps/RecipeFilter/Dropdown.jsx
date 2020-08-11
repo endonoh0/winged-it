@@ -157,15 +157,13 @@ const Dropdown = (props) => {
 
   const applyButton = (e) => {
     if(multiSelect) {
-
       setHealth(filterSelection);
       writeTag(null, "filterTags");
       writeFilterTag(filterSelection, "healthTags")
 
 
     } else {
-
-      setDiet(pre => filterSelection[0]);
+      setDiet(filterSelection[0]);
       writeFilterTag(filterSelection[0], "dietTags")
       writeTag(null, "filterTags");
 

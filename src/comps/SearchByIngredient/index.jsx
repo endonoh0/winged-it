@@ -11,29 +11,28 @@ const SearchByIngredient = (props) => {
 		searchTags,
 		setSearchTags,
 		writeTag,
-		onSubmit,
-		children,
+		// onSubmit,
 		searchButtonVisual = true,
-		searchTagsFetchStatus,
+		// searchTagsFetchStatus,
 		filter
 	} = props;
 
 	const [searchTerm, setSearchTerm] = useState('');
 
 	//This make sure that click the search button once you load the search page
-	useEffect(() => {
-		if(searchTagsFetchStatus){
+	// useEffect(() => {
+	// 	if(searchTagsFetchStatus){
 
-			setTimeout(() => {
-				document.getElementById("search_recipe_btn").click();
-			}, );
+	// 		setTimeout(() => {
+	// 			document.getElementById("search_recipe_btn").click();
+	// 		}, );
 			
-		}
-	}, [searchTagsFetchStatus]);
+	// 	}
+	// }, [searchTagsFetchStatus]);
 
 	// this class hide the search button on the search page
-	let searchButtonClass = searchButtonVisual? "" : "display_non";
-	searchButtonClass += " btn btn-primary waves-effect waves-light";
+	// let searchButtonClass = searchButtonVisual? "" : "display_non";
+	// searchButtonClass += " btn btn-primary waves-effect waves-light";
 	
   
 	const pressEnter = (searchTerm) => {
@@ -46,7 +45,7 @@ const SearchByIngredient = (props) => {
 
 	return(
 		<>
-			<button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
+			{/* <button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button> */}
 			{filter}
 			<div>
 				<SearchBar
@@ -56,7 +55,7 @@ const SearchByIngredient = (props) => {
 					setSearchTags={setSearchTags}
 					onKeyUp={pressEnter}/>
 			</div>
-			{children}
+			{/* {children} */}
 		</>
 
 	);

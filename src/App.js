@@ -83,11 +83,10 @@ function App() {
 
   const componentProps = {
     searchbar: <SearchByIngredient
-    // setRecipes={setRecipes}
     searchTags={searchTags}
     setSearchTags={setSearchTags}
     writeTag={writeTag}
-    onSubmit={onSubmit}
+    // onSubmit={onSubmit}
     searchTagsFetchStatus={searchTagsFetchStatus}
     filter= { <RecipeFilter
       setDietTags={setDietTags}
@@ -156,6 +155,7 @@ function App() {
             componentProps={componentProps}
             health={health}
             diet={diet}
+            onSubmit={onSubmit}
             />
           </Route>
           <Route path="/newRecipe">

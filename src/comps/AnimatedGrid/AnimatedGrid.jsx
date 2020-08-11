@@ -1,14 +1,18 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Iframe from 'react-iframe'
 import { motion } from 'framer-motion';
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 import './AnimatedGrid.scss'
 
-const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags, componentProps, removeTag, health, diet}) => {
+const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags, componentProps, removeTag, health, diet, onSubmit}) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const {searchbar} = componentProps
+
+	// useEffect(() => {
+	// 	onSubmit();
+	// },[searc])
 
 	const variants = {
 		enter: {
@@ -55,6 +59,7 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 					animate={isOpen ? "exit" : "enter"}
 					variants={variants}
 				>
+					<button id="search_recipe_btn" className="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
 					{searchbar}
 				</motion.div>
 				<section className="grid">
@@ -67,8 +72,6 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 								animate={isOpen ? "exit": "enter"}
 								variants={variants}
 								onClick={e => {clickHandler(recipe)}}
-								
-
 								>
 								<h2 className="title title--preview">{recipe.recipe.label}</h2>
 								<div className="loader"></div>

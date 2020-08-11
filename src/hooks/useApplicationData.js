@@ -80,7 +80,8 @@ const useApplicationData = () => {
 	const setSearchTagsFetchStatus = (searchTagsFetchStatus) => dispatch({type:SET_SEARCH_TAGS_FETCH_STATUS, value: searchTagsFetchStatus})
 	const setUser = (user) => dispatch({type:SET_USER, value: user})
 	const setHealth = (health) => dispatch({type:SET_HEALTH, value: health})
-	const setDiet = (diet) => dispatch({type:SET_DIET, value: diet})
+	const setDiet = (diet) => {console.log(diet)
+    dispatch({type:SET_DIET, value: diet})}
 	const setTitle = (title) => dispatch({type:SET_TITLE, value: title})
 	const setDirections = (directions) => dispatch({type:SET_DIRECTION, value: directions})
 	const setFavoriteAlert = (favoriteAlert) => dispatch({type:SET_FAVORITE_ALERT, value: favoriteAlert})
