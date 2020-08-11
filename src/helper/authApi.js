@@ -29,9 +29,7 @@ const register = (event, email, password, setCookie) => {
     setCookie("user", email)
   })
   .catch(function (error) {
-    // Handle Errors here.
     let errorMessage = error.message;
-    console.log(errorMessage);
   });
 }
 

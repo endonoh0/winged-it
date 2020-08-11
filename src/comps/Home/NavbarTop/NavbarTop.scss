@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 $primary-color: rgb(238, 238, 238);
 $navbar-color: black;
 
@@ -42,6 +44,8 @@ $navbar-color: black;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  font-family: $title-font;
+  font-size: 30px;
 }
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
@@ -92,6 +96,7 @@ $navbar-color: black;
     font-size: 16px;
     text-decoration: none;
   }
+  .link:hover,
   .links:hover,
   .sign-up:hover {
     color: #ccc !important;

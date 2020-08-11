@@ -19,7 +19,6 @@ const getDirections = (instructions) => {
         );
         break;
       case 'destination':
-        console.log(word);
         return (
           <FaFlagCheckered size={20} />
         );

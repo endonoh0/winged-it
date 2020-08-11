@@ -7,7 +7,6 @@ const FavoriteAdd = (props) => {
   const {setFavoriteAlert} = props;
 
   const addFavoriteToDB = (type) => {
-    console.log('type', type);
     setFavoriteAlert(true);
     const recipe = props.recipe.recipe;
     const email = props.user.email;

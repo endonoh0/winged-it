@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,7 +6,6 @@ import {
   Redirect
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
-import axios from 'axios'
 
 // SCSS Style files
 import './index.scss';
@@ -14,15 +13,7 @@ import './comps/Home/NavbarTop/NavbarTop.scss';
 // import './comps/Auth/Auth.scss';
 
 // REACT COMPONENTS
-import Title from './comps/Title';
-import UploadForm from './comps/UploadForm';
-import ImageGrid from './comps/ImageGrid';
-import RecipeGrid from './comps/RecipeGrid'
-import Modal from './comps/Modal';
-import FavoriteAdd from './comps/Favorite/FavoriteAdd'
 import SearchByIngredient from './comps/SearchByIngredient/index'
-import NavBar from './comps/NavBar/NavBar';
-import Header from './comps/Header/Header';
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
 import Logout from './comps/Auth/Logout'
@@ -35,114 +26,41 @@ import NewRecipe from './comps/NewRecipe'
 import Ingredients from './comps/Ingredients/Ingredients'
 import Search from "./comps/Search/Search";
 import AnimatedGrid from './comps/AnimatedGrid/AnimatedGrid'
-
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
 import ScrollToTop from './comps/ScrollToTop/ScrollToTop';
 import FavoriteAlert from './comps/FavoriteAlert/FavoriteAlert';
 
-
-
 // FireBase Functions
-import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
 import { useCurrentUser } from './hooks/userAuth';
-import { registerVersion } from 'firebase';
 import { logout, login, register, loginWithGoogle } from './helper/authApi'
-import useWriteToFirestore from './hooks/useWriteToFirestore'
-import SearchTag from './comps/SearchByIngredient/SearchTag';
-import recipeFinder from './helper/foodApi'
+import useApplicationData from './hooks/useApplicationData'
 
 // Default params for the current user
 const defaultUser = { loggedIn: false, email: "" };
 const UserContext = React.createContext(defaultUser);
-// Use a provider to pass current users to the logout component
 const UserProvider = UserContext.Provider;
 
-
 function App() {
-  const [selectedImg, setSelectedImg] = useState(null);
-  const [searchTags, setSearchTags] = useState([]);
-  const [healthTags, setHealthTags] = useState([]);
-  const [dietTags, setDietTags] = useState([]);
-  const [searchTagsFetchStatus, setSearchTagsFetchStatus] = useState(false)
-
-  const [recipes, setRecipes] = useState([]);
-  const [user, setUser] = useState({ loggedIn: false });
-  const [health, setHealth] = useState([]);
-  const [diet, setDiet] = useState(null);
-  const [title, setTitle] = useState('');
-  const [directions, setDirections] = useState(null);
+  const {
+    state,
+    setRecipes,
+    setSearchTags,
+    setSelectedImg,
+    setHealthTags,
+    setDietTags,
+    setUser,
+    setHealth,
+    setDiet,
+    setTitle,
+    setDirections,
+    setFavoriteAlert,
+    writeTag,
+    removeTag,
+    onSubmit,
+  } = useApplicationData();
+  const { searchTags, healthTags, dietTags, searchTagsFetchStatus, user, health, diet, title, directions, favoriteAlert, loadingStatus } = state
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
-  const [favoriteAlert, setFavoriteAlert] = useState(false);
-  const [loadingStatus, setLoadingStatus] = useState(false);
-
-  const { write } = useWriteToFirestore();
-
-
-  const onSubmit = async (e) => {
-    // const result = await axios.get('./recipe.json')
-    // setRecipes(result.data.hits)
-
-
-    // Real API Call
-    setLoadingStatus(true);
-    recipeFinder(searchTags, health, diet)
-      .then(data => {
-        setRecipes(data)
-      })
-      .then(() => {
-        setLoadingStatus(false);
-      })
-  };
-
-
-
-
-  //Write tags
-  const writeTag = (searchTerm, dbField) => {
-
-
-
-
-    if (dbField === "searchTags" && !searchTags.includes(searchTerm) && user.loggedIn) {
-      const info = { searchTags: searchTerm? [...searchTags, searchTerm]: [...searchTags], createdBy: user.email, editedAt: timeStamp() };
-
-      write("searchTags", info)
-
-    }
-
-  }
-
-
-
-  //Remove tags
-  const removeTag = (searchTerm) => {
-    const newTags = searchTags.filter(tags => tags !== searchTerm)
-    const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
-    setSearchTags([...newTags])
-    if (user.loggedIn) {
-      write('searchTags', info)
-    }
-  }
-//Read tags
-  useEffect(() => {
-    if (user.loggedIn) {
-      projectFirestore.collection('searchTags')
-        .doc(user.uid)
-        .get()
-        .then(doc => {
-          if (doc.data()) {
-
-            setSearchTags([...doc.data().searchTags]);
-          }
-        })
-        .then(() => {
-
-          setSearchTagsFetchStatus(true)
-        })
-    }
-  }, [user]);
-
 
   // listen to auth state change
   useCurrentUser(setUser);
@@ -163,42 +81,32 @@ function App() {
     removeCookie('user');
   }, []);
 
-
-
-
-  const filter = <RecipeFilter
-  setDietTags={setDietTags}
-  dietTags={dietTags}
-  healthTags={healthTags}
-  setHealthTags={setHealthTags}
-  writeTag={writeTag}
-
-  searchTagsFetchStatus={searchTagsFetchStatus}
-  user={user}
-  setHealth={setHealth}
-  health={health}
-  diet={diet}
-  setDiet={setDiet} />
-
   const componentProps = {
     searchbar: <SearchByIngredient
-    // setRecipes={setRecipes}
     searchTags={searchTags}
     setSearchTags={setSearchTags}
     writeTag={writeTag}
-    onSubmit={onSubmit}
+    // onSubmit={onSubmit}
     searchTagsFetchStatus={searchTagsFetchStatus}
-    filter={filter}
-  >
-    {/* {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>} */}
-  </SearchByIngredient>
+    filter= { <RecipeFilter
+      setDietTags={setDietTags}
+      dietTags={dietTags}
+      healthTags={healthTags}
+      setHealthTags={setHealthTags}
+      writeTag={writeTag}
+      searchTagsFetchStatus={searchTagsFetchStatus}
+      user={user}
+      setHealth={setHealth}
+      health={health}
+      diet={diet}
+      setDiet={setDiet}/> }
+  />
   }
 
   return (
     <div className="App">
         <ScrollToTop />
       {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
-
       <Router>
         <NavbarTop user={cookies.user} />
         <Switch>
@@ -235,18 +143,19 @@ function App() {
           </Route>
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
-            <Map setDirections={setDirections} directions={directions} user={user}/>
+          <Map setDirections={setDirections} directions={directions} user={user}/>
           </Route>
           <Route path="/results">
-            <AnimatedGrid 
-            removeTag={removeTag} 
-            recipes={recipes} setRecipes={setRecipes} 
-            selectedImg={selectedImg} 
-            setSelectedImg={setSelectedImg} 
-            searchTags={searchTags} 
+            <AnimatedGrid
+            removeTag={removeTag}
+            recipes={state.recipes} setRecipes={setRecipes}
+            selectedImg={state.selectedImg}
+            setSelectedImg={setSelectedImg}
+            searchTags={searchTags}
             componentProps={componentProps}
             health={health}
             diet={diet}
+            onSubmit={onSubmit}
             />
           </Route>
           <Route path="/newRecipe">

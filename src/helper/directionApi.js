@@ -50,4 +50,4 @@ const getRoute = async (map, start, end, setDirections) =>{
 	}
 }
 
-export default getRoute
+export default getRoute;
