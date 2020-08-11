@@ -24,11 +24,12 @@ const RecipeFilter = (props) => {
     setDiet,
   } = props;
 
-  
+
 
   return (
     <div className="filter_container">
       <Dropdown title="Health filter"
+      name="health"
       setDietTags={setDietTags}
       setHealthTags={setHealthTags}
       user={user}
@@ -42,8 +43,9 @@ const RecipeFilter = (props) => {
       health={health}
       searchTagsFetchStatus={searchTagsFetchStatus}
       multiSelect />
-      
+
       <Dropdown title="Diet filter"
+      name="diet"
       setDietTags={setDietTags}
       setHealthTags={setHealthTags}
       user={user}
@@ -55,7 +57,7 @@ const RecipeFilter = (props) => {
       items={dietItems}
       setHealth={setHealth}
       health={health}
-      searchTagsFetchStatus={searchTagsFetchStatus} 
+      searchTagsFetchStatus={searchTagsFetchStatus}
        />
     </div>
   );

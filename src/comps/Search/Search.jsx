@@ -58,14 +58,14 @@ const Search = (props) => {
 			})
 		}
 		getSuggestions()
-		
+
 	}, []);
 
 
 
-	
 
-	
+
+
 	// //Write tags
 	const writeFilterTag = (item, category) => {
 
@@ -75,7 +75,7 @@ const Search = (props) => {
 	// 	 write("dietTags", info)
 	// 	 return;
 	//  }
- 
+
 	//  const arr = [];
 	//  if (filterSelection){
 	// 	 for (const item of filterSelection) {
@@ -98,20 +98,21 @@ const Search = (props) => {
 				writeFilterTag(filterTitle, "healthTags");
 
 			}
-			
+
 		}
 
 	};
 
   return (
     <div>
-    
+
       <div className="search_page">
         <div className="title_bar">
 					<div className={revealBlock}></div>
 					<div className="block">
+            <div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
+
 						<div className="block__content">
-							<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
 								<SearchByIngredient
 								searchButtonVisual={false}
 								searchTags={searchTags}
@@ -124,7 +125,7 @@ const Search = (props) => {
           <figure >
             <img className="img" src="./rosemary.png" alt="rosemary on wooden block"/>
           </figure>
-        </div> 
+        </div>
       </div>
 
       <section className="suggestion_container">
@@ -140,10 +141,10 @@ const Search = (props) => {
 				))}
 			</article>
     </section>
-    
-    
+
+
     </div>
     );
 }
 
-export default Search; 
+export default Search;

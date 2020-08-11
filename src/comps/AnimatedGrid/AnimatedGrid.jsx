@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
-import Accordion from 'react-bootstrap/Accordion';
-import './AnimatedGrid.scss'
+import './AnimatedGrid.scss';
+
+
 
 const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags, componentProps, removeTag, health, diet}) => {
 	const [isOpen, setIsOpen] = useState(false)

@@ -41,7 +41,7 @@
 .dd-wrapper {
 
   .dd-list {
-    position: absolute;
+    // position: absolute;
     min-width: 160px;
     z-index: 2;
     background-color: white;
@@ -144,14 +144,17 @@
     // margin-top: 5%;
   }
   .dd-wrapper {
-    min-width: 130px;
+    min-width: 170px;
     // margin-left: 1%;
     // margin-right: 7%;
     /* min-width: 130px; */
     /* min-height: 100px; */
-    margin: 0 15px;
+    margin: 0 45px;
   }
   .dd-list {
     background-color: white;
+  }
+  .dd-list-item {
+    margin-top: 10%;
   }
 }
