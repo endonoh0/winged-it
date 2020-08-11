@@ -185,7 +185,7 @@ function Dropdown (props) {
     setFilterSelection([]);
 
     if(multiSelect) {
-      
+
       setHealthTags([])
 
       setHealth([]);
@@ -290,7 +290,7 @@ Dropdown['handleClickOutside_' + name] = () => setOpen(false);
               className="flex-btn"
               onClick={e => clearButton(e)}
             >
-              Cancel
+              Unselect All
             </Button>
           </div>
         </ul>
