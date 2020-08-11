@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { 
+  useState, 
+  useEffect, 
+  useCallback,
+  useReducer 
+} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,7 +11,6 @@ import {
   Redirect
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
-import axios from 'axios'
 
 // SCSS Style files
 import './index.scss';
@@ -14,15 +18,7 @@ import './comps/Home/NavbarTop/NavbarTop.scss';
 // import './comps/Auth/Auth.scss';
 
 // REACT COMPONENTS
-import Title from './comps/Title';
-import UploadForm from './comps/UploadForm';
-import ImageGrid from './comps/ImageGrid';
-import RecipeGrid from './comps/RecipeGrid'
-import Modal from './comps/Modal';
-import FavoriteAdd from './comps/Favorite/FavoriteAdd'
 import SearchByIngredient from './comps/SearchByIngredient/index'
-import NavBar from './comps/NavBar/NavBar';
-import Header from './comps/Header/Header';
 import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
 import Logout from './comps/Auth/Logout'
@@ -35,22 +31,18 @@ import NewRecipe from './comps/NewRecipe'
 import Ingredients from './comps/Ingredients/Ingredients'
 import Search from "./comps/Search/Search";
 import AnimatedGrid from './comps/AnimatedGrid/AnimatedGrid'
-
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
 import ScrollToTop from './comps/ScrollToTop/ScrollToTop';
 import FavoriteAlert from './comps/FavoriteAlert/FavoriteAlert';
 
-
-
 // FireBase Functions
-import { projectAuth, onAuthStateChange, projectFirestore, timeStamp } from './firebase/config';
+import { projectFirestore, timeStamp } from './firebase/config';
 import { useCurrentUser } from './hooks/userAuth';
-import { registerVersion } from 'firebase';
 import { logout, login, register, loginWithGoogle } from './helper/authApi'
 import useWriteToFirestore from './hooks/useWriteToFirestore'
-import SearchTag from './comps/SearchByIngredient/SearchTag';
 import recipeFinder from './helper/foodApi'
+import useApplicationData from './hooks/useApplicationData'
 
 // Default params for the current user
 const defaultUser = { loggedIn: false, email: "" };
@@ -58,15 +50,16 @@ const UserContext = React.createContext(defaultUser);
 // Use a provider to pass current users to the logout component
 const UserProvider = UserContext.Provider;
 
-
 function App() {
-  const [selectedImg, setSelectedImg] = useState(null);
+  const { state, setRecipes, setSelectedImg } = useApplicationData();
+
+  // const [selectedImg, setSelectedImg] = useState(null);
   const [searchTags, setSearchTags] = useState([]);
   const [healthTags, setHealthTags] = useState([]);
   const [dietTags, setDietTags] = useState([]);
   const [searchTagsFetchStatus, setSearchTagsFetchStatus] = useState(false)
-
-  const [recipes, setRecipes] = useState([]);
+  
+  // const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
   const [health, setHealth] = useState([]);
   const [diet, setDiet] = useState(null);
@@ -95,14 +88,8 @@ function App() {
       })
   };
 
-
-
-
   //Write tags
   const writeTag = (searchTerm, dbField) => {
-
-
-
 
     if (dbField === "searchTags" && !searchTags.includes(searchTerm) && user.loggedIn) {
       const info = { searchTags: searchTerm? [...searchTags, searchTerm]: [...searchTags], createdBy: user.email, editedAt: timeStamp() };
@@ -112,8 +99,6 @@ function App() {
     }
 
   }
-
-
 
   //Remove tags
   const removeTag = (searchTerm) => {
@@ -240,8 +225,8 @@ function App() {
           <Route path="/results">
             <AnimatedGrid 
             removeTag={removeTag} 
-            recipes={recipes} setRecipes={setRecipes} 
-            selectedImg={selectedImg} 
+            recipes={state.recipes} setRecipes={setRecipes} 
+            selectedImg={state.selectedImg}
             setSelectedImg={setSelectedImg} 
             searchTags={searchTags} 
             componentProps={componentProps}
