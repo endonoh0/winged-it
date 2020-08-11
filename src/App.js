@@ -196,11 +196,9 @@ function App() {
 
   return (
     <div className="App">
-      <ScrollToTop />
-      {/* {!user.loggedIn && <Header />} */}
-
-
+        <ScrollToTop />
       {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
+
       <Router>
         <NavbarTop user={cookies.user} />
         <Switch>
