@@ -85,7 +85,7 @@ $viewport_xxl: 	$item_width * 6 + $sidebar_width; /* 6 columns */
 
 	.grid__item:hover::before,
 	.grid__item:focus::before {
-		border: 3px solid rgba(129,196,131,0.5);
+		// border: 3px solid rgba(129,196,131,0.5);
 	}
 
 	.grid__item--loading.grid__item::before {
