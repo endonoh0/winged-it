@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 
 const ProgressBar = ({ file, setFile }) => {
   const { url, progress } = useStorage(file, 'images');
-  // console.log(progress, url);
 
   // remove progress bar once url is valid
   useEffect(() => {

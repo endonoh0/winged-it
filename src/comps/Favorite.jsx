@@ -50,18 +50,10 @@ const Favorite = ({setSelectedImg, user}) => {
     projectFirestore.collection('favorites').doc(docId).delete();
   }
 
-  //edit favorite
-  // function editEvent(index, docId) {
-  //   console.log(index, docId);
-  //   setEditDoc([index, docId]);
-  //   transition(EDIT);
-  // }
-
   function save(value) {
     const index = editDoc[0];
     const docId = editDoc[1];
     
-    console.log(index , docId, value);
 
     //this part of code update the database
     projectFirestore.collection('favorites').doc(docId).update(
