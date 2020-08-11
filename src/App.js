@@ -167,7 +167,19 @@ function App() {
 
 
 
-  const filter = <RecipeFilter setHealth={setHealth} health={health} diet={diet} setDiet={setDiet} />
+  const filter = <RecipeFilter
+  setDietTags={setDietTags}
+  dietTags={dietTags}
+  healthTags={healthTags}
+  setHealthTags={setHealthTags}
+  writeTag={writeTag}
+
+  searchTagsFetchStatus={searchTagsFetchStatus}
+  user={user}
+  setHealth={setHealth}
+  health={health}
+  diet={diet}
+  setDiet={setDiet} />
 
   const componentProps = {
     searchbar: <SearchByIngredient
@@ -237,8 +249,9 @@ function App() {
           <Route path="/map">
             <Map setDirections={setDirections} directions={directions} user={user} directions={directions} />
           </Route>
-          <Route path="/home">
-            <Home />
+          <Route path="/results">
+            <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
+
           </Route>
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>
@@ -247,37 +260,8 @@ function App() {
           <Route path="/seasonal-ingredients">
             <Ingredients />
           </Route>
-          <Route path="/experimental">
-            <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
-          </Route>
           <Route path="/">
-            {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
-            {user.loggedIn && <RecipeFilter
-              user={user}
-              setDietTags={setDietTags}
-              dietTags={dietTags}
-              healthTags={healthTags}
-              setHealthTags={setHealthTags}
-              writeTag={writeTag}
-
-              searchTagsFetchStatus={searchTagsFetchStatus}
-              user={user}
-              setHealth={setHealth}
-              health={health}
-              diet={diet}
-              setDiet={setDiet} />}
-            <SearchByIngredient
-              // setRecipes={setRecipes}
-              searchTags={searchTags}
-              setSearchTags={setSearchTags}
-              writeTag={writeTag}
-              onSubmit={onSubmit}
-              searchTagsFetchStatus={searchTagsFetchStatus}
-            >
-              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>}
-              {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
-
-            </SearchByIngredient>
+            <Home />
           </Route>
 
         </Switch>
