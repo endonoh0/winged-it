@@ -9,6 +9,7 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
 	font-family: $sansserif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
 }
 
 button:focus {
@@ -22,7 +23,7 @@ a:focus {
 }
 
 /* Sidebar */
-.sidebar {
+.menubar {
 	text-align: center;
 	background: $color_primary;
 	z-index: 1000;
@@ -36,35 +37,35 @@ a:focus {
 	padding: 2em 1em;
 }
 
-.sidebar h1 {
+.menubar h1 {
 	margin: 0.75em 0 0;
 	font-size: 2em;
 	line-height: 1;
 	font-family: $serif;
 }
 
-.sidebar h1 span {
+.menubar h1 span {
 	display: block;
 }
 
-.sidebar_content {
+.menubar_content {
 	font-size: 0.85em;
 	padding-bottom: 1em;
 }
 
-.sidebar_content h3 {
+.menubar_content h3 {
 	margin: 3em 0 0.5em 0;
 	font-size: 0.95em;
 	font-weight: bold;
 }
 
-.sidebar_content a {
+.menubar_content a {
 	display: block;
 	color: inherit;
 }
 
-.sidebar_content .tag:hover,
-.sidebar_content .tag:focus {
+.menubar_content .tag:hover,
+.menubar_content .tag:focus {
 	color: red;
 	cursor: pointer;
 }

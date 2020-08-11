@@ -80,19 +80,19 @@ function App() {
 
 
   const onSubmit = async (e) => {
-    const result = await axios.get('./recipe.json')
-    setRecipes(result.data.hits)
+    // const result = await axios.get('./recipe.json')
+    // setRecipes(result.data.hits)
 
 
     // Real API Call
-    // setLoadingStatus(true);
-    // recipeFinder(searchTags, health, diet)
-    //   .then(data => {
-    //     setRecipes(data)
-    //   })
-    //   .then(() => {
-    //     setLoadingStatus(false);
-    //   })
+    setLoadingStatus(true);
+    recipeFinder(searchTags, health, diet)
+      .then(data => {
+        setRecipes(data)
+      })
+      .then(() => {
+        setLoadingStatus(false);
+      })
   };
 
 
@@ -124,10 +124,9 @@ function App() {
       write('searchTags', info)
     }
   }
-
 //Read tags
   useEffect(() => {
-    if (user.cookies) {
+    if (user.loggedIn) {
       projectFirestore.collection('searchTags')
         .doc(user.uid)
         .get()
@@ -167,7 +166,19 @@ function App() {
 
 
 
-  const filter = <RecipeFilter setHealth={setHealth} health={health} diet={diet} setDiet={setDiet} />
+  const filter = <RecipeFilter
+  setDietTags={setDietTags}
+  dietTags={dietTags}
+  healthTags={healthTags}
+  setHealthTags={setHealthTags}
+  writeTag={writeTag}
+
+  searchTagsFetchStatus={searchTagsFetchStatus}
+  user={user}
+  setHealth={setHealth}
+  health={health}
+  diet={diet}
+  setDiet={setDiet} />
 
   const componentProps = {
     searchbar: <SearchByIngredient
@@ -190,15 +201,8 @@ function App() {
 
 
       {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
-
-
-
       <Router>
         <NavbarTop user={cookies.user} />
-
-        {/* { <NavBar /> } */}
-
-
         <Switch>
           <Route path="/search">
           <Search
@@ -221,7 +225,6 @@ function App() {
               {!cookies.user && <SignUp onClick={requestRegister} />}
             </div>
           </Route>
-
           <Route path="/logout">
             <div className="auth-wrapper">
               {cookies.user && <UserProvider value={user}>
@@ -232,13 +235,12 @@ function App() {
               </UserProvider>}
             </div>
           </Route>
-
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
-            <Map setDirections={setDirections} directions={directions} user={user} directions={directions} />
+            <Map setDirections={setDirections} directions={directions} user={user}/>
           </Route>
-          <Route path="/home">
-            <Home />
+          <Route path="/results">
+            <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
           </Route>
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>
@@ -247,51 +249,11 @@ function App() {
           <Route path="/seasonal-ingredients">
             <Ingredients />
           </Route>
-          <Route path="/experimental">
-            <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
-          </Route>
           <Route path="/">
-            {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
-            {user.loggedIn && <RecipeFilter
-              user={user}
-              setDietTags={setDietTags}
-              dietTags={dietTags}
-              healthTags={healthTags}
-              setHealthTags={setHealthTags}
-              writeTag={writeTag}
-
-              searchTagsFetchStatus={searchTagsFetchStatus}
-              user={user}
-              setHealth={setHealth}
-              health={health}
-              diet={diet}
-              setDiet={setDiet} />}
-            <SearchByIngredient
-              // setRecipes={setRecipes}
-              searchTags={searchTags}
-              setSearchTags={setSearchTags}
-              writeTag={writeTag}
-              onSubmit={onSubmit}
-              searchTagsFetchStatus={searchTagsFetchStatus}
-            >
-              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>}
-              {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
-
-            </SearchByIngredient>
+            <Home />
           </Route>
-
         </Switch>
-
       </Router>
-
-      {/* { <Title/> } */}
-      {/* <FavoriteAdd/> */}
-      {/* <UploadForm /> */}
-      {/* <ImageGrid setSelectedImg={setSelectedImg} /> */}
-      {/* { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> } */}
-
-
-      {/* {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />} */}
       {loadingStatus && <Loading/>}
     </div>
   );
