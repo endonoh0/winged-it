@@ -167,7 +167,19 @@ function App() {
 
 
 
-  const filter = <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
+  const filter = <RecipeFilter
+  user={user}
+  setDietTags={setDietTags}
+  dietTags={dietTags}
+  healthTags={healthTags}
+  setHealthTags={setHealthTags}
+  writeTag={writeTag}
+  searchTagsFetchStatus={searchTagsFetchStatus}
+  user={user}
+  setHealth={setHealth}
+  health={health}
+  diet={diet}
+  setDiet={setDiet} />
 
   const componentProps = {
     searchbar: <SearchByIngredient
