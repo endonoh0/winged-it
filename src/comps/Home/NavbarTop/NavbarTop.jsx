@@ -4,11 +4,14 @@ import { Route, Link } from 'react-router-dom';
 
 import { Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import className from 'classnames';
+import Logo from './Logo'
 
 import "./NavbarTop.scss";
 
 const NavbarTop = ({ user }) => {
+
   let location = useLocation();
+
   let row = className("row", {
     "hide" : location.pathname === '/map'
   })
@@ -16,14 +19,18 @@ const NavbarTop = ({ user }) => {
   return (
     <Navbar className={row} collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Route>
-        <Navbar.Brand id="logo" href="/">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand id="logo" href="/">
+          Winged It
+					<Logo/>
+
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
 
-            <Link className="links line-height" to="/home">Home</Link>
+            <Link className="links line-height" to="/">Home</Link>
             <NavDropdown.Divider />
 
             <NavDropdown title="Search" className="links" id="collasible-nav-dropdown">
@@ -32,20 +39,20 @@ const NavbarTop = ({ user }) => {
               <Link className="dropdown-item" id="map" to="/map">Market</Link>
             </NavDropdown>
 
-            {user && <Link className="links line-height" to="/favorites">Favorites</Link>}
+            { user && <Link className="links line-height" to="/favorites">Favorites</Link> }
             <NavDropdown.Divider />
 
 
-            {!user && <Link className="links line-height" id="sign-in" to="/signin">Sign in</Link> }
+            { !user && <Link className="links line-height" id="sign-in" to="/signin">Sign in</Link> }
             { !user && (
               <Button className="button sign-in" variant="secondary" size="lg" block>
-                <a href="/signup">Sign up</a>
+                <a className="sign-up-btn" href="/signup">Sign up</a>
               </Button>
             )}
 
             { user && (
               <Button className="button sign-in display-none" variant="secondary" size="lg" block>
-                <a href="/logout">Logout</a>
+                <a className="sign-up-btn" href="/logout">Logout</a>
               </Button>
             )}
           </Nav>
@@ -56,6 +63,5 @@ const NavbarTop = ({ user }) => {
     </Navbar>
   );
 }
-
 
 export default NavbarTop;

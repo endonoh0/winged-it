@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-const Edit = (props) => {
+import Button from 'react-bootstrap/Button';
 
+const Edit = (props) => {
   const [recipeTitle, setRecipeTitle] = useState(props.editPlaceholder);
 
   const onChangeHandler = (event) => {
@@ -12,36 +13,40 @@ const Edit = (props) => {
     }
   };
 
-
-
  return (
   <div className="Edit" onSubmit={event => event.preventDefault()}>
 
-
     <div className="div-group">
-      <label >Recipe Title:</label>
-      <input type="text" className="form-control"  
-        
+      <label>Title:</label>
+      <input type="text" className="form-control"
+
         name= "recipeTitle"
         value={ recipeTitle }
         onChange = { (event) => onChangeHandler(event) }
         />
     </div>
 
-    <button type="submit" className="btn btn-primary btn-block"
-    onClick = {event => {props.onSave(recipeTitle)}}>
-      Save
-    </button>
-    <button type="submit" className="btn btn-primary btn-block"
-    onClick = { event => props.onCancel () }>
-      Cancel
-    </button>
+    <div className="edit-title">
+       <Button
+        variant="outline-success"
+        type="submit"
+        onClick={event => { props.onSave(recipeTitle) }}
+      >
+        Save
+      </Button>
+
+      <Button
+        variant="outline-warning"
+        type="submit"
+        onClick={event => props.onCancel()}
+      >
+        Cancel
+      </Button>
+    </div>
   </div>
 )
-  
+
 
 }
 
 export default  Edit;
-
-

@@ -67,25 +67,26 @@ $navbar-color: black;
   }
   .title_home_page{
     display: flex;
-
+    font-weight: 700;
   }
 
   .title_text_home_page{
     color: white;
-    font-size: 45px;
+    font-size: 40px;
   }
 
   .text_description{
     padding-top: 30px;
     padding-bottom: 30px;
     color: white;
-    font-size: 45px;
+    font-size: 28px;
     display: flex;
     justify-content: center;
   }
 
   .home_buttons{
     display: flex;
+    font-weight: 700;
     justify-content: center;
   }
 
@@ -94,7 +95,7 @@ $navbar-color: black;
     color: white;
     border: solid white;
     width: 220px;
-    font-size: 25px;
+    font-size: 21px;
     display: flex;
     justify-content: center;
   }

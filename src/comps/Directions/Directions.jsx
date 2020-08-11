@@ -36,6 +36,7 @@ const Directions = ({data}) => {
         {tripInstructions.map(step => {
           return (
             <li>{getDirections(step)} {step}</li>
+
           )
         })}
       </ol>

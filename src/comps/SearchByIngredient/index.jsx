@@ -14,60 +14,50 @@ const SearchByIngredient = (props) => {
 		onSubmit,
 		children,
 		searchButtonVisual = true,
-		searchTagsFetchStatus
+		searchTagsFetchStatus,
+		filter
 	} = props;
 
 	const [searchTerm, setSearchTerm] = useState('');
 
-	// useEffect(() => {
-	// 	if(searchTagsFetchStatus){
-	// 		document.getElementById("search_recipe_btn").click();
-	// 	}
+	//This make sure that click the search button once you load the search page
+	useEffect(() => {
+		if(searchTagsFetchStatus){
 
-	// }, [searchTagsFetchStatus])
+			setTimeout(() => {
+				document.getElementById("search_recipe_btn").click();
+			}, );
+			
+		}
+	}, [searchTagsFetchStatus]);
 
 	// this class hide the search button on the search page
 	let searchButtonClass = searchButtonVisual? "" : "display_non";
 	searchButtonClass += " btn btn-primary waves-effect waves-light";
-
+	
+  
 	const pressEnter = (searchTerm) => {
 		if(searchTerm && !searchTags.includes(searchTerm)){
 			setSearchTags(prev => [...prev, searchTerm])
-			writeTag(searchTerm)
+			writeTag(searchTerm, 'searchTags')
 			setSearchTerm("")
 		}
-	}
-
-	// const onSubmit = async (e) => {
-	// 	//Faking API call
-	// 	const result = await axios.get('./recipe.json')
-	// 	setRecipes(result.data.hits)
-
-	// 	//Actual Api call
-	// 	// recipeFinder(searchTags)
-	// 	// .then(data => {
-	// 	// 	console.log(data);
-  //   //   setRecipes(data)
-	// 	// })
-	// }
-
+	};
 
 	return(
-		<div>
-			<SearchBar
-				searchTerm={searchTerm}
-				setSearchTerm={setSearchTerm}
-				searchTags={searchTags}
-				setSearchTags={setSearchTags}
-        onKeyUp={pressEnter}
-        searchButtonClass={searchButtonClass}
-        onSubmit={onSubmit}
-        searchTagsFetchStatus={searchTagsFetchStatus}
-      />
-
-				{/* <button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button> */}
-				{children}
-		</div>
+		<>
+			<button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
+			{filter}
+			<div>
+				<SearchBar
+					searchTerm={searchTerm}
+					setSearchTerm={setSearchTerm}
+					searchTags={searchTags}
+					setSearchTags={setSearchTags}
+					onKeyUp={pressEnter}/>
+			</div>
+			{children}
+		</>
 
 	);
 }

@@ -20,9 +20,11 @@
   }
   .home_title{
     text-align: center;
+    font-size: 28px;
+    font-weight: 700;
   }
   .home_text{
-    font-size: 20px;
+    font-size: 18px;
     margin: 2.5rem;
     line-height: 2;
   }
@@ -48,9 +50,6 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-  body {
-    // background-color: red;
-  }
   .vertical {
     display: none;
   }
@@ -65,29 +64,12 @@
   }
 }
 
-// // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  body {
-    // background-color: blue;
-  }
-}
-
-// // Large devices (desktops, 992px and up)
+// Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  body {
-    // background-color: green;
-  }
   .vertical {
     display: unset;
   }
   .home_div_bottom .img_container {
     flex-wrap: unset;
-  }
-}
-
-// // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  body {
-    // background-color: purple;
   }
 }

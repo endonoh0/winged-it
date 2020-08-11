@@ -32,8 +32,9 @@ import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
 import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
 import NewRecipe from './comps/NewRecipe'
-import Ingredients from './comps/Ingredients'
+import Ingredients from './comps/Ingredients/Ingredients'
 import Search from "./comps/Search/Search";
+import AnimatedGrid from './comps/AnimatedGrid/AnimatedGrid'
 
 import NavbarTop from './comps/Home/NavbarTop/NavbarTop';
 import Home from './comps/Home/Home';
@@ -61,11 +62,13 @@ const UserProvider = UserContext.Provider;
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [searchTags, setSearchTags] = useState([]);
+  const [healthTags, setHealthTags] = useState([]);
+  const [dietTags, setDietTags] = useState([]);
   const [searchTagsFetchStatus, setSearchTagsFetchStatus] = useState(false)
 
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState({ loggedIn: false });
-  const [selection, setSelection] = useState([]);
+  const [health, setHealth] = useState([]);
   const [diet, setDiet] = useState(null);
   const [title, setTitle] = useState('');
   const [directions, setDirections] = useState(null);
@@ -77,23 +80,51 @@ function App() {
 
 
   const onSubmit = async (e) => {
-    const result = await axios.get('./recipe.json')
-    setRecipes(result.data.hits)
+    // const result = await axios.get('./recipe.json')
+    // setRecipes(result.data.hits)
 
 
     // Real API Call
-    // setLoadingStatus(true);
-    // recipeFinder(searchTags, selection, diet)
-    //   .then(data => {
-    //     setRecipes(data)
-    //   })
-    //   .then(() => {
-    //     setLoadingStatus(false);
-    //   })
+    setLoadingStatus(true);
+    recipeFinder(searchTags, health, diet)
+      .then(data => {
+        setRecipes(data)
+      })
+      .then(() => {
+        setLoadingStatus(false);
+      })
+  };
+
+
+
+
+  //Write tags
+  const writeTag = (searchTerm, dbField) => {
+
+
+
+
+    if (dbField === "searchTags" && !searchTags.includes(searchTerm) && user.loggedIn) {
+      const info = { searchTags: searchTerm? [...searchTags, searchTerm]: [...searchTags], createdBy: user.email, editedAt: timeStamp() };
+
+      write("searchTags", info)
+
+    }
+
   }
 
 
 
+  //Remove tags
+  const removeTag = (searchTerm) => {
+    const newTags = searchTags.filter(tags => tags !== searchTerm)
+    const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
+    setSearchTags([...newTags])
+    if (user.loggedIn) {
+      write('searchTags', info)
+    }
+  }
+//Read tags
   useEffect(() => {
     if (user.loggedIn) {
       projectFirestore.collection('searchTags')
@@ -101,14 +132,17 @@ function App() {
         .get()
         .then(doc => {
           if (doc.data()) {
+
             setSearchTags([...doc.data().searchTags]);
           }
         })
         .then(() => {
+
           setSearchTagsFetchStatus(true)
         })
     }
-  }, [user])
+  }, [user]);
+
 
   // listen to auth state change
   useCurrentUser(setUser);
@@ -129,42 +163,50 @@ function App() {
     removeCookie('user');
   }, []);
 
-  const writeTag = (searchTerm) => {
-    // Makes sure the search term is unique
-    if (!searchTags.includes(searchTerm) && user.loggedIn) {
-      const info = { searchTags: [...searchTags, searchTerm], createdBy: user.email, editedAt: timeStamp() }
-      write('searchTags', info)
-    }
-  }
 
-  const removeTag = (searchTerm) => {
-    const newTags = searchTags.filter(tags => tags !== searchTerm)
-    const info = { searchTags: [...newTags], createdBy: user.email, editedAt: timeStamp() }
-    setSearchTags([...newTags])
-    if (user.loggedIn) {
-      write('searchTags', info)
-    }
+
+
+  const filter = <RecipeFilter
+  setDietTags={setDietTags}
+  dietTags={dietTags}
+  healthTags={healthTags}
+  setHealthTags={setHealthTags}
+  writeTag={writeTag}
+
+  searchTagsFetchStatus={searchTagsFetchStatus}
+  user={user}
+  setHealth={setHealth}
+  health={health}
+  diet={diet}
+  setDiet={setDiet} />
+
+  const componentProps = {
+    searchbar: <SearchByIngredient
+    // setRecipes={setRecipes}
+    searchTags={searchTags}
+    setSearchTags={setSearchTags}
+    writeTag={writeTag}
+    onSubmit={onSubmit}
+    searchTagsFetchStatus={searchTagsFetchStatus}
+    filter={filter}
+  >
+    {/* {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>} */}
+  </SearchByIngredient>
   }
 
   return (
     <div className="App">
-      <ScrollToTop />
-      {/* {!user.loggedIn && <Header />} */}
-
-
+        <ScrollToTop />
       {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
-
-
 
       <Router>
         <NavbarTop user={cookies.user} />
-
-  {/* { <NavBar /> } */}
-
-
         <Switch>
           <Route path="/search">
           <Search
+            user={user}
+            setDiet={setDiet}
+            setHealth={setHealth}
             searchTags={searchTags}
             setSearchTags={setSearchTags}
             writeTag={writeTag}
@@ -173,18 +215,17 @@ function App() {
           </Route>
           <Route path="/signin">
             <div className="auth-wrapper">
-              {!user.loggedIn ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
+              {!cookies.user ? <SignIn onClick={requestLogin} loginWithGoogle={e => (loginWithGoogle(setCookie))} /> : <Redirect to='/' />}
             </div>
           </Route>
           <Route path="/signup">
             <div className="auth-wrapper">
-              {!user.loggedIn && <SignUp onClick={requestRegister} />}
+              {!cookies.user && <SignUp onClick={requestRegister} />}
             </div>
           </Route>
-
           <Route path="/logout">
             <div className="auth-wrapper">
-              {user.loggedIn && <UserProvider value={user}>
+              {cookies.user && <UserProvider value={user}>
                 <Logout
                   onClick={requestLogout}
                   UserContext={UserContext}
@@ -192,13 +233,21 @@ function App() {
               </UserProvider>}
             </div>
           </Route>
-
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
-            <Map setDirections={setDirections} directions={directions} user={user} directions={directions} />
+            <Map setDirections={setDirections} directions={directions} user={user}/>
           </Route>
-          <Route path="/home">
-            <Home />
+          <Route path="/results">
+            <AnimatedGrid 
+            removeTag={removeTag} 
+            recipes={recipes} setRecipes={setRecipes} 
+            selectedImg={selectedImg} 
+            setSelectedImg={setSelectedImg} 
+            searchTags={searchTags} 
+            componentProps={componentProps}
+            health={health}
+            diet={diet}
+            />
           </Route>
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>
@@ -208,33 +257,10 @@ function App() {
             <Ingredients />
           </Route>
           <Route path="/">
-            {user.loggedIn && <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />}
-            <SearchByIngredient
-              // setRecipes={setRecipes}
-              searchTags={searchTags}
-              setSearchTags={setSearchTags}
-              writeTag={writeTag}
-              onSubmit={onSubmit}
-              searchTagsFetchStatus={searchTagsFetchStatus}
-            >
-              {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>}
-              {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
-
-            </SearchByIngredient>
+            <Home />
           </Route>
-
         </Switch>
-
       </Router>
-
-      {/* { <Title/> } */}
-      {/* <FavoriteAdd/> */}
-      {/* <UploadForm /> */}
-      {/* <ImageGrid setSelectedImg={setSelectedImg} /> */}
-      {/* { selectedImg && <Modal  setSelectedImg={setSelectedImg} /> } */}
-
-
-      {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />}
       {loadingStatus && <Loading/>}
     </div>
   );

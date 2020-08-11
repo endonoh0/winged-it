@@ -1,9 +1,19 @@
 .confirmation_container {
 
   text-align: center;
+  height: 404px;
+
   .btn{
     font-size: 25px;
   }
 
-}
+  .confirmation_message{
+    cursor: default;
+    margin: 24% 0;
+  }
 
+  .delete-title {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

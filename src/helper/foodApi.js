@@ -1,11 +1,11 @@
 const requestPromise = require('request-promise');
 
 // this function receive ingredients in an array and return the promise with api search results
-const recipeSearch = (ingredients, healthFilter, dietFilter) => {
+const recipeSearch = (ingredients, healthFilter = [], dietFilter) => {
 
-
-  let healthSelection = healthFilter.map(filter => filter.value).map(el => '&Health=' + el).join("");
-
+  
+  let healthSelection = healthFilter.map(filter => filter.value).map(el => '&health=' + el).join("");
+  let dietSelect = dietFilter ? `&diet=${dietFilter}` : ""
 
   const apiInfo = {
     edamamRecipeDatabase: {
@@ -15,9 +15,13 @@ const recipeSearch = (ingredients, healthFilter, dietFilter) => {
   };
 
   const edamamRecipeUrl =
-  `https://api.edamam.com/search?q=${ingredients}&app_id=${apiInfo.edamamRecipeDatabase.apiKey}&app_key=${apiInfo.edamamRecipeDatabase.applicationID}${healthSelection}&Diet=${dietFilter}&to=21`;
+  `https://api.edamam.com/search?q=${ingredients}&app_id=${apiInfo.edamamRecipeDatabase.apiKey}&app_key=${apiInfo.edamamRecipeDatabase.applicationID}${healthSelection}${dietSelect}&to=21`;
+
+
  
-  console.log( edamamRecipeUrl)
+  
+  console.log(edamamRecipeUrl)
+
 
   return requestPromise(edamamRecipeUrl)
   .then (function (data) {

@@ -5,7 +5,7 @@ import './SearchBar.scss'
 
 const SearchBar = (props) => {
 
-  const {searchTerm, setSearchTerm, onKeyUp, searchButtonClass, onSubmit, searchTagsFetchStatus} = props;
+  const {searchTerm, setSearchTerm, onKeyUp, searchTagsFetchStatus} = props;
   useEffect(() => {
     if (searchTagsFetchStatus) {
       document.getElementById("search_recipe_btn").click();
@@ -14,7 +14,7 @@ const SearchBar = (props) => {
   }, [searchTagsFetchStatus])
 	return (
     <>
-    <div class="custom-search ml-none">
+    <div class="custom-search ml-18">
       <input
         className="custom-search-input"
         type="search"
@@ -27,11 +27,10 @@ const SearchBar = (props) => {
           }
       }}
       />
-      <Link to="/">
-        <button id="add_btn" class="custom-search-botton" type="submit" onClick={e => {onKeyUp(searchTerm)}}>Add</button>
+      <Link to="/results">
+        <button id="add_btn" className="custom-search-botton" type="submit" onClick={e => {onKeyUp(searchTerm)}}>Add</button>
       </Link>
     </div>
-    <button id="search_recipe_btn" className={searchButtonClass} onClick={onSubmit}>Recipe Search</button>
     </>
   );
 }
