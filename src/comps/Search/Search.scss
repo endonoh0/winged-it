@@ -15,21 +15,21 @@ overflow-x: hidden;
       background-color: $search-bar-color;
       height: 400px;
       // width: 100vw;
-      -webkit-animation: cover 1s 0.4s forwards
-      reveal 1s 1.5s forwards;
+      // -webkit-animation: cover 1s 0.4s forwards
+      // reveal 1s 2s forwards;
       animation: cover 1s 0.4s forwards,
-      reveal 1s 1.5s forwards;
+      reveal 2s ease-in-out 2s forwards;
     }
 
-    .hide{
-      display: none;
-    }
+    // .hide{
+    //   display: none;
+    // }
 
     .img{
       visibility: hidden;
       height: 400px;
       width: 50vw;
-      animation: unHide 1s 1s forwards;
+      animation: unHide 1s 1.75s forwards;
     }
 
     .block{
@@ -45,7 +45,8 @@ overflow-x: hidden;
         align-items: center;
         width: 50vw;
         padding-right: 9%;
-        animation: fadeIn 1s 2s forwards;
+        padding-left: 8%;
+        animation: fadeIn 1s 3s forwards;
       }
 
       .img{
@@ -57,11 +58,11 @@ overflow-x: hidden;
 
       .text{
         text-align: center;
-        color: black;
         font-size: 30px;
         font-weight: 700;
         padding-top: 11%;
         padding-left: 14%;
+        padding-right: 14%;
         padding-bottom: 6%;
       }
 
@@ -108,15 +109,10 @@ overflow-x: hidden;
 }
 
 @keyframes reveal {
-  0% {
-    transform: translate(0%);
-    // width: 100%;
+  0%{
+    width: 100%;
   }
-  99% {
-    transform: translate(100%);
-    // width: 0%;
-  }
-  100%{
-    display: none;
+  100% {
+    width:1%
   }
 }

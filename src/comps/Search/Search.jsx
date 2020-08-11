@@ -69,10 +69,10 @@ const Search = (props) => {
 			})
 		}
 		getSuggestions()
-		
+
 	}, []);
 
-	
+
 	// //Write tags
 	const writeFilterTag = (item, dbcollection) => {
 
@@ -119,44 +119,43 @@ const Search = (props) => {
 
   return (
     <div>
-    
+
       <div className="search_page">
         <div className="title_bar">
 					<div className={revealBlock}></div>
-          <figure >
-            <img className="img" src="./rosemary.png" alt="rosemary on wooden block"/>
-          </figure>
 					<div className="block">
+            <div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
+
 						<div className="block__content">
-							<div className="text">Search Over Millions of Recipes Based on Ingredients and Diets. </div>
-							
 								<SearchByIngredient
 								searchButtonVisual={false}
 								searchTags={searchTags}
 								setSearchTags={setSearchTags}
 								writeTag={writeTag}
 								onSubmit={onSubmit}
-							
 							/>
 						</div>
 					</div>
-        </div> 
+          <figure >
+            <img className="img" src="./rosemary.png" alt="rosemary on wooden block"/>
+          </figure>
+        </div>
       </div>
 
-			<Suggestions 
+			<Suggestions
 			suggestions={suggestions["Healthy Meals"] ? suggestions["Healthy Meals"] : []}
 			imgGridClickHandler={imgGridClickHandler}
 			title={"Healthy Meals"}
 			/>
 
-			<Suggestions 
+			<Suggestions
 			suggestions={suggestions["Diet Meals"] ? suggestions["Diet Meals"] : []}
 			imgGridClickHandler={imgGridClickHandler}
 			title={"Diet Meals"}
 			/>
-    
+
     </div>
     );
 }
 
-export default Search; 
+export default Search;

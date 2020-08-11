@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import "./RecipeFilter.scss";
+
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io';
 import useWriteToFirestore from '../../hooks/useWriteToFirestore'
 import { timeStamp, projectFirestore } from '../../firebase/config';
+import Button from 'react-bootstrap/Button';
+import onClickOutside from 'react-onclickoutside';
+
 
 const databaseTagExtract = (tags, items) => {
   const databaseTags = [];
@@ -49,7 +53,7 @@ const duplicateRemover = (arr) => {
 }
 
 
-const Dropdown = (props) => {
+function Dropdown (props) {
 
   const {
     setDietTags,
@@ -62,6 +66,7 @@ const Dropdown = (props) => {
     setHealth,
     health = [],
     setDiet,
+    name
   } = props;
 
 
@@ -76,6 +81,8 @@ const Dropdown = (props) => {
   const [checkboxClear, setCheckboxClear] = useState(true);
 
   const { write } = useWriteToFirestore();
+
+
 
     //Read tags
   useEffect(() => {
@@ -225,6 +232,10 @@ const Dropdown = (props) => {
     }
   }
 
+  // Dropdown.handleClickOutside = () => setOpen(false);
+Dropdown['handleClickOutside_' + name] = () => setOpen(false);
+
+
   return (
     <div className="dd-wrapper">
 
@@ -266,12 +277,35 @@ const Dropdown = (props) => {
               <label className="custom-control-label" htmlFor={item.id}>{item.value}</label>
             </li>
           ))}
-          <button onClick={e => applyButton(e)}>Apply</button>
-          <button onClick={e => clearButton(e)}>Clear</button>
+          <div className="flex-row">
+            <Button
+              variant="outline-dark"
+              className="flex-btn"
+              onClick={e => applyButton(e)}
+            >
+              Apply
+            </Button>
+            <Button
+              variant="outline-warning"
+              className="flex-btn"
+              onClick={e => clearButton(e)}
+            >
+              Cancel
+            </Button>
+          </div>
         </ul>
       )}
     </div>
   )
 }
 
-export default Dropdown;
+// const clickOutsideConfig = {
+//   handleClickOutside: () => Dropdown.handleClickOutside
+// };
+
+const clickOutsideConfig = {
+  handleClickOutside: ({ props }) => Dropdown['handleClickOutside_' + props.name]
+};
+
+export default onClickOutside(Dropdown, clickOutsideConfig);
+// export default Dropdown;

@@ -17,7 +17,7 @@ const Map = ({ setDirections, user, directions }) => {
     'full': !directions,
     'partial': directions
   });
-
+  // console.log('directions', directions);
 	return (
     <>
     <NavBar />
