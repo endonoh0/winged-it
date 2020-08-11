@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+
 import { motion } from 'framer-motion';
 import { FiEdit3 } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -16,13 +17,28 @@ const FavoriteItems = (props) => {
       <motion.img src={props.doc.recipe.img}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        // transition={{ delay: 1 }}
         onClick={e => props.setSelectedImg(props.doc.recipe.url)}
       />
+
       <div className="favorite_btn_container">
-        <FiEdit3 className="btn" onClick = { props.editEvent } size={40}/>
-        <AiOutlineDelete className="btn" id="delete_icon" onClick = { e => props.deleteEventReq()} size={40}/>
-        <div className="desc">{ props.doc.recipe.name }</div>
+        <FiEdit3
+          className="btn edit-btn"
+          onClick = { props.editEvent }
+          size={50}
+        />
+
+        <AiOutlineDelete
+          className="btn delete-btn"
+          id="delete_icon"
+          onClick = { e => props.deleteEventReq()}
+          size={50}
+        />
+
+        <div
+          className="desc"
+        >
+          { props.doc.recipe.name }
+        </div>
       </div>
     </Fragment>
   );
