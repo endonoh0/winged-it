@@ -5,7 +5,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 import './AnimatedGrid.scss'
 
-const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags, componentProps, removeTag}) => {
+const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags, componentProps, removeTag, health, diet}) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const {searchbar} = componentProps
@@ -42,9 +42,11 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 				<h1>Winged It</h1>
 				<div className="menubar_content">
 					<h3>Health Filter</h3>
+					{health && health.map(tag => <div>{tag.value}</div>)}
 					<h3>Diet Filter</h3>
+					{diet && <span>{diet}</span>}
 					<h3>Ingredients</h3>
-					{searchTags && searchTags.map(tag => <a className="tag" onClick={e => removeTag(tag)}>{tag}</a>)}
+					{searchTags && searchTags.map(tag => <div className="tag" onClick={e => removeTag(tag)}>{tag}</div>)}
 				</div>
 			</div>
 			<div id="theGrid" className="main">

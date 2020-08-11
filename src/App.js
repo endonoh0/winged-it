@@ -240,7 +240,16 @@ function App() {
             <Map setDirections={setDirections} directions={directions} user={user}/>
           </Route>
           <Route path="/results">
-            <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
+            <AnimatedGrid 
+            removeTag={removeTag} 
+            recipes={recipes} setRecipes={setRecipes} 
+            selectedImg={selectedImg} 
+            setSelectedImg={setSelectedImg} 
+            searchTags={searchTags} 
+            componentProps={componentProps}
+            health={health}
+            diet={diet}
+            />
           </Route>
           <Route path="/newRecipe">
             <NewRecipe>{title}</NewRecipe>
