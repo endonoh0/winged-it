@@ -1629,7 +1629,7 @@ const NavbarTop = ({ user }) => {
 
             { user && (
               <Button className="button sign-in display-none" variant="secondary" size="lg" block>
-                <a href="/logout">Logout</a>
+                <a className="sign-up-btn" href="/logout">Logout</a>
               </Button>
             )}
           </Nav>
