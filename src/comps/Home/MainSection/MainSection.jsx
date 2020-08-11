@@ -18,7 +18,7 @@ const MainSection = () => {
             </div>
             <div className="text_description">Eat Fresh - Eat Healthy </div>
             <div className="home_buttons">
-              <Link to="/results">
+              <Link to="/search">
               <p className="home_button home_button_left">Search Recipe</p>
               </Link>
               <Link to="/map">
