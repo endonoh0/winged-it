@@ -10,7 +10,7 @@ const SearchByIngredient = (props) => {
 		searchTags,
 		setSearchTags,
 		writeTag,
-		// onSubmit,
+		onSubmit,
 		searchButtonVisual = true,
 		// searchTagsFetchStatus,
 		filter
@@ -30,8 +30,8 @@ const SearchByIngredient = (props) => {
 	// }, [searchTagsFetchStatus]);
 
 	// this class hide the search button on the search page
-	// let searchButtonClass = searchButtonVisual? "" : "display_non";
-	// searchButtonClass += " btn btn-primary waves-effect waves-light";
+	let searchButtonClass = searchButtonVisual? "" : "display_non";
+	searchButtonClass += " btn btn-primary waves-effect waves-light";
 
 
 	const pressEnter = (searchTerm) => {

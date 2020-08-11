@@ -43,12 +43,12 @@ const UserProvider = UserContext.Provider;
 
 function App() {
   const {
-    state, 
-    setRecipes, 
-    setSearchTags, 
-    setSelectedImg, 
-    setHealthTags, 
-    setDietTags, 
+    state,
+    setRecipes,
+    setSearchTags,
+    setSelectedImg,
+    setHealthTags,
+    setDietTags,
     setUser,
     setHealth,
     setDiet,
@@ -143,15 +143,15 @@ function App() {
           </Route>
           <Route path="/favorites"><Favorite setSelectedImg={setSelectedImg} user={user}/></Route>
           <Route path="/map">
-            <Map setDirections={setDirections} directions={directions} user={user}/>
+          <Map setDirections={setDirections} directions={directions} user={user}/>
           </Route>
           <Route path="/results">
-            <AnimatedGrid 
-            removeTag={removeTag} 
-            recipes={state.recipes} setRecipes={setRecipes} 
+            <AnimatedGrid
+            removeTag={removeTag}
+            recipes={state.recipes} setRecipes={setRecipes}
             selectedImg={state.selectedImg}
-            setSelectedImg={setSelectedImg} 
-            searchTags={searchTags} 
+            setSelectedImg={setSelectedImg}
+            searchTags={searchTags}
             componentProps={componentProps}
             health={health}
             diet={diet}

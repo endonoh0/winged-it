@@ -110,7 +110,7 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 					animate={isOpen ? "exit" : "enter"}
 					variants={variants}
 				>
-					<button id="search_recipe_btn" className="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button>
+					{/* <button id="search_recipe_btn" className="btn btn-primary waves-effect waves-light" onClick={onSubmit}>Recipe Search</button> */}
 					{searchbar}
 				</motion.div>
 				<section className="grid">
