@@ -80,19 +80,19 @@ function App() {
 
 
   const onSubmit = async (e) => {
-    const result = await axios.get('./recipe.json')
-    setRecipes(result.data.hits)
+    // const result = await axios.get('./recipe.json')
+    // setRecipes(result.data.hits)
 
 
     // Real API Call
-    // setLoadingStatus(true);
-    // recipeFinder(searchTags, health, diet)
-    //   .then(data => {
-    //     setRecipes(data)
-    //   })
-    //   .then(() => {
-    //     setLoadingStatus(false);
-    //   })
+    setLoadingStatus(true);
+    recipeFinder(searchTags, health, diet)
+      .then(data => {
+        setRecipes(data)
+      })
+      .then(() => {
+        setLoadingStatus(false);
+      })
   };
 
 
@@ -124,10 +124,9 @@ function App() {
       write('searchTags', info)
     }
   }
-
 //Read tags
   useEffect(() => {
-    if (user.cookies) {
+    if (user.loggedIn) {
       projectFirestore.collection('searchTags')
         .doc(user.uid)
         .get()
