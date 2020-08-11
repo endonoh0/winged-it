@@ -1,24 +1,27 @@
-
 .custom-search {
   position: relative;
   width: 300px;
   margin: 0 auto;
 }
 .custom-search-input {
-  width: 100%;
-  border: 1px solid #ccc;
+  font-weight: 500;
+  width: 99%;
+  border: 2px solid #ccc;
   border-radius: 100px;
   padding: 10px 100px 10px 20px;
   line-height: 1;
   box-sizing: border-box;
   outline: none;
+
 }
+
 .custom-search-botton {
   position: absolute;
-  right: 3px;
-  top: 3px;
+  right: 4px;
+  top: 2px;
   bottom: 3px;
   border: 0;
+  height: 91%;
   background: #d1095e;
   color: #fff;
   outline: none;

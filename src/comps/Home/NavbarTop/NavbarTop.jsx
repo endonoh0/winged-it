@@ -1625,13 +1625,13 @@ const NavbarTop = ({ user }) => {
             { !user && <Link className="links line-height" id="sign-in" to="/signin">Sign in</Link> }
             { !user && (
               <Button className="button sign-in" variant="secondary" size="lg" block>
-                <a className="sign-up" href="/signup">Sign up</a>
+                <a className="sign-up-btn" href="/signup">Sign up</a>
               </Button>
             )}
 
             { user && (
               <Button className="button sign-in display-none" variant="secondary" size="lg" block>
-                <a href="/logout">Logout</a>
+                <a className="sign-up-btn" href="/logout">Logout</a>
               </Button>
             )}
           </Nav>

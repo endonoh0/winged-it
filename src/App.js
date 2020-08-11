@@ -100,15 +100,15 @@ function App() {
 
   //Write tags
   const writeTag = (searchTerm, dbField) => {
-      
-   
-    
+
+
+
 
     if (dbField === "searchTags" && !searchTags.includes(searchTerm) && user.loggedIn) {
       const info = { searchTags: searchTerm? [...searchTags, searchTerm]: [...searchTags], createdBy: user.email, editedAt: timeStamp() };
-      
+
       write("searchTags", info)
-    
+
     }
 
   }
@@ -138,7 +138,7 @@ function App() {
           }
         })
         .then(() => {
-          
+
           setSearchTagsFetchStatus(true)
         })
     }
@@ -167,19 +167,7 @@ function App() {
 
 
 
-  const filter = <RecipeFilter
-  user={user}
-  setDietTags={setDietTags}
-  dietTags={dietTags}
-  healthTags={healthTags}
-  setHealthTags={setHealthTags}
-  writeTag={writeTag}
-  searchTagsFetchStatus={searchTagsFetchStatus}
-  user={user}
-  setHealth={setHealth}
-  health={health}
-  diet={diet}
-  setDiet={setDiet} />
+  const filter = <RecipeFilter setHealth={setHealth} health={health} diet={diet} setDiet={setDiet} />
 
   const componentProps = {
     searchbar: <SearchByIngredient

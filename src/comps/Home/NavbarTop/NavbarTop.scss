@@ -24,7 +24,7 @@ $navbar-color: black;
 .sign-in {
   text-decoration: none;
 }
-.sign-up {
+.sign-up-btn {
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -93,6 +93,7 @@ $navbar-color: black;
   }
   .links:hover,
   .sign-up:hover {
+    color: #ccc;
     text-decoration: none;
   }
 }

@@ -14,7 +14,9 @@ svg {
 }
 
 a:hover {
+  color: #ccc;
   text-decoration: none;
+  cursor: pointer;
 }
 
 #root{
@@ -55,6 +57,14 @@ a:hover {
 .title h2{
   margin-top: 60px;
   font-size: 2.6rem;
+}
+
+.text-lg {
+  font-size: 16px;
+}
+
+.align-none {
+  align-items: unset !important;
 }
 
 .marker{
