@@ -1,47 +1,36 @@
-// div.favorite {
-//   margin: 5px;
-//   border: 1px solid #ccc;
-//   float: left;
-//   width: 180px;
-// }
+.favorite_btn_container {
+  cursor: default;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
 
-// div.favorite:hover {
-//   border: 1px solid #777;
-// }
-
-// div.favorite img {
-//   width: 100%;
-//   height: auto;
-// }
-
-// div.desc {
-//   padding: 15px;
-//   text-align: center; 
-// }
-
+  .edit-btn:hover {
+    color: #e19526;
+  }
+  .delete-btn:hover {
+    color: red;
+  }
+}
 .container .btn {
   position: absolute;
   top: 10%;
   left: 10%;
   transform: translate(-50%, -50%);
-  // -ms-transform: translate(-50%, -50%);
   color: black;
   font-size: 30px;
   padding: 5px 5px;
   border: none;
   cursor: pointer;
-  // border-radius: 5px;
   text-align: center;
   background-color: Transparent;
-    // background-color: #555;
-
-    
-
+}
+.desc {
+  cursor: default;
 }
 .btn:focus { outline: none; }
 
 .container #delete_icon { left: 25%; }
 
 .btn:hover {
-  color: #cf3052;
+  // color: #cf3052;
 }

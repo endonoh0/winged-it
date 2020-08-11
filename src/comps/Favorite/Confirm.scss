@@ -2,12 +2,18 @@
 
   text-align: center;
   height: 404px;
+
   .btn{
     font-size: 25px;
   }
+
   .confirmation_message{
-    margin-top: 30%;
+    cursor: default;
+    margin: 24% 0;
   }
 
+  .delete-title {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
-

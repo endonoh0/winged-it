@@ -1,10 +1,32 @@
 .Title_Favorite_page {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // margin: 20px 20px 40px 13rem;
-  // width:900px;
-  // height: 120px;
-  background-color: #2d2e30;
-  color: white;
+  cursor: default;
+  color: #4e4e4e;
+  text-align: center;
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.div-group {
+  margin-top: 2%;
+
+  label {
+    margin-top: 2%;
+    margin-right: 6%;
+  }
+}
+
+.edit-title {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 2%;
+  margin-bottom: 23%;
+
+  button {
+    &:hover {
+      color: white;
+    }
+  }
+
 }

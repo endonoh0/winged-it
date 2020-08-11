@@ -13,7 +13,7 @@ const CONFIRM = "CONFIRM";
 const EDIT = "EDIT"
 
 const FavoritePage = (props) => {
-  
+
 
   const { mode, transition, back } = useVisualMode(SHOW);
 
@@ -49,12 +49,12 @@ const FavoritePage = (props) => {
     { mode === CONFIRM && <Confirm
       onCancel = { back }
       onConfirm = { deleteEvent }
-     
+
       /> }
 
-      {mode === EDIT && 
+      {mode === EDIT &&
             <Fragment>
-              <TitleFav>Edit Your Recipe</TitleFav>
+              <TitleFav>Edit Recipe?</TitleFav>
               <Edit
               onSave={saveEvent}
               onCancel={ back }
