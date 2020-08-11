@@ -13,8 +13,12 @@ svg {
   display: block;
 }
 
-a:hover, a:active {
+#collasible-nav-dropdown {
   color: #ccc !important;
+}
+
+a:hover, a:active {
+  color: #333 !important;
   text-decoration: none;
   cursor: pointer;
 }
