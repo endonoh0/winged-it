@@ -15,10 +15,6 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 
 	const {searchbar} = componentProps
 
-	// useEffect(() => {
-	// 	onSubmit();
-	// },[searc])
-
 	const variants = {
 		enter: {
 			transitionEnd: {
@@ -46,13 +42,8 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 		<>
 		<div className="grid__container">
 			<div className="menubar">
-
         {/* Left-side recipe menu */}
 				<div className="menubar_content">
-
-        {/* <ListGroup>
-          <ListGroup.Item variant="dark">Health</ListGroup.Item>
-        </ListGroup> */}
          <h1>
             <Badge variant="dark">Health</Badge>
           </h1>
@@ -129,7 +120,6 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 							<motion.a
 								className="grid__item"
 								key={index}
-								// initial={{opacity: 0}}
 								animate={isOpen ? "exit": "enter"}
 								variants={variants}
 								onClick={e => {clickHandler(recipe)}}
@@ -138,7 +128,6 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 								>
 								<h2 className="title title--preview">{recipe.recipe.label}</h2>
 								<div className="loader"></div>
-								{/* <span className="category">Stories for humans</span> */}
 								<div className="meta meta--preview">
 									<img className="meta__food" src={recipe.recipe.image} alt="recipe" />
 								</div>
@@ -158,7 +147,6 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 						  <AiOutlineCloseCircle size={32}/>
 						</button>
 						</motion.div>
-
 					</Fragment>
 					}
 				</section>
