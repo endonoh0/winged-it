@@ -2,29 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import className from 'classnames'
 
-import { projectFirestore } from '../../firebase/config'
+import { projectFirestore, timeStamp } from '../../firebase/config'
 import Card from  'react-bootstrap/Card'
 
-import SearchBar from "../SearchByIngredient/SearchBar";
+
 import SearchByIngredient from "../SearchByIngredient/index";
 import "./Search.scss";
 
 import { healthItems, dietItems } from "../../db/foodfilter";
+import useWriteToFirestore from '../../hooks/useWriteToFirestore';
+
+
+
 
 
 const Search = (props) => {
+
+	const {
+		user,
+		setDiet,
+		setHealth,
+		searchTags,
+		setSearchTags,
+		writeTag,
+		onSubmit,
+	} = props;
+
 
 
 	// const { mode, transition } = useVisualMode(LOADING);
 	const [suggestions, setSuggestions] = useState([])
 	const [hideBlock, setHideBlock] = useState(false);
 
-	
+	// writing to db
+	const { write } = useWriteToFirestore();
+
+	// Styling the animation
 	const revealBlock = className("reveal__block", {
 		"hide" : hideBlock
-	})
+	});
 
-	setTimeout(() => setHideBlock(true), 2000)
+	setTimeout(() => setHideBlock(true), 2000);
+
+
+
 
 	useEffect(() => {
 		const getSuggestions = () => {
@@ -39,9 +60,44 @@ const Search = (props) => {
 		
 	}, []);
 
+
+
+	
+
+	
+	// //Write tags
+	const writeFilterTag = (item, category) => {
+
+
+	//  if(user.loggedIn && category === "dietTags") {
+	// 	 const info = { dietTags: filterSelection,  createdBy: user.email, editedAt: timeStamp() };
+	// 	 write("dietTags", info)
+	// 	 return;
+	//  }
+ 
+	//  const arr = [];
+	//  if (filterSelection){
+	// 	 for (const item of filterSelection) {
+	// 		 if (item.value) arr.push(item.value);
+	// 	 }
+	//  }
+
+	 if(user.loggedIn && category === "healthTags") {
+		 const info = { healthTags: [item],  createdBy: user.email, editedAt: timeStamp() };
+		 write("healthTags", info)
+	 }
+ }
+
+
+
 	const imgGridClickHandler = (filterTitle) => {
 		for (const healthItem of healthItems) {
-			if (healthItem.value === filterTitle) props.setHealth([healthItem]);
+			if (healthItem.value === filterTitle) {
+				setHealth([healthItem]);
+				writeFilterTag(filterTitle, "healthTags");
+
+			}
+			
 		}
 
 	};
@@ -61,10 +117,10 @@ const Search = (props) => {
 							
 								<SearchByIngredient
 								searchButtonVisual={false}
-								searchTags={props.searchTags}
-								setSearchTags={props.setSearchTags}
-								writeTag={props.writeTag}
-								onSubmit={props.onSubmit}
+								searchTags={searchTags}
+								setSearchTags={setSearchTags}
+								writeTag={writeTag}
+								onSubmit={onSubmit}
 							
 							/>
 						</div>

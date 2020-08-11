@@ -180,6 +180,7 @@ function App() {
         <Switch>
           <Route path="/search"> 
           <Search
+            user={user}
             setDiet={setDiet}
             setHealth={setHealth}
             searchTags={searchTags}
