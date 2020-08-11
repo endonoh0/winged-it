@@ -36,10 +36,10 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 		<Fragment>
 		<div className="grid__container">
 			{/* <button id="menu-toggle" class="menu-toggle"><span>Menu</span></button> */}
-			<div id="theSidebar" className="sidebar">
+			<div id="theSidebar" className="menubar">
 				{/* <button className="close-button fa fa-fw fa-close"></button> */}
 				<h1>Winged It</h1>
-				<div className="sidebar_content">
+				<div className="menubar_content">
 					<h3>Health Filter</h3>
 					<h3>Diet Filter</h3>
 					<h3>Ingredients</h3>
