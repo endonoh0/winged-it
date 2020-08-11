@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat&family=Roboto&display=swap');
+
+$title-font: 'Lobster', cursive;
+$tag-font:'Montserrat', sans-serif;
+$description-font: 'Roboto', sans-serif;
+
 $active-opacity: 1;
 $inactive-opacity: 0.15;
 
@@ -18,3 +24,4 @@ $error-color: #ff9f43;
 $confirm-color: #10ac84;
 
 $spacing: 2rem;
+
