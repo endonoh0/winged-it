@@ -5,7 +5,7 @@ import './SearchBar.scss'
 
 const SearchBar = (props) => {
 
-  const {searchTerm, setSearchTerm, onKeyUp, searchButtonClass, onSubmit, searchTagsFetchStatus} = props;
+  const {searchTerm, setSearchTerm, onKeyUp, searchTagsFetchStatus} = props;
   useEffect(() => {
     if (searchTagsFetchStatus) {
       document.getElementById("search_recipe_btn").click();
@@ -27,7 +27,7 @@ const SearchBar = (props) => {
           }
       }}
       />
-      <Link to="/">
+      <Link to="/results">
         <button id="add_btn" className="custom-search-botton" type="submit" onClick={e => {onKeyUp(searchTerm)}}>Add</button>
       </Link>
     </div>

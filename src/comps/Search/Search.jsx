@@ -133,7 +133,7 @@ const Search = (props) => {
 			<h1 id="suggestion_title">Healthy Meals</h1>
 			<article className="grids_container">
 				{suggestions.map(suggestion => (
-						<Link className="grid" to="/">
+						<Link className="grid" to="/results">
 							<Card onClick={e => imgGridClickHandler(suggestion.name)} className="grid__card" style={{width: '18rem'}}>
 								<Card.Img className="grid__img" variant="top" src={suggestion.url} />
 								<Card.Title className="grid__title" >{suggestion.name}</Card.Title>
