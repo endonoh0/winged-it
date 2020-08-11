@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import Iframe from 'react-iframe'
 import { motion } from 'framer-motion';
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 import './AnimatedGrid.scss'
 
@@ -36,7 +37,7 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 		<Fragment>
 		<div className="grid__container">
 			{/* <button id="menu-toggle" class="menu-toggle"><span>Menu</span></button> */}
-			<div id="theSidebar" className="menubar">
+			<div className="menubar">
 				{/* <button className="close-button fa fa-fw fa-close"></button> */}
 				<h1>Winged It</h1>
 				<div className="menubar_content">
@@ -81,7 +82,9 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 							transition={{ delay: 1, duration: .5 }}
 						>
 						<Iframe className="recipe_content" url={selectedImg}/>
-						<button className="recipe_btn" onClick={e => {clickHandler()}}>Hello</button>
+						<button className="recipe_btn" onClick={e => {clickHandler()}}>
+						  <AiOutlineCloseCircle size={32}/>
+						</button>
 						</motion.div>
 
 					</Fragment>
