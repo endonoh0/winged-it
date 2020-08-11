@@ -8,14 +8,19 @@ import { timeStamp, projectFirestore } from '../../firebase/config';
 const databaseTagExtract = (tags, items) => {
   const databaseTags = [];
 
+  // throws error if there are no tags
+  if (!tags) {
+    return;
+  }
+
   if (tags.length === 0) {
     return;
   }
 
   for(const tag of tags) {
     for (const item of items) {
-      
-      
+
+
       if (item.value === tag){
         databaseTags.push(item);
         break;
@@ -45,7 +50,7 @@ const duplicateRemover = (arr) => {
 
 
 const Dropdown = (props) => {
-  
+
   const {
     setDietTags,
     setHealthTags,
@@ -87,7 +92,7 @@ const Dropdown = (props) => {
           setDietTags([data]);
           setDiet(data);
           setFilterSelection([data]);
-        }) 
+        })
     }
   }, [user]);
 
@@ -107,7 +112,7 @@ const Dropdown = (props) => {
          const foo = databaseTagExtract(data, items);
          setHealth(foo);
          setFilterSelection(foo)
-       }) 
+       })
    }
   }, [user]);
 
@@ -119,7 +124,7 @@ const Dropdown = (props) => {
       write("dietTags", info)
       return;
     }
-  
+
     const arr = [];
     if (filterSelection){
       for (const item of filterSelection) {
@@ -132,7 +137,7 @@ const Dropdown = (props) => {
       write("healthTags", info)
     }
   }
-  
+
 
 
   function isItemInSelection(item) {
@@ -142,27 +147,27 @@ const Dropdown = (props) => {
     return false;
   }
 
-  
 
 
 
 
-  
+
+
 
   const applyButton = (e) => {
     if(multiSelect) {
-      
+
       setHealth(filterSelection);
       writeTag(null, "filterTags");
       writeFilterTag(filterSelection, "healthTags")
-      
+
 
     } else {
 
       setDiet(pre => filterSelection[0]);
       writeFilterTag(filterSelection[0], "dietTags")
       writeTag(null, "filterTags");
-      
+
     }
     setOpen(false);
   }
@@ -172,9 +177,9 @@ const Dropdown = (props) => {
 
     setCheckboxClear(false);
     setFilterSelection([]);
-    
+
     if(multiSelect) {
-      
+
       setHealth([]);
       writeTag(null, "filterTags");
       writeFilterTag([], "healthTags")
@@ -192,17 +197,17 @@ const Dropdown = (props) => {
 
     if (!health.some(current => current.id === item.id)) {
       if (!multiSelect) {
-        
+
         setFilterSelection([e.target.value]);
-        
+
       } else if (multiSelect) {
-        
+
         const healthNullCheck = health ? health : null;
         const filterSelectionNullCheck = filterSelection ? filterSelection : [];
         const filteredArr = duplicateRemover([...healthNullCheck, ...filterSelectionNullCheck, item]);
         setFilterSelection(filteredArr);
-      
-        
+
+
       }
     } else {
 
@@ -247,9 +252,9 @@ const Dropdown = (props) => {
                 value={item.value}
                 onClick={(e) => handleOnClick(e, item, item.id)}
                 defaultChecked={item.id === 25 || isItemInSelection(item)}
-                // checked={diet && diet === item.value} 
+                // checked={diet && diet === item.value}
                 checked={
-                  checkboxClear && 
+                  checkboxClear &&
                   (!multiSelect? filterSelection[0]
                   && filterSelection[0] === item.value : null)
                 }

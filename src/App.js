@@ -127,7 +127,7 @@ function App() {
 
 //Read tags
   useEffect(() => {
-    if (user.loggedIn) {
+    if (user.cookies) {
       projectFirestore.collection('searchTags')
         .doc(user.uid)
         .get()
