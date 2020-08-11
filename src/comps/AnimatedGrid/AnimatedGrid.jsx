@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 
 import './AnimatedGrid.scss'
 
-const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags}) => {
+const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags, componentProps, removeTag}) => {
 	const [isOpen, setIsOpen] = useState(false)
+
+	const {searchbar} = componentProps
 
 	const variants = {
 		enter: {
@@ -33,28 +35,22 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 	return(
 		<Fragment>
 		<div className="grid__container">
-			<button id="menu-toggle" class="menu-toggle"><span>Menu</span></button>
+			{/* <button id="menu-toggle" class="menu-toggle"><span>Menu</span></button> */}
 			<div id="theSidebar" className="sidebar">
-				<button className="close-button fa fa-fw fa-close"></button>
+				{/* <button className="close-button fa fa-fw fa-close"></button> */}
 				<h1>Winged It</h1>
 				<div className="sidebar_content">
 					<h3>Health Filter</h3>
 					<h3>Diet Filter</h3>
 					<h3>Ingredients</h3>
-					{searchTags && searchTags.map(tag => <a>{tag}</a>)}
+					{searchTags && searchTags.map(tag => <a className="tag" onClick={e => removeTag(tag)}>{tag}</a>)}
 				</div>
 			</div>
 			<div id="theGrid" className="main">
+				<div className="search_wrapper">
+					{searchbar}
+				</div>
 				<section className="grid">
-					{/* {selectedImg &&
-					<Fragment>
-						<div className="iframe_container">
-						<Iframe className="recipe_content" url={selectedImg}/>
-						<button className="recipe_btn" onClick={e => {clickHandler()}}>Hello</button>
-						</div>
-
-					</Fragment>
-					} */}
 					{recipes && recipes.map((recipe, index) => {
 						return(
 							<motion.a 

@@ -152,6 +152,22 @@ function App() {
     }
   }
 
+  const filter = <RecipeFilter setSelection={setSelection} selection={selection} diet={diet} setDiet={setDiet} />
+
+  const componentProps = {
+    searchbar: <SearchByIngredient
+    // setRecipes={setRecipes}
+    searchTags={searchTags}
+    setSearchTags={setSearchTags}
+    writeTag={writeTag}
+    onSubmit={onSubmit}
+    searchTagsFetchStatus={searchTagsFetchStatus}
+    filter={filter}
+  >
+    {/* {recipes && <RecipeGrid recipes={recipes} setSelectedImg={setSelectedImg} user={user} setFavoriteAlert={setFavoriteAlert}/>} */}
+  </SearchByIngredient>
+  }
+
   return (
     <div className="App">
       <ScrollToTop />
@@ -214,7 +230,7 @@ function App() {
             <Ingredients />
           </Route>
           <Route path="/experimental">
-            <AnimatedGrid recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags}/>
+            <AnimatedGrid removeTag={removeTag} recipes={recipes} setRecipes={setRecipes} selectedImg={selectedImg} setSelectedImg={setSelectedImg} searchTags={searchTags} componentProps={componentProps}/>
           </Route>
           <Route path="/">
             {user.loggedIn && <SideBar searchTags={searchTags} user={user} removeTag={removeTag} />}
