@@ -15,9 +15,9 @@ button:focus {
 	outline: none;
 }
 
-a:hover, 
+a:hover,
 a:focus {
-	color: #333;
+	// color: #ccc;
 	outline: none;
 }
 
@@ -162,7 +162,12 @@ a:focus {
 .recipe_btn{
 	position: absolute;
 	top: 3%;
+<<<<<<< HEAD
 	left: 2%;
 	border: none;
   background-color: transparent;
 }
+=======
+  left: 2%;
+}
+>>>>>>> 7d0a5bd0ba2c632b2b37ff8c3e01cfd9d438a39b
