@@ -1,6 +1,7 @@
 .instructions {
   position: relative;
-  max-height: 500px;
+  max-height: 842px;
+  // min-height: 841px;
   top: -88px;
   padding: 2%;
   background-color: rgba(255, 255, 255, 0.9);
@@ -8,6 +9,7 @@
   font-size: 0.8em;
   line-height: 2em;
   list-style: none;
+  overflow: scroll;
 
   .flex svg {
     display: unset;
@@ -15,6 +17,7 @@
 }
 .duration {
   text-align: center;
+  padding-top: 15%;
   padding-right: 8%;
 
   h1 {
@@ -38,7 +41,8 @@
 }
 .flex {
   display: flex;
-  padding: 12px;
+  letter-spacing: 1.5px;
+  padding: 15px 0;
   background-color: white;
   flex-direction: column;
   align-items: end;
@@ -50,9 +54,10 @@
   display: flex;
   padding: 0;
 
-  .flex-btn {
+.flex-btn {
     margin-top: 14%;
-    margin-left: -19%;
-    margin-right: 38%;
+  }
+  .btn-outline-dark {
+    // margin-right: 2%;
   }
 }

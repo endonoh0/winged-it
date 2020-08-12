@@ -13,10 +13,22 @@ const SearchByIngredient = (props) => {
 
 	const [searchTerm, setSearchTerm] = useState('');
 
+	// Formating the search term 
+  const firstLetterUpperCaseRestLowerCase = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+
 	const pressEnter = (searchTerm) => {
-		if(searchTerm && !searchTags.includes(searchTerm)){
-			setSearchTags([...searchTags, searchTerm])
-			writeTag(searchTerm, 'searchTags')
+		
+		let formatSearchTerm = "";
+		if(searchTerm) {
+			formatSearchTerm = firstLetterUpperCaseRestLowerCase(searchTerm);
+		} 
+
+		if(formatSearchTerm && !searchTags.includes(formatSearchTerm)){
+			
+			setSearchTags([...searchTags, formatSearchTerm])
+			writeTag(formatSearchTerm, 'searchTags')
 			setSearchTerm("")
 		}
 	};

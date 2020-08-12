@@ -91,6 +91,7 @@ const useApplicationData = () => {
 	const setFavoriteAlert = (favoriteAlert) => dispatch({type:SET_FAVORITE_ALERT, value: favoriteAlert})
   const setLoadingStatus = (loadingStatus) => dispatch({type:SET_LOADING_STATUS, value: loadingStatus})
 
+
   const writeTag = (searchTerm, dbField) => {
     if (dbField === "searchTags" && !state.searchTags.includes(searchTerm) && state.user.loggedIn) {
       const info = { searchTags: searchTerm? [...state.searchTags, searchTerm]: [...state.searchTags], createdBy: state.user.email, editedAt: timeStamp() };

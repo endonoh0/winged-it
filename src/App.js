@@ -168,7 +168,10 @@ function App() {
             <SideBar form={true} title={title} setTitle={setTitle}/>
           </Route>
           <Route path="/seasonal-ingredients">
-            <Ingredients />
+            <Ingredients
+              searchTags={searchTags}
+              setSearchTags={setSearchTags}
+              writeTag={writeTag} />
           </Route>
           <Route path="/">
             <Home />

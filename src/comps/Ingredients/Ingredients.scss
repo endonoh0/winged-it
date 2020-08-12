@@ -1,3 +1,5 @@
+@import ".././../styles/variables.scss";
+
 .seasonal_container{
 	display: flex;
 	flex-direction: column;
@@ -50,7 +52,7 @@
 	flex-wrap: wrap;
 	position: relative;
   overflow: hidden;
-  margin-left: 8%;
+  margin-left: 3.5%;
 
 
 	&::after{
@@ -94,6 +96,8 @@
 	transition: .1s;
 	border: white solid .1px;
 	margin: 24px;
+	font-family: $description-font;
+
 
   img {
     // margin: 1rem 0.5rem;
@@ -143,9 +147,10 @@
 }
 
 #description{
-  width: 385px;
+  width: 500px;
   margin: 0rem 0 0 5rem;
-  font-size: 18px;
+	font-size: 18px;
+	font-family: $description-font;
 }
 
 
