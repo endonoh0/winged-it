@@ -69,10 +69,8 @@ const Ingredients = (props) => {
 				<div className="seasonal_revealer">
 					<h1 className="banner_content" id="seasonal_title">Seasonal Ingredients</h1>
 					<article className="banner_description">
-						<h2 className="banner_content" id="month">{MONTHS[month]}</h2>
 						<p className="banner_content" id="description">
-							These are all the local ingredients that are currently in season.
-							Discover some new and delicious recipes and try out some great inseason foods!"
+              Discover new and delicious recipes with local ingredients that are in season for {MONTHS[month]}.
 						</p>
 					</article>
 				</div>

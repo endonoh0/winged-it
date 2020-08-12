@@ -42,7 +42,7 @@
 
   .dd-list {
     position: absolute;
-    min-width: 160px;
+    min-width: 195px;
     z-index: 2;
     background-color: white;
     border-color: #ccc;
@@ -70,7 +70,9 @@
       margin-left: 22%;
     }
     &__title--bold {
-      font-weight: bold;
+      font-family: Noto serif;
+      font-weight: 600;
+      font-size: 18px;
       padding-left: -10%;
       margin-top: 10px;
       margin-bottom: 0;
@@ -153,7 +155,7 @@
     // margin-top: 5%;
   }
   .dd-wrapper {
-    min-width: 177px;
+    min-width: 195px;
     // margin-left: 1%;
     // margin-right: 7%;
     /* min-width: 130px; */

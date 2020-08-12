@@ -279,6 +279,7 @@ Dropdown['handleClickOutside_' + name] = () => setOpen(false);
           ))}
           <div className="flex-row">
             <Button
+              id="apply"
               variant="outline-dark"
               className="flex-btn"
               onClick={e => applyButton(e)}
@@ -286,6 +287,7 @@ Dropdown['handleClickOutside_' + name] = () => setOpen(false);
               Apply
             </Button>
             <Button
+              id="unselect"
               variant="outline-warning"
               className="flex-btn"
               onClick={e => clearButton(e)}

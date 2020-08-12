@@ -1,9 +1,14 @@
-p {
+/* p {
+  font-family: roboto;
+  font-size: 12px;
   text-align: center;
-}
+} */
 .text-center {
   text-align: center;
 }
+.text-center,
 .pl-20 {
+  font-family: roboto;
+  font-size: 12px;
   padding-left: 20px;
 }
