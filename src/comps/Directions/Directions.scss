@@ -1,6 +1,7 @@
 .instructions {
   position: relative;
-  max-height: 500px;
+  max-height: 842px;
+  // min-height: 841px;
   top: -88px;
   padding: 2%;
   background-color: rgba(255, 255, 255, 0.9);
@@ -8,6 +9,7 @@
   font-size: 0.8em;
   line-height: 2em;
   list-style: none;
+  overflow: scroll;
 
   .flex svg {
     display: unset;
@@ -15,6 +17,7 @@
 }
 .duration {
   text-align: center;
+  padding-top: 15%;
   padding-right: 8%;
 
   h1 {
