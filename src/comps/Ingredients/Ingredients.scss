@@ -1,3 +1,5 @@
+@import ".././../styles/variables.scss";
+
 .seasonal_container{
 	display: flex;
 	flex-direction: column;
@@ -50,7 +52,7 @@
 	flex-wrap: wrap;
 	position: relative;
   overflow: hidden;
-  margin-left: 8%;
+  margin-left: 3.5%;
 
 
 	&::after{
@@ -69,7 +71,12 @@
 		flex-wrap: wrap;
     position: relative;
     justify-content: center;
-	}
+  }
+}
+
+.ingredient {
+  color: #4e4e4e;
+  font-weight: 500;
 }
 
 .grid__img{
@@ -94,6 +101,8 @@
 	transition: .1s;
 	border: white solid .1px;
 	margin: 24px;
+	font-family: $description-font;
+
 
   img {
     // margin: 1rem 0.5rem;
@@ -123,29 +132,33 @@
 }
 
 .banner_content{
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-	color: white;
+	font-family: Noto serif, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: white;
 	opacity: 0;
 	animation: fadeIn 1s 2.3s forwards;
 }
+.mx-20 {
+  margin: 0 20%;
+}
 
 #seasonal_title{
-  margin: 2% 0;
+  font-family: Noto serif;
+  margin: 3% 0;
   padding-left: 2%;
   align-self: center;
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 30px;
 }
 
 #month{
-  font-weight: 500;
-  font-size: 28px;
+  font-size: 24px;
 }
 
 #description{
-  width: 385px;
-  margin: 0rem 0 0 5rem;
-  font-size: 18px;
+  text-align: center;
+  margin-right: 18%;
+  margin-left: 7%;
+	font-size: 18px;
+	font-family: $description-font;
 }
 
 
@@ -201,4 +214,11 @@
   100% {
     width: 100%;
   }
+}
+
+
+@media (min-width: 1500px){
+	.seasonal_container{
+		width: 74%;
+	}
 }

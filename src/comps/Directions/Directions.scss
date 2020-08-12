@@ -1,13 +1,12 @@
 .instructions {
   position: relative;
-  max-height: 500px;
-  top: -88px;
+  max-height: 100vh;
   padding: 2%;
   background-color: rgba(255, 255, 255, 0.9);
-  font-family: sans-serif;
+  font-family: Noto serif;
   font-size: 0.8em;
-  line-height: 2em;
   list-style: none;
+  overflow: auto;
 
   .flex svg {
     display: unset;
@@ -15,6 +14,7 @@
 }
 .duration {
   text-align: center;
+  padding-top: 15%;
   padding-right: 8%;
 
   h1 {
@@ -34,11 +34,14 @@
   color: rgba(0, 0, 0, 0.54);
 }
 .summary{
+  font-family: Noto serif;
   color: rgba(0, 0, 0, 0.54);
 }
 .flex {
+  font-family: Roboto, Noto serif;
   display: flex;
-  padding: 12px;
+  letter-spacing: 1.5px;
+  padding: 0;
   background-color: white;
   flex-direction: column;
   align-items: end;
@@ -50,9 +53,15 @@
   display: flex;
   padding: 0;
 
-  .flex-btn {
-    margin-top: 14%;
-    margin-left: -19%;
-    margin-right: 38%;
+.flex-btn {
+  font-family: Noto serif;
+  margin-top: 14%;
   }
+  .btn-outline-dark {
+    // margin-right: 2%;
+  }
+}
+
+#apply {
+  margin-right: 3%;
 }

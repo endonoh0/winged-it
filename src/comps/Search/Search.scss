@@ -81,9 +81,10 @@ overflow-x: hidden;
 }
 
 .card{
-	opacity: .8;
-	margin: 24px;
-	transition: .5s;
+  opacity: .8;
+  margin: 31px 24px;
+  transition: .5s;
+  max-height: 388px;
 }
 
 #suggestion_title{

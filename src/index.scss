@@ -105,6 +105,7 @@ a:hover, a:active {
 
 #btn {
   // background: #222;
+  font-family: lobster;
   background: #d1095e;
   height: 50px;
   min-width: 150px;
@@ -112,7 +113,7 @@ a:hover, a:active {
   border-radius: 10px;
   color: #eee;
   font-size: 40px;
-  font-family: 'Cookie', cursive;
+  // font-family: 'Cookie', cursive;
   position: relative;
   transition: 1s;
   -webkit-tap-highlight-color: transparent;

@@ -28,9 +28,10 @@ const FavoriteAdd = (props) => {
 
   return (
     <FaHeart
-      className="favorite_btn"
+      className={props.className}
       onClick={e => addFavoriteToDB('favorites')}
-      size={50} />
+      size={32}
+      />
   );
 }
 

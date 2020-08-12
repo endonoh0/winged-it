@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 
+/* Styles */
 import "./Auth.scss";
+import "../Home/Footer/Footer.scss";
 
+/* Comps */
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Footer from '../Home/Footer/Footer';
 
 const SignIn = ({ onClick, loginWithGoogle }) => {
 
@@ -21,6 +25,7 @@ const SignIn = ({ onClick, loginWithGoogle }) => {
 	};
 
   return (
+    <>
     <Form className="sign-up">
       <p>Sign In</p>
 
@@ -74,6 +79,7 @@ const SignIn = ({ onClick, loginWithGoogle }) => {
         Sign in with <a onClick={loginWithGoogle}>Google?</a>
       </p>
     </Form>
+    </>
   );
 };
 

@@ -11,9 +11,8 @@ const SearchTag = ({searchTags, removeTag}) => {
   },[searchTags]);
 
   const firstLetterToUpperCase = (str) => {
-    
     return str.charAt(0).toUpperCase() + str.slice(1);
-  } 
+  };
 
 
 	return (

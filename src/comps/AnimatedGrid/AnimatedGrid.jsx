@@ -1,4 +1,4 @@
-import React, { Fragment, useState,    } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Iframe from 'react-iframe'
 import { motion } from 'framer-motion';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
@@ -6,18 +6,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
 import './AnimatedGrid.scss';
 import Button from 'react-bootstrap/Button';
+import FavoriteAdd from '../Favorite/FavoriteAdd';
 
-
-
-
-const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchTags, componentProps, removeTag, health, diet, onSubmit}) => {
+const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, searchTags, componentProps, removeTag, health, diet, onSubmit, user, setFavoriteAlert}) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const {searchbar} = componentProps
-
-	// useEffect(() => {
-	// 	onSubmit();
-	// },[searc])
 
 	const variants = {
 		enter: {
@@ -25,7 +19,6 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 				display: "flex",},
 			opacity: 1,
 			transition: { duration: .5 },
-
 		},
 		exit: { opacity: 0,
 			transitionEnd: {
@@ -35,24 +28,38 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 
 	const clickHandler = (recipe) => {
 		if(recipe){
-			setSelectedImg(recipe.recipe.url)
-			// setRecipes(null)
+			console.log(recipe.recipe.label);
+			setSelectedRecipe(recipe)
 		} else {
-			setSelectedImg(null)
+			setSelectedRecipe(null)
 		}
 		setIsOpen(!isOpen)
 	}
+
+	// Does an api call on first render
+	useEffect(() => {
+		if(searchTags || health || diet) {
+			const timeout = setTimeout(() =>{
+				onSubmit()
+			}, 0)
+
+			return() => {
+				clearTimeout(timeout)
+			}
+		}
+	},[]);
+
+  const firstLetterToUpperCase = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+
 	return(
 		<>
 		<div className="grid__container">
 			<div className="menubar">
-
         {/* Left-side recipe menu */}
 				<div className="menubar_content">
-
-        {/* <ListGroup>
-          <ListGroup.Item variant="dark">Health</ListGroup.Item>
-        </ListGroup> */}
          <h1>
             <Badge variant="dark">Health</Badge>
           </h1>
@@ -65,7 +72,7 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
                 className="health-labels"
               >
                 <Badge pill variant="success">
-                  {tag.value}
+                  {firstLetterToUpperCase(tag.value)}
                 </Badge>
               </ListGroup.Item>
             </ListGroup>)
@@ -81,7 +88,7 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
             className="health-labels"
           >
             <Badge pill variant="info">
-              {diet}
+              {firstLetterToUpperCase(diet)}
             </Badge>
             </ListGroup.Item>
           </ListGroup>}
@@ -112,15 +119,15 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 					animate={isOpen ? "exit" : "enter"}
 					variants={variants}
 				>
-					      <Button
-        id="btn"
-        variant="primary"
-        size="lg"
-        className="btn btn-primary waves-effect waves-light"
-        onClick={onSubmit}
-      >
-        Recipe Search
-      </Button>
+					<Button
+        		id="btn"
+        		variant="primary"
+        		size="lg"
+        		className="btn btn-primary waves-effect waves-light"
+        		onClick={onSubmit}
+      		>
+        		Recipe Search
+      		</Button>
 					{searchbar}
 				</motion.div>
 				<section className="grid">
@@ -129,23 +136,19 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 							<motion.a
 								className="grid__item"
 								key={index}
-								// initial={{opacity: 0}}
 								animate={isOpen ? "exit": "enter"}
 								variants={variants}
 								onClick={e => {clickHandler(recipe)}}
-
-
 								>
 								<h2 className="title title--preview">{recipe.recipe.label}</h2>
 								<div className="loader"></div>
-								{/* <span className="category">Stories for humans</span> */}
 								<div className="meta meta--preview">
 									<img className="meta__food" src={recipe.recipe.image} alt="recipe" />
 								</div>
 							</motion.a>
 						)
 					})}
-					{selectedImg &&
+					{selectedRecipe &&
 					<Fragment>
 						<motion.div
 							className="iframe_container"
@@ -153,12 +156,12 @@ const AnimatedGrid = ({recipes, setRecipes, selectedImg, setSelectedImg, searchT
 							animate={{opacity:1}}
 							transition={{ delay: 1, duration: .5 }}
 						>
-						<Iframe className="recipe_content" url={selectedImg}/>
-						<button className="recipe_btn" onClick={e => {clickHandler()}}>
+						<Iframe className="recipe_content" url={selectedRecipe.recipe.url}/>
+						<button className="modal_btn" onClick={e => {clickHandler()}}>
 						  <AiOutlineCloseCircle size={32}/>
 						</button>
+						<FavoriteAdd className="favorite_btn modal_btn" recipe={ selectedRecipe } user={user} setFavoriteAlert={setFavoriteAlert} />
 						</motion.div>
-
 					</Fragment>
 					}
 				</section>

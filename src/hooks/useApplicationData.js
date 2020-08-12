@@ -5,6 +5,7 @@ import recipeFinder from '../helper/foodApi'
 
 // Action types
 const SET_SELECTED_IMG  = "SET_SELECTED_IMG"
+const SET_SELECTED_RECIPE  = "SET_SELECTED_RECIPE"
 const SET_SEARCH_TAGS = "SET_SEARCH_TAGS"
 const SET_HEALTH_TAGS = "SET_HEALTH_TAGS"
 const SET_DIET_TAGS = "SET_DIET_TAGS"
@@ -23,6 +24,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case SET_SELECTED_IMG:
       return { ...state, selectedImg: action.value }
+    case SET_SELECTED_RECIPE:
+      return { ...state, selectedRecipe: action.value }
     case SET_SEARCH_TAGS:
       return { ...state, searchTags: action.value }
     case SET_HEALTH_TAGS:
@@ -75,6 +78,7 @@ const useApplicationData = () => {
 	const setRecipes = (recipes) => dispatch({ type: SET_RECIPES, value: recipes })
 	const setSearchTags = (searchTags) => dispatch({type:SET_SEARCH_TAGS, value: searchTags})
   const setSelectedImg = (selectedImg) => dispatch({type:SET_SELECTED_IMG, value: selectedImg})
+  const setSelectedRecipe = (selectedRecipe) => dispatch({type:SET_SELECTED_RECIPE, value: selectedRecipe})
 	const setHealthTags = (healthTags) => dispatch({type:SET_HEALTH_TAGS, value: healthTags})
 	const setDietTags = (dietTags) => dispatch({type:SET_DIET_TAGS, value: dietTags})
 	const setSearchTagsFetchStatus = (searchTagsFetchStatus) => dispatch({type:SET_SEARCH_TAGS_FETCH_STATUS, value: searchTagsFetchStatus})
@@ -112,6 +116,9 @@ const useApplicationData = () => {
       .then(() => {
         setLoadingStatus(false);
       })
+      .catch((error) =>{
+        console.log(error);
+      })
   };
   
   // Reads and sets searchTags
@@ -136,7 +143,8 @@ const useApplicationData = () => {
     state, 
     setRecipes, 
     setSearchTags, 
-    setSelectedImg, 
+    setSelectedImg,
+    setSelectedRecipe, 
     setHealthTags, 
     setDietTags, 
     setUser,
