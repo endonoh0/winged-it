@@ -9,7 +9,14 @@ import './Ingredients.scss'
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ]
 
-const Ingredients = () => {
+const Ingredients = (props) => {
+
+	const {
+		searchTags,
+    setSearchTags,
+    writeTag
+	} = props;
+
 	const [ingredients, setIngredients] = useState([]) // State to load all the ingredients into from the database
 	const [active , setActive] = useState(true) // Class toggle for the swipe animation on different pagination
 	const { setCurrentPage, currentData, maxPage } = usePagination(ingredients, 12) // Pagination config
@@ -49,6 +56,12 @@ const Ingredients = () => {
 		toggleClass()
 	}
 
+	//Add image to search list
+	const imgGridClickHandler = (ingredientName) => {
+		setSearchTags([...searchTags, ingredientName])
+		writeTag(ingredientName, 'searchTags')
+	};
+
 	return (
 		<Fragment>
 
@@ -72,8 +85,8 @@ const Ingredients = () => {
 					<article className={gridsContainer}>
 						<div className="fader"></div>
 						{currentData().map(ingredient => (
-							<Link className="ingredient" to="/">
-								<Card className="grid__card" style ={{width: '18rem'}}>
+							<Link className="ingredient" to="/results">
+								<Card onClick={e => imgGridClickHandler(ingredient.name)} className="grid__card" style ={{width: '18rem'}}>
 									<Card.Img className="grid__img" variant="top" src={ingredient.url} />
 									<Card.Title className="grid__title" >{ingredient.name}</Card.Title>
 								</Card>
