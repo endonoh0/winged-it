@@ -3,6 +3,7 @@ import React from 'react';
 import { FaHome } from 'react-icons/fa';
 import './Empty.scss'
 
+//Showing message when you do not have any fav selected
 const Empty = () => {
   return (
     <div>
