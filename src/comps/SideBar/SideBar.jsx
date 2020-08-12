@@ -21,7 +21,6 @@ const SideBar = ({searchTags, removeTag, form, title, setTitle, directions}) => 
         {/* <Link to='/' className="link">
           <Title />
         </Link> */}
-        { directions && <hr className="sidebar__separator sidebar--centered" /> }
         { directions && <Directions data={directions} />}
 
       </div>

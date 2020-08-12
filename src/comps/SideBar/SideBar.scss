@@ -7,16 +7,9 @@
 .sidebar__container {
   width: 17rem;
   display: flex;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  flex-direction: column;
-  padding-top: 2rem;
+  height: 100vh;
   background-color: #fafafa;
-  border-right: 3px solid #dde3e3;
-  grid-row: 1 / 1;
-  margin-left: 4rem;
-  overflow: scroll;
+  margin-left: 3rem;
 
   &.sidebar__container--form{
     width: 20vw;
@@ -26,7 +19,6 @@
     text-align: center;
   }
   .sidebar__header{
-    min-height: 906px;
     background-color: white;
     display: flex;
     padding-left: 15px;
