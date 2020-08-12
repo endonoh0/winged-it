@@ -1,6 +1,11 @@
+@import "../../../styles/variables.scss";
 
 .home_div_bottom {
   text-align: center;
+
+  .home_desription_text{
+    font-family: $description-font;
+  }
 
   .img_container{
     display: flex;
@@ -10,8 +15,7 @@
   .home_figure{
     padding: 10px;
   }
-  .gallery__img{
-  }
+
   .img_left{
     height: 600px;
   }

@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 $serif: 'Playfair Display', serif;
 $sansserif: 'Martel Sans', Arial, sans-serif;
 
@@ -59,6 +61,7 @@ a:focus {
 }
 
 .menubar_content {
+	font-family: $tag-font;
 	font-size: 0.85em;
   // padding: 1em 3em;
   h1 {
