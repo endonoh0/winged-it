@@ -57,7 +57,8 @@
     position: fixed !important;
   }
   .mapboxgl-ctrl-bottom-left {
-    margin-left: 75%;
+    // visibility: unset;
+    margin-left: 9%;
   }
 }
 
