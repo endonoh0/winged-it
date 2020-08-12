@@ -140,7 +140,6 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 								<div className="meta meta--preview">
 									<img className="meta__food" src={recipe.recipe.image} alt="recipe" />
 								</div>
-								<FavoriteAdd className="favorite_btn" recipe={ recipe } user={user} setFavoriteAlert={setFavoriteAlert} />
 							</motion.a>
 						)
 					})}
