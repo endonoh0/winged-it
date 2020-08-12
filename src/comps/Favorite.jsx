@@ -13,16 +13,15 @@ import Card from  'react-bootstrap/Card';
 /* Comps */
 import FavoritePage from './Favorite/index';
 import Loading from './Favorite/Loading';
-import Footer from '../comps/Home/Footer/Footer';
 
 /* Styles */
 import './Favorite.scss';
-import '../comps/Home/Footer/Footer.scss';
 
 const SHOW = 'SHOW';
 const LOADING = 'LOADING';
 const EMPTY = 'EMPTY';
 
+// "Favorite page "/favorites"
 const Favorite = ({setSelectedImg, user}) => {
   const { docs, dataFetchStatus } = useFirestoreFavorites (user);
   const { mode, transition, back } = useVisualMode(LOADING);
@@ -112,10 +111,6 @@ const Favorite = ({setSelectedImg, user}) => {
               })}
 				</article>
 			</section>
-
-      {/* Footer */}
-      <Footer />
-
     </Fragment>)
 }
 

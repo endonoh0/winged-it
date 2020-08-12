@@ -1,7 +1,9 @@
 import React from "react";
 
+/* Styles */
 import "./Confirm.scss";
 
+/* Bootstrap */
 import Button from "react-bootstrap/Button";
 
 import { GiCancel } from "react-icons/gi";

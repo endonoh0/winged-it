@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Button from 'react-bootstrap/Button';
 
+// Editing Favorite recipe title
 const Edit = (props) => {
   const [recipeTitle, setRecipeTitle] = useState(props.editPlaceholder);
 
