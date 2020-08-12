@@ -23,10 +23,11 @@ const useMap = (mapContainerRef, setDirections) => {
 			// Local call to json file for the points on the map
 			const mapPoints = await axios.get('./mapPoints.json')
 
-			map.loadImage('https://raw.githubusercontent.com/endonoh0/winged-it/feature/map/assets/Pin.png?token=AK2VPAOCG7UT5J2PHPTBNKS7GNJPS', (error, image) => {
+			map.loadImage('./Pin.png', (error, image) => {
 				if(error){
 					throw error
 				}
+				console.log(mapPoints);
 				map.addImage('pin', image)
 				// add the data source for new a feature collection with no features
 				map.addSource('farmers-markets', {
