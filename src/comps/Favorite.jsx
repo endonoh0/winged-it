@@ -21,6 +21,7 @@ const SHOW = 'SHOW';
 const LOADING = 'LOADING';
 const EMPTY = 'EMPTY';
 
+// "Favorite page "/favorites"
 const Favorite = ({setSelectedImg, user}) => {
   const { docs, dataFetchStatus } = useFirestoreFavorites (user);
   const { mode, transition, back } = useVisualMode(LOADING);

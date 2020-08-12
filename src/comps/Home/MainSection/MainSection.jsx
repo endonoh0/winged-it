@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/* Style */
 import "./MainSection.scss";
 
 const MainSection = () => {
@@ -9,7 +10,6 @@ const MainSection = () => {
     <div className="home_div">
       <div className="img_container">
         <div className="centered">
-
           <div className="title_home_page">
             <span className="horizontal_line"> </span>
             <div className="title_text_home_page"> Winged It</div>
@@ -25,7 +25,6 @@ const MainSection = () => {
             </Link>
           </div>
         </div>
-
         <figure className="home_figure ">
           <img className="gallery__img img_right static" src="./pasta_high.gif" alt="pizza food background"/>
         </figure>
