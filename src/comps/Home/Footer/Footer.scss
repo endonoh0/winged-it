@@ -1,14 +1,23 @@
 
 #bottom_bar_home{
-
   height: 150px;
   background-color: #343a40;
+  margin-top: -50px;
   margin-bottom: 0px;
-  // position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
+  span, a {
+    color: #FFFFFF80;
+  }
+
+  a:hover {
+    color: #4e4e4e !important;
+  }
 }
