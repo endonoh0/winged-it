@@ -10,6 +10,7 @@ import FavoriteAdd from '../Favorite/FavoriteAdd';
 
 const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, searchTags, componentProps, removeTag, health, diet, onSubmit, user, setFavoriteAlert}) => {
 	const [isOpen, setIsOpen] = useState(false)
+	const [isExit, setIsExit] = useState(false)
 
 	const {searchbar} = componentProps
 
@@ -23,17 +24,34 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 		exit: { opacity: 0,
 			transitionEnd: {
 			display: "none",}
+		},
+
+		slideExit: {
+			x:300,
+			opacity: 0,
+		},
+
+		slideEnter: {
+			x:0,
+			opacity: 1,
 		}
 	}
 
 	const clickHandler = (recipe) => {
 		if(recipe){
-			console.log(recipe.recipe.label);
 			setSelectedRecipe(recipe)
 		} else {
 			setSelectedRecipe(null)
 		}
-		setIsOpen(!isOpen)
+		setIsOpen(prev => !prev)
+	}
+
+	const buttonHanlder = () => {
+		onSubmit()
+		setIsExit(prev => !prev)
+		setTimeout(() => {
+			setIsExit(prev => !prev)
+		},1000)
 	}
 
 	// Does an api call on first render
@@ -124,13 +142,18 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
         		variant="primary"
         		size="lg"
         		className="btn btn-primary waves-effect waves-light"
-        		onClick={onSubmit}
+        		onClick={buttonHanlder}
       		>
         		Recipe Search
       		</Button>
 					{searchbar}
 				</motion.div>
-				<section className="grid">
+				<motion.section 
+					className="grid"
+					initial={{opacity: 0, x:0}}
+					animate={isExit ? "slideExit" :"slideEnter"}
+					variants={variants}
+				>
 					{recipes && recipes.map((recipe, index) => {
 						return(
 							<motion.a
@@ -164,7 +187,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 						</motion.div>
 					</Fragment>
 					}
-				</section>
+				</motion.section>
 			</div>
 		</div>
 		</>
