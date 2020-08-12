@@ -1,13 +1,12 @@
 .instructions {
   position: relative;
-  max-height: 842px;
-  top: -88px;
+  max-height: 100vh;
   padding: 2%;
   background-color: rgba(255, 255, 255, 0.9);
   font-family: Noto serif;
   font-size: 0.8em;
   list-style: none;
-  overflow: scroll;
+  overflow: auto;
 
   .flex svg {
     display: unset;
@@ -41,7 +40,8 @@
 .flex {
   font-family: Roboto, Noto serif;
   display: flex;
-  padding: 15px 6%;
+  letter-spacing: 1.5px;
+  padding: 0;
   background-color: white;
   flex-direction: column;
   align-items: end;

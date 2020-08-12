@@ -12,12 +12,10 @@ import { projectFirestore, timeStamp } from '../../firebase/config';
 
 /* Styles */
 import "./Search.scss";
-import "../Home/Footer/Footer.scss";
 
 /* Comps */
 import Suggestions from "./Suggestions";
 import SearchByIngredient from "../SearchByIngredient/index";
-import Footer from "../Home/Footer/Footer";
 
 const Search = (props) => {
 
@@ -82,8 +80,6 @@ const Search = (props) => {
     }
   }
 
-
-
 	const imgGridClickHandler = (filterTitle, category) => {
 
 		const databaseSave = (filterTitle, category, dbcollection, items, setState) => {
@@ -144,7 +140,7 @@ const Search = (props) => {
 			imgGridClickHandler={imgGridClickHandler}
 			title={"Diet Meals"}
 			/>
-      <Footer />
+
     </div>
     );
 }

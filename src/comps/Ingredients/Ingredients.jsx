@@ -13,10 +13,12 @@ import Card from  'react-bootstrap/Card';
 import Pagination from '@material-ui/lab/Pagination';
 
 /* Custom Hooks */
-import usePagination from '../../hooks/usePagination'
-import './Ingredients.scss'
+import usePagination from '../../hooks/usePagination';
 
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ]
+/* Styles */
+import './Ingredients.scss';
+
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ];
 
 const Ingredients = (props) => {
 
@@ -56,7 +58,7 @@ const Ingredients = (props) => {
 		setActive(prev => !prev)
 		setTimeout(() => {
 			setActive(prev => !prev)
-		},1000)
+		}, 1000)
 	}
 
 	// Pagination button handler
@@ -85,6 +87,7 @@ const Ingredients = (props) => {
 				</div>
 				<img className="banner_left" src="./ingredient-banner.jpg" alt="Ingredient banner"/>
 			</div>
+
 			<section className="seasonal_container">
         <Pagination count={maxPage} shape="rounded"
           onChange={(e, page) => onPageSwitch(page)}
@@ -100,10 +103,9 @@ const Ingredients = (props) => {
 							</Link>
 						))}
 					</article>
-
 			</section>
-		</Fragment>)
 
+		</Fragment>)
 }
 
 export default Ingredients;
