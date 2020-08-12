@@ -1,9 +1,18 @@
 import React, { useEffect, useState, Fragment } from 'react';
+
+/* Router DOM */
 import { Link } from 'react-router-dom';
 
-import { projectFirestore } from '../../firebase/config'
-import Card from  'react-bootstrap/Card'
-import Pagination from '@material-ui/lab/Pagination'
+/* Firestore */
+import { projectFirestore } from '../../firebase/config';
+
+/* Bootstrap */
+import Card from  'react-bootstrap/Card';
+
+/* Material UI */
+import Pagination from '@material-ui/lab/Pagination';
+
+/* Custom Hooks */
 import usePagination from '../../hooks/usePagination'
 import './Ingredients.scss'
 
