@@ -47,6 +47,7 @@ function App() {
     setRecipes,
     setSearchTags,
     setSelectedImg,
+    setSelectedRecipe,
     setHealthTags,
     setDietTags,
     setUser,
@@ -59,7 +60,7 @@ function App() {
     removeTag,
     onSubmit,
   } = useApplicationData();
-  const { searchTags, healthTags, dietTags, searchTagsFetchStatus, user, health, diet, title, directions, favoriteAlert, loadingStatus } = state
+  const { searchTags, healthTags, dietTags, searchTagsFetchStatus, user, health, diet, title, directions, favoriteAlert, loadingStatus, selectedRecipe } = state
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
   // listen to auth state change
@@ -156,6 +157,10 @@ function App() {
             health={health}
             diet={diet}
             onSubmit={onSubmit}
+            user={user}
+            setFavoriteAlert={setFavoriteAlert}
+            setSelectedRecipe={setSelectedRecipe}
+            selectedRecipe={selectedRecipe}
             />
           </Route>
           <Route path="/newRecipe">
