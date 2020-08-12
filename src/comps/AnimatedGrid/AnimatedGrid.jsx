@@ -1,4 +1,4 @@
-import React, { Fragment, useState,    } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Iframe from 'react-iframe'
 import { motion } from 'framer-motion';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
@@ -19,7 +19,6 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 				display: "flex",},
 			opacity: 1,
 			transition: { duration: .5 },
-
 		},
 		exit: { opacity: 0,
 			transitionEnd: {
@@ -36,6 +35,20 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 		}
 		setIsOpen(!isOpen)
 	}
+
+	// Does an api call on first render
+	useEffect(() => {
+		if(searchTags || health || diet) {
+			const timeout = setTimeout(() =>{
+				onSubmit()
+			}, 0)
+
+			return() => {
+				clearTimeout(timeout)
+			}
+		}
+	},[])
+
 	return(
 		<>
 		<div className="grid__container">
