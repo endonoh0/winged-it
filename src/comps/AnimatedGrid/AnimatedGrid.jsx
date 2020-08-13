@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import className from 'classnames';
 
 /* Dependencies */
 import Iframe from 'react-iframe';
@@ -27,6 +29,12 @@ const AnimatedGrid = ({
   onSubmit,
   user,
   setFavoriteAlert}) => {
+
+  let location = useLocation();
+
+  let searchWrapper = className("search_wrapper", {
+    "column-rev": location.pathname === '/results'
+  });
 
 	const [isOpen, setIsOpen] = useState(false)
 	const {searchbar} = componentProps
@@ -128,7 +136,8 @@ const AnimatedGrid = ({
 
 			<div id="theGrid" className="main">
 				<motion.div
-					className="search_wrapper"
+					className={searchWrapper}
+					// className="search_wrapper"
 					animate={isOpen ? "exit" : "enter"}
 					variants={variants}
 				>
