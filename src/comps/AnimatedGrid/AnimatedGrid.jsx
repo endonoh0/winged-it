@@ -6,8 +6,7 @@ import className from 'classnames';
 import Iframe from 'react-iframe';
 import { motion } from 'framer-motion';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Badge from 'react-bootstrap/Badge';
+import variants from './animations'
 
 /* Styles */
 import './AnimatedGrid.scss';
@@ -15,8 +14,10 @@ import './AnimatedGrid.scss';
 /* Comps */
 import Button from 'react-bootstrap/Button';
 import FavoriteAdd from '../Favorite/FavoriteAdd';
+import MenuBar from './MenuBar'
+import SearchWrapper from './SearchWrapper'
 
-const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, searchTags, componentProps, removeTag, health, diet, onSubmit, user, setFavoriteAlert}) => {
+const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, componentProps, removeTag, health, diet, onSubmit, user, setFavoriteAlert}) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isExit, setIsExit] = useState(false)
 
@@ -25,62 +26,39 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
   let searchWrapper = className("search_wrapper", {
     "column-rev": location.pathname === '/results'
   });
-	const {searchbar} = componentProps
-
-/* Animation Config */
-	const variants = {
-		enter: {
-			transitionEnd: {
-				display: "flex",},
-			opacity: 1,
-			transition: { duration: .5 },
-		},
-		exit: { opacity: 0,
-			transitionEnd: {
-			display: "none",}
-		},
-
-		slideExit: {
-			x:300,
-			opacity: 0,
-		},
-
-		slideEnter: {
-			x:0,
-			opacity: 1,
-		}
-	}
-
-	const clickHandler = (recipe) => {
-		if(recipe){
-			setSelectedRecipe(recipe)
-		} else {
-			setSelectedRecipe(null);
-		}
-		setIsOpen(prev => !prev)
-	}
-
-	const buttonHanlder = () => {
-		onSubmit()
-		setIsExit(prev => !prev)
-		setTimeout(() => {
-			setIsExit(prev => !prev)
-		},1000)
-	}
-
-	// Does an api call on first render
-	useEffect(() => {
-		if (searchTags || health || diet) {
-			const timeout = setTimeout(() =>{
-				onSubmit()
-			}, 0)
-
-			return() => {
-				clearTimeout(timeout)
-			}
-    }
-
-	}, []);
+  
+  const {searchbar} = componentProps
+  
+  const clickHandler = (recipe) => {
+	  if(recipe){
+	  	setSelectedRecipe(recipe)
+	  } else {
+	  	setSelectedRecipe(null);
+	  }
+	  setIsOpen(prev => !prev)
+  }
+  
+  const buttonHanlder = () => {
+	  onSubmit()
+	  setIsExit(prev => !prev)
+	  setTimeout(() => {
+	  	setIsExit(prev => !prev)
+	  },1000)
+  }
+  
+  // Does an api call on first render
+  useEffect(() => {
+	  if (searchTags || health || diet) {
+	  	const timeout = setTimeout(() =>{
+	  		onSubmit()
+	  	}, 0)
+  
+	  	return() => {
+	  		clearTimeout(timeout)
+	  	}
+  }
+  
+  }, []);
 
   const firstLetterToUpperCase = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -89,57 +67,13 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 	return(
 		<>
 		<div className="grid__container">
-			<div className="menubar">
-        {/* Left-side recipe menu */}
-				<div className="menubar_content">
-          <h1><Badge variant="dark">Health</Badge></h1>
-
-          {/* Health items */}
-          {health && health.map(tag => {
-            return (<ListGroup variant="flush">
-              <ListGroup.Item
-                variant="light"
-                className="health-labels"
-              >
-                <Badge pill variant="success">
-                  {firstLetterToUpperCase(tag.value)}
-                </Badge>
-              </ListGroup.Item>
-            </ListGroup>)
-          })}
-
-          <h1><Badge variant="dark">Diet</Badge></h1>
-          {/* Diet items */}
-          {diet && <ListGroup variant="flush">
-            <ListGroup.Item
-            variant="light"
-            className="health-labels"
-          >
-            <Badge pill variant="info">
-              {firstLetterToUpperCase(diet)}
-            </Badge>
-            </ListGroup.Item>
-          </ListGroup>}
-
-          <h1><Badge variant="dark">Ingredients</Badge></h1>
-          {/* Recipe Items */}
-          {searchTags &&
-            searchTags.map(tag => { return (
-              <ListGroup variant="flush">
-                <ListGroup.Item
-                  action variant="light"
-                  className="health-labels"
-                  onClick={e => removeTag(tag)}
-                >
-                  <Badge pill variant="danger">
-                    {tag}
-                  </Badge>
-              </ListGroup.Item>
-            </ListGroup>)
-          })}
-        </div>
-      </div>
-
+			<MenuBar 
+				health={health} 
+				diet={diet}
+				searchTags={searchTags}
+				removeTag={removeTag}
+				firstLetterToUpperCase={firstLetterToUpperCase}
+				/>
 			<div id="theGrid" className="main">
 				<motion.div
 					className={searchWrapper}

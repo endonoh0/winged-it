@@ -1,8 +1,24 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
 
-## Available Scripts
+# Winged It
 
-In the project directory, you can run:
+An app to search over millions of recipes based on ingredients and diets.
+
+ Markup : * Front-end: React, Sass, Mapbox, Bootstrap, Material UI
+          * Back-end: Firebase, Node.js
+          * Testing: Katalon Recorder
+
+# Main Features
+Markup :  * Searching for recipes based on ingredients, health and diet
+          * Modal that links to external website
+          * MapBox for farmers’ market 
+          * Favorite/Edit/Delete Recipe
+          * Seasonal Availability for ingredients 
+            * Click on a seasonal ingredient to have it redirect to the results page with that ingredient as one of the tags
+          * Compatibility to smaller screen
+
+# ScreenShots
+
 
 ### `npm start`
 
