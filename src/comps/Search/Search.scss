@@ -99,6 +99,31 @@ overflow-x: hidden;
   animation: fadeIn 1s 1.5s forwards;
 }
 
+@media (min-width: 500px) {
+
+  .text {
+    text-align: unset;
+    font-size: 24px !important;
+  }
+
+  .custom-search {
+    margin-top: 24%;
+    width: unset;
+  }
+}
+
+@media (min-width: 1130px) {
+  .text {
+    text-align: center;
+    font-size: 30px !important;
+  }
+  .custom-search {
+    width: 300px;
+    margin-top: unset;
+    margin-bottom: 24%;
+  }
+}
+
 @keyframes cover {
   0% {
     width: 0%;
