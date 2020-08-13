@@ -18,11 +18,9 @@ import SignUp from './comps/Auth/SignUp'
 import SignIn from './comps/Auth/SignIn'
 import Logout from './comps/Auth/Logout'
 import Favorite from '../src/comps/Favorite'
-import SideBar from './comps/SideBar/SideBar';
 import RecipeFilter from './comps/RecipeFilter/RecipeFilter'
 import Loading from './comps/Favorite/Loading';
 import Map from './comps/Map/Map'
-import NewRecipe from './comps/NewRecipe'
 import Ingredients from './comps/Ingredients/Ingredients'
 import Search from "./comps/Search/Search";
 import AnimatedGrid from './comps/AnimatedGrid/AnimatedGrid'
@@ -162,10 +160,6 @@ function App() {
             setSelectedRecipe={setSelectedRecipe}
             selectedRecipe={selectedRecipe}
             />
-          </Route>
-          <Route path="/newRecipe">
-            <NewRecipe>{title}</NewRecipe>
-            <SideBar form={true} title={title} setTitle={setTitle}/>
           </Route>
           <Route path="/seasonal-ingredients">
             <Ingredients
