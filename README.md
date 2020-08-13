@@ -22,15 +22,15 @@ This is our final project for the Lighthouse Labs Web Development Bootcamp where
 
 ## Recipe Results
 
-![Customize your recipes based on health and diet labels.](docs/recipes.png)
+![Customize your recipes based on health and diet labels.](https://github.com/endonoh0/winged-it/blob/master/docs/recipes.png)
 
 ## Recipe Instructions
 
-![Find out more information about your recipes in our recipes modal.](docs/instructions-recipe.png)
+![Find out more information about your recipes in our recipes modal.](https://github.com/endonoh0/winged-it/blob/master/docs/instructions-recipe.png)
 
 ## Farmer's Market
 
-![Look for local ingredients nearby using Mapbox.](docs/farmers-market.png)
+![Look for local ingredients nearby using Mapbox.](https://github.com/endonoh0/winged-it/blob/master/docs/farmers-market.png)
 
 # Installation
 
