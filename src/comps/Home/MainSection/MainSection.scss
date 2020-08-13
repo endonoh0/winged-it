@@ -48,7 +48,6 @@ $navbar-color: black;
     border-top: 2px solid
     white;
     display: block;
-    width: 200px;
   }
   .title_home_page{
     display: flex;
@@ -84,8 +83,32 @@ $navbar-color: black;
   }
 }
 
+@media (min-width: 500px) {
+  .title_text_home_page {
+    text-align: center;
+  }
+  .centered {
+    top: 45%;
+  }
+  .home_div, .horizontal_line {
+    width: 151px;
+  }
+  .text_description {
+    padding-bottom: 5%;
+  }
+  .vertical {
+    display: none;
+  }
+  #bottom_bar_home a {
+    margin: 0 auto;
+  }
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
+  .vertical {
+    display: unset;
+  }
   .home_div .gallery__img {
     object-fit: cover;
   }

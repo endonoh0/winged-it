@@ -1,10 +1,18 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import Iframe from 'react-iframe'
+import { useLocation } from 'react-router-dom';
+import className from 'classnames';
+
+/* Dependencies */
+import Iframe from 'react-iframe';
 import { motion } from 'framer-motion';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
+
+/* Styles */
 import './AnimatedGrid.scss';
+
+/* Comps */
 import Button from 'react-bootstrap/Button';
 import FavoriteAdd from '../Favorite/FavoriteAdd';
 
@@ -12,8 +20,16 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 	const [isOpen, setIsOpen] = useState(false)
 	const [isExit, setIsExit] = useState(false)
 
+  let location = useLocation();
+
+  let searchWrapper = className("search_wrapper", {
+    "column-rev": location.pathname === '/results'
+  });
+
+	const [isOpen, setIsOpen] = useState(false)
 	const {searchbar} = componentProps
 
+/* Animation Config */
 	const variants = {
 		enter: {
 			transitionEnd: {
@@ -41,7 +57,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 		if(recipe){
 			setSelectedRecipe(recipe)
 		} else {
-			setSelectedRecipe(null)
+			setSelectedRecipe(null);
 		}
 		setIsOpen(prev => !prev)
 	}
@@ -56,7 +72,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 
 	// Does an api call on first render
 	useEffect(() => {
-		if(searchTags || health || diet) {
+		if (searchTags || health || diet) {
 			const timeout = setTimeout(() =>{
 				onSubmit()
 			}, 0)
@@ -64,13 +80,13 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 			return() => {
 				clearTimeout(timeout)
 			}
-		}
-	},[]);
+    }
+
+	}, []);
 
   const firstLetterToUpperCase = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
-
 
 	return(
 		<>
@@ -78,9 +94,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 			<div className="menubar">
         {/* Left-side recipe menu */}
 				<div className="menubar_content">
-         <h1>
-            <Badge variant="dark">Health</Badge>
-          </h1>
+          <h1><Badge variant="dark">Health</Badge></h1>
 
           {/* Health items */}
           {health && health.map(tag => {
@@ -96,9 +110,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
             </ListGroup>)
           })}
 
-          <h1>
-            <Badge variant="dark">Diet</Badge>
-          </h1>
+          <h1><Badge variant="dark">Diet</Badge></h1>
           {/* Diet items */}
           {diet && <ListGroup variant="flush">
             <ListGroup.Item
@@ -111,9 +123,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
             </ListGroup.Item>
           </ListGroup>}
 
-          <h1>
-            <Badge variant="dark">Ingredients</Badge>
-          </h1>
+          <h1><Badge variant="dark">Ingredients</Badge></h1>
           {/* Recipe Items */}
           {searchTags &&
             searchTags.map(tag => { return (
@@ -129,11 +139,13 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
               </ListGroup.Item>
             </ListGroup>)
           })}
+        </div>
       </div>
-      </div>
+
 			<div id="theGrid" className="main">
 				<motion.div
-					className="search_wrapper"
+					className={searchWrapper}
+					// className="search_wrapper"
 					animate={isOpen ? "exit" : "enter"}
 					variants={variants}
 				>
@@ -148,7 +160,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
       		</Button>
 					{searchbar}
 				</motion.div>
-				<motion.section 
+				<motion.section
 					className="grid"
 					initial={{opacity: 0, x:0}}
 					animate={isExit ? "slideExit" :"slideEnter"}
@@ -169,7 +181,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 									<img className="meta__food" src={recipe.recipe.image} alt="recipe" />
 								</div>
 							</motion.a>
-						)
+						);
 					})}
 					{selectedRecipe &&
 					<Fragment>
@@ -191,8 +203,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 			</div>
 		</div>
 		</>
-	)
-
+	);
 }
 
 export default AnimatedGrid;

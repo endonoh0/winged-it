@@ -39,7 +39,8 @@ $navbar-color: black;
     margin: 0 auto;
 
   &.hide{
-    display: none;
+    // display: none;
+    // visibility: hidden;
   }
 }
 #logo {
@@ -49,6 +50,16 @@ $navbar-color: black;
   font-family: $title-font;
   font-size: 30px;
 }
+
+@media (min-width: 500px) {
+
+  .navbar {
+    // display: unset !important;
+    z-index: 100;
+    // visibility: unset !important;
+  }
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   #home {
@@ -60,6 +71,8 @@ $navbar-color: black;
   #map {
     margin-bottom: 3%;
   }
+
+
 
   .top_bar {
     display: flex;
@@ -84,7 +97,7 @@ $navbar-color: black;
     right: 0;
     left: 0;
     background-color: #111111;
-    padding: 25px 40px;
+    // padding: 25px 40px;
     z-index: 100;
   }
   .navbar-nav .nav-link {
@@ -117,6 +130,10 @@ $navbar-color: black;
 
 // // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
+
+  .hide {
+    display: none;
+  }
   .btn-block {
     width: 22%;
   }
