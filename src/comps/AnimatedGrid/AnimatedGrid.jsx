@@ -25,7 +25,6 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
   let searchWrapper = className("search_wrapper", {
     "column-rev": location.pathname === '/results'
   });
-  
 	const {searchbar} = componentProps
 
 /* Animation Config */
