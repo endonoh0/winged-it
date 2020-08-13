@@ -1,68 +1,66 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Winged It
 
-## Available Scripts
+Wingin’ it here. Why waste your time thinking about what you should make to eat when you could just wing it? If you wing it, we provide you a flexible and customize experience for planning your meal rather than guessing what you need. Simply look in your fridge and type in your ingredients.
 
-In the project directory, you can run:
+This is our final project for the Lighthouse Labs Web Development Bootcamp where we build an application from the ground up.
 
-### `npm start`
+- **Testing:** Storybook, Katalon
+- **Front-End:** React, Sass, Boostrap, MapBox, Material UI, Framer Motion, iFrame
+- **Back-End:** Node, Firestore
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Main Features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* Searching for recipes based on ingredients, health and diet
+* Modal that links to external website
+* MapBox for farmers' market
+* Favorite/Edit/Delete Recipe
+* Seasonal Availability for ingredients
+* Click on a seasonal ingredient to have it redirect to the results page with that ingredient as one of the tags
+* Compatibility to smaller screen
 
-### `npm test`
+# Screenshots
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Recipe Results
 
-### `npm run build`
+![Customize your recipes based on health and diet labels.](docs/recipes.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Recipe Instructions
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![Find out more information about your recipes in our recipes modal.](docs/instructions-recipe.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Farmer's Market
 
-### `npm run eject`
+![Look for local ingredients nearby using Mapbox.](docs/farmers-market.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Fork and then clone this repository into your machine.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. Install dependencies using the `npm install` command.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. Start the web server using the `npm run start` command. The app will be served at `http://localhost:3000/`.
 
-## Learn More
+4. Search for your first recipe today!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Dependencies
+- react
+- react-dom
+- node-sass
+- classnames
+- react-cookie
+- react-scripts
+  request-promise
+- react-router-dom
+- react-scrolllock
+- react-onclickoutside
+- bootstrap: 4.5.x or above
+- firebase: 7.17.x or above
+- mapbox-gl: 1.11.x or above
+- react-iframe: 1.8 or above
+- react-icons: 3.10.x or above
+- react-map-gl: 5.2.x or above
+- framer-motion: 2.3.x or above
+- material-ui/core: 4.1 or above
+- react-bootstrap: 1.3.x or above
+- material-ui/lab: 4.0.0-alpha.56
+- react-map-gl-geocoder: 2.0 or above
