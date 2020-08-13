@@ -1,24 +1,8 @@
-<!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
-
 # Winged It
 
-An app to search over millions of recipes based on ingredients and diets.
+Wingin’ it here. Why waste your time thinking about what you should make to eat when you could just wing it? If you wing it, we provide you a flexible and customize experience for planning your meal rather than guessing what you need. Simply look in your fridge and type in your ingredients. 
 
- Markup : * Front-end: React, Sass, Mapbox, Bootstrap, Material UI
-          * Back-end: Firebase, Node.js
-          * Testing: Katalon Recorder
-
-# Main Features
-Markup :  * Searching for recipes based on ingredients, health and diet
-          * Modal that links to external website
-          * MapBox for farmers’ market 
-          * Favorite/Edit/Delete Recipe
-          * Seasonal Availability for ingredients 
-            * Click on a seasonal ingredient to have it redirect to the results page with that ingredient as one of the tags
-          * Compatibility to smaller screen
-
-# ScreenShots
-
+This is our final project for the Lighthouse Labs Web Development Bootcamp where we build an application from the ground up.
 
 - **Testing:** Storybook, Katalon
 - **Front-End:** React, Sass, Boostrap, MapBox, Material UI, Framer Motion, iFrame
@@ -28,10 +12,10 @@ Markup :  * Searching for recipes based on ingredients, health and diet
 
 * Searching for recipes based on ingredients, health and diet
 * Modal that links to external website
-* MapBox for farmers' market
+* MapBox for farmers’ market 
 * Favorite/Edit/Delete Recipe
-* Seasonal Availability for ingredients
-* Click on a seasonal ingredient to have it redirect to the results page with that ingredient as one of the tags
+* Seasonal Availability for ingredients 
+  * Click on a seasonal ingredient to have it redirect to the results page with that ingredient as one of the tags
 * Compatibility to smaller screen
 
 # Screenshots
