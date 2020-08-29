@@ -54,11 +54,12 @@ function App() {
     setTitle,
     setDirections,
     setFavoriteAlert,
+    setAlertMessage,
     writeTag,
     removeTag,
     onSubmit,
   } = useApplicationData();
-  const { searchTags, healthTags, dietTags, searchTagsFetchStatus, user, health, diet, title, directions, favoriteAlert, loadingStatus, selectedRecipe } = state
+  const { searchTags, healthTags, dietTags, searchTagsFetchStatus, user, health, diet, title, directions, favoriteAlert, alertMessage, loadingStatus, selectedRecipe } = state
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
   // listen to auth state change
@@ -105,7 +106,7 @@ function App() {
   return (
     <div className="App">
         <ScrollToTop />
-      {favoriteAlert && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} /> }
+      {favoriteAlert && alertMessage && <FavoriteAlert setFavoriteAlert={setFavoriteAlert} alertMessage={alertMessage}/> }
       <Router>
         <NavbarTop user={cookies.user} />
         <Switch>
@@ -157,6 +158,7 @@ function App() {
             onSubmit={onSubmit}
             user={user}
             setFavoriteAlert={setFavoriteAlert}
+            setAlertMessage={setAlertMessage}
             setSelectedRecipe={setSelectedRecipe}
             selectedRecipe={selectedRecipe}
             />

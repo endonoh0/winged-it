@@ -37,4 +37,3 @@ const useFirestoreFavorites = (user) => {
 }
 
 export {useFirestoreFavorites} ;
-

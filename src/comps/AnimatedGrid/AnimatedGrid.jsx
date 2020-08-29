@@ -15,20 +15,20 @@ import './AnimatedGrid.scss';
 import Button from 'react-bootstrap/Button';
 import FavoriteAdd from '../Favorite/FavoriteAdd';
 import MenuBar from './MenuBar'
-import SearchWrapper from './SearchWrapper'
 
-const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, componentProps, removeTag, health, diet, onSubmit, user, setFavoriteAlert}) => {
+const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, componentProps, removeTag, health, diet, onSubmit, user, setFavoriteAlert, setAlertMessage}) => {
 	const [isOpen, setIsOpen] = useState(false)
-	const [isExit, setIsExit] = useState(false)
+  const [isExit, setIsExit] = useState(false)
+  const [isFavorited, setIsFavorited] = useState(false);
 
   let location = useLocation();
 
   let searchWrapper = className("search_wrapper", {
     "column-rev": location.pathname === '/results'
   });
-  
+
   const {searchbar} = componentProps
-  
+
   const clickHandler = (recipe) => {
 	  if(recipe){
 	  	setSelectedRecipe(recipe)
@@ -37,7 +37,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, c
 	  }
 	  setIsOpen(prev => !prev)
   }
-  
+
   const buttonHanlder = () => {
 	  onSubmit()
 	  setIsExit(prev => !prev)
@@ -45,30 +45,41 @@ const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, c
 	  	setIsExit(prev => !prev)
 	  },1000)
   }
-  
+
   // Does an api call on first render
   useEffect(() => {
 	  if (searchTags || health || diet) {
 	  	const timeout = setTimeout(() =>{
 	  		onSubmit()
 	  	}, 0)
-  
+
 	  	return() => {
 	  		clearTimeout(timeout)
 	  	}
   }
-  
+
   }, []);
 
+  if (isFavorited) {
+    console.log('state', isFavorited);
+  }
   const firstLetterToUpperCase = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
 	return(
-		<>
 		<div className="grid__container">
-			<MenuBar 
-				health={health} 
+      {/* <Button
+        id="btn"
+        variant="primary"
+        size="lg"
+        className="btn btn-primary waves-effect waves-light"
+        onClick={((e) => { setIsFavorited()})}
+      >
+        favorited
+      </Button> */}
+			<MenuBar
+				health={health}
 				diet={diet}
 				searchTags={searchTags}
 				removeTag={removeTag}
@@ -77,7 +88,6 @@ const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, c
 			<div id="theGrid" className="main">
 				<motion.div
 					className={searchWrapper}
-					// className="search_wrapper"
 					animate={isOpen ? "exit" : "enter"}
 					variants={variants}
 				>
@@ -92,6 +102,8 @@ const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, c
       		</Button>
 					{searchbar}
 				</motion.div>
+
+
 				<motion.section
 					className="grid"
 					initial={{opacity: 0, x:0}}
@@ -99,6 +111,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, c
 					variants={variants}
 				>
 					{recipes && recipes.map((recipe, index) => {
+
 						return(
 							<motion.a
 								className="grid__item"
@@ -115,26 +128,33 @@ const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, c
 							</motion.a>
 						);
 					})}
-					{selectedRecipe &&
-					<Fragment>
-						<motion.div
+          {selectedRecipe &&
+            <motion.div
 							className="iframe_container"
 							initial={{opacity:0}}
 							animate={{opacity:1}}
 							transition={{ delay: 1, duration: .5 }}
 						>
-						<Iframe className="recipe_content" url={selectedRecipe.recipe.url}/>
-						<button className="modal_btn" onClick={e => {clickHandler()}}>
-						  <AiOutlineCloseCircle size={32}/>
-						</button>
-						<FavoriteAdd className="favorite_btn modal_btn" recipe={ selectedRecipe } user={user} setFavoriteAlert={setFavoriteAlert} />
+              <Iframe className="recipe_content" url={selectedRecipe.recipe.url}/>
+              <button className="modal_btn" onClick={e => {clickHandler()}}>
+                <AiOutlineCloseCircle size={32}/>
+              </button>
+
+              <FavoriteAdd
+                className = "favorite_btn modal_btn"
+                recipe = { selectedRecipe }
+                user = { user }
+                setFavoriteAlert = { setFavoriteAlert }
+                setAlertMessage = { setAlertMessage }
+                setIsFavorited = { setIsFavorited }
+              />
 						</motion.div>
-					</Fragment>
+
 					}
 				</motion.section>
+
 			</div>
 		</div>
-		</>
 	);
 }
 
