@@ -1,17 +1,24 @@
 import React, { useState } from "react";
+import classNames from "classnames";
 import { projectFirestore } from '../../firebase/config';
+
+import "./FavoriteAdd.scss";
 
 import { FaHeart } from "react-icons/fa";
 
 const FavoriteAdd = (props) => {
+  const [buttonClass, setButtonClass] = useState(false);
+
   const {setFavoriteAlert} = props;
 
   const addFavoriteToDB = (type) => {
+    setButtonClass(true);
     setFavoriteAlert(true);
+
     const recipe = props.recipe.recipe;
     const email = props.user.email;
 
-    //This will come from the prop - this is just an example
+    // Store a new favorite in the database.
     const favoriteRecipe = {
       created_at: new Date(),
       user_email: email,
@@ -26,9 +33,13 @@ const FavoriteAdd = (props) => {
     .add(favoriteRecipe);
   }
 
+  const favoriteAddClass = classNames(props.className, {
+    'favorited': buttonClass
+  });
+
   return (
     <FaHeart
-      className={props.className}
+      className={favoriteAddClass}
       onClick={e => addFavoriteToDB('favorites')}
       size={32}
       />

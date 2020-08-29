@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 
-
 import { useVisualMode } from "../../hooks/useVisualMode";
 
 import FavoriteItems from "./FavoriteItems";
@@ -13,8 +12,6 @@ const CONFIRM = "CONFIRM";
 const EDIT = "EDIT"
 
 const FavoritePage = (props) => {
-
-
   const { mode, transition, back } = useVisualMode(SHOW);
 
   const deleteEventReq = () => {

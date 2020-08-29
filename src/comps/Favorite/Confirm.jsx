@@ -6,10 +6,6 @@ import "./Confirm.scss";
 /* Bootstrap */
 import Button from "react-bootstrap/Button";
 
-import { GiCancel } from "react-icons/gi";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-
-
 //this component shows the confirm message when deleting
 const Confirm = (props) => {
 

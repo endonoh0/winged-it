@@ -193,6 +193,8 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 						<button className="modal_btn" onClick={e => {clickHandler()}}>
 						  <AiOutlineCloseCircle size={32}/>
 						</button>
+
+            {/* Favoriate Button & New Favorite Instance */}
 						<FavoriteAdd className="favorite_btn modal_btn" recipe={ selectedRecipe } user={user} setFavoriteAlert={setFavoriteAlert} />
 						</motion.div>
 					</Fragment>

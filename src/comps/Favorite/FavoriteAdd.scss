@@ -1,11 +1,8 @@
-.favorite_btn {
-  position: relative;
-  color: black;
-  margin-right: 0rem;
-  bottom: 4em;
-  left: 15em;
+.favorited {
+  color: red !important;
 }
 
-.favorite_btn:hover {
-  color:red;
+.favorited:hover {
+  color: black !important;
+  cursor: pointer;
 }

@@ -3,6 +3,8 @@ import { projectFirestore, timeStamp} from '../firebase/config';
 import useWriteToFirestore from '../hooks/useWriteToFirestore'
 import recipeFinder from '../helper/foodApi'
 
+// reducer accepts an aciton type and returns the current state paired with dispatch
+
 // Action types
 const SET_SELECTED_IMG  = "SET_SELECTED_IMG"
 const SET_SELECTED_RECIPE  = "SET_SELECTED_RECIPE"
@@ -57,6 +59,7 @@ const reducer = (state, action) => {
 
 const useApplicationData = () => {
 	const [state, dispatch] = useReducer(reducer, {
+    // initial state
     selectedImg: null,
     searchTags: [],
     healthTags: [],
@@ -71,9 +74,9 @@ const useApplicationData = () => {
     favoriteAlert: false,
     loadingStatus: false,
   })
-  
+
   const { write } = useWriteToFirestore();
-  
+
   // Set methods for each state
 	const setRecipes = (recipes) => dispatch({ type: SET_RECIPES, value: recipes })
 	const setSearchTags = (searchTags) => dispatch({type:SET_SEARCH_TAGS, value: searchTags})
@@ -120,7 +123,7 @@ const useApplicationData = () => {
         console.log(error);
       })
   };
-  
+
   // Reads and sets searchTags
   useEffect(() => {
     if (state.user.loggedIn) {
@@ -137,16 +140,16 @@ const useApplicationData = () => {
         })
     }
   }, [state.user]);
-  
+
 
   return {
-    state, 
-    setRecipes, 
-    setSearchTags, 
+    state,
+    setRecipes,
+    setSearchTags,
     setSelectedImg,
-    setSelectedRecipe, 
-    setHealthTags, 
-    setDietTags, 
+    setSelectedRecipe,
+    setHealthTags,
+    setDietTags,
     setUser,
     setHealth,
     setDiet,
