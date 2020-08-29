@@ -20,6 +20,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, c
 	const [isOpen, setIsOpen] = useState(false)
   const [isExit, setIsExit] = useState(false)
   const [isFavorited, setIsFavorited] = useState(false);
+  const [ favoriteId, setFavoriteId ] = useState("");
 
   let location = useLocation();
 
@@ -147,6 +148,9 @@ const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, c
                 setFavoriteAlert = { setFavoriteAlert }
                 setAlertMessage = { setAlertMessage }
                 setIsFavorited = { setIsFavorited }
+                isFavorited = { isFavorited }
+                setFavoriteId = { setFavoriteId }
+                favoriteId = { favoriteId }
               />
 						</motion.div>
 

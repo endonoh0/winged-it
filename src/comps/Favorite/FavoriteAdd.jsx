@@ -11,25 +11,29 @@ import { FaHeart } from "react-icons/fa";
 import "./FavoriteAdd.scss";
 
 const FavoriteAdd = (props) => {
-  const [id, setId] = useState("");
-  const [buttonClass, setButtonClass] = useState(false);
+  const { setFavoriteAlert, setAlertMessage, setIsFavorited, isFavorited, setFavoriteId, favoriteId } = props;
 
-  const { setFavoriteAlert, setAlertMessage, setIsFavorited } = props;
+  const [id, setId] = useState(favoriteId);
+  const [buttonClass, setButtonClass] = useState(isFavorited);
+  const [ favorite, setFavorite ] = useState(isFavorited);
+
+  const toggleFavorite = (bool) => {
+    setFavorite(bool);
+    setIsFavorited(bool);
+    setButtonClass(bool);
+    setFavoriteAlert(true);
+  }
 
   // Delete favorite in database
   const deleteFavoriteFromDB = () => {
-    setIsFavorited(false);
-    setButtonClass(false);
-    setFavoriteAlert(true);
+    toggleFavorite(false);
     setAlertMessage("Recipe Unfavorited");
     projectFirestore.collection('favorites').doc(id).delete();
   }
 
   // Store a new favorite in the database.
   const addFavoriteToDB = (type) => {
-    setIsFavorited(true);
-    setButtonClass(true);
-    setFavoriteAlert(true);
+    toggleFavorite(true);
     setAlertMessage("Recipe Favorited");
 
     const recipe = props.recipe.recipe;
@@ -48,8 +52,9 @@ const FavoriteAdd = (props) => {
     projectFirestore.collection(type)
     .add(favoriteRecipe)
     .then(function (doc) {
-      console.log('id', doc.id);
+      setFavoriteId(doc.id);
       setId(doc.id);
+      console.log('document ID added to database: ', doc.id);
     })
     .catch(function (error) {
       console.log('error', error);
@@ -57,7 +62,7 @@ const FavoriteAdd = (props) => {
   }
 
   const favoriteAddClass = classNames(props.className, {
-    'favorited': buttonClass
+    'favorited': favorite
   });
 
   return (
