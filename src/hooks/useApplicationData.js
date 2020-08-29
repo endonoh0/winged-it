@@ -19,6 +19,7 @@ const SET_DIET = "SET_DIET"
 const SET_TITLE = "SET_TITLE"
 const SET_DIRECTION = "SET_DIRECTION"
 const SET_FAVORITE_ALERT = "SET_FAVORITE_ALERT"
+const SET_ALERT_MESSAGE = "SET_ALERT_MESSAGE"
 const SET_LOADING_STATUS = "SET_LOADING_STATUS"
 
 // Reducer switch statements
@@ -50,6 +51,8 @@ const reducer = (state, action) => {
       return { ...state, directions: action.value }
     case SET_FAVORITE_ALERT:
       return { ...state, favoriteAlert: action.value }
+    case SET_ALERT_MESSAGE:
+      return { ...state, alertMessage: action.value }
     case SET_LOADING_STATUS:
       return { ...state, loadingStatus: action.value }
     default:
@@ -72,6 +75,7 @@ const useApplicationData = () => {
     title: '',
     directions: null,
     favoriteAlert: false,
+    setAlertMessage: "",
     loadingStatus: false,
   })
 
@@ -91,7 +95,8 @@ const useApplicationData = () => {
     dispatch({type:SET_DIET, value: diet})}
 	const setTitle = (title) => dispatch({type:SET_TITLE, value: title})
 	const setDirections = (directions) => dispatch({type:SET_DIRECTION, value: directions})
-	const setFavoriteAlert = (favoriteAlert) => dispatch({type:SET_FAVORITE_ALERT, value: favoriteAlert})
+  const setFavoriteAlert = (favoriteAlert) => dispatch({type:SET_FAVORITE_ALERT, value: favoriteAlert})
+  const setAlertMessage = (alertMessage) => dispatch({type:SET_ALERT_MESSAGE, value: alertMessage})
   const setLoadingStatus = (loadingStatus) => dispatch({type:SET_LOADING_STATUS, value: loadingStatus})
 
   const writeTag = (searchTerm, dbField) => {
@@ -156,6 +161,7 @@ const useApplicationData = () => {
     setTitle,
     setDirections,
     setFavoriteAlert,
+    setAlertMessage,
     writeTag,
     removeTag,
     onSubmit

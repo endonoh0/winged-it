@@ -16,7 +16,7 @@ import './AnimatedGrid.scss';
 import Button from 'react-bootstrap/Button';
 import FavoriteAdd from '../Favorite/FavoriteAdd';
 
-const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, searchTags, componentProps, removeTag, health, diet, onSubmit, user, setFavoriteAlert}) => {
+const AnimatedGrid = ({recipes, selectedRecipe, setSelectedRecipe, searchTags, componentProps, removeTag, health, diet, onSubmit, user, setFavoriteAlert, setAlertMessage}) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isExit, setIsExit] = useState(false)
 
@@ -195,7 +195,7 @@ const AnimatedGrid = ({recipes, selectedRecipe, selectedImg, setSelectedRecipe, 
 						</button>
 
             {/* Favoriate Button & New Favorite Instance */}
-						<FavoriteAdd className="favorite_btn modal_btn" recipe={ selectedRecipe } user={user} setFavoriteAlert={setFavoriteAlert} />
+						<FavoriteAdd className="favorite_btn modal_btn" recipe={ selectedRecipe } user={user} setFavoriteAlert={setFavoriteAlert} setAlertMessage={setAlertMessage} />
 						</motion.div>
 					</Fragment>
 					}

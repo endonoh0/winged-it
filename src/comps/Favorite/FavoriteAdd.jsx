@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
-
-/* Custom Hooks */
-import { useFirestoreFavorites } from "../../hooks/useFirestoreFavorites";
 
 /* Firestore */
 import { projectFirestore } from '../../firebase/config';
@@ -17,19 +14,21 @@ const FavoriteAdd = (props) => {
   const [id, setId] = useState("");
   const [buttonClass, setButtonClass] = useState(false);
 
-  const {setFavoriteAlert} = props;
+  const {setFavoriteAlert, setAlertMessage} = props;
 
-  // Destory favorite in database.
+  // Delete favorite in database.
   const deleteFavoriteFromDB = () => {
     setButtonClass(false);
+    setFavoriteAlert(true);
+    setAlertMessage("Recipe Unfavorited");
     projectFirestore.collection('favorites').doc(id).delete();
-    console.log('deleted id: ', id);
   }
 
   // Store a new favorite in the database.
   const addFavoriteToDB = (type) => {
     setButtonClass(true);
     setFavoriteAlert(true);
+    setAlertMessage("Recipe Favorited");
 
     const recipe = props.recipe.recipe;
     const email = props.user.email;
